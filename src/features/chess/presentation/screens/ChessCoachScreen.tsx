@@ -16,39 +16,40 @@ import {
   useTheme,
 } from '@shared/ui';
 
+import {speakCoachLine, stopCoachSpeech} from '../../application/coachSpeech';
 import type {ChessStackParamList} from '../navigation/types';
 
 type Props = NativeStackScreenProps<ChessStackParamList, 'Coach'>;
 
 /**
- * AI / offline coach greeting for the Chess module.
+ * Free-talk coach with Tamil voice playback.
  */
 export function ChessCoachScreen({navigation}: Props) {
   const {t, i18n} = useTranslation();
   const {space: themeSpace} = useTheme();
   const [message, setMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-
   const locale = i18n.language?.startsWith('ta') ? 'ta' : 'en';
 
   const loadHint = useCallback(async () => {
     setLoading(true);
+    stopCoachSpeech();
     const result = await coachPort.requestHint({
       moduleId: 'chess',
-      context: 'Child opened the chess coach for a friendly tip.',
+      context:
+        'Child opened the chess coach. Give a short gentle Tamil-friendly tip for a 6-year-old learning pieces.',
       childAgeYears: 6,
       locale,
     });
-    if (result.ok) {
-      setMessage(result.value.message);
-    } else {
-      setMessage(t('chess.coach.fallback'));
-    }
+    const text = result.ok ? result.value.message : t('chess.coach.fallback');
+    setMessage(text);
     setLoading(false);
+    await speakCoachLine(locale === 'ta' ? text : t('chess.coach.fallback'));
   }, [locale, t]);
 
   useEffect(() => {
     void loadHint();
+    return () => stopCoachSpeech();
   }, [loadHint]);
 
   return (
@@ -68,14 +69,14 @@ export function ChessCoachScreen({navigation}: Props) {
         )}
         <PrimaryButton
           label={t('chess.coach.again')}
-          onPress={() => void loadHint()}
+          onPress={() => {
+            void loadHint();
+          }}
           disabled={loading}
         />
         <SecondaryButton
           label={t('chess.hub.startLesson')}
-          onPress={() =>
-            navigation.navigate('Lesson', {lessonId: 'chess.board'})
-          }
+          onPress={() => navigation.navigate('Lesson', {lessonId: 'board'})}
         />
       </View>
     </AppShell>

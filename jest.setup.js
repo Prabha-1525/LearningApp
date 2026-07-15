@@ -85,6 +85,13 @@ jest.mock('react-native-screens', () => ({
   ScreenContainer: View => View,
 }));
 
+jest.mock('react-native-tts', () => ({
+  setDefaultLanguage: jest.fn(),
+  setDefaultRate: jest.fn(),
+  stop: jest.fn(),
+  speak: jest.fn(),
+}));
+
 jest.mock('@react-native-firebase/app', () => ({}), {virtual: true});
 jest.mock('@react-native-firebase/auth', () => ({default: () => ({})}), {
   virtual: true,

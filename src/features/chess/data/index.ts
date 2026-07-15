@@ -1,4 +1,6 @@
-/**
- * Adapters: Chess.js engine, Firebase lesson catalog, coach wiring.
- */
-export {};
+export {
+  getChessLessonProgress,
+  markLessonComplete,
+  isLessonUnlocked,
+  type ChessLessonProgress,
+} from './lessonProgress';

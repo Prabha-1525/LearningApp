@@ -51,20 +51,31 @@
   "chess": {
     "hub": {
       "title": "Chess",
-      "subtitle": "Learn little by little",
+      "subtitle": "Learn with your coach",
       "welcome": "Let’s look at the board and learn with a friendly coach.",
+      "welcomeVoice": "Your Tamil coach will talk, show moves, then let you try.",
       "coachName": "Coach",
       "progressTitle": "Your chess path",
       "progressDetail": "Finish a lesson to earn your first stars",
+      "progressCount": "{{done}} of {{total}} lessons done",
       "startLesson": "Start lesson",
-      "practice": "Practice squares",
-      "meetCoach": "Meet coach"
+      "continueLesson": "Continue: {{title}}",
+      "lessonList": "Lessons",
+      "practice": "Warm-up squares",
+      "meetCoach": "Talk to coach",
+      "done": "Done",
+      "play": "Play",
+      "locked": "Locked"
     },
     "lesson": {
       "chip": "Lesson",
       "step": "Step {{current}} of {{total}}",
-      "finish": "Done — back to Chess",
+      "finish": "Finish lesson",
       "practiceNow": "Try practice",
+      "listening": "Coach is speaking",
+      "practiceHint": "Tap the piece, then the target square — or tap the glowing squares.",
+      "watchDemo": "Watch carefully…",
+      "showAgain": "Show me again",
       "board": {
         "title": "The board",
         "headline": "This is our chess board",
@@ -97,7 +108,7 @@
     "coach": {
       "title": "Coach",
       "again": "Say it again",
-      "fallback": "Hello! Let’s learn chess gently, one square at a time."
+      "fallback": "வணக்கம்! சதுரங்கத்தை மெதுவாக, ஒரு சதுரமாக கற்போம்."
     }
   },
   "profile": {
