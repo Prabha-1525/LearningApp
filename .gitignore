@@ -73,3 +73,15 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Environment (keep .env.example)
+.env
+.env.local
+.env.production
+.env.staging
+.env.*.local
+
+# Firebase client configs (use *.example templates)
+android/app/google-services.json
+ios/LearningApp/GoogleService-Info.plist
+ios/GoogleService-Info.plist

@@ -1,0 +1,30 @@
+{
+  "_comment": "Replace with a real file from Firebase Console → Project settings → Your apps → Android. Keep this example committed; never commit secrets beyond the client config Firebase already publishes.",
+  "project_info": {
+    "project_number": "000000000000",
+    "project_id": "learning-app-example",
+    "storage_bucket": "learning-app-example.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:000000000000:android:0000000000000000000000",
+        "android_client_info": {
+          "package_name": "com.learningapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "REPLACE_ME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

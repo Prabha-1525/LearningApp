@@ -1,0 +1,237 @@
+{
+  "app": {
+    "name": "Learning App",
+    "tagline": "Ready to learn?"
+  },
+  "splash": {
+    "loading": "Getting ready…"
+  },
+  "welcome": {
+    "title": "Let's learn and play",
+    "subtitle": "Fun lessons for ages 5–8",
+    "cta": "Let's play",
+    "parent": "I am a parent"
+  },
+  "home": {
+    "greeting": "Hi {{name}}!",
+    "modules": "What do you want to learn?",
+    "continue": "Continue",
+    "stars": "Your stars",
+    "play": "Play",
+    "comingSoon": "Coming Soon",
+    "emptyTitle": "No modules yet",
+    "emptyMessage": "Ask a grown-up to turn on a learning module."
+  },
+  "modules": {
+    "chess": {
+      "title": "Chess",
+      "subtitle": "Learn moves and play"
+    },
+    "math": {
+      "title": "Math",
+      "subtitle": "Numbers and puzzles"
+    },
+    "english": {
+      "title": "English",
+      "subtitle": "Words and stories"
+    },
+    "science": {
+      "title": "Science",
+      "subtitle": "Discover how things work"
+    },
+    "memory": {
+      "title": "Memory Game",
+      "subtitle": "Train your mind"
+    },
+    "drawing": {
+      "title": "Drawing",
+      "subtitle": "Create and color"
+    }
+  },
+  "chess": {
+    "hub": {
+      "title": "Chess",
+      "subtitle": "Learn little by little",
+      "welcome": "Let’s look at the board and learn with a friendly coach.",
+      "coachName": "Coach",
+      "progressTitle": "Your chess path",
+      "progressDetail": "Finish a lesson to earn your first stars",
+      "startLesson": "Start lesson",
+      "practice": "Practice squares",
+      "meetCoach": "Meet coach"
+    },
+    "lesson": {
+      "chip": "Lesson",
+      "step": "Step {{current}} of {{total}}",
+      "finish": "Done — back to Chess",
+      "practiceNow": "Try practice",
+      "board": {
+        "title": "The board",
+        "headline": "This is our chess board",
+        "body": "It has light and dark squares. We play one tiny idea at a time."
+      },
+      "king": {
+        "title": "The king",
+        "headline": "Meet the king",
+        "body": "The king is the most important friend. Keep him safe."
+      },
+      "pawn": {
+        "title": "The pawn",
+        "headline": "Little pawn steps",
+        "body": "Pawns take one small step forward. You can do that too!"
+      }
+    },
+    "practice": {
+      "title": "Practice",
+      "subtitle": "Find the light squares",
+      "prompt": "Tap every light square.",
+      "good": "Nice find!",
+      "dark": "That one is dark — try a light square.",
+      "already": "You already found that one.",
+      "win": "You found them all — great job!",
+      "score": "{{score}} / {{total}}",
+      "done": "Back to Chess",
+      "lightSquare": "Light square",
+      "darkSquare": "Dark square"
+    },
+    "coach": {
+      "title": "Coach",
+      "again": "Say it again",
+      "fallback": "Hello! Let’s learn chess gently, one square at a time."
+    }
+  },
+  "profile": {
+    "title": "My profile",
+    "age": "Age {{age}}",
+    "pickAvatar": "Pick your avatar",
+    "starsTotal": "Stars earned"
+  },
+  "settings": {
+    "title": "Settings",
+    "sound": "Sound",
+    "nightMode": "Night mode",
+    "language": "Language",
+    "languageHint": "English / தமிழ்",
+    "parentSection": "Parent",
+    "openParentDashboard": "Parent dashboard"
+  },
+  "parent": {
+    "gateTitle": "Parent check",
+    "gateMessage": "Ask a grown-up to continue.",
+    "confirm": "I am a parent",
+    "cancel": "Not now",
+    "dashboard": "Parent dashboard",
+    "weeklyMinutes": "Minutes",
+    "weeklyStars": "Stars",
+    "lessonsDone": "Lessons",
+    "thisWeek": "This week",
+    "thisMonth": "This month",
+    "modulesTitle": "Modules",
+    "enabled": "On",
+    "comingSoon": "Soon",
+    "lessonsCompleted": "Lessons completed",
+    "currentLevel": "Current level",
+    "levelHint": "From XP progress",
+    "levelProgress": "Level progress",
+    "timeSpent": "Time spent",
+    "minutes": "minutes",
+    "practiceFrequency": "Practice sessions",
+    "mistakes": "Mistakes",
+    "mistakesHint": "Gentle practice moments",
+    "streak": "Streak",
+    "longestStreak": "Best {{count}} days",
+    "weeklyReport": "Weekly",
+    "monthlyReport": "Monthly",
+    "progressGraph": "Progress graph",
+    "recommendations": "Recommendations",
+    "avgSession": "Avg session",
+    "stars": "Stars",
+    "coins": "Coins",
+    "total": "Total",
+    "achievementsTitle": "Achievements",
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "frequency": {
+      "high": "Often this period",
+      "medium": "A few times",
+      "low": "Light practice"
+    },
+    "achievementItems": {
+      "streak3": "3-day explorer"
+    },
+    "recs": {
+      "shortSessions": {
+        "title": "Keep sessions short",
+        "detail": "10–15 minutes of Chess works well at this age."
+      },
+      "reviewMistakes": {
+        "title": "Review with kindness",
+        "detail": "Replay a missed practice move and celebrate trying again."
+      },
+      "keepStreak": {
+        "title": "Protect the streak",
+        "detail": "A tiny daily lesson helps confidence more than long sessions."
+      }
+    }
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "email": "Email",
+    "password": "Password",
+    "continue": "Continue"
+  },
+  "common": {
+    "back": "Back",
+    "next": "Next",
+    "loading": "Loading…"
+  },
+  "gamification": {
+    "currency": {
+      "stars": "Stars",
+      "starsDesc": "Earn stars by learning",
+      "coins": "Coins",
+      "coinsDesc": "Spend coins on fun unlocks"
+    },
+    "xp": {
+      "progress": "Level progress"
+    },
+    "streak": {
+      "label": "{{count}}-day streak"
+    },
+    "celebration": {
+      "stars": "You got stars!",
+      "coins": "You got coins!",
+      "levelUp": "Level up!",
+      "achievement": "Achievement unlocked!",
+      "badge": "New badge!",
+      "avatar": "New avatar!",
+      "daily": "Daily reward!",
+      "streak": "Streak!",
+      "streakDetail": "Come back tomorrow too"
+    },
+    "achievements": {
+      "firstLesson": "First lesson",
+      "firstLessonDesc": "Finish your first lesson"
+    },
+    "badges": {
+      "curious": "Curious kid",
+      "curiousDesc": "Keep exploring"
+    },
+    "avatars": {
+      "sunny": "Sunny",
+      "sunnyDesc": "Your starter look",
+      "spark": "Spark",
+      "sparkDesc": "Unlocks at level 3"
+    },
+    "daily": {
+      "day1": "Day 1 gift",
+      "day1Desc": "A little hello gift",
+      "day7": "Day 7 gift",
+      "day7Desc": "Weekly surprise"
+    },
+    "yay": "Yay!"
+  }
+}

@@ -1,0 +1,1 @@
+export {MiniChessBoard} from './MiniChessBoard';
