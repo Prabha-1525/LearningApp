@@ -48,6 +48,55 @@
       "subtitle": "வரைந்து வண்ணமிடு"
     }
   },
+  "math": {
+    "hub": {
+      "title": "Math",
+      "subtitle": "Learn with your math coach",
+      "heroTitle": "Let's count and play!",
+      "welcomeVoice": "Your math coach talks, shows, then lets you try. Pick any topic — all are open!",
+      "coachName": "Math Coach",
+      "statsTitle": "Your practice stats",
+      "statsSummary": "{{attempted}} tried · {{correct}} correct · {{score}}% score",
+      "favorites": "Most practiced: {{lessons}}",
+      "suggestedLesson": "Try: {{title}}",
+      "activityList": "Math activities",
+      "practiceZone": "Practice zone",
+      "comingSoon": "Coming Soon",
+      "play": "Play",
+      "lessonScore": "{{percent}}% score"
+    },
+    "lesson": {
+      "question": "Question {{number}}",
+      "level": "Level {{level}}",
+      "sessionScore": "{{correct}} / {{total}} this session",
+      "keepPracticing": "Keep going — new questions keep coming!",
+      "listening": "Coach is speaking",
+      "replay": "Replay",
+      "yay": "Yay!"
+    },
+    "numbers": {
+      "title": "Learn Numbers",
+      "subtitle": "Count and play with your coach",
+      "speaking": "Coach is talking…",
+      "tapToCount": "Tap to count!",
+      "audioError": "Voice issue",
+      "onARoll": "On a roll!",
+      "stars": "Stars",
+      "greatJob": "Great job!",
+      "keepGoing": "Keep learning — new numbers keep coming!",
+      "stats": {
+        "question": "Question",
+        "stars": "Stars",
+        "greatJobs": "Great Jobs",
+        "score": "Score"
+      },
+      "batchComplete": {
+        "title": "Amazing work!",
+        "subtitle": "You finished a big round of numbers!",
+        "keepGoing": "Keep going!"
+      }
+    }
+  },
   "chess": {
     "hub": {
       "title": "சதுரங்கம்",
@@ -62,10 +111,23 @@
       "continueLesson": "தொடர்: {{title}}",
       "lessonList": "பாடங்கள்",
       "practice": "சதுரங்கள் பயிற்சி",
-      "meetCoach": "பயிற்சியாளரிடம் பேசு",
+      "playWithCoach": "பயிற்சியாளருடன் விளையாடு",
+      "meetCoach": "பயிற்சியாளருடன் விளையாடு",
+      "heroTitle": "விளையாடி கற்போம்!",
+      "earnStars": "பாடம் முடித்து நட்சத்திரம் பெறு",
       "done": "முடிந்தது",
       "play": "விளையாடு",
       "locked": "பூட்டியது"
+    },
+    "play": {
+      "title": "பயிற்சியாளருடன் விளையாடு",
+      "subtitle": "விளையாடும்போதே கற்போம்",
+      "yourTurn": "உன் முறை",
+      "coachTurn": "பயிற்சியாளர் யோசிக்கிறார்",
+      "finished": "முடிந்தது",
+      "hint": "குறிப்பு வேண்டுமா?",
+      "newGame": "புதிய ஆட்டம்",
+      "yay": "அருமை!"
     },
     "lesson": {
       "chip": "பாடம்",

@@ -7,14 +7,15 @@ describe('moduleRegistry', () => {
     resetBootstrapForTests();
   });
 
-  it('registers catalog modules with only Chess enabled', () => {
+  it('registers Chess and Math with navigators', () => {
     registerAllModules();
 
     expect(moduleRegistry.list()).toHaveLength(6);
     expect(moduleRegistry.get(ModuleId.Chess)?.isEnabled()).toBe(true);
-    expect(moduleRegistry.get(ModuleId.Math)?.isEnabled()).toBe(false);
-    expect(moduleRegistry.listEnabled()).toHaveLength(1);
+    expect(moduleRegistry.get(ModuleId.Math)?.isEnabled()).toBe(true);
+    expect(moduleRegistry.listEnabled()).toHaveLength(2);
     expect(moduleRegistry.get(ModuleId.Chess)?.getNavigator()).not.toBeNull();
+    expect(moduleRegistry.get(ModuleId.Math)?.getNavigator()).not.toBeNull();
   });
 
   it('is idempotent', () => {

@@ -4,28 +4,25 @@ import type {
   CoachHintResponse,
   CoachPort,
 } from '@core/domain';
-
-import type {AiGateway} from './types';
+import type {AIService} from '@core/ai';
 
 /**
- * Binds CoachPort to the AI gateway (OpenAI / Gemini / offline).
+ * Binds CoachPort to the provider-agnostic AIService (Gemini primary).
  */
-export function createCoachPort(gateway: AiGateway): CoachPort {
+export function createCoachPort(ai: AIService): CoachPort {
   return {
     async requestHint(
       request: CoachHintRequest,
     ): Promise<Result<CoachHintResponse>> {
-      const conversationId = `coach.${request.moduleId}`;
-      const result = await gateway.generateText({
-        promptId: 'coach.hint',
-        locale: request.locale,
-        conversationId,
-        variables: {
+      const result = await ai.generateHint({
+        context: {
+          moduleId: request.moduleId === 'math' ? 'math' : 'chess',
+          lessonId: request.moduleId,
+          lessonTitle: request.moduleId,
+          childAgeYears: request.childAgeYears,
           locale: request.locale,
-          age: request.childAgeYears,
-          lesson: request.moduleId,
-          context: request.context,
         },
+        situation: request.context,
       });
 
       if (!result.ok) {

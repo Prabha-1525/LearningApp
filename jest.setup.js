@@ -10,8 +10,10 @@ jest.mock('react-native-config', () => ({
     AUTH_REQUIRED: 'false',
     OPENAI_PROXY_URL: '',
     GEMINI_PROXY_URL: '',
+    GEMINI_API_KEY: '',
+    GEMINI_MODEL: 'gemini-2.0-flash',
     TTS_PROXY_URL: '',
-    PREFERRED_AI_PROVIDER: 'openai',
+    PREFERRED_AI_PROVIDER: 'gemini',
   },
 }));
 
@@ -85,12 +87,27 @@ jest.mock('react-native-screens', () => ({
   ScreenContainer: View => View,
 }));
 
-jest.mock('react-native-tts', () => ({
-  setDefaultLanguage: jest.fn(),
-  setDefaultRate: jest.fn(),
-  stop: jest.fn(),
-  speak: jest.fn(),
-}));
+jest.mock('react-native-tts', () => {
+  const finishHandlers: Array<() => void> = [];
+  const api = {
+    getInitStatus: jest.fn(() => Promise.resolve(true)),
+    setDefaultLanguage: jest.fn(() => Promise.resolve(true)),
+    setDefaultRate: jest.fn(),
+    stop: jest.fn(),
+    speak: jest.fn(() => {
+      setTimeout(() => {
+        finishHandlers.forEach(handler => handler());
+      }, 5);
+    }),
+    addEventListener: jest.fn((type: string, handler: () => void) => {
+      if (type === 'tts-finish') {
+        finishHandlers.push(handler);
+      }
+      return {remove: jest.fn()};
+    }),
+  };
+  return {default: api, ...api};
+});
 
 jest.mock('@react-native-firebase/app', () => ({}), {virtual: true});
 jest.mock('@react-native-firebase/auth', () => ({default: () => ({})}), {

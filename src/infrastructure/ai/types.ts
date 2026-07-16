@@ -63,7 +63,7 @@ export type ConversationTurn = {
   readonly role: 'user' | 'assistant' | 'system';
   readonly content: string;
   readonly createdAt: string;
-  readonly promptId?: PromptId;
+  readonly promptId?: string;
   readonly provider?: AiProviderId;
 };
 

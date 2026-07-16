@@ -1,11 +1,14 @@
 import {env} from '@app/config/env';
 
 import {createAiGateway} from './AiGateway';
+import {aiService} from './composition/createAIService';
 import {createCoachPort} from './CoachPortAdapter';
 
 export type {AiGateway, AiProviderId, PromptId} from './types';
+export type {AIService, LessonContext, AiModuleId} from '@core/ai';
 export {createAiGateway} from './AiGateway';
 export {createCoachPort} from './CoachPortAdapter';
+export {aiService, conversationManager} from './composition/createAIService';
 export {promptManager} from './prompts/PromptManager';
 export {conversationHistoryStore} from './history/ConversationHistoryStore';
 export {aiResponseCache} from './cache/AiResponseCache';
@@ -17,7 +20,7 @@ export {offlineFallbackText} from './resilience/OfflineFallback';
 
 /**
  * App-wide AI composition root.
- * Secrets never live here — only proxy URLs from env.
+ * Gemini SDK is primary when GEMINI_API_KEY is set; proxy URLs are fallback.
  */
 export const aiGateway = createAiGateway({
   openAiProxyUrl: env.openAiProxyUrl,
@@ -26,4 +29,4 @@ export const aiGateway = createAiGateway({
   preferredProvider: env.preferredAiProvider,
 });
 
-export const coachPort = createCoachPort(aiGateway);
+export const coachPort = createCoachPort(aiService);

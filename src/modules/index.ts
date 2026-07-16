@@ -1,5 +1,6 @@
 import {ModuleId} from '@core/domain';
 import {registerChessModule} from '@features/chess';
+import {registerMathModule} from '@features/math';
 import {featureFlags} from '@shared/config';
 
 import {createCatalogModule} from './createCatalogModule';
@@ -15,18 +16,7 @@ export function registerAllModules(): void {
   }
 
   moduleRegistry.register(registerChessModule());
-
-  moduleRegistry.register(
-    createCatalogModule({
-      id: ModuleId.Math,
-      titleKey: 'modules.math.title',
-      subtitleKey: 'modules.math.subtitle',
-      iconKey: 'math',
-      accentColor: '#4DB7E8',
-      deepLinkPrefix: 'learningapp://module/math',
-      isEnabled: () => featureFlags.mathEnabled,
-    }),
-  );
+  moduleRegistry.register(registerMathModule());
 
   moduleRegistry.register(
     createCatalogModule({

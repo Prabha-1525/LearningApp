@@ -36,6 +36,8 @@ export type AppEnv = {
   readonly firebaseEnabled: boolean;
   readonly openAiProxyUrl: string;
   readonly geminiProxyUrl: string;
+  readonly geminiApiKey: string;
+  readonly geminiModel: string;
   readonly ttsProxyUrl: string;
   readonly preferredAiProvider: PreferredAiProvider;
   readonly authRequired: boolean;
@@ -55,6 +57,8 @@ export const env: AppEnv = {
   firebaseEnabled: asBool(raw.FIREBASE_ENABLED, false),
   openAiProxyUrl: raw.OPENAI_PROXY_URL ?? '',
   geminiProxyUrl: raw.GEMINI_PROXY_URL ?? '',
+  geminiApiKey: raw.GEMINI_API_KEY ?? '',
+  geminiModel: raw.GEMINI_MODEL ?? 'gemini-2.0-flash',
   ttsProxyUrl: raw.TTS_PROXY_URL ?? '',
   preferredAiProvider: asPreferredAiProvider(raw.PREFERRED_AI_PROVIDER),
   authRequired: asBool(raw.AUTH_REQUIRED, false),

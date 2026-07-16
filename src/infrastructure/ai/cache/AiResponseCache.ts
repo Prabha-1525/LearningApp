@@ -1,7 +1,7 @@
 import {mmkvStorage} from '@infrastructure/mmkv';
 import {StorageKeys} from '@shared/storage';
 
-import type {LlmGenerateResponse, PromptId} from '../types';
+import type {LlmGenerateResponse} from '../types';
 
 type CacheEntry = {
   readonly value: LlmGenerateResponse;
@@ -15,11 +15,11 @@ type CacheEntry = {
 export class AiResponseCache {
   constructor(private readonly defaultTtlMs = 10 * 60_000) {}
 
-  private key(promptId: PromptId, fingerprint: string): string {
+  private key(promptId: string, fingerprint: string): string {
     return StorageKeys.module('ai', `cache.${promptId}.${fingerprint}`);
   }
 
-  get(promptId: PromptId, fingerprint: string): LlmGenerateResponse | null {
+  get(promptId: string, fingerprint: string): LlmGenerateResponse | null {
     const raw = mmkvStorage.getString(this.key(promptId, fingerprint));
     if (!raw) {
       return null;
@@ -37,7 +37,7 @@ export class AiResponseCache {
   }
 
   set(
-    promptId: PromptId,
+    promptId: string,
     fingerprint: string,
     value: LlmGenerateResponse,
     ttlMs = this.defaultTtlMs,

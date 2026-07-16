@@ -1,7 +1,7 @@
 import {mmkvStorage} from '@infrastructure/mmkv';
 import {StorageKeys} from '@shared/storage';
 
-import type {ConversationTurn, PromptId, AiProviderId} from '../types';
+import type {ConversationTurn, AiProviderId} from '../types';
 
 const MAX_TURNS_PER_CONVERSATION = 40;
 
@@ -43,8 +43,8 @@ export class ConversationHistoryStore {
     conversationId: string;
     userContent: string;
     assistantContent: string;
-    promptId: PromptId;
-    provider: AiProviderId;
+    promptId: string;
+    provider: string;
   }): void {
     const now = new Date().toISOString();
     this.append({
@@ -62,7 +62,7 @@ export class ConversationHistoryStore {
       content: input.assistantContent,
       createdAt: now,
       promptId: input.promptId,
-      provider: input.provider,
+      provider: input.provider as AiProviderId,
     });
   }
 

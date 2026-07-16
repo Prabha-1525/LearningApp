@@ -14,7 +14,7 @@ export type FeatureFlags = {
  */
 export const featureFlags: FeatureFlags = {
   chessEnabled: true,
-  mathEnabled: false,
+  mathEnabled: true,
   englishEnabled: false,
   tamilEnabled: false,
   scienceEnabled: false,

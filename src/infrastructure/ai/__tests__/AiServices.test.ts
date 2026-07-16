@@ -2,6 +2,7 @@ import {ok} from '@shared/lib';
 
 import {createAiGateway} from '../AiGateway';
 import {createCoachPort} from '../CoachPortAdapter';
+import {aiService} from '../composition/createAIService';
 import {assertNoVendorSecretsInEnv} from '../security/ApiSecurity';
 import {promptManager} from '../prompts/PromptManager';
 import {offlineFallbackText} from '../resilience/OfflineFallback';
@@ -148,13 +149,8 @@ describe('AiGateway', () => {
 });
 
 describe('CoachPortAdapter', () => {
-  it('maps hint requests through the gateway', async () => {
-    const gateway = createAiGateway({
-      openAiProxyUrl: '',
-      geminiProxyUrl: '',
-      ttsProxyUrl: '',
-    });
-    const coach = createCoachPort(gateway);
+  it('maps hint requests through aiService', async () => {
+    const coach = createCoachPort(aiService);
     const result = await coach.requestHint({
       moduleId: 'chess',
       context: 'stuck on pawn move',
