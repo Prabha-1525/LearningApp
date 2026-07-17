@@ -8,6 +8,8 @@ export type AppConfig = {
   readonly featureFlags: typeof featureFlags;
   readonly firebaseEnabled: boolean;
   readonly authRequired: boolean;
+  readonly googleWebClientId: string;
+  readonly appVersion: string;
 };
 
 /**
@@ -19,4 +21,6 @@ export const appConfig: AppConfig = {
   featureFlags,
   firebaseEnabled: env.firebaseEnabled,
   authRequired: env.authRequired,
+  googleWebClientId: env.googleWebClientId,
+  appVersion: '1.0.0',
 };

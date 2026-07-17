@@ -41,6 +41,8 @@ export type AppEnv = {
   readonly ttsProxyUrl: string;
   readonly preferredAiProvider: PreferredAiProvider;
   readonly authRequired: boolean;
+  /** Web client ID for Google Sign-In → Firebase Auth. */
+  readonly googleWebClientId: string;
 };
 
 function asPreferredAiProvider(value: string | undefined): PreferredAiProvider {
@@ -62,6 +64,7 @@ export const env: AppEnv = {
   ttsProxyUrl: raw.TTS_PROXY_URL ?? '',
   preferredAiProvider: asPreferredAiProvider(raw.PREFERRED_AI_PROVIDER),
   authRequired: asBool(raw.AUTH_REQUIRED, false),
+  googleWebClientId: raw.GOOGLE_WEB_CLIENT_ID ?? '',
 };
 
 export const isDevEnv = env.appEnv === 'development' || __DEV__;

@@ -9,6 +9,14 @@ export type {
   ModuleProgressEntry,
   ProgressStatus,
 } from './LearningProgress';
+export type {
+  FirestoreChildInfo,
+  FirestoreChildProfile,
+  FirestoreGeneralProgress,
+  FirestoreParentInfo,
+  FirestoreProgressBundle,
+  FirestoreUserProfile,
+} from './UserCloudProfile';
 export {
   ModuleId,
   asChildId,

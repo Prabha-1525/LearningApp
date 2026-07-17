@@ -25,6 +25,23 @@ function read(): ChessLessonProgress {
 
 function write(progress: ChessLessonProgress): void {
   mmkvStorage.setString(PROGRESS_KEY, JSON.stringify(progress));
+  try {
+    const {getActiveCloudUid, scheduleProgressSync} =
+      require('@infrastructure/auth') as typeof import('@infrastructure/auth');
+    const uid = getActiveCloudUid();
+    if (uid) {
+      scheduleProgressSync(uid, 'chess');
+    }
+  } catch {
+    // Sync layer optional during early boot / tests
+  }
+}
+
+/** Replace entire chess progress blob (used when restoring from Firestore). */
+export function replaceChessLessonProgress(
+  progress: ChessLessonProgress,
+): void {
+  write(progress);
 }
 
 export function getChessLessonProgress(): ChessLessonProgress {

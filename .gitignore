@@ -85,3 +85,7 @@ yarn-error.log
 android/app/google-services.json
 ios/LearningApp/GoogleService-Info.plist
 ios/GoogleService-Info.plist
+
+# Google OAuth client secrets (never ship in the app binary)
+android/app/client_secret*.json
+**/client_secret*.json

@@ -1,11 +1,11 @@
-import {useEffect} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {useEffect, useMemo} from 'react';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppDispatch, useAppSelector} from '@app/store';
+import {getChildAvatar} from '@assets';
 import {AppSafeAreaView} from '@components';
-import {asChildId} from '@core/domain';
 import {CelebrationOverlay, GamificationHud} from '@core/gamification';
 import {
   clearCelebrations,
@@ -17,7 +17,6 @@ import {moduleRegistry} from '@modules';
 import {
   AppText,
   AudioButton,
-  BrandMark,
   ContinueCard,
   EmptyState,
   IconButton,
@@ -31,11 +30,8 @@ import type {MainStackParamList} from '@navigation/types';
 
 type Props = NativeStackScreenProps<MainStackParamList, 'Home'>;
 
-const DEMO_CHILD_ID = asChildId('demo-child');
-
 /**
- * Home maps the module registry → LearningModuleCard.
- * Adding a module never requires changes here — only modules/index registration.
+ * Home after profile setup — always greets the child by name + cartoon avatar.
  */
 export function HomeScreen({navigation}: Props) {
   const {t} = useTranslation();
@@ -43,6 +39,7 @@ export function HomeScreen({navigation}: Props) {
   const {space: themeSpace} = useTheme();
   const soundEnabled = useAppSelector(state => state.settings.soundEnabled);
   const gamification = useAppSelector(state => state.gamification);
+  const activeChildId = useAppSelector(state => state.profile.activeChildId);
   const activeChild = useAppSelector(state =>
     state.profile.children.find(
       child => child.id === state.profile.activeChildId,
@@ -50,13 +47,21 @@ export function HomeScreen({navigation}: Props) {
   );
 
   useEffect(() => {
-    dispatch(ensureGamificationChild(DEMO_CHILD_ID));
-  }, [dispatch]);
+    if (activeChildId) {
+      dispatch(ensureGamificationChild(activeChildId));
+    }
+  }, [dispatch, activeChildId]);
 
   const modules = moduleRegistry.list();
   const continueModule = moduleRegistry.listEnabled()[0];
-  const childName = activeChild?.displayName ?? 'Friend';
+  const childName = activeChild?.displayName ?? t('home.defaultChildName');
   const celebration = gamification.pendingCelebrations[0] ?? null;
+  const streak = gamification.snapshot?.streak?.currentStreak ?? 0;
+  const stars = gamification.snapshot?.wallet?.stars ?? 0;
+  const avatar = useMemo(
+    () => getChildAvatar(activeChild?.avatarKey ?? 'lion'),
+    [activeChild?.avatarKey],
+  );
 
   return (
     <AppSafeAreaView testID="home-screen">
@@ -64,11 +69,22 @@ export function HomeScreen({navigation}: Props) {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}>
         <View style={styles.topRow}>
-          <View style={styles.brandBlock}>
-            <BrandMark size="sm" />
-            <AppText variant="title" tone="ink">
-              {t('home.greeting', {name: childName})}
-            </AppText>
+          <View style={styles.identity}>
+            {avatar.image ? (
+              <Image source={avatar.image} style={styles.avatar} />
+            ) : (
+              <View style={styles.avatarEmoji}>
+                <Text style={styles.emoji}>{avatar.emoji}</Text>
+              </View>
+            )}
+            <View style={styles.brandBlock}>
+              <AppText variant="body" tone="muted">
+                {t('home.welcomeLabel')}
+              </AppText>
+              <AppText variant="title" tone="ink">
+                {childName}!
+              </AppText>
+            </View>
           </View>
           <View style={[styles.topActions, {gap: themeSpace.xs}]}>
             <AudioButton
@@ -85,6 +101,25 @@ export function HomeScreen({navigation}: Props) {
               symbol="S"
               onPress={() => navigation.navigate('Settings')}
             />
+          </View>
+        </View>
+
+        <View style={styles.statsRow}>
+          <View style={styles.statChip}>
+            <AppText variant="caption" tone="muted">
+              {t('home.streak')}
+            </AppText>
+            <AppText variant="headline" tone="ink">
+              {streak}
+            </AppText>
+          </View>
+          <View style={styles.statChip}>
+            <AppText variant="caption" tone="muted">
+              {t('home.stars')}
+            </AppText>
+            <AppText variant="headline" tone="ink">
+              {stars}
+            </AppText>
           </View>
         </View>
 
@@ -157,14 +192,45 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: space.sm,
   },
+  identity: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: space.sm,
+  },
+  avatar: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+  },
+  avatarEmoji: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: '#FFF6E0',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emoji: {fontSize: 28},
   brandBlock: {
     flex: 1,
-    gap: space.xs,
+    gap: 2,
   },
   topActions: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'flex-end',
     maxWidth: 200,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    gap: space.sm,
+  },
+  statChip: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.85)',
+    borderRadius: 16,
+    padding: space.md,
+    gap: 2,
   },
 });

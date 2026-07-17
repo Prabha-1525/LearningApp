@@ -1,6 +1,7 @@
+import {useState} from 'react';
 import {
+  Alert,
   Image,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -16,12 +17,16 @@ import {
   welcomeMathIcon,
   welcomeRewardsIcon,
 } from '@assets';
-import {AppSafeAreaView} from '@components';
-import {setOnboardingComplete} from '@core/store';
+import {AppSafeAreaView, GoogleButton, GuestButton} from '@components';
+import {signInWithGoogleFlow, beginGuestSetup} from '@infrastructure/auth';
 import {space} from '@shared/ui';
 
 type WelcomeScreenProps = {
-  readonly onParentPress?: () => void;
+  readonly authError?: string | null;
+  readonly onAuthErrorCleared?: () => void;
+  readonly onNeedsChildSetup: () => void;
+  readonly onReady: () => void;
+  readonly onMergePrompt: () => void;
 };
 
 type SubjectTile = {
@@ -63,30 +68,45 @@ const SUBJECT_TILES: readonly SubjectTile[] = [
   },
 ];
 
-const PARENT_BENEFITS = [
-  'welcome.parentBenefits.save',
-  'welcome.parentBenefits.restore',
-  'welcome.parentBenefits.sync',
-] as const;
-
-/**
- * First-run welcome — brand, subject grid, parent Google sign-in card.
- * Top hero illustration omitted by design request.
- */
-export function WelcomeScreen({onParentPress}: WelcomeScreenProps) {
+export function WelcomeScreen({
+  authError,
+  onAuthErrorCleared,
+  onNeedsChildSetup,
+  onReady,
+  onMergePrompt,
+}: WelcomeScreenProps) {
   const {t} = useTranslation();
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
 
-  const enterApp = () => {
-    dispatch(setOnboardingComplete(true));
-  };
-
-  const onGooglePress = () => {
-    if (onParentPress) {
-      onParentPress();
+  const onGooglePress = async () => {
+    onAuthErrorCleared?.();
+    setLoading(true);
+    const result = await signInWithGoogleFlow(dispatch);
+    setLoading(false);
+    if (!result.ok) {
+      const message = result.error.message.includes('cancelled')
+        ? t('welcome.errors.cancelled')
+        : result.error.message.toLowerCase().includes('network')
+        ? t('welcome.errors.network')
+        : t('welcome.errors.generic');
+      Alert.alert(t('welcome.errors.title'), message);
       return;
     }
-    enterApp();
+    if (result.value.kind === 'ready') {
+      onReady();
+      return;
+    }
+    if (result.value.kind === 'mergePrompt') {
+      onMergePrompt();
+      return;
+    }
+    onNeedsChildSetup();
+  };
+
+  const onGuestPress = () => {
+    beginGuestSetup();
+    onNeedsChildSetup();
   };
 
   return (
@@ -121,19 +141,9 @@ export function WelcomeScreen({onParentPress}: WelcomeScreenProps) {
 
         <View style={styles.grid}>
           {SUBJECT_TILES.map(tile => (
-            <Pressable
+            <View
               key={tile.id}
-              testID={`welcome-tile-${tile.id}`}
-              accessibilityRole="button"
-              accessibilityLabel={t(tile.labelKey)}
-              onPress={enterApp}
-              style={({pressed}) => [
-                styles.tile,
-                {
-                  backgroundColor: tile.backgroundColor,
-                  opacity: pressed ? 0.9 : 1,
-                },
-              ]}>
+              style={[styles.tile, {backgroundColor: tile.backgroundColor}]}>
               <Image
                 source={tile.icon}
                 style={styles.tileIcon}
@@ -142,46 +152,30 @@ export function WelcomeScreen({onParentPress}: WelcomeScreenProps) {
               <Text style={[styles.tileLabel, {color: tile.labelColor}]}>
                 {t(tile.labelKey)}
               </Text>
-            </Pressable>
+            </View>
           ))}
         </View>
 
-        <View style={styles.parentCard}>
-          <Text style={styles.parentTitle}>{t('welcome.parentSignIn')}</Text>
-          <Pressable
-            testID="welcome-google"
-            accessibilityRole="button"
-            accessibilityLabel={t('welcome.continueGoogle')}
-            onPress={onGooglePress}
-            style={({pressed}) => [
-              styles.googleButton,
-              pressed && styles.googleButtonPressed,
-            ]}>
-            <View style={styles.googleMark}>
-              <Text style={styles.googleG}>G</Text>
-            </View>
-            <Text style={styles.googleLabel}>
-              {t('welcome.continueGoogle')}
-            </Text>
-          </Pressable>
-          <View style={styles.benefits}>
-            {PARENT_BENEFITS.map(key => (
-              <View key={key} style={styles.benefitRow}>
-                <View style={styles.checkCircle}>
-                  <Text style={styles.checkMark}>✓</Text>
-                </View>
-                <Text style={styles.benefitText}>{t(key)}</Text>
-              </View>
-            ))}
-          </View>
+        <View style={styles.actions}>
+          {authError ? <Text style={styles.errorText}>{authError}</Text> : null}
+          <GoogleButton
+            label={t('welcome.continueGoogle')}
+            helperText={t('welcome.googleHelper')}
+            loading={loading}
+            onPress={() => {
+              void onGooglePress();
+            }}
+          />
+          <GuestButton
+            label={t('welcome.continueGuest')}
+            helperText={t('welcome.guestHelper')}
+            disabled={loading}
+            onPress={onGuestPress}
+          />
         </View>
 
         <View style={styles.footer}>
           <Text style={styles.safeKids}>{t('welcome.safeForKids')}</Text>
-          <View style={styles.legalRow}>
-            <Text style={styles.legalLink}>{t('welcome.privacy')}</Text>
-            <Text style={styles.legalLink}>{t('welcome.terms')}</Text>
-          </View>
         </View>
       </ScrollView>
     </AppSafeAreaView>
@@ -207,26 +201,11 @@ const styles = StyleSheet.create({
     borderRadius: 70,
     backgroundColor: 'rgba(255,255,255,0.35)',
   },
-  scroll: {
-    paddingBottom: space.xxxl,
-    gap: space.md,
-  },
-  brandBlock: {
-    alignItems: 'center',
-    marginTop: space.sm,
-    gap: 4,
-  },
-  brandTitle: {
-    fontSize: 34,
-    fontWeight: '800',
-    letterSpacing: -0.5,
-  },
-  brandLearning: {
-    color: '#F4A020',
-  },
-  brandApp: {
-    color: '#5BB8E8',
-  },
+  scroll: {paddingBottom: space.xxxl, gap: space.md},
+  brandBlock: {alignItems: 'center', marginTop: space.sm, gap: 4},
+  brandTitle: {fontSize: 34, fontWeight: '800', letterSpacing: -0.5},
+  brandLearning: {color: '#F4A020'},
+  brandApp: {color: '#5BB8E8'},
   tagline: {
     fontSize: 12,
     fontWeight: '700',
@@ -239,11 +218,6 @@ const styles = StyleSheet.create({
     paddingVertical: space.md,
     paddingHorizontal: space.lg,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    shadowOffset: {width: 0, height: 2},
-    elevation: 2,
   },
   greetingTitle: {
     fontSize: 18,
@@ -273,110 +247,15 @@ const styles = StyleSheet.create({
     padding: space.sm,
     gap: 6,
   },
-  tileIcon: {
-    width: '72%',
-    height: '58%',
-  },
-  tileLabel: {
-    fontSize: 18,
-    fontWeight: '800',
-  },
-  parentCard: {
-    backgroundColor: '#E8EEF5',
-    borderRadius: 28,
-    padding: space.lg,
-    gap: space.md,
-  },
-  parentTitle: {
+  tileIcon: {width: '72%', height: '58%'},
+  tileLabel: {fontSize: 18, fontWeight: '800'},
+  actions: {gap: space.md, marginTop: space.sm},
+  errorText: {
     textAlign: 'center',
-    fontSize: 13,
-    fontWeight: '800',
-    letterSpacing: 1,
-    color: '#2C3E50',
-  },
-  googleButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 999,
-    paddingVertical: 14,
-    paddingHorizontal: space.lg,
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    shadowOffset: {width: 0, height: 2},
-    elevation: 2,
-  },
-  googleButtonPressed: {
-    opacity: 0.92,
-  },
-  googleMark: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-  },
-  googleG: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: '#4285F4',
-  },
-  googleLabel: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1A1A1A',
-  },
-  benefits: {
-    gap: 8,
-    paddingHorizontal: space.xs,
-  },
-  benefitRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  checkCircle: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: '#3D9A5F',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  checkMark: {
-    color: '#FFFFFF',
-    fontSize: 13,
-    fontWeight: '800',
-  },
-  benefitText: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#2C3E50',
-  },
-  footer: {
-    alignItems: 'center',
-    gap: 8,
-    marginTop: space.sm,
-  },
-  safeKids: {
-    fontSize: 15,
-    fontWeight: '700',
-    color: '#2E7D4F',
-  },
-  legalRow: {
-    flexDirection: 'row',
-    gap: space.lg,
-  },
-  legalLink: {
+    color: '#D64545',
     fontSize: 13,
     fontWeight: '600',
-    color: '#2E7D4F',
-    textDecorationLine: 'underline',
   },
+  footer: {alignItems: 'center', marginTop: space.sm},
+  safeKids: {fontSize: 15, fontWeight: '700', color: '#2E7D4F'},
 });

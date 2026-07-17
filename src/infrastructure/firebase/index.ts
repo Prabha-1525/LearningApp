@@ -39,3 +39,4 @@ export function bootstrapFirebase(): FirebaseBootstrapResult {
 
 export {createFirebaseAuthRepository} from './authRepository';
 export {createFirebaseProgressRepository} from './progressRepository';
+export {createUserCloudRepository} from './userCloudRepository';

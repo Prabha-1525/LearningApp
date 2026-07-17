@@ -5,7 +5,6 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppDispatch} from '@app/store';
 import {AppSafeAreaView} from '@components';
-import {asParentId} from '@core/domain';
 import {setSession} from '@core/store';
 import {createFirebaseAuthRepository} from '@infrastructure/firebase';
 import {AppText, ChildButton, ScreenHeader, space, useTheme} from '@shared/ui';
@@ -31,20 +30,6 @@ export function SignInScreen({navigation}: Props) {
     setLoading(false);
 
     if (!result.ok) {
-      // Dev-friendly local session when Firebase is off.
-      if (email.trim().length > 0) {
-        dispatch(
-          setSession({
-            accessToken: 'local-dev-token',
-            parent: {
-              id: asParentId('local-parent'),
-              email: email.trim(),
-              displayName: 'Parent',
-            },
-          }),
-        );
-        return;
-      }
       setError(result.error.message);
       return;
     }

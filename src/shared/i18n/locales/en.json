@@ -18,6 +18,9 @@
     "parent": "I am a parent",
     "parentSignIn": "PARENTS, PLEASE SIGN IN",
     "continueGoogle": "Continue with Google",
+    "continueGuest": "Continue as Guest",
+    "googleHelper": "Sign in with Google to securely save and restore your child's learning progress.",
+    "guestHelper": "Guest progress is stored only on this device.",
     "safeForKids": "Safe for Kids ❤️",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
@@ -31,10 +34,37 @@
       "save": "Save progress",
       "restore": "Restore achievements",
       "sync": "Sync across devices"
+    },
+    "errors": {
+      "title": "Oops!",
+      "cancelled": "Sign-in was cancelled. Tap the button when you are ready.",
+      "network": "No internet right now. Check the connection and try again.",
+      "generic": "We could not sign in. Please try again in a moment."
+    },
+    "merge": {
+      "title": "Save your progress?",
+      "message": "Would you like to save your current learning progress to your Google account?",
+      "confirm": "Merge & Sync",
+      "cancel": "Cancel"
+    }
+  },
+  "profileSetup": {
+    "title": "Tell us about your little learner",
+    "subtitle": "A name and a favorite animal friend to start.",
+    "stepName": "Child name",
+    "stepAvatar": "Choose avatar",
+    "namePlaceholder": "Enter Child Name",
+    "continue": "Continue",
+    "errors": {
+      "nameRequired": "Please enter a child name.",
+      "nameInvalid": "Use letters, numbers, and spaces only (max 20)."
     }
   },
   "home": {
     "greeting": "Hi {{name}}!",
+    "welcomeLabel": "Welcome,",
+    "defaultChildName": "Little Learner",
+    "streak": "Today's streak",
     "modules": "What do you want to learn?",
     "continue": "Continue",
     "stars": "Your stars",

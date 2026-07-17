@@ -58,6 +58,21 @@ function read(): MathProgress {
 
 function write(progress: MathProgress): void {
   mmkvStorage.setString(PROGRESS_KEY, JSON.stringify(progress));
+  try {
+    const {getActiveCloudUid, scheduleProgressSync} =
+      require('@infrastructure/auth') as typeof import('@infrastructure/auth');
+    const uid = getActiveCloudUid();
+    if (uid) {
+      scheduleProgressSync(uid, 'math');
+    }
+  } catch {
+    // Sync layer optional during early boot / tests
+  }
+}
+
+/** Replace entire math progress blob (used when restoring from Firestore). */
+export function replaceMathProgress(progress: MathProgress): void {
+  write(progress);
 }
 
 export function getMathProgress(): MathProgress {

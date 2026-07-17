@@ -8,10 +8,12 @@ export type AuthSession = {
 };
 
 /**
- * Port: authentication. Infrastructure (Firebase Auth) implements this.
+ * Port: authentication. Infrastructure (Firebase Auth + Google) implements this.
  */
 export type AuthRepository = {
+  configure(): Promise<Result<void>>;
   getSession(): Promise<Result<AuthSession | null>>;
+  signInWithGoogle(): Promise<Result<AuthSession>>;
   signInWithEmail(
     email: string,
     password: string,

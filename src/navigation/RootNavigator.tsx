@@ -1,16 +1,22 @@
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
+import {Alert} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
-import {appConfig} from '@app/config';
 import {useAppDispatch, useAppSelector} from '@app/store';
-import {setAuthRequired, setOnboardingComplete} from '@core/store';
-import {SplashScreen, WelcomeScreen} from '@screens/auth';
+import {
+  bootstrapAuthSession,
+  mergeGuestProgressToGoogle,
+  readLocalLearnerProfile,
+} from '@infrastructure/auth';
+import {
+  ChildProfileSetupScreen,
+  SplashScreen,
+  WelcomeScreen,
+} from '@screens/auth';
 import {useTheme} from '@shared/ui';
 
-import {AuthNavigator} from './AuthNavigator';
 import {MainNavigator} from './MainNavigator';
-
-const SPLASH_MIN_MS = 1200;
 
 const navigationTheme = {
   ...DefaultTheme,
@@ -21,55 +27,109 @@ const navigationTheme = {
   },
 };
 
-/**
- * Root composition: Splash → Welcome (first run) → Main / Auth.
- * Feature navigators nest under Main / ModuleHost.
- */
+type Gate = 'boot' | 'welcome' | 'profileSetup' | 'main';
+
 function SessionGate() {
   const dispatch = useAppDispatch();
-  const [splashDone, setSplashDone] = useState(false);
-  const onboardingComplete = useAppSelector(
-    state => state.settings.onboardingComplete,
-  );
+  const {t} = useTranslation();
+  const [gate, setGate] = useState<Gate>('boot');
+  const [authError, setAuthError] = useState<string | null>(null);
   const isAuthenticated = useAppSelector(
     state => state.session.isAuthenticated,
   );
-  const authRequired = useAppSelector(state => state.settings.authRequired);
+  const onboardingComplete = useAppSelector(
+    state => state.settings.onboardingComplete,
+  );
   const themeMode = useAppSelector(state => state.settings.themeMode);
   const {setMode} = useTheme();
-
-  useEffect(() => {
-    dispatch(setAuthRequired(appConfig.authRequired));
-  }, [dispatch]);
 
   useEffect(() => {
     setMode(themeMode);
   }, [setMode, themeMode]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setSplashDone(true), SPLASH_MIN_MS);
-    return () => clearTimeout(timer);
-  }, []);
+    let cancelled = false;
+    (async () => {
+      const result = await bootstrapAuthSession(dispatch);
+      if (cancelled) {
+        return;
+      }
+      if (!result.ok) {
+        setAuthError(result.error.message);
+        setGate('welcome');
+        return;
+      }
+      if (result.value.authenticated && !result.value.needsChildSetup) {
+        setGate('main');
+        return;
+      }
+      if (result.value.needsChildSetup) {
+        setGate('profileSetup');
+        return;
+      }
+      const local = readLocalLearnerProfile();
+      if (local.pendingChildSetup) {
+        setGate('profileSetup');
+        return;
+      }
+      setGate('welcome');
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [dispatch]);
 
-  if (!splashDone) {
+  useEffect(() => {
+    if (isAuthenticated && onboardingComplete && gate !== 'boot') {
+      setGate('main');
+    }
+  }, [isAuthenticated, onboardingComplete, gate]);
+
+  const showMergePrompt = useCallback(() => {
+    Alert.alert(t('welcome.merge.title'), t('welcome.merge.message'), [
+      {
+        text: t('welcome.merge.cancel'),
+        style: 'cancel',
+        onPress: () => setGate('profileSetup'),
+      },
+      {
+        text: t('welcome.merge.confirm'),
+        onPress: () => {
+          void (async () => {
+            const result = await mergeGuestProgressToGoogle(dispatch);
+            if (!result.ok) {
+              Alert.alert(t('welcome.errors.title'), result.error.message);
+              setGate('profileSetup');
+              return;
+            }
+            setGate('main');
+          })();
+        },
+      },
+    ]);
+  }, [dispatch, t]);
+
+  if (gate === 'boot') {
     return <SplashScreen />;
   }
 
-  if (!onboardingComplete) {
-    return (
-      <WelcomeScreen
-        onParentPress={() => {
-          dispatch(setOnboardingComplete(true));
-        }}
-      />
-    );
+  if (gate === 'profileSetup') {
+    return <ChildProfileSetupScreen onComplete={() => setGate('main')} />;
   }
 
-  if (authRequired && !isAuthenticated) {
-    return <AuthNavigator />;
+  if (gate === 'main') {
+    return <MainNavigator />;
   }
 
-  return <MainNavigator />;
+  return (
+    <WelcomeScreen
+      authError={authError}
+      onAuthErrorCleared={() => setAuthError(null)}
+      onNeedsChildSetup={() => setGate('profileSetup')}
+      onReady={() => setGate('main')}
+      onMergePrompt={showMergePrompt}
+    />
+  );
 }
 
 export function RootNavigator() {
