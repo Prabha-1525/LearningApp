@@ -14,5 +14,13 @@ module.exports = {
     '^@features/(.*)$': '<rootDir>/src/features/$1',
     '^@shared/(.*)$': '<rootDir>/src/shared/$1',
     '^@infrastructure/(.*)$': '<rootDir>/src/infrastructure/$1',
+    '^@assets/(.*)$': '<rootDir>/src/assets/$1',
+    '^@assets$': '<rootDir>/src/assets/index',
+    '^@components/(.*)$': '<rootDir>/src/components/$1',
+    '^@components$': '<rootDir>/src/components/index',
+    '^@screens/(.*)$': '<rootDir>/src/screens/$1',
+    '^@screens$': '<rootDir>/src/screens/index',
+    '^@navigation/(.*)$': '<rootDir>/src/navigation/$1',
+    '^@navigation$': '<rootDir>/src/navigation/index',
   },
 };

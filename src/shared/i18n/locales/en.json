@@ -7,10 +7,31 @@
     "loading": "Getting ready…"
   },
   "welcome": {
+    "brandLearning": "Learning",
+    "brandApp": "App",
+    "tagline": "LEARN • PLAY • GROW",
+    "hello": "👋 Hello Little Learner!",
+    "helloSubtitle": "Let's learn something fun today!",
     "title": "Let's learn and play",
     "subtitle": "Fun lessons for ages 5–8",
     "cta": "Let's play",
-    "parent": "I am a parent"
+    "parent": "I am a parent",
+    "parentSignIn": "PARENTS, PLEASE SIGN IN",
+    "continueGoogle": "Continue with Google",
+    "safeForKids": "Safe for Kids ❤️",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "subjects": {
+      "math": "Math",
+      "english": "English",
+      "chess": "Chess",
+      "rewards": "Rewards"
+    },
+    "parentBenefits": {
+      "save": "Save progress",
+      "restore": "Restore achievements",
+      "sync": "Sync across devices"
+    }
   },
   "home": {
     "greeting": "Hi {{name}}!",

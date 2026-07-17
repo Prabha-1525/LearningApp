@@ -2,7 +2,7 @@ import {StatusBar} from 'react-native';
 
 import {bootstrapApp} from '@app/bootstrap';
 import {AppProviders} from '@app/providers';
-import {RootNavigator} from '@core/presentation';
+import {RootNavigator} from '@navigation';
 import {bootstrapFirebase} from '@infrastructure/firebase';
 import {initI18n} from '@shared/i18n';
 import {useTheme} from '@shared/ui';

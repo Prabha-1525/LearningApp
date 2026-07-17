@@ -2,7 +2,7 @@ import {ModuleId, TARGET_AGE_MAX, TARGET_AGE_MIN} from '@core/domain';
 import type {LearningModuleManifest} from '@modules/types';
 import {featureFlags} from '@shared/config';
 
-import {MathNavigator} from './presentation/navigation';
+import {MathNavigator} from '@navigation';
 
 export function registerMathModule(): LearningModuleManifest {
   return {
@@ -24,5 +24,5 @@ export function registerMathModule(): LearningModuleManifest {
   };
 }
 
-export {MathNavigator} from './presentation/navigation';
+export {MathNavigator} from '@navigation';
 export * from './domain/curriculum/types';

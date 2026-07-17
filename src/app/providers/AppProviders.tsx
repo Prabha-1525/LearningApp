@@ -6,7 +6,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 import {createAppStore} from '@app/store';
-import {SplashScreen} from '@core/presentation/screens/SplashScreen';
+import {SplashScreen} from '@screens/auth';
 import {ThemeProvider} from '@shared/ui';
 
 /**

@@ -2,7 +2,7 @@ import {ModuleId, TARGET_AGE_MAX, TARGET_AGE_MIN} from '@core/domain';
 import type {LearningModuleManifest} from '@modules/types';
 import {featureFlags} from '@shared/config';
 
-import {ChessNavigator} from './presentation/navigation';
+import {ChessNavigator} from '@navigation';
 
 /**
  * Public entry for the Chess feature.
@@ -30,4 +30,4 @@ export function registerChessModule(): LearningModuleManifest {
 
 export * from './domain';
 export {chessQueryKeys} from './api';
-export {ChessNavigator} from './presentation/navigation';
+export {ChessNavigator} from '@navigation';

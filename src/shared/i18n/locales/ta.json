@@ -7,10 +7,31 @@
     "loading": "தயாராகிறது…"
   },
   "welcome": {
+    "brandLearning": "Learning",
+    "brandApp": "App",
+    "tagline": "LEARN • PLAY • GROW",
+    "hello": "👋 வணக்கம் சிறிய கற்றவர்களே!",
+    "helloSubtitle": "இன்று ஏதேனும் சுவாரஸ்யமாக கற்போம்!",
     "title": "கற்று விளையாடுவோம்",
     "subtitle": "5–8 வயதினருக்கான பாடங்கள்",
     "cta": "விளையாடுவோம்",
-    "parent": "நான் பெற்றோர்"
+    "parent": "நான் பெற்றோர்",
+    "parentSignIn": "பெற்றோர் உள்நுழையவும்",
+    "continueGoogle": "Google மூலம் தொடரவும்",
+    "safeForKids": "குழந்தைகளுக்கு பாதுகாப்பானது ❤️",
+    "privacy": "தனியுரிமைக் கொள்கை",
+    "terms": "சேவை விதிமுறைகள்",
+    "subjects": {
+      "math": "கணிதம்",
+      "english": "ஆங்கிலம்",
+      "chess": "சதுரங்கம்",
+      "rewards": "வெகுமதிகள்"
+    },
+    "parentBenefits": {
+      "save": "முன்னேற்றத்தை சேமிக்கவும்",
+      "restore": "சாதனைகளை மீட்டெடுக்கவும்",
+      "sync": "சாதனங்களுக்கு இடையே ஒத்திசைவு"
+    }
   },
   "home": {
     "greeting": "வணக்கம் {{name}}!",
