@@ -62,14 +62,23 @@
   },
   "home": {
     "greeting": "வணக்கம் {{name}}!",
+    "helloName": "வணக்கம், {{name}}!",
+    "brand": "Learning Adventure",
     "welcomeLabel": "வரவேற்பு,",
     "defaultChildName": "சிறிய கற்றவர்",
+    "promptLead": "இன்று என்ன",
+    "promptAccent": "கற்க விரும்புகிறாய்?",
     "streak": "இன்றைய தொடர்ச்சி",
     "modules": "என்ன கற்க விரும்புகிறாய்?",
     "continue": "தொடரவும்",
     "stars": "உங்கள் நட்சத்திரங்கள்",
     "play": "விளையாடு",
     "comingSoon": "விரைவில்",
+    "moreGames": "மேலும் விளையாட்டுகள்",
+    "motivationTip": "இன்று சிறப்பு! அடுத்த பரிசுக்கு இன்னும் 5 நட்சத்திரங்கள் மட்டுமே!",
+    "totalStars": "{{count}} நட்சத்திரங்கள்",
+    "lessonsDone": "{{count}} பாடங்கள்",
+    "levelLabel": "நிலை {{level}}",
     "emptyTitle": "பாடங்கள் இல்லை",
     "emptyMessage": "ஒரு பெரியவரிடம் பாடத்தை இயக்கச் சொல்லுங்கள்."
   },
@@ -95,26 +104,58 @@
       "subtitle": "மனதை பயிற்று"
     },
     "drawing": {
-      "title": "ஓவியம்",
+      "title": "வண்ணம் & ஓவியம்",
       "subtitle": "வரைந்து வண்ணமிடு"
+    },
+    "shapes": {
+      "title": "வடிவங்கள்",
+      "subtitle": "வட்டம், சதுரம் மற்றும் மேலும்"
+    },
+    "animals": {
+      "title": "விலங்குகள்",
+      "subtitle": "விலங்கு நண்பர்களை சந்தி"
+    },
+    "rhymes": {
+      "title": "பாட்டுகள்",
+      "subtitle": "பாடி விளையாடு"
+    },
+    "story": {
+      "title": "கதை நேரம்",
+      "subtitle": "மாயாஜால கதைகள்"
+    },
+    "phonics": {
+      "title": "ஒலியியல்",
+      "subtitle": "ஒலிகளும் எழுத்துக்களும்"
     }
   },
   "math": {
     "hub": {
-      "title": "Math",
-      "subtitle": "Learn with your math coach",
+      "title": "MathAdventure",
+      "subtitle": "லியோவுடன் கற்போம்",
       "heroTitle": "Let's count and play!",
       "welcomeVoice": "Your math coach talks, shows, then lets you try. Pick any topic — all are open!",
-      "coachName": "Math Coach",
+      "leoGreeting": "வணக்கம், சிறிய ஆய்வாளரே!",
+      "leoGreetingAccent": "எண்களுடன் விளையாட தயாரா?",
+      "leoGreetingTail": "கீழே ஒரு சாகசத்தைத் தேர்ந்தெடுத்து தொடங்கு!",
+      "coachName": "Leo",
       "statsTitle": "Your practice stats",
       "statsSummary": "{{attempted}} tried · {{correct}} correct · {{score}}% score",
+      "overallProgress": "மொத்த சாகச முன்னேற்றம்",
+      "overallComplete": "{{percent}}% முடிந்தது",
       "favorites": "Most practiced: {{lessons}}",
       "suggestedLesson": "Try: {{title}}",
       "activityList": "Math activities",
       "practiceZone": "Practice zone",
-      "comingSoon": "Coming Soon",
-      "play": "Play",
-      "lessonScore": "{{percent}}% score"
+      "comingSoon": "விரைவில்",
+      "play": "விளையாடு",
+      "lessonScore": "{{percent}}% score",
+      "tabComingSoon": "இந்த பக்கம் விரைவில் வரும் — Play-ல் தொடர்ந்து ஆடு!",
+      "tabs": {
+        "play": "Play",
+        "map": "Map",
+        "awards": "Awards",
+        "coach": "Coach"
+      }
     },
     "lesson": {
       "question": "Question {{number}}",
@@ -145,6 +186,32 @@
         "title": "Amazing work!",
         "subtitle": "You finished a big round of numbers!",
         "keepGoing": "Keep going!"
+      }
+    },
+    "missing": {
+      "moduleTitle": "காணாமல் போன எண்",
+      "pickerLead": "ஒரு பாடத்தைத் தேர்ந்தெடு — ஒவ்வொன்றிலும் 10 சீரற்ற எண் கேள்விகள்.",
+      "lessonLabel": "பாடம் {{number}}: {{title}}",
+      "lessonOnly": "பாடம் {{number}}",
+      "questionsCount": "{{count}} கேள்விகள்",
+      "lockedHint": "திறக்க முந்தைய பாடத்தை முடி",
+      "stepOf": "படி {{step}} / {{total}}",
+      "prompt": "எந்த எண் காணவில்லை?",
+      "successTitle": "அற்புதம்!",
+      "successSubtitle": "10 கேள்விகளையும் முடித்தாய். லியோ உன்னைப் பெருமைப்படுகிறார்!",
+      "starsEarned": "பெற்ற நட்சத்திரங்கள்",
+      "bestStars": "இந்த பாடத்தின் சிறந்தது",
+      "badgeUnlocked": "புதிய பதக்கம்!",
+      "continue": "தொடரவும்",
+      "nextLesson": "அடுத்த பாடம்",
+      "backToLessons": "பாடங்களுக்குத் திரும்பு",
+      "totalStars": "மொத்த நட்சத்திரங்கள்: {{count}}",
+      "completedWithStars": "முடிந்தது {{stars}}",
+      "tabComingSoon": "விரைவில் வரும் — விளையாடிக் கொண்டே இரு!",
+      "tabs": {
+        "play": "Play",
+        "progress": "Progress",
+        "awards": "Awards"
       }
     }
   },
@@ -342,7 +409,19 @@
     },
     "badges": {
       "curious": "ஆர்வலர்",
-      "curiousDesc": "ஆராய்ந்து கொண்டே இரு"
+      "curiousDesc": "ஆராய்ந்து கொண்டே இரு",
+      "firstLesson": "முதல் பாடம்",
+      "firstLessonDesc": "ஏதேனும் ஒரு பாடத்தை முடி",
+      "mathBeginner": "கணித ஆரம்பம்",
+      "mathBeginnerDesc": "5 காணாமல் போன எண் பாடங்களை முடி",
+      "countingMaster": "எண்ணும் வல்லுநர்",
+      "countingMasterDesc": "3 பாடங்களில் 3 நட்சத்திரங்கள்",
+      "perfectLearner": "சிறந்த கற்றவர்",
+      "perfectLearnerDesc": "10 பாடங்களில் 3 நட்சத்திரங்கள்",
+      "dailyLearner": "தினசரி கற்றவர்",
+      "dailyLearnerDesc": "தொடர்ச்சியான நாட்களில் கற்றுக்கொள்",
+      "mathChampion": "கணித சாம்பியன்",
+      "mathChampionDesc": "அனைத்து காணாமல் போன எண் பாடங்களையும் முடி"
     },
     "avatars": {
       "sunny": "சன்னி",
@@ -357,5 +436,21 @@
       "day7Desc": "வார ஆச்சரியம்"
     },
     "yay": "அடே!"
+  },
+  "rewards": {
+    "badgesTitle": "பதக்கங்கள்",
+    "badgesSubtitle": "கற்கும்போது சாதனைகளை சேகரி!",
+    "awardsTitle": "பரிசுகள்",
+    "awardsSubtitle": "நட்சத்திரங்கள், நாணயங்கள் மற்றும் சிறப்பு பரிசுகள்",
+    "totalStars": "நட்சத்திரங்கள்",
+    "totalBadges": "பதக்கங்கள்",
+    "totalCoins": "நாணயங்கள்",
+    "lessonsDone": "பாடங்கள்",
+    "level": "நிலை",
+    "collection": "சாதனை தொகுப்பு",
+    "unlockedOn": "திறக்கப்பட்டது {{date}}",
+    "locked": "திறக்க தொடர்ந்து கற்றுக்கொள்",
+    "mathStars": "கணித சாகச நட்சத்திரங்கள்",
+    "mathStarsDetail": "காணாமல் போன எண் பாடங்களில் இருந்து {{count}} நட்சத்திரங்கள்"
   }
 }

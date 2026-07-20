@@ -124,11 +124,12 @@ export function ChildProfileSetupScreen({
 
 const styles = StyleSheet.create({
   scroll: {
+    flexGrow: 1,
     paddingBottom: space.xxxl,
     gap: space.md,
   },
   title: {
-    fontSize: 28,
+    fontSize: 26,
     fontWeight: '800',
     color: '#1A2A32',
     textAlign: 'center',

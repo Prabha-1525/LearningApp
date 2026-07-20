@@ -29,6 +29,8 @@ const navigationTheme = {
 
 type Gate = 'boot' | 'welcome' | 'profileSetup' | 'main';
 
+const SPLASH_MIN_MS = 3000;
+
 function SessionGate() {
   const dispatch = useAppDispatch();
   const {t} = useTranslation();
@@ -50,7 +52,13 @@ function SessionGate() {
   useEffect(() => {
     let cancelled = false;
     (async () => {
+      const startedAt = Date.now();
       const result = await bootstrapAuthSession(dispatch);
+      const elapsed = Date.now() - startedAt;
+      const remaining = Math.max(0, SPLASH_MIN_MS - elapsed);
+      if (remaining > 0) {
+        await new Promise<void>(resolve => setTimeout(resolve, remaining));
+      }
       if (cancelled) {
         return;
       }

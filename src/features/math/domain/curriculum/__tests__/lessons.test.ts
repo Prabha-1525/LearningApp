@@ -1,4 +1,4 @@
-import {MATH_LESSONS, MATH_HUB_ACTIVITIES, getLesson} from '../lessons';
+import {MATH_LESSONS, MATH_ADVENTURE_TOPICS, getLesson} from '../index';
 import {isLessonUnlocked} from '../../../data/mathProgress';
 
 describe('math curriculum', () => {
@@ -12,9 +12,10 @@ describe('math curriculum', () => {
     }
   });
 
-  it('lists all core topics on the hub without locks', () => {
-    const playable = MATH_HUB_ACTIVITIES.filter(a => !a.comingSoon);
-    expect(playable.length).toBeGreaterThanOrEqual(12);
+  it('lists MathAdventure topics without locks on playable lessons', () => {
+    expect(MATH_ADVENTURE_TOPICS.length).toBe(13);
+    const playable = MATH_ADVENTURE_TOPICS.filter(a => !a.comingSoon);
+    expect(playable.length).toBeGreaterThanOrEqual(10);
     for (const activity of playable) {
       if (activity.lessonId) {
         expect(isLessonUnlocked(activity.lessonId)).toBe(true);

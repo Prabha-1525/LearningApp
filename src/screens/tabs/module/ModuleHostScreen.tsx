@@ -39,7 +39,7 @@ export function ModuleHostScreen({navigation, route}: Props) {
           title="Module not found"
           message="This learning module is not registered."
           actionLabel="Go home"
-          onAction={() => navigation.navigate('Home')}
+          onAction={() => navigation.navigate('Tabs')}
         />
       </AppSafeAreaView>
     );
@@ -62,7 +62,7 @@ export function ModuleHostScreen({navigation, route}: Props) {
           </AppText>
           <SecondaryButton
             label={t('common.back')}
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('Tabs')}
           />
         </View>
       </AppSafeAreaView>
@@ -96,7 +96,7 @@ export function ModuleHostScreen({navigation, route}: Props) {
         </AppText>
         <PrimaryButton
           label={t('common.back')}
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('Tabs')}
         />
       </View>
     </AppSafeAreaView>

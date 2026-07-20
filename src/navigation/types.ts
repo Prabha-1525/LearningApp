@@ -6,7 +6,15 @@ export type AuthStackParamList = {
   ParentalGate: undefined;
 };
 
+export type MainTabParamList = {
+  HomeTab: undefined;
+  Badges: undefined;
+  Rewards: undefined;
+  Profile: undefined;
+};
+
 export type MainStackParamList = {
+  Tabs: undefined;
   Home: undefined;
   Profile: undefined;
   Settings: undefined;

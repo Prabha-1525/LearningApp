@@ -18,7 +18,12 @@ export type MathHubActivityId =
   | 'multiplication'
   | 'division'
   | 'fractions'
-  | 'games';
+  | 'games'
+  | 'odd-even'
+  | 'ordering'
+  | 'measurements'
+  | 'time'
+  | 'money';
 
 export type MathStepKind = 'talk' | 'demo' | 'practice';
 

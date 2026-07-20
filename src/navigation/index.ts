@@ -1,6 +1,7 @@
 export type {
   AuthStackParamList,
   MainStackParamList,
+  MainTabParamList,
   RootStackParamList,
 } from './types';
 export type {MathStackParamList} from './mathTypes';

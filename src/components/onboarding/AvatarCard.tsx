@@ -6,9 +6,12 @@ type AvatarCardProps = {
   readonly avatar: ChildAvatarDef;
   readonly selected: boolean;
   readonly onPress: () => void;
+  readonly size: number;
 };
 
-export function AvatarCard({avatar, selected, onPress}: AvatarCardProps) {
+export function AvatarCard({avatar, selected, onPress, size}: AvatarCardProps) {
+  const imageSize = Math.round(size * 0.62);
+
   return (
     <Pressable
       testID={`avatar-${avatar.id}`}
@@ -16,15 +19,25 @@ export function AvatarCard({avatar, selected, onPress}: AvatarCardProps) {
       accessibilityState={{selected}}
       accessibilityLabel={avatar.label}
       onPress={onPress}
-      style={[styles.card, selected && styles.selected]}>
-      {avatar.image ? (
-        <Image source={avatar.image} style={styles.image} resizeMode="cover" />
-      ) : (
-        <View style={styles.emojiWrap}>
+      style={[
+        styles.card,
+        {width: size, height: size + 22},
+        selected && styles.selected,
+      ]}>
+      <View style={[styles.imageFrame, {width: imageSize, height: imageSize}]}>
+        {avatar.image ? (
+          <Image
+            source={avatar.image}
+            style={{width: imageSize, height: imageSize}}
+            resizeMode="cover"
+          />
+        ) : (
           <Text style={styles.emoji}>{avatar.emoji}</Text>
-        </View>
-      )}
-      <Text style={[styles.label, selected && styles.labelSelected]}>
+        )}
+      </View>
+      <Text
+        numberOfLines={1}
+        style={[styles.label, selected && styles.labelSelected]}>
         {avatar.label}
       </Text>
     </Pressable>
@@ -33,40 +46,29 @@ export function AvatarCard({avatar, selected, onPress}: AvatarCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    width: '30%',
-    aspectRatio: 0.85,
     borderRadius: 20,
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 8,
-    gap: 6,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    gap: 4,
     borderWidth: 3,
     borderColor: 'transparent',
+    overflow: 'hidden',
   },
   selected: {
     borderColor: '#F4A020',
     backgroundColor: '#FFF6E0',
-    shadowColor: '#F4A020',
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    shadowOffset: {width: 0, height: 2},
-    elevation: 3,
   },
-  image: {
-    width: '78%',
-    aspectRatio: 1,
+  imageFrame: {
     borderRadius: 999,
-  },
-  emojiWrap: {
-    width: '78%',
-    aspectRatio: 1,
-    borderRadius: 999,
+    overflow: 'hidden',
     backgroundColor: '#EAF6FB',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  emoji: {fontSize: 36},
+  emoji: {fontSize: 32},
   label: {fontSize: 12, fontWeight: '700', color: '#5B6B74'},
   labelSelected: {color: '#7A3E00'},
 });

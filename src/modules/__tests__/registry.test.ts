@@ -10,7 +10,7 @@ describe('moduleRegistry', () => {
   it('registers Chess and Math with navigators', () => {
     registerAllModules();
 
-    expect(moduleRegistry.list()).toHaveLength(6);
+    expect(moduleRegistry.list()).toHaveLength(11);
     expect(moduleRegistry.get(ModuleId.Chess)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.Math)?.isEnabled()).toBe(true);
     expect(moduleRegistry.listEnabled()).toHaveLength(2);
@@ -22,6 +22,6 @@ describe('moduleRegistry', () => {
     registerAllModules();
     registerAllModules();
 
-    expect(moduleRegistry.list()).toHaveLength(6);
+    expect(moduleRegistry.list()).toHaveLength(11);
   });
 });

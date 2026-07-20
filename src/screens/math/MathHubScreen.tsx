@@ -1,44 +1,52 @@
 import {useCallback, useMemo, useState} from 'react';
-import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {AppSafeAreaView} from '@components';
 import {useFocusEffect} from '@react-navigation/native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {
-  AppText,
-  Chip,
-  MascotSpot,
-  PrimaryButton,
-  ProgressBar,
-  SecondaryButton,
-  TopAppBar,
-  space,
-  useTheme,
-} from '@shared/ui';
-
+import {useAppSelector} from '@app/store';
+import {getChildAvatar, leoWave} from '@assets';
+import {AppSafeAreaView} from '@components';
 import {
   accuracy,
-  favoriteLessons,
   getMathProgress,
   getLessonStats,
   globalAccuracy,
 } from '@features/math/data/mathProgress';
-import {
-  MATH_HUB_ACTIVITIES,
-  MATH_LESSONS,
-} from '@features/math/domain/curriculum/lessons';
+import {MATH_ADVENTURE_TOPICS} from '@features/math/domain/curriculum';
 import type {MathStackParamList} from '@navigation/mathTypes';
+import {BackButton, space} from '@shared/ui';
+
+import {
+  MATH_TOPIC_GRID_GAP,
+  MATH_TOPIC_H_PAD,
+  MathTopicCard,
+} from './MathTopicCard';
 
 type Props = NativeStackScreenProps<MathStackParamList, 'Hub'>;
 
+type HubTab = 'play' | 'map' | 'awards' | 'coach';
+
 /**
- * Math home — all topics always open, stats without locking.
+ * MathAdventure hub — Leo greeting, overall progress, topic grid.
  */
 export function MathHubScreen({navigation}: Props) {
-  const {t} = useTranslation();
-  const {space: themeSpace, radius} = useTheme();
+  const {t, i18n} = useTranslation();
   const [progress, setProgress] = useState(getMathProgress);
+  const [tab, setTab] = useState<HubTab>('play');
+  const gamification = useAppSelector(state => state.gamification);
+  const activeChild = useAppSelector(state =>
+    state.profile.children.find(
+      child => child.id === state.profile.activeChildId,
+    ),
+  );
 
   useFocusEffect(
     useCallback(() => {
@@ -46,179 +54,332 @@ export function MathHubScreen({navigation}: Props) {
     }, []),
   );
 
-  const favorites = useMemo(() => favoriteLessons(progress), [progress]);
-  const suggestedLesson = useMemo(() => {
-    const leastPracticed = MATH_LESSONS.find(
-      lesson => (progress.byLesson[lesson.id]?.attempted ?? 0) === 0,
-    );
-    return leastPracticed ?? MATH_LESSONS[0]!;
-  }, [progress]);
+  const stars = gamification.snapshot?.wallet?.stars ?? 0;
+  const overallPercent = globalAccuracy(progress);
+  const isTamil = i18n.language?.toLowerCase().startsWith('ta');
+  const avatar = useMemo(
+    () => getChildAvatar(activeChild?.avatarKey ?? 'lion'),
+    [activeChild?.avatarKey],
+  );
 
-  const scorePercent = globalAccuracy(progress);
+  const onPlayTopic = (lessonId: string | undefined, comingSoon?: boolean) => {
+    if (comingSoon || !lessonId) {
+      return;
+    }
+    navigation.navigate('Lesson', {lessonId});
+  };
 
   return (
-    <AppSafeAreaView testID="math-hub-screen">
-      <TopAppBar
-        title={t('math.hub.title')}
-        subtitle={t('math.hub.subtitle')}
-        onBack={() => navigation.goBack()}
-      />
+    <AppSafeAreaView
+      testID="math-hub-screen"
+      backgroundImage={null}
+      backgroundColor="#EAF1F6"
+      padded={false}
+      edges={['top', 'left', 'right']}>
+      <View style={styles.header}>
+        <BackButton
+          label={t('common.back')}
+          onPress={() => navigation.goBack()}
+        />
+        <Text style={styles.headerTitle}>{t('math.hub.title')}</Text>
+        <View style={styles.headerRight}>
+          <View style={styles.coinPill}>
+            <Text style={styles.coinIcon}>★</Text>
+            <Text style={styles.coinValue}>{stars}</Text>
+          </View>
+          {avatar.image ? (
+            <Image source={avatar.image} style={styles.avatar} />
+          ) : (
+            <View style={styles.avatarFallback}>
+              <Text style={styles.avatarEmoji}>{avatar.emoji}</Text>
+            </View>
+          )}
+        </View>
+      </View>
+
       <ScrollView
-        contentContainerStyle={[styles.content, {gap: themeSpace.md}]}
+        contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}>
-        <View
-          style={[
-            styles.hero,
-            {
-              borderRadius: radius.lg,
-              backgroundColor: '#E8F4FF',
-              borderColor: '#4DB7E8',
-            },
-          ]}>
-          <MascotSpot mood="cheer" size={96} label={t('math.hub.coachName')} />
-          <AppText variant="headline" tone="ink" style={styles.center}>
-            {t('math.hub.heroTitle')}
-          </AppText>
-          <AppText variant="body" tone="muted" style={styles.center}>
-            {t('math.hub.welcomeVoice')}
-          </AppText>
+        <View style={styles.greetingRow}>
+          <Image source={leoWave} style={styles.leo} resizeMode="contain" />
+          <View style={styles.bubble}>
+            <Text style={styles.bubbleText}>
+              {t('math.hub.leoGreeting')}{' '}
+              <Text style={styles.bubbleAccent}>
+                {t('math.hub.leoGreetingAccent')}
+              </Text>{' '}
+              {t('math.hub.leoGreetingTail')}
+            </Text>
+          </View>
         </View>
 
-        <View
-          style={[
-            styles.progressCard,
-            {
-              borderRadius: radius.lg,
-              backgroundColor: '#FFF6E0',
-              borderColor: '#F4B400',
-            },
-          ]}>
-          <AppText variant="title" tone="ink">
-            {t('math.hub.statsTitle')}
-          </AppText>
-          <ProgressBar progress={scorePercent / 100} />
-          <AppText variant="caption" tone="muted">
-            {t('math.hub.statsSummary', {
-              attempted: progress.global.attempted,
-              correct: progress.global.correct,
-              score: scorePercent,
-            })}
-          </AppText>
-          {favorites.length > 0 ? (
-            <AppText variant="caption" tone="muted">
-              {t('math.hub.favorites', {
-                lessons: favorites
-                  .map(id => {
-                    const lesson = MATH_LESSONS.find(l => l.id === id);
-                    return lesson ? lesson.titleEn : id;
-                  })
-                  .join(', '),
-              })}
-            </AppText>
-          ) : null}
+        <View style={styles.progressCard}>
+          <View style={styles.progressHeader}>
+            <Text style={styles.progressLabel}>
+              {t('math.hub.overallProgress')}
+            </Text>
+            <Text style={styles.progressPercent}>
+              {t('math.hub.overallComplete', {percent: overallPercent})}
+            </Text>
+          </View>
+          <View style={styles.overallTrack}>
+            <View style={[styles.overallFill, {width: `${overallPercent}%`}]} />
+          </View>
         </View>
 
-        <PrimaryButton
-          label={t('math.hub.suggestedLesson', {
-            title: suggestedLesson.titleEn,
-          })}
-          onPress={() =>
-            navigation.navigate('Lesson', {lessonId: suggestedLesson.id})
-          }
-          testID="math-start-lesson"
-        />
+        {tab === 'play' ? (
+          <View style={styles.grid}>
+            {MATH_ADVENTURE_TOPICS.map(topic => {
+              const stats =
+                topic.lessonId != null ? getLessonStats(topic.lessonId) : null;
+              const livePercent =
+                stats != null && stats.attempted > 0
+                  ? accuracy(stats)
+                  : topic.demoProgressPercent;
+              const title = isTamil ? topic.titleTa : topic.titleEn;
 
-        <AppText variant="headline" tone="ink">
-          {t('math.hub.activityList')}
-        </AppText>
-
-        <View style={styles.activityGrid}>
-          {MATH_HUB_ACTIVITIES.map(activity => {
-            const stats =
-              activity.lessonId != null
-                ? getLessonStats(activity.lessonId)
-                : null;
-            const lessonScore = stats != null ? accuracy(stats) : null;
-
-            return (
-              <Pressable
-                key={activity.id}
-                disabled={activity.comingSoon}
-                accessibilityRole="button"
-                onPress={() => {
-                  if (activity.lessonId) {
-                    navigation.navigate('Lesson', {
-                      lessonId: activity.lessonId,
-                    });
-                  }
-                }}
-                style={[
-                  styles.activityCard,
-                  {
-                    borderRadius: radius.lg,
-                    borderColor: activity.accent,
-                    opacity: activity.comingSoon ? 0.45 : 1,
-                  },
-                ]}>
-                <AppText style={styles.activityIcon}>{activity.icon}</AppText>
-                <AppText variant="caption" tone="ink" style={styles.center}>
-                  {activity.titleEn}
-                </AppText>
-                <Chip
-                  label={
-                    activity.comingSoon
-                      ? t('math.hub.comingSoon')
-                      : stats != null && stats.attempted > 0
-                      ? t('math.hub.lessonScore', {
-                          percent: lessonScore,
-                        })
-                      : t('math.hub.play')
-                  }
-                  tone={activity.comingSoon ? 'locked' : 'sun'}
+              return (
+                <MathTopicCard
+                  key={topic.id}
+                  title={title}
+                  image={topic.image}
+                  emoji={topic.icon}
+                  heroColor={topic.heroColor}
+                  progressPercent={livePercent}
+                  playLabel={t('math.hub.play')}
+                  comingSoon={topic.comingSoon}
+                  comingSoonLabel={t('math.hub.comingSoon')}
+                  onPress={() => onPlayTopic(topic.lessonId, topic.comingSoon)}
+                  testID={`math-topic-${topic.id}`}
                 />
-              </Pressable>
-            );
-          })}
-        </View>
-
-        <SecondaryButton
-          label={t('math.hub.practiceZone')}
-          onPress={() => navigation.navigate('Lesson', {lessonId: 'practice'})}
-        />
+              );
+            })}
+          </View>
+        ) : (
+          <View style={styles.placeholderTab}>
+            <Text style={styles.placeholderTitle}>
+              {t(`math.hub.tabs.${tab}`)}
+            </Text>
+            <Text style={styles.placeholderBody}>
+              {t('math.hub.tabComingSoon')}
+            </Text>
+          </View>
+        )}
       </ScrollView>
+
+      <View style={styles.tabBar}>
+        {(
+          [
+            {id: 'play', label: t('math.hub.tabs.play'), symbol: '✚'},
+            {id: 'map', label: t('math.hub.tabs.map'), symbol: '🗺'},
+            {id: 'awards', label: t('math.hub.tabs.awards'), symbol: '🏆'},
+            {id: 'coach', label: t('math.hub.tabs.coach'), symbol: '☺'},
+          ] as const
+        ).map(item => {
+          const active = tab === item.id;
+          return (
+            <Pressable
+              key={item.id}
+              onPress={() => setTab(item.id)}
+              style={styles.tabItem}
+              accessibilityRole="tab"
+              accessibilityState={{selected: active}}>
+              <Text
+                style={[styles.tabSymbol, active && styles.tabSymbolActive]}>
+                {item.symbol}
+              </Text>
+              <Text style={[styles.tabLabel, active && styles.tabLabelActive]}>
+                {item.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
     </AppSafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  content: {paddingBottom: space.xl},
-  hero: {
-    alignItems: 'center',
-    gap: space.sm,
-    padding: space.lg,
-    borderWidth: 2,
-  },
-  progressCard: {
-    gap: space.sm,
-    padding: space.md,
-    borderWidth: 2,
-  },
-  center: {textAlign: 'center'},
-  activityGrid: {
+  header: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: space.sm,
-    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: MATH_TOPIC_H_PAD,
+    paddingTop: space.xs,
+    paddingBottom: space.sm,
+    gap: 10,
   },
-  activityCard: {
-    width: '48%',
-    minHeight: 120,
-    padding: space.sm,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 2,
+  headerTitle: {
+    flex: 1,
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#1D4ED8',
+  },
+  headerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  coinPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: '#2ECC71',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 999,
+  },
+  coinIcon: {
+    color: '#FFF4A3',
+    fontSize: 14,
+    fontWeight: '800',
+  },
+  coinValue: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '800',
+  },
+  avatar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+  },
+  avatarFallback: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#FFF6E0',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 4,
   },
-  activityIcon: {fontSize: 32},
+  avatarEmoji: {fontSize: 18},
+  content: {
+    paddingHorizontal: MATH_TOPIC_H_PAD,
+    paddingBottom: space.xl,
+    gap: space.md,
+  },
+  greetingRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  leo: {
+    width: 88,
+    height: 110,
+  },
+  bubble: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    shadowColor: '#1A3A5C',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  bubbleText: {
+    fontSize: 13,
+    lineHeight: 19,
+    fontWeight: '600',
+    color: '#3A4A5C',
+  },
+  bubbleAccent: {
+    fontWeight: '800',
+    color: '#1A2A4A',
+  },
+  progressCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    gap: 10,
+    shadowColor: '#1A3A5C',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.07,
+    shadowRadius: 8,
+    elevation: 2,
+  },
+  progressHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 8,
+  },
+  progressLabel: {
+    fontSize: 12,
+    fontWeight: '800',
+    letterSpacing: 0.4,
+    color: '#1D4ED8',
+    flex: 1,
+  },
+  progressPercent: {
+    fontSize: 13,
+    fontWeight: '800',
+    color: '#2E7D32',
+  },
+  overallTrack: {
+    height: 10,
+    borderRadius: 999,
+    backgroundColor: '#E6EBF0',
+    overflow: 'hidden',
+  },
+  overallFill: {
+    height: '100%',
+    borderRadius: 999,
+    backgroundColor: '#4CAF50',
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: MATH_TOPIC_GRID_GAP,
+  },
+  placeholderTab: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+    padding: 28,
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 8,
+  },
+  placeholderTitle: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#1A2A4A',
+  },
+  placeholderBody: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#6B7A88',
+    textAlign: 'center',
+  },
+  tabBar: {
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+    borderTopColor: '#E8EEF4',
+    borderTopWidth: 1,
+    paddingTop: 6,
+    paddingBottom: 10,
+    paddingHorizontal: 8,
+  },
+  tabItem: {
+    flex: 1,
+    alignItems: 'center',
+    gap: 2,
+  },
+  tabSymbol: {
+    fontSize: 18,
+    color: '#9AA6B2',
+  },
+  tabSymbolActive: {
+    color: '#1D4ED8',
+  },
+  tabLabel: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#9AA6B2',
+  },
+  tabLabelActive: {
+    color: '#1D4ED8',
+  },
 });

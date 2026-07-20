@@ -2,6 +2,8 @@ import {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {AppSafeAreaView} from '@components';
+import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import type {CompositeScreenProps} from '@react-navigation/native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {
@@ -13,9 +15,12 @@ import {
   space,
 } from '@shared/ui';
 
-import type {MainStackParamList} from '@navigation/types';
+import type {MainStackParamList, MainTabParamList} from '@navigation/types';
 
-type Props = NativeStackScreenProps<MainStackParamList, 'Profile'>;
+type Props = CompositeScreenProps<
+  BottomTabScreenProps<MainTabParamList, 'Profile'>,
+  NativeStackScreenProps<MainStackParamList>
+>;
 
 const DEMO_NAME = 'Ava';
 const DEMO_AGE = 6;
@@ -28,7 +33,7 @@ export function ProfileScreen({navigation}: Props) {
     <AppSafeAreaView testID="profile-screen">
       <TopAppBar
         title={t('profile.title')}
-        onBack={() => navigation.goBack()}
+        onBack={() => navigation.navigate('HomeTab')}
       />
       <ScrollView
         contentContainerStyle={styles.content}

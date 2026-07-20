@@ -62,14 +62,23 @@
   },
   "home": {
     "greeting": "Hi {{name}}!",
+    "helloName": "HELLO, {{name}}!",
+    "brand": "Learning Adventure",
     "welcomeLabel": "Welcome,",
     "defaultChildName": "Little Learner",
+    "promptLead": "What would you like to",
+    "promptAccent": "learn today?",
     "streak": "Today's streak",
     "modules": "What do you want to learn?",
     "continue": "Continue",
     "stars": "Your stars",
     "play": "Play",
     "comingSoon": "Coming Soon",
+    "moreGames": "More Games",
+    "motivationTip": "Great job today! You're only 5 stars away from your next prize!",
+    "totalStars": "{{count}} stars",
+    "lessonsDone": "{{count}} lessons",
+    "levelLabel": "Level {{level}}",
     "emptyTitle": "No modules yet",
     "emptyMessage": "Ask a grown-up to turn on a learning module."
   },
@@ -95,26 +104,58 @@
       "subtitle": "Train your mind"
     },
     "drawing": {
-      "title": "Drawing",
+      "title": "Colors & Drawing",
       "subtitle": "Create and color"
+    },
+    "shapes": {
+      "title": "Shapes",
+      "subtitle": "Circles, squares, and more"
+    },
+    "animals": {
+      "title": "Animals",
+      "subtitle": "Meet animal friends"
+    },
+    "rhymes": {
+      "title": "Rhymes",
+      "subtitle": "Sing and play"
+    },
+    "story": {
+      "title": "Story Time",
+      "subtitle": "Magical stories"
+    },
+    "phonics": {
+      "title": "Phonics",
+      "subtitle": "Sounds and letters"
     }
   },
   "math": {
     "hub": {
-      "title": "Math",
-      "subtitle": "Learn with your math coach",
+      "title": "MathAdventure",
+      "subtitle": "Learn with Leo",
       "heroTitle": "Let's count and play!",
       "welcomeVoice": "Your math coach talks, shows, then lets you try. Pick any topic — all are open!",
-      "coachName": "Math Coach",
+      "leoGreeting": "Hi there, Little Explorer!",
+      "leoGreetingAccent": "Ready to play with numbers?",
+      "leoGreetingTail": "Pick an adventure below to start your journey!",
+      "coachName": "Leo",
       "statsTitle": "Your practice stats",
       "statsSummary": "{{attempted}} tried · {{correct}} correct · {{score}}% score",
+      "overallProgress": "OVERALL ADVENTURE PROGRESS",
+      "overallComplete": "{{percent}}% Complete",
       "favorites": "Most practiced: {{lessons}}",
       "suggestedLesson": "Try: {{title}}",
       "activityList": "Math activities",
       "practiceZone": "Practice zone",
-      "comingSoon": "Coming Soon",
+      "comingSoon": "Soon",
       "play": "Play",
-      "lessonScore": "{{percent}}% score"
+      "lessonScore": "{{percent}}% score",
+      "tabComingSoon": "This page is coming soon — keep exploring Play!",
+      "tabs": {
+        "play": "Play",
+        "map": "Map",
+        "awards": "Awards",
+        "coach": "Coach"
+      }
     },
     "lesson": {
       "question": "Question {{number}}",
@@ -145,6 +186,32 @@
         "title": "Amazing work!",
         "subtitle": "You finished a big round of numbers!",
         "keepGoing": "Keep going!"
+      }
+    },
+    "missing": {
+      "moduleTitle": "Missing Number",
+      "pickerLead": "Pick a lesson — each one has 10 questions with random numbers.",
+      "lessonLabel": "Lesson {{number}}: {{title}}",
+      "lessonOnly": "Lesson {{number}}",
+      "questionsCount": "{{count}} questions",
+      "lockedHint": "Complete the previous lesson to unlock",
+      "stepOf": "Step {{step}} of {{total}}",
+      "prompt": "Which number is missing?",
+      "successTitle": "Awesome job!",
+      "successSubtitle": "You finished all 10 questions. Leo is so proud of you!",
+      "starsEarned": "Stars earned",
+      "bestStars": "Best for this lesson",
+      "badgeUnlocked": "New badge unlocked!",
+      "continue": "Continue",
+      "nextLesson": "Next lesson",
+      "backToLessons": "Back to lessons",
+      "totalStars": "Total lesson stars: {{count}}",
+      "completedWithStars": "Completed {{stars}}",
+      "tabComingSoon": "Coming soon — keep playing!",
+      "tabs": {
+        "play": "Play",
+        "progress": "Progress",
+        "awards": "Awards"
       }
     }
   },
@@ -342,7 +409,19 @@
     },
     "badges": {
       "curious": "Curious kid",
-      "curiousDesc": "Keep exploring"
+      "curiousDesc": "Keep exploring",
+      "firstLesson": "First Lesson",
+      "firstLessonDesc": "Complete any lesson",
+      "mathBeginner": "Math Beginner",
+      "mathBeginnerDesc": "Complete 5 Missing Number lessons",
+      "countingMaster": "Counting Master",
+      "countingMasterDesc": "Earn 3 stars on 3 Missing Number lessons",
+      "perfectLearner": "Perfect Learner",
+      "perfectLearnerDesc": "Earn 3 stars on 10 lessons",
+      "dailyLearner": "Daily Learner",
+      "dailyLearnerDesc": "Learn on consecutive days",
+      "mathChampion": "Math Champion",
+      "mathChampionDesc": "Complete every Missing Number lesson"
     },
     "avatars": {
       "sunny": "Sunny",
@@ -357,5 +436,21 @@
       "day7Desc": "Weekly surprise"
     },
     "yay": "Yay!"
+  },
+  "rewards": {
+    "badgesTitle": "Badges",
+    "badgesSubtitle": "Collect achievements as you learn!",
+    "awardsTitle": "Rewards",
+    "awardsSubtitle": "Stars, coins, and special prizes",
+    "totalStars": "Stars",
+    "totalBadges": "Badges",
+    "totalCoins": "Coins",
+    "lessonsDone": "Lessons",
+    "level": "Level",
+    "collection": "Achievement collection",
+    "unlockedOn": "Unlocked {{date}}",
+    "locked": "Keep learning to unlock",
+    "mathStars": "Math Adventure Stars",
+    "mathStarsDetail": "{{count}} best stars from Missing Number lessons"
   }
 }

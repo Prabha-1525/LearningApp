@@ -1,8 +1,8 @@
-import {StyleSheet} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
+
+import {backArrowIcon} from '@assets';
 
 import {AnimatedPressable} from '../animations';
-import {AppText} from '../components/AppText';
-import {useTheme} from '../theme';
 
 export type BackButtonProps = {
   readonly onPress?: () => void;
@@ -12,7 +12,7 @@ export type BackButtonProps = {
 };
 
 /**
- * Atom — 56×56 back control for TopAppBar and module screens.
+ * Atom — shared back control using common/arrow_back.png.
  */
 export function BackButton({
   onPress,
@@ -20,8 +20,6 @@ export function BackButton({
   reduceMotion = false,
   testID,
 }: BackButtonProps) {
-  const {theme, radius} = useTheme();
-
   return (
     <AnimatedPressable
       testID={testID}
@@ -29,27 +27,21 @@ export function BackButton({
       accessibilityLabel={label}
       onPress={onPress}
       reduceMotion={reduceMotion}
-      style={[
-        styles.base,
-        {
-          backgroundColor: theme.colors.surface,
-          borderColor: theme.colors.border,
-          borderRadius: radius.pill,
-        },
-      ]}>
-      <AppText variant="headline" tone="ink">
-        ←
-      </AppText>
+      style={styles.base}>
+      <Image source={backArrowIcon} style={styles.icon} resizeMode="contain" />
     </AnimatedPressable>
   );
 }
 
 const styles = StyleSheet.create({
   base: {
-    width: 56,
-    height: 56,
-    borderWidth: 1,
+    width: 48,
+    height: 48,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  icon: {
+    width: 32,
+    height: 32,
   },
 });

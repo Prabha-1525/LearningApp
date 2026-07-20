@@ -18,6 +18,44 @@ export const welcomeChessIcon: ImageSourcePropType = require('./images/png/welco
 /** Welcome grid — Rewards tile art. */
 export const welcomeRewardsIcon: ImageSourcePropType = require('./images/png/welcome/rewards.png');
 
+/** Home subject grid — tile art. */
+export const homeChessIcon: ImageSourcePropType = require('./images/png/welcome/chess.png');
+export const homeMathIcon: ImageSourcePropType = require('./images/png/HomeGrids/math.png');
+export const homeEnglishIcon: ImageSourcePropType = require('./images/png/welcome/english.png');
+export const homeColorsIcon: ImageSourcePropType = require('./images/png/HomeGrids/colors.png');
+export const homeShapesIcon: ImageSourcePropType = require('./images/png/HomeGrids/shapes.png');
+export const homeRhymesIcon: ImageSourcePropType = require('./images/png/HomeGrids/rhymes.png');
+export const homeStoryIcon: ImageSourcePropType = require('./images/png/HomeGrids/story.png');
+export const homePhonicsIcon: ImageSourcePropType = require('./images/png/HomeGrids/phonics.png');
+
+/** Home footer mascot (lion graduation splash art). */
+export const homeMascotLion: ImageSourcePropType = require('./images/png/splash/lion_loading.png');
+
+/** Shared chrome — back control (file: common/arrow_back.png). */
+export const backArrowIcon: ImageSourcePropType = require('./images/png/common/arrow_back.png');
+
+/** Leo the math coach — poses. */
+export const leoWave: ImageSourcePropType = require('./images/png/leo/leo_wave.png');
+export const leoThumbsUp: ImageSourcePropType = require('./images/png/leo/leo_thumbs_up.png');
+export const leoCelebrate: ImageSourcePropType = require('./images/png/leo/leo_celebrate.png');
+export const leoThinking: ImageSourcePropType = require('./images/png/leo/leo_thinking.png');
+
+/** MathAdventure topic tile art. */
+export const mathTopicAddition: ImageSourcePropType = require('./images/png/math/topic_addition.png');
+export const mathTopicCounting: ImageSourcePropType = require('./images/png/math/topic_counting.png');
+export const mathTopicOrdering: ImageSourcePropType = require('./images/png/math/topic_ordering.png');
+export const mathTopicTime: ImageSourcePropType = require('./images/png/math/topic_time.png');
+export const mathTopicMoney: ImageSourcePropType = require('./images/png/math/topic_money_explorer.png');
+
+/** Chess lesson / piece art. */
+export const chessBoard: ImageSourcePropType = require('./images/png/chess/chess_board.jpg');
+export const chessKing: ImageSourcePropType = require('./images/png/chess/chess_king.jpg');
+export const chessQueen: ImageSourcePropType = require('./images/png/chess/chess_queen.png');
+export const chessKnight: ImageSourcePropType = require('./images/png/chess/chess_knight.png');
+export const chessBishop: ImageSourcePropType = require('./images/png/chess/chess_bishop.png');
+export const chessPawn: ImageSourcePropType = require('./images/png/chess/chess_pawn.png');
+export const chessRook: ImageSourcePropType = require('./images/png/chess/chess_rook.png');
+
 /** Child profile avatars (cartoon animals). */
 export const avatarLion: ImageSourcePropType = require('./images/png/avatars/lion.png');
 export const avatarPanda: ImageSourcePropType = require('./images/png/avatars/panda.png');

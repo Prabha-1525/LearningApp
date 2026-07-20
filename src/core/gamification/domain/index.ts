@@ -3,6 +3,8 @@ export * from './entities/RewardGrant';
 export * from './policies/levelCurve';
 export * from './policies/rewardCaps';
 export * from './policies/streakCalendar';
+export * from './policies/starScore';
 export * from './engines/RewardEngine';
 export * from './catalog/rewardCatalog';
+export * from './catalog/badgeRules';
 export * from './ports/GamificationRepository';

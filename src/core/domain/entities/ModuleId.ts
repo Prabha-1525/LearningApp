@@ -12,6 +12,11 @@ export const ModuleId = {
   Science: 'science',
   Memory: 'memory',
   Drawing: 'drawing',
+  Shapes: 'shapes',
+  Animals: 'animals',
+  Rhymes: 'rhymes',
+  Story: 'story',
+  Phonics: 'phonics',
 } as const;
 
 export type ModuleId = (typeof ModuleId)[keyof typeof ModuleId];

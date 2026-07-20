@@ -6,6 +6,7 @@ import {
 } from '@features/math/domain/curriculum/types';
 import {LearnNumbersScreen} from './LearnNumbersScreen';
 import {MathLessonScreen} from './MathLessonScreen';
+import {MissingNumberScreen} from './MissingNumberScreen';
 import type {MathStackParamList} from '@navigation/mathTypes';
 
 type Props = NativeStackScreenProps<MathStackParamList, 'Lesson'>;
@@ -18,11 +19,14 @@ function resolveLessonId(raw: string): MathLessonId {
   return 'numbers';
 }
 
-/** Routes numbers to the dedicated teach-first experience. */
+/** Routes specialty lessons to dedicated experiences. */
 export function MathLessonRouter(props: Props) {
   const lessonId = resolveLessonId(props.route.params.lessonId);
   if (lessonId === 'numbers') {
     return <LearnNumbersScreen {...props} />;
+  }
+  if (lessonId === 'missing') {
+    return <MissingNumberScreen {...props} />;
   }
   return <MathLessonScreen {...props} />;
 }

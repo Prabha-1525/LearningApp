@@ -6,6 +6,11 @@ export type FeatureFlags = {
   readonly scienceEnabled: boolean;
   readonly memoryEnabled: boolean;
   readonly drawingEnabled: boolean;
+  readonly shapesEnabled: boolean;
+  readonly animalsEnabled: boolean;
+  readonly rhymesEnabled: boolean;
+  readonly storyEnabled: boolean;
+  readonly phonicsEnabled: boolean;
 };
 
 /**
@@ -20,4 +25,9 @@ export const featureFlags: FeatureFlags = {
   scienceEnabled: false,
   memoryEnabled: false,
   drawingEnabled: false,
+  shapesEnabled: false,
+  animalsEnabled: false,
+  rhymesEnabled: false,
+  storyEnabled: false,
+  phonicsEnabled: false,
 };
