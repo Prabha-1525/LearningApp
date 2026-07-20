@@ -4,6 +4,8 @@ import {
   isMathLessonId,
   type MathLessonId,
 } from '@features/math/domain/curriculum/types';
+import {AdditionScreen, SubtractionScreen} from './AdditionScreen';
+import {CountingScreen} from './CountingScreen';
 import {LearnNumbersScreen} from './LearnNumbersScreen';
 import {MathLessonScreen} from './MathLessonScreen';
 import {MissingNumberScreen} from './MissingNumberScreen';
@@ -27,6 +29,15 @@ export function MathLessonRouter(props: Props) {
   }
   if (lessonId === 'missing') {
     return <MissingNumberScreen {...props} />;
+  }
+  if (lessonId === 'counting') {
+    return <CountingScreen {...props} />;
+  }
+  if (lessonId === 'addition') {
+    return <AdditionScreen {...props} />;
+  }
+  if (lessonId === 'subtraction') {
+    return <SubtractionScreen {...props} />;
   }
   return <MathLessonScreen {...props} />;
 }

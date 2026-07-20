@@ -1,24 +1,24 @@
 import {NumberChoicePad, type NumberChoice} from '../objects/NumberChoicePad';
 
-type MissingChoiceGridProps = {
+type CountingChoiceRowProps = {
   readonly choices: readonly NumberChoice[];
   readonly disabled?: boolean;
   readonly onPick: (id: string) => void;
 };
 
-/** 2×2 orange answer pad — thin wrapper over shared NumberChoicePad. */
-export function MissingChoiceGrid({
+/** Horizontal orange number pad — thin wrapper over shared NumberChoicePad. */
+export function CountingChoiceRow({
   choices,
   disabled = false,
   onPick,
-}: MissingChoiceGridProps) {
+}: CountingChoiceRowProps) {
   return (
     <NumberChoicePad
       choices={choices}
-      layout="grid"
+      layout="row"
       disabled={disabled}
       onPick={onPick}
-      testIDPrefix="missing-choice"
+      testIDPrefix="count-choice"
     />
   );
 }

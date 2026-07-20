@@ -9,6 +9,8 @@ export type BadgeEvalContext = {
   readonly missingLessonsCompleted: number;
   readonly missingPerfectCount: number;
   readonly missingAllComplete: boolean;
+  readonly countingLessonsCompleted: number;
+  readonly countingPerfectCount: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<string>;
 };
@@ -52,7 +54,7 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     titleKey: 'gamification.badges.countingMaster',
     descriptionKey: 'gamification.badges.countingMasterDesc',
     icon: '🧮',
-    evaluate: ctx => ctx.missingPerfectCount >= 3,
+    evaluate: ctx => ctx.countingPerfectCount >= 3,
   },
   {
     id: 'perfect_learner',

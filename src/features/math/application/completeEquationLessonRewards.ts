@@ -13,15 +13,15 @@ import {starsFromMistakes} from '@core/gamification/domain/policies/starScore';
 
 import {getCountingProgress} from '../data/countingProgress';
 import {
-  countMissingPerfectLessons,
-  getMissingProgress,
-  recordMissingLessonStars,
-  type MissingLessonStarResult,
-} from '../data/missingProgress';
-import {MISSING_LESSON_COUNT} from '../domain/missing/missingCurriculum';
+  getEquationProgress,
+  recordEquationLessonStars,
+  type EquationLessonStarResult,
+} from '../data/equationProgress';
+import {getMissingProgress} from '../data/missingProgress';
+import type {EquationMode} from '../domain/equation/equationCurriculum';
 
-export type MissingLessonRewardResult = {
-  readonly missing: MissingLessonStarResult;
+export type EquationLessonRewardResult = {
+  readonly equation: EquationLessonStarResult;
   readonly performanceStars: 1 | 2 | 3;
   readonly grant: GrantResult | null;
   readonly newBadges: readonly BadgeRule[];
@@ -29,26 +29,33 @@ export type MissingLessonRewardResult = {
   readonly snapshot: GamificationSnapshot | null;
 };
 
-/**
- * Complete a Missing Number lesson: best stars, wallet delta, badge unlocks.
- */
-export async function completeMissingLessonRewards(input: {
+function perfectCount(starsByLesson: Readonly<Record<string, number>>): number {
+  return Object.values(starsByLesson).filter(s => s >= 3).length;
+}
+
+/** Complete an Addition or Subtraction lesson. */
+export async function completeEquationLessonRewards(input: {
   readonly childId: ChildId;
+  readonly mode: EquationMode;
   readonly lessonIndex: number;
   readonly wrongAttempts: number;
-}): Promise<MissingLessonRewardResult> {
+}): Promise<EquationLessonRewardResult> {
   const performanceStars = starsFromMistakes(input.wrongAttempts);
-  const missing = recordMissingLessonStars(input.lessonIndex, performanceStars);
+  const equation = recordEquationLessonStars(
+    input.mode,
+    input.lessonIndex,
+    performanceStars,
+  );
 
   const repo = createMmkvGamificationRepository();
   const celebrations: CelebrationEvent[] = [];
   let snapshot: GamificationSnapshot | null = null;
   let grant: GrantResult | null = null;
 
-  const starsToGrant = missing.deltaStars;
-  const xpToGrant = missing.isFirstCompletion
+  const starsToGrant = equation.deltaStars;
+  const xpToGrant = equation.isFirstCompletion
     ? 15
-    : missing.deltaStars > 0
+    : equation.deltaStars > 0
     ? 5
     : 0;
 
@@ -57,7 +64,7 @@ export async function completeMissingLessonRewards(input: {
       childId: input.childId,
       source: 'lesson',
       moduleId: ModuleId.Math,
-      reasonCode: `math.missing.lesson.${input.lessonIndex}.reward`,
+      reasonCode: `math.${input.mode}.lesson.${input.lessonIndex}.reward`,
       stars: starsToGrant,
       xp: xpToGrant,
       celebrationKey: 'lesson_complete',
@@ -76,26 +83,36 @@ export async function completeMissingLessonRewards(input: {
     }
   }
 
-  const progress = getMissingProgress();
   const countingProgress = getCountingProgress();
-  const countingPerfect = Object.values(countingProgress.starsByLesson).filter(
-    s => s >= 3,
-  ).length;
-  const missingPerfect = countMissingPerfectLessons();
+  const missingProgress = getMissingProgress();
+  const additionProgress = getEquationProgress('addition');
+  const subtractionProgress = getEquationProgress('subtraction');
+
+  const completedLessonCount =
+    countingProgress.completedLessonIndexes.length +
+    missingProgress.completedLessonIndexes.length +
+    additionProgress.completedLessonIndexes.length +
+    subtractionProgress.completedLessonIndexes.length;
+
+  const perfectLessonCount =
+    perfectCount(countingProgress.starsByLesson) +
+    perfectCount(missingProgress.starsByLesson) +
+    perfectCount(additionProgress.starsByLesson) +
+    perfectCount(subtractionProgress.starsByLesson);
+
   const newBadges =
     snapshot != null
       ? evaluateNewBadges({
-          completedLessonCount:
-            progress.completedLessonIndexes.length +
-            countingProgress.completedLessonIndexes.length,
-          perfectLessonCount: missingPerfect + countingPerfect,
-          missingLessonsCompleted: progress.completedLessonIndexes.length,
-          missingPerfectCount: missingPerfect,
+          completedLessonCount,
+          perfectLessonCount,
+          missingLessonsCompleted:
+            missingProgress.completedLessonIndexes.length,
+          missingPerfectCount: perfectCount(missingProgress.starsByLesson),
           missingAllComplete:
-            progress.completedLessonIndexes.length >= MISSING_LESSON_COUNT,
+            missingProgress.completedLessonIndexes.length >= 10,
           countingLessonsCompleted:
             countingProgress.completedLessonIndexes.length,
-          countingPerfectCount: countingPerfect,
+          countingPerfectCount: perfectCount(countingProgress.starsByLesson),
           currentStreak: snapshot.streak.currentStreak,
           ownedBadgeIds: new Set(snapshot.badges.map(b => b.badgeId)),
         })
@@ -131,7 +148,7 @@ export async function completeMissingLessonRewards(input: {
   }
 
   return {
-    missing,
+    equation,
     performanceStars,
     grant,
     newBadges,
