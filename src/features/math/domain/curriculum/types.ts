@@ -7,6 +7,7 @@ export type MathLessonId =
   | 'compare'
   | 'addition'
   | 'subtraction'
+  | 'odd-even'
   | 'shapes'
   | 'colors'
   | 'big-small'
@@ -19,7 +20,6 @@ export type MathHubActivityId =
   | 'division'
   | 'fractions'
   | 'games'
-  | 'odd-even'
   | 'ordering'
   | 'measurements'
   | 'time'
@@ -109,6 +109,7 @@ export function isMathLessonId(value: string): value is MathLessonId {
     value === 'compare' ||
     value === 'addition' ||
     value === 'subtraction' ||
+    value === 'odd-even' ||
     value === 'shapes' ||
     value === 'colors' ||
     value === 'big-small' ||

@@ -20,13 +20,13 @@ export type ObjectImageBoxProps = {
   readonly onPress?: () => void;
   readonly testID?: string;
   readonly style?: StyleProp<ViewStyle>;
-  /** Fill the box — default cover for kid-friendly sizing. */
+  /** Fill the available object area — default cover for kid-friendly sizing. */
   readonly resizeMode?: 'cover' | 'contain';
 };
 
 /**
- * Reusable object tile used on Counting, Addition, Subtraction, etc.
- * Image fills the box so small assets stay readable.
+ * Reusable object image used on Counting, Addition, Subtraction, etc.
+ * Normal objects have no card/background; answer and empty variants keep boxes.
  */
 export function ObjectImageBox({
   size,
@@ -49,6 +49,7 @@ export function ObjectImageBox({
   const boxStyle = [
     styles.box,
     {width: size, height: size, borderRadius: Math.max(10, size * 0.18)},
+    variant === 'object' && styles.object,
     isAnswer && styles.answerBox,
     variant === 'empty' && styles.emptyBox,
     selected && styles.selected,
@@ -77,34 +78,25 @@ export function ObjectImageBox({
 
 const styles = StyleSheet.create({
   box: {
-    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden',
-    padding: 3,
-    shadowColor: '#1A3A5C',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+  },
+  object: {
+    backgroundColor: 'transparent',
   },
   emptyBox: {
     backgroundColor: '#E8EEF4',
-    shadowOpacity: 0,
-    elevation: 0,
+    overflow: 'hidden',
   },
   answerBox: {
     backgroundColor: '#5BA3E8',
+    overflow: 'hidden',
     borderWidth: 2,
     borderStyle: 'dashed',
     borderColor: '#FFFFFF',
-    shadowOpacity: 0,
-    elevation: 0,
   },
   selected: {
-    borderWidth: 3,
-    borderColor: '#22C55E',
-    backgroundColor: '#ECFDF5',
+    opacity: 0.72,
   },
   image: {
     width: '100%',

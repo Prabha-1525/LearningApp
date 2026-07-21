@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, type ImageSourcePropType} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -7,12 +7,13 @@ import Animated, {
 } from 'react-native-reanimated';
 import {useEffect} from 'react';
 
-import {AppText} from '@shared/ui';
+import {ObjectImageBox} from '../objects/ObjectImageBox';
 
 import {objectGridLayout} from './objectGridLayout';
 
 type Props = {
   readonly emojis: readonly string[];
+  readonly image: ImageSourcePropType;
   readonly highlightIndex: number;
   readonly visible: boolean;
 };
@@ -20,6 +21,7 @@ type Props = {
 /** Non-interactive object grid with even spacing — no overlap. */
 export function AnimatedObjectShowcase({
   emojis,
+  image,
   highlightIndex,
   visible,
 }: Props) {
@@ -38,13 +40,12 @@ export function AnimatedObjectShowcase({
           maxWidth: layout.columns * (layout.itemSize + layout.gap),
         },
       ]}>
-      {emojis.map((emoji, index) => (
+      {emojis.map((_, index) => (
         <ObjectBubble
           key={`obj-${index}`}
-          emoji={emoji}
+          image={image}
           highlighted={highlightIndex === index}
           itemSize={layout.itemSize}
-          fontSize={layout.fontSize}
         />
       ))}
     </View>
@@ -52,15 +53,13 @@ export function AnimatedObjectShowcase({
 }
 
 function ObjectBubble({
-  emoji,
+  image,
   highlighted,
   itemSize,
-  fontSize,
 }: {
-  emoji: string;
+  image: ImageSourcePropType;
   highlighted: boolean;
   itemSize: number;
-  fontSize: number;
 }) {
   const scale = useSharedValue(1);
 
@@ -82,16 +81,14 @@ function ObjectBubble({
   return (
     <Animated.View
       style={[
-        styles.item,
         {
           width: itemSize,
           height: itemSize,
-          borderRadius: itemSize * 0.26,
         },
         highlighted && styles.itemHighlight,
         anim,
       ]}>
-      <AppText style={{fontSize}}>{emoji}</AppText>
+      <ObjectImageBox image={image} size={itemSize} />
     </Animated.View>
   );
 }
@@ -104,16 +101,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingVertical: 8,
   },
-  item: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 3,
-    borderColor: '#FFB347',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   itemHighlight: {
-    backgroundColor: '#E8FBF3',
-    borderColor: '#3D9A5F',
     shadowColor: '#3D9A5F',
     shadowOpacity: 0.35,
     shadowRadius: 8,

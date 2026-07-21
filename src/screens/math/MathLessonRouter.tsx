@@ -9,6 +9,7 @@ import {CountingScreen} from './CountingScreen';
 import {LearnNumbersScreen} from './LearnNumbersScreen';
 import {MathLessonScreen} from './MathLessonScreen';
 import {MissingNumberScreen} from './MissingNumberScreen';
+import {OddEvenScreen} from './OddEvenScreen';
 import type {MathStackParamList} from '@navigation/mathTypes';
 
 type Props = NativeStackScreenProps<MathStackParamList, 'Lesson'>;
@@ -38,6 +39,9 @@ export function MathLessonRouter(props: Props) {
   }
   if (lessonId === 'subtraction') {
     return <SubtractionScreen {...props} />;
+  }
+  if (lessonId === 'odd-even') {
+    return <OddEvenScreen {...props} />;
   }
   return <MathLessonScreen {...props} />;
 }

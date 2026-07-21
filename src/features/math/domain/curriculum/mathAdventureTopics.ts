@@ -95,7 +95,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     heroColor: '#D6EEFF',
     titleTa: 'ஒற்றை / இரட்டை',
     titleEn: 'Odd / Even',
-    comingSoon: true,
+    lessonId: 'odd-even',
     image: null,
     demoProgressPercent: 0,
   },

@@ -99,8 +99,21 @@ export const MATH_LESSONS: readonly MathLesson[] = [
     introEn: 'If we take some away, how many are left?',
   },
   {
-    id: 'shapes',
+    id: 'odd-even',
     order: 9,
+    icon: '🧦',
+    accent: '#4DB7E8',
+    titleTa: 'ஒற்றை மற்றும் இரட்டை',
+    titleEn: 'Odd & Even Numbers',
+    subtitleTa: 'ஜோடிகளை உருவாக்கு',
+    subtitleEn: 'Make pairs and discover the rule',
+    introTa: 'பொருட்களை ஜோடியாக சேர்ப்போம். ஒன்று மீதமிருந்தால் அது ஒற்றை எண்!',
+    introEn:
+      'Let us make pairs. If every object has a partner, the number is even. If one is left alone, it is odd!',
+  },
+  {
+    id: 'shapes',
+    order: 10,
     icon: '🔷',
     accent: '#4DB7E8',
     titleTa: 'வடிவங்கள்',
@@ -112,7 +125,7 @@ export const MATH_LESSONS: readonly MathLesson[] = [
   },
   {
     id: 'colors',
-    order: 10,
+    order: 11,
     icon: '🎨',
     accent: '#E4578C',
     titleTa: 'நிறங்கள்',
@@ -124,7 +137,7 @@ export const MATH_LESSONS: readonly MathLesson[] = [
   },
   {
     id: 'big-small',
-    order: 11,
+    order: 12,
     icon: '📏',
     accent: '#FF9F1C',
     titleTa: 'பெரியது & சிறியது',
@@ -136,7 +149,7 @@ export const MATH_LESSONS: readonly MathLesson[] = [
   },
   {
     id: 'patterns',
-    order: 12,
+    order: 13,
     icon: '🔢',
     accent: '#8B5CF6',
     titleTa: 'வடிவ வரிசை',
@@ -148,7 +161,7 @@ export const MATH_LESSONS: readonly MathLesson[] = [
   },
   {
     id: 'practice',
-    order: 13,
+    order: 14,
     icon: '🏆',
     accent: '#F4B400',
     titleTa: 'பயிற்சி மண்டலம்',

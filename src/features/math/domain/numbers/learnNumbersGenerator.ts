@@ -1,5 +1,8 @@
 import type {DifficultyLevel, MathChoice} from '../generators/types';
-import {OBJECT_POOLS} from '../generators/catalog';
+import {
+  COUNTING_OBJECTS,
+  type CountingObjectDef,
+} from '@assets/countingObjects';
 import {
   makeChoices,
   pickOne,
@@ -21,6 +24,7 @@ export type LearnNumbersQuestion = {
   readonly number: number;
   readonly level: DifficultyLevel;
   readonly activityMode: LearnNumbersActivityMode;
+  readonly object: CountingObjectDef;
   readonly emoji: string;
   readonly objectLabelEn: string;
   readonly emojis: readonly string[];
@@ -76,7 +80,6 @@ function pickActivityMode(level: DifficultyLevel): LearnNumbersActivityMode {
 function buildCoachCopy(
   mode: LearnNumbersActivityMode,
   objectLabelEn: string,
-  emoji: string,
 ): {
   teachLines: CoachLine[];
   welcomeLine: string;
@@ -88,7 +91,7 @@ function buildCoachCopy(
   praiseLine: string;
   retryLine: string;
 } {
-  const showObjectsLine = `Look at these ${objectLabelEn}. ${emoji}`;
+  const showObjectsLine = `Look at these ${objectLabelEn}.`;
   const teachLines: CoachLine[] = [
     {text: 'Look carefully.'},
     {text: showObjectsLine},
@@ -158,22 +161,27 @@ function buildOne(level: DifficultyLevel): LearnNumbersQuestion {
   const range = numbersRange(level);
   const number = randInt(range.min, range.max);
   const activityMode = pickActivityMode(level);
-  const pool = pickOne(OBJECT_POOLS);
-  const emoji = pickOne(pool.emojis);
+  const object = pickOne(COUNTING_OBJECTS);
+  // Retained for compatibility with the existing count-flow data shape.
+  const emoji = '●';
   const emojis = Array.from({length: number}, () => emoji);
   const countWords = Array.from({length: number}, (_, i) =>
     englishCountAloud(i + 1),
   );
   const choices = buildChoices(number, level);
-  const copy = buildCoachCopy(activityMode, pool.labelEn, emoji);
+  const copy = buildCoachCopy(
+    activityMode,
+    number === 1 ? object.labelEn : object.labelPluralEn,
+  );
 
   return {
-    id: `learn-numbers|${level}|${number}|${activityMode}|${pool.id}|${emoji}`,
+    id: `learn-numbers|${level}|${number}|${activityMode}|${object.id}`,
     number,
     level,
     activityMode,
+    object,
     emoji,
-    objectLabelEn: pool.labelEn,
+    objectLabelEn: number === 1 ? object.labelEn : object.labelPluralEn,
     emojis,
     countWords,
     teachLines: copy.teachLines,

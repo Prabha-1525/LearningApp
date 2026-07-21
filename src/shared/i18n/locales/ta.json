@@ -175,6 +175,7 @@
       "onARoll": "On a roll!",
       "stars": "Stars",
       "greatJob": "Great job!",
+      "questProgress": "பயண முன்னேற்றம்",
       "keepGoing": "Keep learning — new numbers keep coming!",
       "stats": {
         "question": "Question",
@@ -269,6 +270,26 @@
       "backToLessons": "பாடங்களுக்குத் திரும்பு",
       "totalStars": "மொத்த நட்சத்திரங்கள்: {{count}}",
       "completedWithStars": "முடிந்தது {{stars}}"
+    },
+    "oddEven": {
+      "moduleTitle": "ஒற்றை & இரட்டை",
+      "questProgress": "ஜோடி பயணம்",
+      "evenExample": "முதலில் இரட்டை எண்களைப் பார்ப்போம்",
+      "oddExample": "இப்போது ஒற்றை எண்களைப் பார்ப்போம்",
+      "even": "இரட்டை",
+      "odd": "ஒற்றை",
+      "everyonePaired": "அனைவருக்கும் ஒரு ஜோடி",
+      "oneLeft": "ஒன்று தனியாக மீதம்",
+      "watchPairs": "லியோ ஜோடி சேர்ப்பதைப் பார்!",
+      "doYouUnderstand": "புரிந்ததா?",
+      "understandingHint": "அனைவருக்கும் ஜோடி இருந்தால் இரட்டை. ஒன்று மீதமிருந்தால் ஒற்றை.",
+      "iUnderstand": "புரிந்தது! ✨",
+      "tryAgain": "மீண்டும் முயற்சி ↻",
+      "greatPairing": "அருமையான ஜோடி!",
+      "completeTitle": "ஜோடி வல்லுநர்!",
+      "completeSubtitle": "ஜோடிகளை உருவாக்கி ஒற்றை, இரட்டை எண்களைக் கண்டுபிடிக்கலாம்!",
+      "stars": "நட்சத்திரங்கள்",
+      "keepPairing": "தொடர்ந்து ஜோடி சேர்"
     }
   },
   "chess": {

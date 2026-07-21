@@ -11,7 +11,12 @@ import {AppText, animationPresets, useTheme} from '@shared/ui';
 
 import type {MathChoice} from '../../../domain/generators/types';
 
-const COLORS = ['#FF6B9D', '#4DB7E8', '#FFB347', '#8B5CF6'];
+const PALETTE = [
+  {background: '#2563B8', base: '#174A8C'},
+  {background: '#168235', base: '#0F5D25'},
+  {background: '#FFB547', base: '#B8750B'},
+  {background: '#EF6B73', base: '#A92132'},
+] as const;
 
 type Props = {
   readonly choices: readonly MathChoice[];
@@ -22,7 +27,7 @@ type Props = {
   readonly shakeId?: string | null;
 };
 
-/** Large 2×2 colorful answer grid for Learn Numbers. */
+/** Compact four-choice row for Learn Numbers. */
 export function NumbersChoicePad({
   choices,
   onPick,
@@ -39,12 +44,13 @@ export function NumbersChoicePad({
         const isSelected = selectedId === choice.id;
         const showCorrect = showCorrectId === choice.id;
         const shouldShake = shakeId === choice.id;
-        const bg = COLORS[index % COLORS.length]!;
+        const color = PALETTE[index % PALETTE.length]!;
         return (
           <ChoiceButton
             key={choice.id}
             choice={choice}
-            bg={bg}
+            backgroundColor={color.background}
+            baseColor={color.base}
             radius={radius.lg}
             disabled={disabled}
             isSelected={isSelected}
@@ -60,7 +66,8 @@ export function NumbersChoicePad({
 
 function ChoiceButton({
   choice,
-  bg,
+  backgroundColor,
+  baseColor,
   radius,
   disabled,
   isSelected,
@@ -69,7 +76,8 @@ function ChoiceButton({
   onPick,
 }: {
   choice: MathChoice;
-  bg: string;
+  backgroundColor: string;
+  baseColor: string;
   radius: number;
   disabled?: boolean;
   isSelected: boolean;
@@ -105,7 +113,8 @@ function ChoiceButton({
           styles.choice,
           {
             borderRadius: radius,
-            backgroundColor: bg,
+            backgroundColor,
+            borderBottomColor: baseColor,
             opacity: disabled && !isSelected ? 0.55 : 1,
           },
           isSelected && choice.correct && styles.correctPick,
@@ -123,19 +132,18 @@ function ChoiceButton({
 const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: 14,
-    paddingHorizontal: 8,
+    justifyContent: 'space-between',
+    gap: 8,
+    paddingHorizontal: 2,
+    paddingBottom: 8,
   },
-  choiceWrap: {width: '46%'},
+  choiceWrap: {flex: 1},
   choice: {
     width: '100%',
-    minHeight: 96,
+    minHeight: 64,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 4,
-    borderColor: '#FFFFFF',
+    borderBottomWidth: 5,
     shadowColor: '#000',
     shadowOpacity: 0.12,
     shadowRadius: 6,
@@ -144,7 +152,7 @@ const styles = StyleSheet.create({
   },
   label: {
     color: '#FFFFFF',
-    fontSize: 48,
+    fontSize: 24,
     fontWeight: '800',
   },
   correct: {

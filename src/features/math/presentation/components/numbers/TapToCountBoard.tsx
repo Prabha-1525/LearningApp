@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet, View} from 'react-native';
+import {StyleSheet, View, type ImageSourcePropType} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -9,11 +9,13 @@ import Animated, {
 import {useEffect} from 'react';
 
 import {AppText, animationPresets} from '@shared/ui';
+import {ObjectImageBox} from '../objects/ObjectImageBox';
 
 import {objectGridLayout} from './objectGridLayout';
 
 type Props = {
   readonly emojis: readonly string[];
+  readonly image: ImageSourcePropType;
   /** Index in tap order (1-based) per object index, if tapped. */
   readonly tapOrderByIndex: ReadonlyMap<number, number>;
   readonly highlightIndex: number;
@@ -24,6 +26,7 @@ type Props = {
 /** Interactive tap-to-count board — sequential count, no overlap. */
 export function TapToCountBoard({
   emojis,
+  image,
   tapOrderByIndex,
   highlightIndex,
   disabled,
@@ -47,15 +50,15 @@ export function TapToCountBoard({
             maxWidth: layout.columns * (layout.itemSize + layout.gap),
           },
         ]}>
-        {emojis.map((emoji, index) => (
+        {emojis.map((_, index) => (
           <TapObject
             key={`tap-${index}`}
-            emoji={emoji}
+            index={index}
+            image={image}
             tapOrder={tapOrderByIndex.get(index)}
             highlighted={highlightIndex === index}
             disabled={disabled || tapOrderByIndex.has(index)}
             itemSize={layout.itemSize}
-            fontSize={layout.fontSize}
             onPress={() => onTap(index)}
           />
         ))}
@@ -65,74 +68,62 @@ export function TapToCountBoard({
 }
 
 function TapObject({
-  emoji,
+  index,
+  image,
   tapOrder,
   highlighted,
   disabled,
   itemSize,
-  fontSize,
   onPress,
 }: {
-  emoji: string;
+  index: number;
+  image: ImageSourcePropType;
   tapOrder?: number;
   highlighted: boolean;
   disabled?: boolean;
   itemSize: number;
-  fontSize: number;
   onPress: () => void;
 }) {
   const scale = useSharedValue(1);
   const tapped = tapOrder != null;
 
   useEffect(() => {
-    if (tapped || highlighted) {
+    if (tapOrder != null) {
       scale.value = withSequence(
         withSpring(1.25, animationPresets.snappySpring),
-        withTiming(1.08, {duration: 120}),
+        withTiming(1, {duration: 120}),
       );
-    } else {
-      scale.value = withTiming(1, {duration: 100});
     }
-  }, [highlighted, scale, tapped]);
+  }, [scale, tapOrder]);
 
   const anim = useAnimatedStyle(() => ({
     transform: [{scale: scale.value}],
   }));
 
   return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityLabel={tapped ? `Counted as ${tapOrder}` : 'Tap to count'}
-      disabled={disabled}
-      onPress={onPress}
-      style={{width: itemSize, height: itemSize}}>
-      <Animated.View
-        style={[
-          styles.item,
-          {
-            width: itemSize,
-            height: itemSize,
-            borderRadius: itemSize * 0.26,
-          },
-          tapped && styles.itemTapped,
-          highlighted && styles.itemHighlight,
-          anim,
-        ]}>
-        <AppText style={{fontSize}}>{emoji}</AppText>
-        {tapped ? (
-          <View style={styles.countBadge}>
-            <AppText variant="caption" style={styles.countText}>
-              {tapOrder}
-            </AppText>
-          </View>
-        ) : null}
-        {tapped ? (
-          <View style={styles.checkmark}>
-            <AppText style={styles.checkText}>✓</AppText>
-          </View>
-        ) : null}
-      </Animated.View>
-    </Pressable>
+    <Animated.View
+      style={[
+        styles.itemWrap,
+        {width: itemSize, height: itemSize},
+        highlighted && styles.itemHighlight,
+        anim,
+      ]}>
+      <ObjectImageBox
+        image={image}
+        size={itemSize}
+        selected={tapped}
+        disabled={disabled}
+        onPress={onPress}
+        testID={`learn-number-object-${index}`}
+      />
+      {tapped ? (
+        <View style={styles.countBadge}>
+          <AppText variant="caption" style={styles.countText}>
+            {tapOrder}
+          </AppText>
+        </View>
+      ) : null}
+    </Animated.View>
   );
 }
 
@@ -154,20 +145,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingVertical: 8,
   },
-  item: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 3,
-    borderColor: '#4DB7E8',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  itemTapped: {
-    backgroundColor: '#E8FBF3',
-    borderColor: '#3D9A5F',
-  },
+  itemWrap: {alignItems: 'center', justifyContent: 'center'},
   itemHighlight: {
-    backgroundColor: '#FFF0F8',
-    borderColor: '#E4578C',
     shadowColor: '#E4578C',
     shadowOpacity: 0.35,
     shadowRadius: 8,
@@ -188,18 +167,4 @@ const styles = StyleSheet.create({
     borderColor: '#FFFFFF',
   },
   countText: {color: '#FFFFFF', fontWeight: '800', fontSize: 12},
-  checkmark: {
-    position: 'absolute',
-    bottom: -6,
-    left: -6,
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: '#3D9A5F',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: '#FFFFFF',
-  },
-  checkText: {color: '#FFFFFF', fontWeight: '800', fontSize: 12},
 });

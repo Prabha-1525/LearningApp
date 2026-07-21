@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useRef} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
@@ -11,16 +11,7 @@ import {
   createMmkvGamificationRepository,
   grantRewards,
 } from '@core/gamification';
-import {
-  AppText,
-  Chip,
-  IconButton,
-  MascotSpot,
-  RewardBadge,
-  TopAppBar,
-  space,
-  useTheme,
-} from '@shared/ui';
+import {BackButton, space} from '@shared/ui';
 
 import {CelebrationStars} from '@features/math/presentation/components/CelebrationStars';
 import {AnimatedObjectShowcase} from '@features/math/presentation/components/numbers/AnimatedObjectShowcase';
@@ -29,9 +20,12 @@ import {BigNumberHero} from '@features/math/presentation/components/numbers/BigN
 import {ConfettiBurst} from '@features/math/presentation/components/numbers/ConfettiBurst';
 import {LevelPicker} from '@features/math/presentation/components/numbers/LevelPicker';
 import {NumbersChoicePad} from '@features/math/presentation/components/numbers/NumbersChoicePad';
-import {NumbersProgressCard} from '@features/math/presentation/components/numbers/NumbersProgressCard';
 import {StarRewardBurst} from '@features/math/presentation/components/numbers/StarRewardBurst';
 import {TapToCountBoard} from '@features/math/presentation/components/numbers/TapToCountBoard';
+import {
+  LeoCoachBanner,
+  QuestProgressBar,
+} from '@features/math/presentation/components/objects';
 import {useLearnNumbersPlayer} from '@features/math/presentation/hooks/useLearnNumbersPlayer';
 import type {MathStackParamList} from '@navigation/mathTypes';
 
@@ -39,25 +33,11 @@ type Props = NativeStackScreenProps<MathStackParamList, 'Lesson'>;
 
 const REWARD_EVERY = 5;
 
-function coachCardStyle(phase: string): {
-  backgroundColor: string;
-  borderColor: string;
-} {
-  if (phase === 'correct') {
-    return {backgroundColor: '#E8FBF3', borderColor: '#3D9A5F'};
-  }
-  if (phase === 'retry') {
-    return {backgroundColor: '#FFF8E7', borderColor: '#FFB347'};
-  }
-  return {backgroundColor: '#FFF8E7', borderColor: '#FFB347'};
-}
-
 /**
- * Learn Numbers — premium teach-first kindergarten experience.
+ * Learn Numbers — existing teach-first flow in the compact quest layout.
  */
 export function LearnNumbersScreen({navigation}: Props) {
   const {t} = useTranslation();
-  const {space: themeSpace, radius} = useTheme();
   const dispatch = useAppDispatch();
   const activeChildId = useAppSelector(
     state => state.profile.activeChildId ?? 'demo-child',
@@ -69,19 +49,13 @@ export function LearnNumbersScreen({navigation}: Props) {
     (player.phase === 'tapCount' || player.phase === 'retry') &&
     player.question != null;
   const showPassiveObjects =
-    player.phase === 'showObjects' || player.phase === 'ask';
+    player.phase === 'showObjects' ||
+    player.phase === 'ask' ||
+    player.phase === 'practice' ||
+    player.phase === 'correct';
   const showChoices = player.phase === 'practice' && player.question != null;
   const showAnswerNumber =
     player.phase === 'explain' && player.question != null;
-
-  const coachMood =
-    player.phase === 'correct'
-      ? 'cheer'
-      : player.phase === 'retry'
-      ? 'calm'
-      : 'happy';
-
-  const coachColors = coachCardStyle(player.phase);
 
   const maybeGrantReward = useCallback(
     async (greatJobs: number) => {
@@ -118,63 +92,44 @@ export function LearnNumbersScreen({navigation}: Props) {
     void maybeGrantReward(player.batchStats.correct);
   }, [maybeGrantReward, player.batchStats.correct]);
 
-  const statusChip =
-    player.phase === 'correct'
-      ? t('math.numbers.greatJob')
-      : player.isSpeaking
-      ? t('math.numbers.speaking')
-      : player.phase === 'tapCount'
-      ? t('math.numbers.tapToCount')
-      : player.audioError
-      ? t('math.numbers.audioError')
-      : t('math.lesson.listening');
-
-  const statusTone =
-    player.phase === 'correct'
-      ? 'success'
-      : player.audioError
-      ? 'locked'
-      : 'sun';
-
   return (
-    <AppSafeAreaView testID="learn-numbers-screen">
-      <TopAppBar
-        title={t('math.numbers.title')}
-        subtitle={t('math.numbers.subtitle')}
-        onBack={() => navigation.navigate('Hub')}
-        trailing={
-          <View style={styles.topTrailing}>
-            <RewardBadge
-              label={t('math.numbers.stars')}
-              count={player.batchStats.stars}
-              active={player.phase === 'correct'}
-            />
-            <IconButton
-              label={t('math.lesson.replay')}
-              symbol="🔊"
-              onPress={() => {
-                void player.replayAudio();
-              }}
-            />
-          </View>
-        }
-      />
+    <AppSafeAreaView
+      testID="learn-numbers-screen"
+      backgroundImage={null}
+      backgroundColor="#F5F7FA"
+      padded={false}>
+      <View style={styles.header}>
+        <BackButton
+          label={t('common.back')}
+          onPress={() => navigation.navigate('Hub')}
+        />
+        <Text style={styles.headerTitle}>{t('math.numbers.title')}</Text>
+        <View style={styles.starCount}>
+          <Text style={styles.starText}>★ {player.batchStats.stars}</Text>
+        </View>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={t('math.lesson.replay')}
+          onPress={() => {
+            void player.replayAudio();
+          }}
+          style={styles.audioButton}>
+          <Text style={styles.audioIcon}>🔊</Text>
+        </Pressable>
+      </View>
+
       <View style={styles.body}>
         <ScrollView
-          contentContainerStyle={[styles.content, {gap: themeSpace.md}]}
+          style={styles.scroll}
+          contentContainerStyle={styles.content}
           showsVerticalScrollIndicator={false}>
-          <NumbersProgressCard
-            questionInBatch={player.batchStats.questionInBatch}
-            batchSize={player.batchStats.batchSize}
-            stars={player.batchStats.stars}
-            greatJobs={player.batchStats.correct}
-            score={player.batchScore}
-            labels={{
-              question: t('math.numbers.stats.question'),
-              stars: t('math.numbers.stats.stars'),
-              greatJobs: t('math.numbers.stats.greatJobs'),
-              score: t('math.numbers.stats.score'),
-            }}
+          <QuestProgressBar
+            label={t('math.numbers.questProgress')}
+            percent={
+              (player.batchStats.questionInBatch /
+                player.batchStats.batchSize) *
+              100
+            }
           />
 
           <LevelPicker
@@ -183,37 +138,7 @@ export function LearnNumbersScreen({navigation}: Props) {
             disabled={player.isSpeaking}
           />
 
-          <View
-            style={[
-              styles.coachCard,
-              {borderRadius: radius.lg, ...coachColors},
-            ]}>
-            <MascotSpot
-              mood={coachMood}
-              size={92}
-              label={t('math.hub.coachName')}
-            />
-            <View style={styles.coachText}>
-              <View style={styles.coachChips}>
-                <Chip label={statusChip} tone={statusTone} />
-                {player.streak >= 3 ? (
-                  <Chip label={t('math.numbers.onARoll')} tone="success" />
-                ) : null}
-              </View>
-              <AppText
-                variant="body"
-                tone={player.phase === 'correct' ? 'primary' : 'ink'}
-                style={styles.caption}>
-                {player.audioError ?? player.caption ?? '…'}
-              </AppText>
-            </View>
-          </View>
-
-          <View
-            style={[
-              styles.playArea,
-              {borderRadius: radius.lg, backgroundColor: '#E8F4FF'},
-            ]}>
+          <View style={styles.playArea}>
             {showAnswerNumber && player.question ? (
               <BigNumberHero number={player.question.number} visible />
             ) : null}
@@ -221,6 +146,7 @@ export function LearnNumbersScreen({navigation}: Props) {
             {showTapBoard && player.question ? (
               <TapToCountBoard
                 emojis={player.question.emojis}
+                image={player.question.object.image}
                 tapOrderByIndex={player.tapOrderByIndex}
                 highlightIndex={player.highlightIndex}
                 disabled={player.isSpeaking}
@@ -233,6 +159,7 @@ export function LearnNumbersScreen({navigation}: Props) {
             {player.question && showPassiveObjects && !showTapBoard ? (
               <AnimatedObjectShowcase
                 emojis={player.question.emojis}
+                image={player.question.object.image}
                 highlightIndex={player.highlightIndex}
                 visible
               />
@@ -263,11 +190,20 @@ export function LearnNumbersScreen({navigation}: Props) {
               }}
             />
           ) : null}
-
-          <AppText variant="caption" tone="muted" style={styles.footer}>
-            {t('math.numbers.keepGoing')}
-          </AppText>
         </ScrollView>
+
+        <View style={styles.coachDock}>
+          <LeoCoachBanner
+            caption={player.audioError ?? player.caption ?? '…'}
+            tone={
+              player.phase === 'correct'
+                ? 'correct'
+                : player.phase === 'retry'
+                ? 'encourage'
+                : 'default'
+            }
+          />
+        </View>
 
         <BatchCompleteOverlay
           visible={player.batchComplete != null}
@@ -288,36 +224,65 @@ export function LearnNumbersScreen({navigation}: Props) {
 
 const styles = StyleSheet.create({
   body: {flex: 1},
-  content: {paddingBottom: space.xl},
-  topTrailing: {
+  scroll: {flex: 1},
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-  },
-  coachCard: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: space.sm,
-    padding: space.md,
-    borderWidth: 3,
-  },
-  coachText: {flex: 1, gap: space.xs},
-  coachChips: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    paddingHorizontal: 10,
+    paddingTop: 4,
+    paddingBottom: 8,
     gap: 6,
   },
-  caption: {lineHeight: 24},
+  headerTitle: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#1D4ED8',
+  },
+  starCount: {
+    backgroundColor: '#FFF1B8',
+    borderRadius: 14,
+    paddingHorizontal: 9,
+    paddingVertical: 6,
+  },
+  starText: {
+    color: '#9A6700',
+    fontWeight: '800',
+    fontSize: 13,
+  },
+  audioButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#DBEAFE',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  audioIcon: {fontSize: 16},
+  content: {
+    paddingHorizontal: 16,
+    paddingBottom: space.md,
+    gap: 12,
+  },
+  coachDock: {
+    paddingHorizontal: 16,
+    paddingTop: 8,
+    paddingBottom: 10,
+    backgroundColor: '#F5F7FA',
+  },
   playArea: {
     minHeight: 280,
     padding: space.md,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     gap: space.md,
-    borderWidth: 3,
-    borderColor: '#4DB7E8',
     position: 'relative',
-    overflow: 'hidden',
+    shadowColor: '#1A3A5C',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
   },
-  footer: {textAlign: 'center'},
 });

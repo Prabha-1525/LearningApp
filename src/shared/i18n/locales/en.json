@@ -175,6 +175,7 @@
       "onARoll": "On a roll!",
       "stars": "Stars",
       "greatJob": "Great job!",
+      "questProgress": "Quest Progress",
       "keepGoing": "Keep learning — new numbers keep coming!",
       "stats": {
         "question": "Question",
@@ -269,6 +270,26 @@
       "backToLessons": "Back to lessons",
       "totalStars": "Total lesson stars: {{count}}",
       "completedWithStars": "Completed {{stars}}"
+    },
+    "oddEven": {
+      "moduleTitle": "Odd & Even",
+      "questProgress": "Pairing Quest",
+      "evenExample": "First, meet EVEN numbers",
+      "oddExample": "Now, meet ODD numbers",
+      "even": "EVEN",
+      "odd": "ODD",
+      "everyonePaired": "Everyone has a partner",
+      "oneLeft": "One is left alone",
+      "watchPairs": "Watch how Leo makes pairs!",
+      "doYouUnderstand": "Do you understand?",
+      "understandingHint": "If every object has a partner it is even. If one is left, it is odd.",
+      "iUnderstand": "I Understand! ✨",
+      "tryAgain": "Try Again ↻",
+      "greatPairing": "Great pairing!",
+      "completeTitle": "Pairing Star!",
+      "completeSubtitle": "You can spot odd and even numbers by making pairs!",
+      "stars": "Stars",
+      "keepPairing": "Keep pairing"
     }
   },
   "chess": {
