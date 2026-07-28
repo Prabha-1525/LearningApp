@@ -14,7 +14,6 @@ import {
 import {CelebrationStars} from '@features/math/presentation/components/CelebrationStars';
 import {BatchCompleteOverlay} from '@features/math/presentation/components/numbers/BatchCompleteOverlay';
 import {OddEvenChoicePad} from '@features/math/presentation/components/oddEven/OddEvenChoicePad';
-import {OddEvenConceptSummary} from '@features/math/presentation/components/oddEven/OddEvenConceptSummary';
 import {OddEvenPairingBoard} from '@features/math/presentation/components/oddEven/OddEvenPairingBoard';
 import {
   LeoCoachBanner,
@@ -117,101 +116,47 @@ export function OddEvenScreen({navigation}: Props) {
             percent={player.isTeaching ? 0 : progressPercent}
           />
 
-          {player.phase === 'check-understanding' ? (
-            <>
-              <OddEvenConceptSummary image={player.question.object.image} />
-              <View style={styles.understandingCard}>
-                <Text style={styles.understandingTitle}>
-                  {t('math.oddEven.doYouUnderstand')}
+          <View style={styles.ruleRow}>
+            <View style={[styles.ruleCard, styles.evenRule]}>
+              <Text style={styles.ruleEmoji}>🤝</Text>
+              <View style={styles.ruleCopy}>
+                <Text style={styles.ruleTitle}>{t('math.oddEven.even')}</Text>
+                <Text style={styles.ruleText}>
+                  {t('math.oddEven.everyonePaired')}
                 </Text>
-                <Text style={styles.understandingText}>
-                  {t('math.oddEven.understandingHint')}
-                </Text>
-                <Pressable
-                  accessibilityRole="button"
-                  testID="odd-even-understand"
-                  disabled={player.isSpeaking}
-                  onPress={() => {
-                    void player.understand();
-                  }}
-                  style={({pressed}) => [
-                    styles.understandButton,
-                    pressed && styles.buttonPressed,
-                    player.isSpeaking && styles.buttonDisabled,
-                  ]}>
-                  <Text style={styles.understandLabel}>
-                    {t('math.oddEven.iUnderstand')}
-                  </Text>
-                </Pressable>
-                <Pressable
-                  accessibilityRole="button"
-                  testID="odd-even-try-again"
-                  disabled={player.isSpeaking}
-                  onPress={() => {
-                    void player.tryAgain();
-                  }}
-                  style={({pressed}) => [
-                    styles.tryAgainButton,
-                    pressed && styles.buttonPressed,
-                    player.isSpeaking && styles.buttonDisabled,
-                  ]}>
-                  <Text style={styles.tryAgainLabel}>
-                    {t('math.oddEven.tryAgain')}
-                  </Text>
-                </Pressable>
               </View>
-            </>
+            </View>
+            <View style={[styles.ruleCard, styles.oddRule]}>
+              <Text style={styles.ruleEmoji}>☝️</Text>
+              <View style={styles.ruleCopy}>
+                <Text style={styles.ruleTitle}>{t('math.oddEven.odd')}</Text>
+                <Text style={styles.ruleText}>{t('math.oddEven.oneLeft')}</Text>
+              </View>
+            </View>
+          </View>
+
+          <OddEvenPairingBoard
+            number={player.question.number}
+            image={player.question.object.image}
+            revealLabel={player.revealAnswer}
+            animationKey={`${player.phase}-${player.question.id}`}
+          />
+
+          {!player.isTeaching && player.phase !== 'complete' ? (
+            <OddEvenChoicePad
+              choices={player.question.choices}
+              selectedId={player.selectedChoiceId}
+              disabled={player.choicesLocked || player.isSpeaking}
+              onPick={id => {
+                void player.onChoice(id);
+              }}
+            />
           ) : (
-            <>
-              <View style={styles.ruleRow}>
-                <View style={[styles.ruleCard, styles.evenRule]}>
-                  <Text style={styles.ruleEmoji}>🤝</Text>
-                  <View style={styles.ruleCopy}>
-                    <Text style={styles.ruleTitle}>
-                      {t('math.oddEven.even')}
-                    </Text>
-                    <Text style={styles.ruleText}>
-                      {t('math.oddEven.everyonePaired')}
-                    </Text>
-                  </View>
-                </View>
-                <View style={[styles.ruleCard, styles.oddRule]}>
-                  <Text style={styles.ruleEmoji}>☝️</Text>
-                  <View style={styles.ruleCopy}>
-                    <Text style={styles.ruleTitle}>
-                      {t('math.oddEven.odd')}
-                    </Text>
-                    <Text style={styles.ruleText}>
-                      {t('math.oddEven.oneLeft')}
-                    </Text>
-                  </View>
-                </View>
-              </View>
-
-              <OddEvenPairingBoard
-                number={player.question.number}
-                image={player.question.object.image}
-                revealLabel={player.revealAnswer}
-                animationKey={`${player.phase}-${player.question.id}`}
-              />
-
-              {!player.isTeaching && player.phase !== 'complete' ? (
-                <OddEvenChoicePad
-                  choices={player.question.choices}
-                  selectedId={player.selectedChoiceId}
-                  disabled={player.choicesLocked || player.isSpeaking}
-                  onPick={id => {
-                    void player.onChoice(id);
-                  }}
-                />
-              ) : (
-                <View style={styles.watchPill}>
-                  <Text style={styles.watchText}>
-                    {t('math.oddEven.watchPairs')}
-                  </Text>
-                </View>
-              )}
-            </>
+            <View style={styles.watchPill}>
+              <Text style={styles.watchText}>
+                {t('math.oddEven.watchPairs')}
+              </Text>
+            </View>
           )}
 
           <CelebrationStars
@@ -328,62 +273,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '800',
   },
-  understandingCard: {
-    width: '100%',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 22,
-    borderWidth: 2,
-    borderColor: '#93C5FD',
-    padding: 14,
-    alignItems: 'center',
-    gap: 9,
-  },
-  understandingTitle: {
-    color: '#1E3A5F',
-    fontSize: 21,
-    fontWeight: '900',
-  },
-  understandingText: {
-    color: '#64748B',
-    fontSize: 12,
-    fontWeight: '700',
-    textAlign: 'center',
-  },
-  understandButton: {
-    width: '100%',
-    minHeight: 50,
-    borderRadius: 16,
-    backgroundColor: '#168235',
-    borderBottomWidth: 5,
-    borderBottomColor: '#0F5D25',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  understandLabel: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '900',
-  },
-  tryAgainButton: {
-    width: '100%',
-    minHeight: 46,
-    borderRadius: 16,
-    backgroundColor: '#E0F2FE',
-    borderWidth: 2,
-    borderColor: '#7DD3FC',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  tryAgainLabel: {
-    color: '#0369A1',
-    fontSize: 15,
-    fontWeight: '900',
-  },
-  buttonPressed: {
-    transform: [{translateY: 2}],
-    opacity: 0.9,
-  },
-  buttonDisabled: {opacity: 0.55},
   coachDock: {
     paddingHorizontal: 16,
     paddingTop: 8,

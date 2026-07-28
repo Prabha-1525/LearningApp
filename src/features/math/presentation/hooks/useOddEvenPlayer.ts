@@ -22,7 +22,6 @@ export type OddEvenPhase =
   | 'welcome'
   | 'teach-even'
   | 'teach-odd'
-  | 'check-understanding'
   | 'practice'
   | 'retry'
   | 'correct'
@@ -104,11 +103,10 @@ export function useOddEvenPlayer() {
     if (cancelledRef.current) {
       return;
     }
-    setPhase('check-understanding');
-    await say(
-      'Even numbers make complete pairs. Odd numbers leave one alone. Do you understand?',
-    );
-  }, [say]);
+
+    const next = loadPracticeQuestion();
+    await say(`Now you try! ${next.promptEn}`);
+  }, [loadPracticeQuestion, say]);
 
   useEffect(() => {
     cancelledRef.current = false;
@@ -196,19 +194,6 @@ export function useOddEvenPlayer() {
     );
   }, [caption, phase, question.promptEn, say]);
 
-  const understand = useCallback(async () => {
-    stopMathCoachSpeech();
-    const next = loadPracticeQuestion();
-    await say(`Great! Let us start the pairing quest. ${next.promptEn}`);
-  }, [loadPracticeQuestion, say]);
-
-  const tryAgain = useCallback(async () => {
-    stopMathCoachSpeech();
-    setSelectedChoiceId(null);
-    setCelebrate(false);
-    await runLessonIntro();
-  }, [runLessonIntro]);
-
   const startNextRound = useCallback(() => {
     correctCountRef.current = 0;
     questionNumberRef.current = 0;
@@ -229,10 +214,7 @@ export function useOddEvenPlayer() {
     correctCount,
     celebrate,
     isTeaching:
-      phase === 'welcome' ||
-      phase === 'teach-even' ||
-      phase === 'teach-odd' ||
-      phase === 'check-understanding',
+      phase === 'welcome' || phase === 'teach-even' || phase === 'teach-odd',
     revealAnswer:
       phase === 'teach-even' ||
       phase === 'teach-odd' ||
@@ -240,8 +222,6 @@ export function useOddEvenPlayer() {
       phase === 'correct',
     onChoice,
     replay,
-    understand,
-    tryAgain,
     startNextRound,
   };
 }
