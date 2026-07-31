@@ -36,11 +36,15 @@ export function EquationObjectBoard({
   const boardPad = 28;
   const opCol = 36;
   const available = width - boardPad * 2 - opCol - 24;
-  const gap = maxInRow <= 4 ? 8 : maxInRow <= 6 ? 6 : 4;
+  const gap =
+    maxInRow <= 4 ? 8 : maxInRow <= 6 ? 6 : maxInRow <= 8 ? 4 : 3;
   const raw = Math.floor((available - gap * (maxInRow - 1)) / maxInRow);
   const boxSize = Math.max(
-    36,
-    Math.min(raw, maxInRow <= 4 ? 64 : maxInRow <= 6 ? 52 : 42),
+    28,
+    Math.min(
+      raw,
+      maxInRow <= 4 ? 64 : maxInRow <= 6 ? 52 : maxInRow <= 8 ? 40 : 32,
+    ),
   );
 
   return (

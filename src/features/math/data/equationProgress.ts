@@ -3,7 +3,7 @@ import {StorageKeys} from '@shared/storage';
 import {bestStars} from '@core/gamification/domain/policies/starScore';
 
 import {
-  EQUATION_LESSON_COUNT,
+  getEquationLessonCount,
   getEquationLessons,
   type EquationMode,
 } from '../domain/equation/equationCurriculum';
@@ -140,8 +140,9 @@ export function recordEquationLessonStars(
 }
 
 export function equationCompletionPercent(mode: EquationMode): number {
+  const total = getEquationLessonCount(mode);
   return Math.round(
-    (read(mode).completedLessonIndexes.length / EQUATION_LESSON_COUNT) * 100,
+    (read(mode).completedLessonIndexes.length / total) * 100,
   );
 }
 

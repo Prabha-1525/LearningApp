@@ -12,15 +12,17 @@ import {
   isEquationLessonUnlocked,
 } from '@features/math/data/equationProgress';
 import {
-  EQUATION_LESSON_COUNT,
+  getEquationLessonCount,
   getEquationLessons,
   type EquationMode,
 } from '@features/math/domain/equation/equationCurriculum';
+import {CelebrationStars} from '@features/math/presentation/components/CelebrationStars';
 import {MissingLessonSuccess} from '@features/math/presentation/components/missing/MissingLessonSuccess';
 import {
   EquationObjectBoard,
   LeoCoachBanner,
   NumberChoicePad,
+  PlaceValueBoard,
   QuestProgressBar,
 } from '@features/math/presentation/components/objects';
 import {useEquationPlayer} from '@features/math/presentation/hooks/useEquationPlayer';
@@ -49,6 +51,7 @@ export function EquationLessonScreen({navigation, mode}: Props) {
   const {t} = useTranslation();
   const prefix = i18nPrefix(mode);
   const lessons = getEquationLessons(mode);
+  const lessonCount = getEquationLessonCount(mode);
   const [selectedLesson, setSelectedLesson] = useState<number | null>(null);
   const [pickerKey, setPickerKey] = useState(0);
   const progress = useMemo(
@@ -133,12 +136,13 @@ export function EquationLessonScreen({navigation, mode}: Props) {
       key={`${mode}-${selectedLesson}-${pickerKey}`}
       mode={mode}
       lessonIndex={selectedLesson}
+      lessonCount={lessonCount}
       onExitToPicker={() => {
         setSelectedLesson(null);
         setPickerKey(k => k + 1);
       }}
       onNextLesson={() => {
-        setSelectedLesson(Math.min(selectedLesson + 1, EQUATION_LESSON_COUNT));
+        setSelectedLesson(Math.min(selectedLesson + 1, lessonCount));
         setPickerKey(k => k + 1);
       }}
     />
@@ -148,13 +152,99 @@ export function EquationLessonScreen({navigation, mode}: Props) {
 type PlayProps = {
   readonly mode: EquationMode;
   readonly lessonIndex: number;
+  readonly lessonCount: number;
   readonly onExitToPicker: () => void;
   readonly onNextLesson: () => void;
 };
 
+function EquationVisual({
+  mode,
+  player,
+}: {
+  readonly mode: EquationMode;
+  readonly player: ReturnType<typeof useEquationPlayer>;
+}) {
+  const isTeach =
+    player.phase === 'intro' || player.phase === 'example';
+  const visualMode =
+    player.question?.visualMode ??
+    player.lesson.visualMode ??
+    'objects';
+
+  if (isTeach && player.example) {
+    if (visualMode === 'objects' && player.teachObject) {
+      return (
+        <View>
+          <EquationObjectBoard
+            leftCount={player.example.left}
+            rightCount={player.example.right}
+            image={player.teachObject.image}
+            operator="+"
+          />
+          <Text style={styles.exampleAnswer}>
+            = {player.example.answer}
+          </Text>
+        </View>
+      );
+    }
+    const leftDigits = {
+      hundreds: Math.floor(player.example.left / 100) % 10,
+      tens: Math.floor(player.example.left / 10) % 10,
+      ones: player.example.left % 10,
+    };
+    const rightDigits = {
+      hundreds: Math.floor(player.example.right / 100) % 10,
+      tens: Math.floor(player.example.right / 10) % 10,
+      ones: player.example.right % 10,
+    };
+    return (
+      <View>
+        <PlaceValueBoard
+          left={player.example.left}
+          right={player.example.right}
+          leftDigits={leftDigits}
+          rightDigits={rightDigits}
+          showHundreds={player.example.left >= 100}
+          variant={visualMode === 'base10' ? 'base10' : 'placeValue'}
+        />
+        <Text style={styles.exampleAnswer}>= {player.example.answer}</Text>
+      </View>
+    );
+  }
+
+  if (!player.question) {
+    return null;
+  }
+
+  if (visualMode === 'objects' || mode === 'subtraction') {
+    return (
+      <EquationObjectBoard
+        leftCount={player.question.left}
+        rightCount={player.question.right}
+        image={player.question.object.image}
+        operator={mode === 'addition' ? '+' : '-'}
+      />
+    );
+  }
+
+  return (
+    <PlaceValueBoard
+      left={player.question.left}
+      right={player.question.right}
+      leftDigits={player.question.leftDigits}
+      rightDigits={player.question.rightDigits}
+      showHundreds={
+        player.question.left >= 100 || player.question.right >= 100
+      }
+      variant={visualMode === 'base10' ? 'base10' : 'placeValue'}
+    />
+  );
+}
+
 function EquationPlaySession({
   mode,
   lessonIndex,
+  lessonCount,
   onExitToPicker,
   onNextLesson,
 }: PlayProps) {
@@ -172,6 +262,10 @@ function EquationPlaySession({
   const bestStars =
     player.lessonProgress?.starsByLesson[String(lessonIndex)] ??
     player.performanceStars;
+  const showChoices =
+    player.phase === 'playing' ||
+    player.phase === 'encourage' ||
+    player.phase === 'correct';
 
   return (
     <AppSafeAreaView
@@ -200,24 +294,26 @@ function EquationPlaySession({
         />
 
         <Text style={styles.stepText}>
-          {t(`${prefix}.stepOf`, {
-            step: Math.min(player.step, player.totalSteps),
-            total: player.totalSteps,
-          })}
+          {player.phase === 'intro' || player.phase === 'example'
+            ? t(`${prefix}.teachStep`, {
+                step: Math.min(player.exampleIndex + 1, 3),
+                total: 3,
+              })
+            : t(`${prefix}.stepOf`, {
+                step: Math.min(player.step, player.totalSteps),
+                total: player.totalSteps,
+              })}
         </Text>
 
         <View style={styles.boardWrap}>
-          {player.question ? (
-            <EquationObjectBoard
-              leftCount={player.question.left}
-              rightCount={player.question.right}
-              image={player.question.object.image}
-              operator={mode === 'addition' ? '+' : '-'}
-            />
-          ) : null}
+          <EquationVisual mode={mode} player={player} />
+          <CelebrationStars
+            visible={player.celebrate}
+            label={t(`${prefix}.celebration`)}
+          />
         </View>
 
-        {player.question ? (
+        {showChoices && player.question ? (
           <NumberChoicePad
             choices={player.question.choices}
             layout="grid"
@@ -250,7 +346,7 @@ function EquationPlaySession({
             backToHub: t(`${prefix}.backToLessons`),
           }}
           onNextLesson={
-            lessonIndex < EQUATION_LESSON_COUNT ? onNextLesson : undefined
+            lessonIndex < lessonCount ? onNextLesson : undefined
           }
           onContinue={onExitToPicker}
         />
@@ -297,6 +393,13 @@ const styles = StyleSheet.create({
   boardWrap: {
     flex: 1,
     justifyContent: 'center',
+  },
+  exampleAnswer: {
+    marginTop: 10,
+    textAlign: 'center',
+    fontSize: 36,
+    fontWeight: '800',
+    color: '#16A34A',
   },
   pickerContent: {
     paddingHorizontal: 16,

@@ -4,13 +4,46 @@ import {
   type CountingObjectDef,
 } from '@assets/countingObjects';
 import {makeChoices, pickOne, randInt} from '../generators/random';
+import {
+  ADDITION_LESSON_COUNT,
+  ADDITION_LESSONS,
+  ADDITION_QUESTIONS_PER_LESSON,
+  generateAdditionQuestion,
+  type AdditionLessonDef,
+  type AdditionQuestion,
+  type AdditionVisualMode,
+  type PlaceDigits,
+} from './additionGenerator';
 
 export type EquationMode = 'addition' | 'subtraction';
 
+export {
+  ADDITION_LESSON_COUNT,
+  ADDITION_LESSONS,
+  ADDITION_QUESTIONS_PER_LESSON,
+  additionUniquePairCount,
+  buildAdditionDistractors,
+  buildAdditionQuestion,
+  enumerateLesson1Pairs,
+  enumerateLesson2Pairs,
+  generateAdditionQuestion,
+  getAdditionLesson,
+  toPlaceDigits,
+} from './additionGenerator';
+export type {
+  AdditionLessonDef,
+  AdditionQuestion,
+  AdditionVisualMode,
+  PlaceDigits,
+} from './additionGenerator';
+
+/** @deprecated Prefer getEquationLessonCount(mode) — addition has 5 lessons. */
 export const EQUATION_LESSON_COUNT = 10;
 export const EQUATION_QUESTIONS_PER_LESSON = 10;
-/** Cap so object rows stay readable in the equation board. */
+/** Cap so object rows stay readable in the equation board (subtraction). */
 export const EQUATION_MAX_PER_SIDE = 10;
+
+export const SUBTRACTION_LESSON_COUNT = 10;
 
 export type EquationLessonDef = {
   readonly index: number;
@@ -21,6 +54,12 @@ export type EquationLessonDef = {
   readonly bMin: number;
   readonly bMax: number;
   readonly category: CountingObjectDef['category'] | 'mixed';
+  readonly visualMode?: AdditionVisualMode;
+  readonly introEn?: string;
+  readonly examples?: readonly {
+    readonly left: number;
+    readonly right: number;
+  }[];
 };
 
 export type EquationQuestion = {
@@ -32,6 +71,9 @@ export type EquationQuestion = {
   readonly answer: number;
   readonly object: CountingObjectDef;
   readonly promptEn: string;
+  readonly visualMode: AdditionVisualMode;
+  readonly leftDigits: PlaceDigits;
+  readonly rightDigits: PlaceDigits;
   readonly choices: readonly {
     readonly id: string;
     readonly label: string;
@@ -39,109 +81,25 @@ export type EquationQuestion = {
   }[];
 };
 
-/** Shared lesson ladder for addition & subtraction (visual object counts). */
-export const EQUATION_LESSONS: readonly EquationLessonDef[] = [
-  {
-    index: 1,
-    titleEn: 'Sums to 5',
-    titleTa: '5 வரை கூட்டல்',
+function additionLessonAsEquation(lesson: AdditionLessonDef): EquationLessonDef {
+  return {
+    index: lesson.index,
+    titleEn: lesson.titleEn,
+    titleTa: lesson.titleTa,
     aMin: 1,
-    aMax: 3,
-    bMin: 1,
-    bMax: 2,
-    category: 'fruits',
-  },
-  {
-    index: 2,
-    titleEn: 'Sums to 5',
-    titleTa: '5 வரை கூட்டல்',
-    aMin: 1,
-    aMax: 3,
-    bMin: 1,
-    bMax: 2,
-    category: 'vegetables',
-  },
-  {
-    index: 3,
-    titleEn: 'Sums to 5',
-    titleTa: '5 வரை கூட்டல்',
-    aMin: 1,
-    aMax: 4,
-    bMin: 1,
-    bMax: 3,
-    category: 'animals',
-  },
-  {
-    index: 4,
-    titleEn: 'Sums to 10',
-    titleTa: '10 வரை கூட்டல்',
-    aMin: 2,
-    aMax: 6,
-    bMin: 1,
-    bMax: 4,
-    category: 'fruits',
-  },
-  {
-    index: 5,
-    titleEn: 'Sums to 10',
-    titleTa: '10 வரை கூட்டல்',
-    aMin: 2,
-    aMax: 6,
-    bMin: 2,
-    bMax: 4,
-    category: 'vegetables',
-  },
-  {
-    index: 6,
-    titleEn: 'Sums to 10',
-    titleTa: '10 வரை கூட்டல்',
-    aMin: 3,
-    aMax: 7,
-    bMin: 2,
-    bMax: 5,
-    category: 'animals',
-  },
-  {
-    index: 7,
-    titleEn: 'Bigger sums',
-    titleTa: 'பெரிய கூட்டல்',
-    aMin: 3,
-    aMax: 8,
-    bMin: 2,
-    bMax: 6,
-    category: 'mixed',
-  },
-  {
-    index: 8,
-    titleEn: 'Bigger sums',
-    titleTa: 'பெரிய கூட்டல்',
-    aMin: 4,
     aMax: 9,
-    bMin: 2,
-    bMax: 6,
-    category: 'mixed',
-  },
-  {
-    index: 9,
-    titleEn: 'Master sums',
-    titleTa: 'கூட்டல் வல்லுநர்',
-    aMin: 4,
-    aMax: 10,
-    bMin: 3,
-    bMax: 7,
-    category: 'mixed',
-  },
-  {
-    index: 10,
-    titleEn: 'Master sums',
-    titleTa: 'கூட்டல் வல்லுநர்',
-    aMin: 5,
-    aMax: 10,
-    bMin: 3,
-    bMax: 8,
-    category: 'mixed',
-  },
-];
+    bMin: 1,
+    bMax: 9,
+    category: lesson.category,
+    visualMode: lesson.visualMode,
+    introEn: lesson.introEn,
+    examples: lesson.examples,
+  };
+}
+
+/** Shared lesson ladder for addition (mapped) & subtraction (visual objects). */
+export const EQUATION_LESSONS: readonly EquationLessonDef[] =
+  ADDITION_LESSONS.map(additionLessonAsEquation);
 
 export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
   {
@@ -153,6 +111,7 @@ export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
     bMin: 1,
     bMax: 2,
     category: 'fruits',
+    visualMode: 'objects',
   },
   {
     index: 2,
@@ -163,6 +122,7 @@ export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
     bMin: 1,
     bMax: 2,
     category: 'vegetables',
+    visualMode: 'objects',
   },
   {
     index: 3,
@@ -173,6 +133,7 @@ export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
     bMin: 1,
     bMax: 3,
     category: 'animals',
+    visualMode: 'objects',
   },
   {
     index: 4,
@@ -183,6 +144,7 @@ export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
     bMin: 1,
     bMax: 4,
     category: 'fruits',
+    visualMode: 'objects',
   },
   {
     index: 5,
@@ -193,6 +155,7 @@ export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
     bMin: 2,
     bMax: 5,
     category: 'vegetables',
+    visualMode: 'objects',
   },
   {
     index: 6,
@@ -203,6 +166,7 @@ export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
     bMin: 2,
     bMax: 5,
     category: 'animals',
+    visualMode: 'objects',
   },
   {
     index: 7,
@@ -213,6 +177,7 @@ export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
     bMin: 2,
     bMax: 6,
     category: 'mixed',
+    visualMode: 'objects',
   },
   {
     index: 8,
@@ -223,6 +188,7 @@ export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
     bMin: 3,
     bMax: 7,
     category: 'mixed',
+    visualMode: 'objects',
   },
   {
     index: 9,
@@ -233,6 +199,7 @@ export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
     bMin: 3,
     bMax: 8,
     category: 'mixed',
+    visualMode: 'objects',
   },
   {
     index: 10,
@@ -243,8 +210,19 @@ export const SUBTRACTION_LESSONS: readonly EquationLessonDef[] = [
     bMin: 4,
     bMax: 9,
     category: 'mixed',
+    visualMode: 'objects',
   },
 ];
+
+export function getEquationLessonCount(mode: EquationMode): number {
+  return mode === 'addition' ? ADDITION_LESSON_COUNT : SUBTRACTION_LESSON_COUNT;
+}
+
+export function getEquationQuestionsPerLesson(mode: EquationMode): number {
+  return mode === 'addition'
+    ? ADDITION_QUESTIONS_PER_LESSON
+    : EQUATION_QUESTIONS_PER_LESSON;
+}
 
 export function getEquationLessons(
   mode: EquationMode,
@@ -277,46 +255,61 @@ function clampSide(n: number): number {
   return Math.max(1, Math.min(EQUATION_MAX_PER_SIDE, n));
 }
 
+function toDigits(n: number): PlaceDigits {
+  const clamped = Math.max(0, Math.floor(n));
+  return {
+    hundreds: Math.floor(clamped / 100) % 10,
+    tens: Math.floor(clamped / 10) % 10,
+    ones: clamped % 10,
+  };
+}
+
+function fromAdditionQuestion(q: AdditionQuestion): EquationQuestion {
+  return {
+    id: q.id,
+    mode: 'addition',
+    lessonIndex: q.lessonIndex,
+    left: q.left,
+    right: q.right,
+    answer: q.answer,
+    object: q.object,
+    promptEn: q.promptEn,
+    visualMode: q.visualMode,
+    leftDigits: q.leftDigits,
+    rightDigits: q.rightDigits,
+    choices: q.choices,
+  };
+}
+
 export function generateEquationQuestion(
   mode: EquationMode,
   lessonIndex: number,
   recentIds: readonly string[] = [],
 ): EquationQuestion {
+  if (mode === 'addition') {
+    return fromAdditionQuestion(
+      generateAdditionQuestion(lessonIndex, recentIds),
+    );
+  }
+
   const lesson = getEquationLesson(mode, lessonIndex);
   let attempts = 0;
   let question: EquationQuestion;
 
   do {
     const object = pickObject(lesson.category);
-    let left: number;
-    let right: number;
-    let answer: number;
-    let promptEn: string;
-
-    if (mode === 'addition') {
-      left = clampSide(randInt(lesson.aMin, lesson.aMax));
-      right = clampSide(randInt(lesson.bMin, lesson.bMax));
-      // Keep total visual objects friendly
-      if (left + right > EQUATION_MAX_PER_SIDE + 4) {
-        right = clampSide(Math.max(1, EQUATION_MAX_PER_SIDE + 4 - left));
-      }
-      answer = left + right;
-      promptEn = `How many ${object.labelPluralEn} do we have in total?`;
-    } else {
-      left = clampSide(
-        randInt(lesson.aMin, Math.min(lesson.aMax, EQUATION_MAX_PER_SIDE)),
-      );
-      const maxTake = Math.min(lesson.bMax, left - 1);
-      const minTake = Math.min(lesson.bMin, maxTake);
-      right = clampSide(randInt(Math.max(1, minTake), Math.max(1, maxTake)));
-      if (right >= left) {
-        right = Math.max(1, left - 1);
-      }
-      answer = left - right;
-      promptEn = `How many ${object.labelPluralEn} are left?`;
+    const left = clampSide(
+      randInt(lesson.aMin, Math.min(lesson.aMax, EQUATION_MAX_PER_SIDE)),
+    );
+    const maxTake = Math.min(lesson.bMax, left - 1);
+    const minTake = Math.min(lesson.bMin, maxTake);
+    let right = clampSide(randInt(Math.max(1, minTake), Math.max(1, maxTake)));
+    if (right >= left) {
+      right = Math.max(1, left - 1);
     }
-
-    const id = `${mode}.L${lessonIndex}|${object.id}|${left}|${right}`;
+    const answer = left - right;
+    const promptEn = `How many ${object.labelPluralEn} are left?`;
+    const id = `subtraction.L${lessonIndex}|${object.id}|${left}|${right}`;
     question = {
       id,
       mode,
@@ -326,6 +319,9 @@ export function generateEquationQuestion(
       answer,
       object,
       promptEn,
+      visualMode: 'objects',
+      leftDigits: toDigits(left),
+      rightDigits: toDigits(right),
       choices: makeChoices(
         String(answer),
         [
