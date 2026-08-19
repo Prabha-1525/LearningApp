@@ -9,6 +9,7 @@ export type {ChessStackParamList} from './chessTypes';
 
 export {AuthNavigator} from './AuthNavigator';
 export {MainNavigator} from './MainNavigator';
+export {MainTabNavigator} from './MainTabNavigator';
 export {RootNavigator} from './RootNavigator';
 export {MathNavigator} from './MathNavigator';
 export {ChessNavigator} from './ChessNavigator';

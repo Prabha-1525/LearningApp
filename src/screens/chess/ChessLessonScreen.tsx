@@ -128,7 +128,11 @@ export function ChessLessonScreen({navigation, route}: Props) {
           current: player.stepIndex + 1,
           total: player.stepCount,
         })}
-        onBack={() => navigation.navigate('Hub')}
+        onBack={() =>
+          navigation.canGoBack()
+            ? navigation.goBack()
+            : navigation.navigate('Hub')
+        }
       />
       <ScrollView
         contentContainerStyle={[styles.content, {gap: themeSpace.md}]}

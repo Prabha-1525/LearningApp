@@ -325,7 +325,11 @@ export function PlayWithCoachScreen({navigation}: Props) {
       <TopAppBar
         title={t('chess.play.title')}
         subtitle={t('chess.play.subtitle')}
-        onBack={() => navigation.navigate('Hub')}
+        onBack={() =>
+          navigation.canGoBack()
+            ? navigation.goBack()
+            : navigation.navigate('Hub')
+        }
       />
       <View style={styles.flex}>
         <ScrollView

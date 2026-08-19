@@ -157,3 +157,61 @@ export function favoriteLessons(progress = read()): MathLessonId[] {
     .slice(0, 3)
     .map(([id]) => id as MathLessonId);
 }
+
+export function getMathTopicProgress(
+  topicId: string,
+  lessonId?: string,
+): number {
+  const {countingCompletionPercent} = require('./countingProgress');
+  const {missingCompletionPercent} = require('./missingProgress');
+  const {equationCompletionPercent} = require('./equationProgress');
+  const {isMathLessonId} = require('../domain/curriculum/types');
+
+  if (topicId === 'counting' || lessonId === 'counting') {
+    const cp = countingCompletionPercent();
+    const stats = getLessonStats('counting');
+    const part = Math.min(100, Math.round((stats.correct / 50) * 100));
+    return Math.max(cp, part);
+  }
+  if (topicId === 'missing' || lessonId === 'missing') {
+    const mp = missingCompletionPercent();
+    const stats = getLessonStats('missing');
+    const part = Math.min(100, Math.round((stats.correct / 50) * 100));
+    return Math.max(mp, part);
+  }
+  if (topicId === 'addition' || lessonId === 'addition') {
+    const ep = equationCompletionPercent('addition');
+    const stats = getLessonStats('addition');
+    const part = Math.min(100, Math.round((stats.correct / 50) * 100));
+    return Math.max(ep, part);
+  }
+  if (topicId === 'subtraction' || lessonId === 'subtraction') {
+    const ep = equationCompletionPercent('subtraction');
+    const stats = getLessonStats('subtraction');
+    const part = Math.min(100, Math.round((stats.correct / 50) * 100));
+    return Math.max(ep, part);
+  }
+  if (lessonId && isMathLessonId(lessonId)) {
+    const stats = getLessonStats(lessonId as MathLessonId);
+    return Math.min(100, Math.round((stats.correct / 10) * 100));
+  }
+  return 0;
+}
+
+export function getOverallMathAdventureProgress(): number {
+  const {
+    MATH_ADVENTURE_TOPICS,
+  } = require('../domain/curriculum/mathAdventureTopics');
+  const playableTopics = MATH_ADVENTURE_TOPICS.filter(
+    (t: {comingSoon?: boolean}) => !t.comingSoon,
+  );
+  if (playableTopics.length === 0) {
+    return 0;
+  }
+  const sum = playableTopics.reduce(
+    (acc: number, topic: {id: string; lessonId?: string}) =>
+      acc + getMathTopicProgress(topic.id, topic.lessonId),
+    0,
+  );
+  return Math.round(sum / playableTopics.length);
+}

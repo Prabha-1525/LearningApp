@@ -1,21 +1,15 @@
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import {useCallback, useEffect, useState} from 'react';
-import {Alert} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import {useEffect, useState} from 'react';
 
 import {useAppDispatch, useAppSelector} from '@app/store';
 import {
   bootstrapAuthSession,
-  mergeGuestProgressToGoogle,
   readLocalLearnerProfile,
 } from '@infrastructure/auth';
-import {
-  ChildProfileSetupScreen,
-  SplashScreen,
-  WelcomeScreen,
-} from '@screens/auth';
+import {SplashScreen} from '@screens/auth';
 import {useTheme} from '@shared/ui';
 
+import {AuthNavigator} from './AuthNavigator';
 import {MainNavigator} from './MainNavigator';
 
 const navigationTheme = {
@@ -27,15 +21,13 @@ const navigationTheme = {
   },
 };
 
-type Gate = 'boot' | 'welcome' | 'profileSetup' | 'main';
+type Gate = 'boot' | 'auth' | 'main';
 
 const SPLASH_MIN_MS = 3000;
 
 function SessionGate() {
   const dispatch = useAppDispatch();
-  const {t} = useTranslation();
   const [gate, setGate] = useState<Gate>('boot');
-  const [authError, setAuthError] = useState<string | null>(null);
   const isAuthenticated = useAppSelector(
     state => state.session.isAuthenticated,
   );
@@ -63,24 +55,19 @@ function SessionGate() {
         return;
       }
       if (!result.ok) {
-        setAuthError(result.error.message);
-        setGate('welcome');
+        setGate('auth');
         return;
       }
       if (result.value.authenticated && !result.value.needsChildSetup) {
         setGate('main');
         return;
       }
-      if (result.value.needsChildSetup) {
-        setGate('profileSetup');
-        return;
-      }
       const local = readLocalLearnerProfile();
-      if (local.pendingChildSetup) {
-        setGate('profileSetup');
+      if (local.pendingChildSetup || result.value.needsChildSetup) {
+        setGate('auth');
         return;
       }
-      setGate('welcome');
+      setGate('auth');
     })();
     return () => {
       cancelled = true;
@@ -93,51 +80,15 @@ function SessionGate() {
     }
   }, [isAuthenticated, onboardingComplete, gate]);
 
-  const showMergePrompt = useCallback(() => {
-    Alert.alert(t('welcome.merge.title'), t('welcome.merge.message'), [
-      {
-        text: t('welcome.merge.cancel'),
-        style: 'cancel',
-        onPress: () => setGate('profileSetup'),
-      },
-      {
-        text: t('welcome.merge.confirm'),
-        onPress: () => {
-          void (async () => {
-            const result = await mergeGuestProgressToGoogle(dispatch);
-            if (!result.ok) {
-              Alert.alert(t('welcome.errors.title'), result.error.message);
-              setGate('profileSetup');
-              return;
-            }
-            setGate('main');
-          })();
-        },
-      },
-    ]);
-  }, [dispatch, t]);
-
   if (gate === 'boot') {
     return <SplashScreen />;
-  }
-
-  if (gate === 'profileSetup') {
-    return <ChildProfileSetupScreen onComplete={() => setGate('main')} />;
   }
 
   if (gate === 'main') {
     return <MainNavigator />;
   }
 
-  return (
-    <WelcomeScreen
-      authError={authError}
-      onAuthErrorCleared={() => setAuthError(null)}
-      onNeedsChildSetup={() => setGate('profileSetup')}
-      onReady={() => setGate('main')}
-      onMergePrompt={showMergePrompt}
-    />
-  );
+  return <AuthNavigator />;
 }
 
 export function RootNavigator() {

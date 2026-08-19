@@ -56,7 +56,16 @@ export function ChessHubScreen({navigation}: Props) {
       <TopAppBar
         title={t('chess.hub.title')}
         subtitle={t('chess.hub.subtitle')}
-        onBack={() => navigation.goBack()}
+        onBack={() => {
+          if (navigation.canGoBack()) {
+            navigation.goBack();
+          } else {
+            const parent = navigation.getParent();
+            if (parent) {
+              (parent as any).navigate('Tabs', {screen: 'HomeTab'});
+            }
+          }
+        }}
       />
       <ScrollView
         contentContainerStyle={[styles.content, {gap: themeSpace.md}]}

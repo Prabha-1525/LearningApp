@@ -37,10 +37,19 @@ function ensureFinishListener(tts: TtsInstance): void {
   if (finishListener) {
     return;
   }
-  finishListener = tts.addEventListener('tts-finish', () => {
-    pendingFinish?.();
-    pendingFinish = null;
-  });
+  try {
+    if (typeof tts.addEventListener === 'function') {
+      tts.addEventListener('tts-error', () => {
+        // Suppress native tts error events on devices/emulators without TTS
+      });
+      finishListener = tts.addEventListener('tts-finish', () => {
+        pendingFinish?.();
+        pendingFinish = null;
+      });
+    }
+  } catch {
+    // listener registration optional
+  }
 }
 
 async function ensureTtsReady(): Promise<boolean> {
@@ -54,14 +63,21 @@ async function ensureTtsReady(): Promise<boolean> {
     return false;
   }
   try {
-    await tts.getInitStatus();
-    await tts.setDefaultLanguage('en-US');
-    await tts.setDefaultRate(0.42);
     ensureFinishListener(tts);
+    if (typeof tts.getInitStatus === 'function') {
+      await Promise.resolve(tts.getInitStatus()).catch(() => {});
+    }
+    if (typeof tts.setDefaultLanguage === 'function') {
+      await Promise.resolve(tts.setDefaultLanguage('en-US')).catch(() => {});
+    }
+    if (typeof tts.setDefaultRate === 'function') {
+      await Promise.resolve(tts.setDefaultRate(0.42)).catch(() => {});
+    }
     initReady = true;
     return true;
   } catch {
-    initError = 'Voice could not start. Tap replay to try again.';
+    initReady = false;
+    initError = 'Voice is not available on this device.';
     return false;
   }
 }

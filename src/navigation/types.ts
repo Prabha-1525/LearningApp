@@ -2,19 +2,21 @@
  * Typed navigation contracts for React Navigation.
  */
 export type AuthStackParamList = {
+  Welcome: undefined;
   SignIn: undefined;
+  ChildProfileSetup: undefined;
   ParentalGate: undefined;
 };
 
 export type MainTabParamList = {
   HomeTab: undefined;
-  Badges: undefined;
   Rewards: undefined;
+  Badges: undefined;
   Profile: undefined;
 };
 
 export type MainStackParamList = {
-  Tabs: undefined;
+  Tabs: {screen?: keyof MainTabParamList} | undefined;
   Home: undefined;
   Profile: undefined;
   Settings: undefined;
@@ -24,7 +26,6 @@ export type MainStackParamList = {
 
 export type RootStackParamList = {
   Boot: undefined;
-  Welcome: undefined;
   Auth: undefined;
   Main: undefined;
 };

@@ -112,7 +112,11 @@ export function MathLessonScreen({navigation, route}: Props) {
         subtitle={t('math.lesson.question', {
           number: player.questionIndex + 1,
         })}
-        onBack={() => navigation.navigate('Hub')}
+        onBack={() =>
+          navigation.canGoBack()
+            ? navigation.goBack()
+            : navigation.navigate('Hub')
+        }
         trailing={
           <IconButton
             label={t('math.lesson.replay')}

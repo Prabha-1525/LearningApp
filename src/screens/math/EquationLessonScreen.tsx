@@ -70,7 +70,11 @@ export function EquationLessonScreen({navigation, mode}: Props) {
         <View style={styles.header}>
           <BackButton
             label={t('common.back')}
-            onPress={() => navigation.navigate('Hub')}
+            onPress={() =>
+              navigation.canGoBack()
+                ? navigation.goBack()
+                : navigation.navigate('Hub')
+            }
           />
           <Text style={styles.headerTitle}>{t(`${prefix}.moduleTitle`)}</Text>
           <View style={styles.headerSpacer} />
@@ -164,12 +168,9 @@ function EquationVisual({
   readonly mode: EquationMode;
   readonly player: ReturnType<typeof useEquationPlayer>;
 }) {
-  const isTeach =
-    player.phase === 'intro' || player.phase === 'example';
+  const isTeach = player.phase === 'intro' || player.phase === 'example';
   const visualMode =
-    player.question?.visualMode ??
-    player.lesson.visualMode ??
-    'objects';
+    player.question?.visualMode ?? player.lesson.visualMode ?? 'objects';
 
   if (isTeach && player.example) {
     if (visualMode === 'objects' && player.teachObject) {
@@ -181,9 +182,7 @@ function EquationVisual({
             image={player.teachObject.image}
             operator="+"
           />
-          <Text style={styles.exampleAnswer}>
-            = {player.example.answer}
-          </Text>
+          <Text style={styles.exampleAnswer}>= {player.example.answer}</Text>
         </View>
       );
     }
@@ -233,9 +232,7 @@ function EquationVisual({
       right={player.question.right}
       leftDigits={player.question.leftDigits}
       rightDigits={player.question.rightDigits}
-      showHundreds={
-        player.question.left >= 100 || player.question.right >= 100
-      }
+      showHundreds={player.question.left >= 100 || player.question.right >= 100}
       variant={visualMode === 'base10' ? 'base10' : 'placeValue'}
     />
   );
@@ -345,9 +342,7 @@ function EquationPlaySession({
             nextLesson: t(`${prefix}.nextLesson`),
             backToHub: t(`${prefix}.backToLessons`),
           }}
-          onNextLesson={
-            lessonIndex < lessonCount ? onNextLesson : undefined
-          }
+          onNextLesson={lessonIndex < lessonCount ? onNextLesson : undefined}
           onContinue={onExitToPicker}
         />
       ) : null}

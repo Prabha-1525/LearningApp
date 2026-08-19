@@ -37,7 +37,7 @@ export function ObjectImageBox({
   onPress,
   testID,
   style,
-  resizeMode = 'cover',
+  resizeMode = 'contain',
 }: ObjectImageBoxProps) {
   const isAnswer = variant === 'answer';
   const content = isAnswer ? (

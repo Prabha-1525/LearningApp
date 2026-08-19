@@ -66,7 +66,11 @@ export function ChessPracticeScreen({navigation}: Props) {
       <TopAppBar
         title={t('chess.practice.title')}
         subtitle={t('chess.practice.subtitle')}
-        onBack={() => navigation.goBack()}
+        onBack={() =>
+          navigation.canGoBack()
+            ? navigation.goBack()
+            : navigation.navigate('Hub')
+        }
       />
       <View style={[styles.body, {gap: themeSpace.md}]}>
         <AppText variant="body" tone="muted" style={styles.center}>

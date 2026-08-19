@@ -31,7 +31,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     titleEn: 'Learn Numbers',
     lessonId: 'numbers',
     image: null,
-    demoProgressPercent: 35,
+    demoProgressPercent: 0,
   },
   {
     id: 'counting',
@@ -42,7 +42,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     titleEn: 'Counting',
     lessonId: 'counting',
     image: mathTopicCounting,
-    demoProgressPercent: 60,
+    demoProgressPercent: 0,
   },
   {
     id: 'missing',
@@ -53,7 +53,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     titleEn: 'Missing Number',
     lessonId: 'missing',
     image: null,
-    demoProgressPercent: 20,
+    demoProgressPercent: 0,
   },
   {
     id: 'addition',
@@ -64,7 +64,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     titleEn: 'Addition',
     lessonId: 'addition',
     image: mathTopicAddition,
-    demoProgressPercent: 45,
+    demoProgressPercent: 0,
   },
   {
     id: 'subtraction',
@@ -75,7 +75,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     titleEn: 'Subtraction',
     lessonId: 'subtraction',
     image: null,
-    demoProgressPercent: 30,
+    demoProgressPercent: 0,
   },
   {
     id: 'compare',
@@ -86,7 +86,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     titleEn: 'Comparison',
     lessonId: 'compare',
     image: null,
-    demoProgressPercent: 15,
+    demoProgressPercent: 0,
   },
   {
     id: 'odd-even',
@@ -108,7 +108,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     titleEn: 'Ordering',
     lessonId: 'sequence',
     image: mathTopicOrdering,
-    demoProgressPercent: 25,
+    demoProgressPercent: 0,
   },
   {
     id: 'patterns',
@@ -119,7 +119,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     titleEn: 'Patterns',
     lessonId: 'patterns',
     image: null,
-    demoProgressPercent: 10,
+    demoProgressPercent: 0,
   },
   {
     id: 'shapes',
@@ -130,7 +130,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     titleEn: 'Shapes',
     lessonId: 'shapes',
     image: homeShapesIcon,
-    demoProgressPercent: 40,
+    demoProgressPercent: 0,
   },
   {
     id: 'measurements',
@@ -141,7 +141,7 @@ export const MATH_ADVENTURE_TOPICS: readonly MathAdventureTopic[] = [
     titleEn: 'Measurements',
     lessonId: 'big-small',
     image: null,
-    demoProgressPercent: 5,
+    demoProgressPercent: 0,
   },
   {
     id: 'time',

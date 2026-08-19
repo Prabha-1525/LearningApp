@@ -15,8 +15,12 @@ function loadTts(): TtsModule | null {
   }
   try {
     const mod = require('react-native-tts') as TtsModule;
-    mod.setDefaultLanguage('ta-IN');
-    mod.setDefaultRate(0.42);
+    if (typeof mod?.setDefaultLanguage === 'function') {
+      void Promise.resolve(mod.setDefaultLanguage('ta-IN')).catch(() => {});
+    }
+    if (typeof mod?.setDefaultRate === 'function') {
+      void Promise.resolve(mod.setDefaultRate(0.42)).catch(() => {});
+    }
     cachedTts = mod;
     return mod;
   } catch {
@@ -31,9 +35,17 @@ export async function speakCoachLine(text: string): Promise<void> {
     return;
   }
   stopCoachSpeech();
-  await aiGateway.synthesizeTamilSpeech({text, locale: 'ta', speechRate: 0.9});
-  const tts = loadTts();
-  tts?.speak(text);
+  try {
+    await aiGateway.synthesizeTamilSpeech({
+      text,
+      locale: 'ta',
+      speechRate: 0.9,
+    });
+    const tts = loadTts();
+    tts?.speak(text);
+  } catch {
+    // optional TTS fallback
+  }
 }
 
 export function stopCoachSpeech(): void {

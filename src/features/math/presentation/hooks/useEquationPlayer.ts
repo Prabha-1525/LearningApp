@@ -11,11 +11,7 @@ import {
 } from '../../application/mathCoachSpeech';
 import type {EquationProgress} from '../../data/equationProgress';
 import {recordAnswer} from '../../data/mathProgress';
-import {
-  COUNTING_OBJECTS,
-  countingObjectsByCategory,
-  type CountingObjectDef,
-} from '@assets/countingObjects';
+import type {CountingObjectDef} from '@assets/countingObjects';
 import {pickOne} from '../../domain/generators/random';
 import {
   generateEquationQuestion,
@@ -25,16 +21,6 @@ import {
   type EquationMode,
   type EquationQuestion,
 } from '../../domain/equation/equationCurriculum';
-
-function pickLessonObject(
-  category: EquationLessonDef['category'],
-): CountingObjectDef {
-  if (category === 'mixed') {
-    return pickOne(COUNTING_OBJECTS);
-  }
-  const pool = countingObjectsByCategory(category);
-  return pickOne(pool.length > 0 ? pool : COUNTING_OBJECTS);
-}
 
 export type EquationPhase =
   | 'intro'
@@ -85,9 +71,7 @@ export function useEquationPlayer(
   const lesson: EquationLessonDef = getEquationLesson(mode, lessonIndex);
   const totalSteps = getEquationQuestionsPerLesson(mode);
   const [step, setStep] = useState(1);
-  const [phase, setPhase] = useState<EquationPhase>(
-    mode === 'addition' ? 'intro' : 'playing',
-  );
+  const [phase, setPhase] = useState<EquationPhase>('playing');
   const [question, setQuestion] = useState<EquationQuestion | null>(null);
   const [example, setExample] = useState<EquationExample | null>(null);
   const [exampleIndex, setExampleIndex] = useState(0);
@@ -106,9 +90,7 @@ export function useEquationPlayer(
   const [newBadges, setNewBadges] = useState<readonly BadgeRule[]>([]);
   const [rewardDeltaStars, setRewardDeltaStars] = useState(0);
   const [celebrate, setCelebrate] = useState(false);
-  const [teachObject, setTeachObject] = useState<CountingObjectDef | null>(
-    null,
-  );
+  const [teachObject] = useState<CountingObjectDef | null>(null);
 
   const recentIdsRef = useRef<string[]>([]);
   const questionStartRef = useRef(Date.now());
@@ -156,55 +138,18 @@ export function useEquationPlayer(
       setCelebrate(false);
       setExampleIndex(0);
 
-      if (mode === 'addition') {
-        setPhase('intro');
-        setQuestion(null);
-        const object = pickLessonObject(lesson.category);
-        setTeachObject(object);
+      loadQuestion(1);
+      if (!introPlayedRef.current) {
+        introPlayedRef.current = true;
         const intro =
           lesson.introEn ??
-          `Welcome to ${lesson.titleEn}! Let's add together.`;
+          (mode === 'addition'
+            ? "Let's add together!"
+            : "Let's take away together!");
         await say(`Welcome to ${lesson.titleEn}! ${intro}`);
         if (cancelled) {
           return;
         }
-
-        const examples = lesson.examples ?? [];
-        for (let i = 0; i < examples.length; i += 1) {
-          if (cancelled) {
-            return;
-          }
-          const ex = examples[i]!;
-          const answer = ex.left + ex.right;
-          setPhase('example');
-          setExampleIndex(i);
-          setExample({left: ex.left, right: ex.right, answer});
-          await say(
-            `Example ${i + 1}. ${ex.left} plus ${ex.right} equals ${answer}.`,
-          );
-          if (cancelled) {
-            return;
-          }
-          await new Promise<void>(resolve => setTimeout(resolve, 500));
-        }
-
-        if (cancelled) {
-          return;
-        }
-        await say('Now you try! Pick the correct answer.');
-        if (cancelled) {
-          return;
-        }
-        const first = loadQuestion(1);
-        await say(first.promptEn);
-        return;
-      }
-
-      // Subtraction: short intro then quiz
-      loadQuestion(1);
-      if (!introPlayedRef.current) {
-        introPlayedRef.current = true;
-        await say(`Welcome to ${lesson.titleEn}! Let's take away together.`);
       }
     }
     void boot();
@@ -212,20 +157,17 @@ export function useEquationPlayer(
       cancelled = true;
       stopMathCoachSpeech();
     };
-  }, [
-    lesson.category,
-    lesson.examples,
-    lesson.introEn,
-    lesson.titleEn,
-    lessonIndex,
-    loadQuestion,
-    mode,
-    say,
-  ]);
+  }, [lesson.introEn, lesson.titleEn, lessonIndex, loadQuestion, mode, say]);
 
   const onChoice = useCallback(
     async (choiceId: string) => {
-      if (!question || choicesLocked || phase === 'success' || phase === 'intro' || phase === 'example') {
+      if (
+        !question ||
+        choicesLocked ||
+        phase === 'success' ||
+        phase === 'intro' ||
+        phase === 'example'
+      ) {
         return;
       }
       const picked = question.choices.find(c => c.id === choiceId);

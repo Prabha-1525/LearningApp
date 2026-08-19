@@ -15,10 +15,12 @@ import {
   ensureGamificationChild,
   shiftCelebration,
 } from '@core/store';
+import {getChessLessonProgress} from '@features/chess/data';
+import {CHESS_LESSONS} from '@features/chess/domain/curriculum/lessons';
 import {
   getMissingProgress,
-  missingCompletionPercent,
-} from '@features/math/data/missingProgress';
+  getOverallMathAdventureProgress,
+} from '@features/math/data';
 import {space} from '@shared/ui';
 
 import type {MainStackParamList, MainTabParamList} from '@navigation/types';
@@ -56,7 +58,10 @@ export function HomeScreen({navigation}: Props) {
   const stars = gamification.snapshot?.wallet?.stars ?? 0;
   const level = gamification.snapshot?.xp?.level ?? 1;
   const lessonsDone = getMissingProgress().completedLessonIndexes.length;
-  const mathProgress = missingCompletionPercent();
+  const mathProgress = getOverallMathAdventureProgress();
+  const chessProgress = Math.round(
+    (getChessLessonProgress().completed.length / CHESS_LESSONS.length) * 100,
+  );
   const avatar = useMemo(
     () => getChildAvatar(activeChild?.avatarKey ?? 'lion'),
     [activeChild?.avatarKey],
@@ -126,7 +131,11 @@ export function HomeScreen({navigation}: Props) {
               title={t(subject.titleKey, {defaultValue: subject.id})}
               image={subject.image}
               progressPercent={
-                subject.id === 'math' ? mathProgress : subject.progressPercent
+                subject.id === 'math'
+                  ? mathProgress
+                  : subject.id === 'chess'
+                  ? chessProgress
+                  : subject.progressPercent
               }
               showNewBadge={subject.showNewBadge}
               playLabel={t('home.play')}

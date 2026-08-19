@@ -34,12 +34,19 @@ export function ModuleHostScreen({navigation, route}: Props) {
   if (manifest == null) {
     return (
       <AppSafeAreaView>
-        <TopAppBar title="Module" onBack={() => navigation.goBack()} />
+        <TopAppBar
+          title="Module"
+          onBack={() =>
+            navigation.canGoBack()
+              ? navigation.goBack()
+              : navigation.navigate('Tabs', {screen: 'HomeTab'})
+          }
+        />
         <EmptyState
           title="Module not found"
           message="This learning module is not registered."
           actionLabel="Go home"
-          onAction={() => navigation.navigate('Tabs')}
+          onAction={() => navigation.navigate('Tabs', {screen: 'HomeTab'})}
         />
       </AppSafeAreaView>
     );
@@ -50,7 +57,11 @@ export function ModuleHostScreen({navigation, route}: Props) {
       <AppSafeAreaView testID="module-coming-soon">
         <TopAppBar
           title={t(manifest.homeCard.titleKey, {defaultValue: manifest.id})}
-          onBack={() => navigation.goBack()}
+          onBack={() =>
+            navigation.canGoBack()
+              ? navigation.goBack()
+              : navigation.navigate('Tabs', {screen: 'HomeTab'})
+          }
         />
         <View style={styles.body}>
           <LearningModuleCard
@@ -62,7 +73,7 @@ export function ModuleHostScreen({navigation, route}: Props) {
           </AppText>
           <SecondaryButton
             label={t('common.back')}
-            onPress={() => navigation.navigate('Tabs')}
+            onPress={() => navigation.navigate('Tabs', {screen: 'HomeTab'})}
           />
         </View>
       </AppSafeAreaView>
@@ -78,7 +89,11 @@ export function ModuleHostScreen({navigation, route}: Props) {
     <AppSafeAreaView testID="module-host-screen">
       <TopAppBar
         title={t(manifest.homeCard.titleKey, {defaultValue: manifest.id})}
-        onBack={() => navigation.goBack()}
+        onBack={() =>
+          navigation.canGoBack()
+            ? navigation.goBack()
+            : navigation.navigate('Tabs', {screen: 'HomeTab'})
+        }
       />
       <View style={styles.body}>
         <ModuleIcon
@@ -96,7 +111,7 @@ export function ModuleHostScreen({navigation, route}: Props) {
         </AppText>
         <PrimaryButton
           label={t('common.back')}
-          onPress={() => navigation.navigate('Tabs')}
+          onPress={() => navigation.navigate('Tabs', {screen: 'HomeTab'})}
         />
       </View>
     </AppSafeAreaView>

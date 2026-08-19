@@ -62,7 +62,11 @@ export function MissingNumberScreen({navigation}: Props) {
         <View style={styles.header}>
           <BackButton
             label={t('common.back')}
-            onPress={() => navigation.navigate('Hub')}
+            onPress={() =>
+              navigation.canGoBack()
+                ? navigation.goBack()
+                : navigation.navigate('Hub')
+            }
           />
           <Text style={styles.headerTitle}>
             {t('math.missing.moduleTitle')}
