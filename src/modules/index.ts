@@ -6,6 +6,7 @@ import {registerBrainGamesModule} from '@features/brainGames';
 import {registerScienceModule} from '@features/science';
 import {registerTimeModule} from '@features/time';
 import {registerCodingModule} from '@features/coding';
+import {registerRhymesModule} from '@features/rhymes';
 import {featureFlags} from '@shared/config';
 
 import {createCatalogModule} from './createCatalogModule';
@@ -27,6 +28,7 @@ export function registerAllModules(): void {
   moduleRegistry.register(registerScienceModule());
   moduleRegistry.register(registerTimeModule());
   moduleRegistry.register(registerCodingModule());
+  moduleRegistry.register(registerRhymesModule());
 
   moduleRegistry.register(
     createCatalogModule({
@@ -73,18 +75,6 @@ export function registerAllModules(): void {
       accentColor: '#F5A623',
       deepLinkPrefix: 'learningapp://module/animals',
       isEnabled: () => featureFlags.animalsEnabled,
-    }),
-  );
-
-  moduleRegistry.register(
-    createCatalogModule({
-      id: ModuleId.Rhymes,
-      titleKey: 'modules.rhymes.title',
-      subtitleKey: 'modules.rhymes.subtitle',
-      iconKey: 'rhymes',
-      accentColor: '#A855D3',
-      deepLinkPrefix: 'learningapp://module/rhymes',
-      isEnabled: () => featureFlags.rhymesEnabled,
     }),
   );
 

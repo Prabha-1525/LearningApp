@@ -33,6 +33,11 @@ export type BadgeEvalContext = {
   readonly robotMazesSolved?: number;
   readonly debuggingPuzzlesSolved?: number;
   readonly sequencingPuzzlesSolved?: number;
+  readonly instrumentsExplored?: number;
+  readonly rhythmLevelsCompleted?: number;
+  readonly soundGuessesCorrect?: number;
+  readonly musicTopicsCompleted?: number;
+  readonly musicStars?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<string>;
 };
@@ -418,6 +423,45 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     icon: '🏆',
     evaluate: ctx =>
       (ctx.codingTopicsCompleted ?? 0) >= 6 && (ctx.codingStars ?? 0) >= 15,
+  },
+  // ─── Music Badges ─────────────────────────────────────────────────────────
+  {
+    id: 'music_explorer',
+    badgeId: asBadgeId('badge.music_explorer'),
+    titleKey: 'rhymes.badges.musicExplorer',
+    descriptionKey: 'rhymes.badges.musicExplorerDesc',
+    icon: '🎵',
+    evaluate: ctx =>
+      (ctx.instrumentsExplored ?? 0) >= 3 ||
+      (ctx.musicTopicsCompleted ?? 0) >= 1,
+  },
+  {
+    id: 'rhythm_star',
+    badgeId: asBadgeId('badge.rhythm_star'),
+    titleKey: 'rhymes.badges.rhythmStar',
+    descriptionKey: 'rhymes.badges.rhythmStarDesc',
+    icon: '🥁',
+    evaluate: ctx =>
+      (ctx.rhythmLevelsCompleted ?? 0) >= 2 || (ctx.musicStars ?? 0) >= 4,
+  },
+  {
+    id: 'instrument_expert',
+    badgeId: asBadgeId('badge.instrument_expert'),
+    titleKey: 'rhymes.badges.instrumentExpert',
+    descriptionKey: 'rhymes.badges.instrumentExpertDesc',
+    icon: '🎹',
+    evaluate: ctx =>
+      (ctx.soundGuessesCorrect ?? 0) >= 4 ||
+      (ctx.instrumentsExplored ?? 0) >= 6,
+  },
+  {
+    id: 'music_master',
+    badgeId: asBadgeId('badge.music_master'),
+    titleKey: 'rhymes.badges.musicMaster',
+    descriptionKey: 'rhymes.badges.musicMasterDesc',
+    icon: '🎶',
+    evaluate: ctx =>
+      (ctx.musicTopicsCompleted ?? 0) >= 5 && (ctx.musicStars ?? 0) >= 12,
   },
 ];
 

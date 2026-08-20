@@ -6,7 +6,6 @@ import {
   homeEnglishIcon,
   homeMathIcon,
   homePhonicsIcon,
-  homeRhymesIcon,
   homeShapesIcon,
   homeStoryIcon,
 } from '@assets';
@@ -127,8 +126,11 @@ export const HOME_SUBJECTS: readonly HomeSubjectDef[] = [
     id: 'rhymes',
     moduleId: ModuleId.Rhymes,
     titleKey: 'modules.rhymes.title',
-    image: homeRhymesIcon,
+    image: null,
+    emoji: '🎵',
+    backgroundColor: '#FDF4FF',
     progressPercent: 0,
+    showNewBadge: true,
   },
   {
     id: 'story',

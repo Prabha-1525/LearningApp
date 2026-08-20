@@ -35,7 +35,7 @@ export const featureFlags: FeatureFlags = {
   drawingEnabled: false,
   shapesEnabled: false,
   animalsEnabled: false,
-  rhymesEnabled: false,
+  rhymesEnabled: true,
   storyEnabled: false,
   phonicsEnabled: false,
 };

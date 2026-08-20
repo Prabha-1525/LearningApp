@@ -128,8 +128,8 @@
       "subtitle": "Meet animal friends"
     },
     "rhymes": {
-      "title": "Rhymes",
-      "subtitle": "Sing and play"
+      "title": "Rhymes & Music",
+      "subtitle": "Instruments, rhythm & musical melodies"
     },
     "story": {
       "title": "Story Time",
@@ -1781,6 +1781,184 @@
     "complete": {
       "title": "Awesome Coding Champion!",
       "backHome": "Logic & Coding Hub 🏠"
+    }
+  },
+  "rhymes": {
+    "home": {
+      "subtitle": "Instruments, Rhythm & Musical Melodies",
+      "heroTitle": "Little Music Maestro",
+      "sectionHeader": "Choose a Music Activity:"
+    },
+    "topics": {
+      "instruments": {
+        "title": "Musical Instruments",
+        "sub": "Explore Piano, Guitar, Drum, Violin, Trumpet, Flute"
+      },
+      "rhythm": {
+        "title": "Rhythm Game",
+        "sub": "Tap along with fun beat patterns"
+      },
+      "guessSound": {
+        "title": "Guess the Sound",
+        "sub": "Listen and identify the mystery instrument"
+      },
+      "patterns": {
+        "title": "Musical Patterns",
+        "sub": "Complete visual & audio instrument sequences"
+      },
+      "piano": {
+        "title": "Do-Re-Mi Piano",
+        "sub": "Rainbow piano keyboard & nursery melodies"
+      },
+      "quiz": {
+        "title": "Music Quiz Arena",
+        "sub": "10 questions on instruments, sounds & rhythms"
+      }
+    },
+    "families": {
+      "keyboard": "Keyboard",
+      "strings": "Strings",
+      "percussion": "Percussion",
+      "brass": "Brass",
+      "woodwind": "Woodwind"
+    },
+    "instruments": {
+      "piano": {
+        "name": "Piano",
+        "fact": "A piano has 88 black and white keys that strike soft hammers inside!",
+        "soundDesc": "Grand, melodious harmonic tones"
+      },
+      "guitar": {
+        "name": "Guitar",
+        "fact": "Guitars usually have 6 strings that vibrate when you pluck them!",
+        "soundDesc": "Warm, resonant acoustic strum"
+      },
+      "drum": {
+        "name": "Drum",
+        "fact": "Drums are among the oldest musical instruments in the entire world!",
+        "soundDesc": "Punchy, rhythmic rhythmic beat"
+      },
+      "violin": {
+        "name": "Violin",
+        "fact": "Violins are played with a bow made of horsehair strands!",
+        "soundDesc": "Sweet, expressive high-pitch strings"
+      },
+      "trumpet": {
+        "name": "Trumpet",
+        "fact": "Trumpets are made of shiny curved brass and make a loud royal fanfare!",
+        "soundDesc": "Bright, triumphant brass fanfare"
+      },
+      "flute": {
+        "name": "Flute",
+        "fact": "You make sound on a flute by blowing air gently across the mouthpiece hole!",
+        "soundDesc": "Airy, graceful, gentle whistling tone"
+      }
+    },
+    "rhythm": {
+      "l1Title": "Tap Tap Rest Tap",
+      "l2Title": "Clap Rest Clap Clap",
+      "l3Title": "Triple Tap Beat",
+      "l4Title": "Ding Dong Chime",
+      "l5Title": "Boom Boom Groove",
+      "l6Title": "Speed Maestro",
+      "clapName": "Hand Clap",
+      "bellName": "Bell Chime"
+    },
+    "guess": {
+      "header": "Listen to the mystery sound!",
+      "sub": "What instrument is making this sound?",
+      "q1Prompt": "Boom boom beat!",
+      "drumExpl": "That punchy rhythmic beat comes from the Drum 🥁!",
+      "q2Prompt": "Harmonic chords!",
+      "pianoExpl": "Those rich harmonious chords are played on the Piano 🎹!",
+      "q3Prompt": "Acoustic pluck!",
+      "guitarExpl": "That plucked string strum is a Guitar 🎸!",
+      "q4Prompt": "Royal fanfare!",
+      "trumpetExpl": "That loud bright fanfare comes from the Trumpet 🎺!",
+      "q5Prompt": "Sweet gentle breeze!",
+      "fluteExpl": "That gentle whistling sound is a Flute 🪈!",
+      "q6Prompt": "Singing strings!",
+      "violinExpl": "Those sweet bowed high strings belong to the Violin 🎻!"
+    },
+    "patterns": {
+      "instruction": "Complete the musical pattern:",
+      "p1Title": "Drum & Piano Pattern",
+      "p1Expl": "The pattern alternates 🥁, 🎹, 🥁, so the next item is 🎹!",
+      "p2Title": "String Duet Pattern",
+      "p2Expl": "The pattern repeats 🎸, 🎸, 🎻, so the next item is 🎻!",
+      "p3Title": "Wind & Brass Pattern",
+      "p3Expl": "The pattern alternates 🎺, 🪈, so the next is 🎺!",
+      "p4Title": "Triple Beat Drop",
+      "p4Expl": "Three drums followed by a piano repeats!",
+      "p5Title": "Trio Symphony",
+      "p5Expl": "Flute, Violin, Piano repeats in sequence!",
+      "p6Title": "Clap & Chime",
+      "p6Expl": "Bell and Clap alternate rhythmically!"
+    },
+    "piano": {
+      "tabFree": "Free Play Piano",
+      "tabSongs": "Guided Songs"
+    },
+    "songs": {
+      "twinkle": "Twinkle Twinkle Little Star",
+      "maryLamb": "Mary Had a Little Lamb",
+      "brotherJohn": "Brother John (Frère Jacques)",
+      "rowBoat": "Row, Row, Row Your Boat"
+    },
+    "quiz": {
+      "q1": "Which instrument has black and white keys?",
+      "q1Expl": "A Piano has black and white keys 🎹!",
+      "q2": "What family does a Drum belong to?",
+      "q2Expl": "Drums are Percussion instruments hit with hands or sticks 🥁!",
+      "q3": "Which family includes the Guitar and Violin?",
+      "q3Expl": "Guitar and Violin have vibrating strings 🎻!",
+      "q4": "How do you make sound on a Flute?",
+      "q4Expl": "By blowing air gently across the mouthpiece 🪈!",
+      "q5": "What do we call a steady musical beat in songs?",
+      "q5Expl": "Rhythm is the heartbeat of music 🥁!",
+      "q6": "Which shiny brass instrument plays royal fanfares?",
+      "q6Expl": "The Trumpet 🎺 plays bright fanfares!",
+      "q7": "What are Do, Re, Mi, Fa, So called?",
+      "q7Expl": "Musical notes / Solfege scale 🎶!",
+      "q8": "What stick is used to play the violin strings?",
+      "q8Expl": "A bow 🪄 is drawn across the violin strings!",
+      "q9": "In pattern 🥁 🎹 🥁 ?, what comes next?",
+      "q9Expl": "Piano 🎹 completes the alternating pattern!",
+      "q10": "Why do people listen and play music?",
+      "q10Expl": "Music brings happiness, joy, and dancing 😊 💃!",
+      "stringsFamily": "Strings Family (🎻 🎸)",
+      "keyboardFamily": "Keyboard Family (🎹)",
+      "drumsFamily": "Drums Family (🥁)",
+      "blowAir": "Blowing air gently (💨)",
+      "hitWithStick": "Hitting with sticks (🥢)",
+      "pressKeys": "Pressing keys (⌨️)",
+      "rhythmBeat": "Rhythm & Beat (🥁 🎵)",
+      "drawingColor": "Drawing colors (🎨)",
+      "sleepingTime": "Sleeping time (😴)",
+      "musicalNotes": "Musical Notes (🎶)",
+      "fruitsNames": "Fruit names (🍎)",
+      "shapesNames": "Shape names (🔺)",
+      "bowStick": "A Violin Bow (🪄)",
+      "hammer": "A heavy hammer (🔨)",
+      "spoon": "A soup spoon (🥄)",
+      "bringsJoy": "Brings joy, songs and happiness 😊 💃",
+      "makesSad": "Only makes people sad (😢)",
+      "noSound": "Has no sound at all (🔇)",
+      "completeTitle": "Music Arena Finished!"
+    },
+    "badges": {
+      "musicExplorer": "Music Explorer",
+      "musicExplorerDesc": "Discovered and played 6 musical instruments",
+      "rhythmStar": "Rhythm Star",
+      "rhythmStarDesc": "Mastered fun tap-along rhythm beats",
+      "instrumentExpert": "Instrument Expert",
+      "instrumentExpertDesc": "Trained your ear to recognize instrument sounds",
+      "musicMaster": "Music Master",
+      "musicMasterDesc": "Played piano melodies and aced the music quiz"
+    },
+    "complete": {
+      "title": "Music Maestro Star!",
+      "backHome": "Rhymes & Music Hub 🏠"
     }
   }
 }
