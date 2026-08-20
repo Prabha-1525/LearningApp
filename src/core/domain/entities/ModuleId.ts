@@ -8,6 +8,7 @@ export const ModuleId = {
   Chess: 'chess',
   Math: 'math',
   WorldExplorer: 'worldExplorer',
+  BrainGames: 'brainGames',
   English: 'english',
   Tamil: 'tamil',
   Science: 'science',

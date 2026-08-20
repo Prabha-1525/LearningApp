@@ -21,6 +21,8 @@ export type HomeSubjectDef = {
   readonly moduleId: ModuleId;
   readonly titleKey: string;
   readonly image: ImageSourcePropType | null;
+  readonly emoji?: string;
+  readonly backgroundColor?: string;
   readonly progressPercent: number;
   readonly showNewBadge?: boolean;
 };
@@ -40,6 +42,26 @@ export const HOME_SUBJECTS: readonly HomeSubjectDef[] = [
     titleKey: 'modules.math.title',
     image: homeMathIcon,
     progressPercent: 0,
+  },
+  {
+    id: 'worldExplorer',
+    moduleId: ModuleId.WorldExplorer,
+    titleKey: 'modules.worldExplorer.title',
+    image: null,
+    emoji: '🌍',
+    backgroundColor: '#E0F2FE',
+    progressPercent: 0,
+    showNewBadge: true,
+  },
+  {
+    id: 'brainGames',
+    moduleId: ModuleId.BrainGames,
+    titleKey: 'modules.brainGames.title',
+    image: null,
+    emoji: '🧠',
+    backgroundColor: '#EEF2FF',
+    progressPercent: 0,
+    showNewBadge: true,
   },
   {
     id: 'english',
@@ -67,6 +89,8 @@ export const HOME_SUBJECTS: readonly HomeSubjectDef[] = [
     moduleId: ModuleId.Animals,
     titleKey: 'modules.animals.title',
     image: null,
+    emoji: '🦁',
+    backgroundColor: '#FEF3C7',
     progressPercent: 0,
   },
   {

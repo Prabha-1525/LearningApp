@@ -7,18 +7,22 @@ describe('moduleRegistry', () => {
     resetBootstrapForTests();
   });
 
-  it('registers Chess, Math, and WorldExplorer with navigators', () => {
+  it('registers Chess, Math, WorldExplorer, and BrainGames with navigators', () => {
     registerAllModules();
 
-    expect(moduleRegistry.list()).toHaveLength(12);
+    expect(moduleRegistry.list()).toHaveLength(13);
     expect(moduleRegistry.get(ModuleId.Chess)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.Math)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.WorldExplorer)?.isEnabled()).toBe(true);
-    expect(moduleRegistry.listEnabled()).toHaveLength(3);
+    expect(moduleRegistry.get(ModuleId.BrainGames)?.isEnabled()).toBe(true);
+    expect(moduleRegistry.listEnabled()).toHaveLength(4);
     expect(moduleRegistry.get(ModuleId.Chess)?.getNavigator()).not.toBeNull();
     expect(moduleRegistry.get(ModuleId.Math)?.getNavigator()).not.toBeNull();
     expect(
       moduleRegistry.get(ModuleId.WorldExplorer)?.getNavigator(),
+    ).not.toBeNull();
+    expect(
+      moduleRegistry.get(ModuleId.BrainGames)?.getNavigator(),
     ).not.toBeNull();
   });
 
@@ -26,6 +30,6 @@ describe('moduleRegistry', () => {
     registerAllModules();
     registerAllModules();
 
-    expect(moduleRegistry.list()).toHaveLength(12);
+    expect(moduleRegistry.list()).toHaveLength(13);
   });
 });

@@ -130,6 +130,10 @@
     "phonics": {
       "title": "Phonics",
       "subtitle": "Sounds and letters"
+    },
+    "brainGames": {
+      "title": "Brain Games",
+      "subtitle": "Train your brain with fun games!"
     }
   },
   "math": {
@@ -588,6 +592,82 @@
       "geographyStarDesc": "Complete your first geography quiz",
       "geographyChampion": "Geography Champion",
       "geographyChampionDesc": "Master 15 countries and 3 quizzes"
+    }
+  },
+  "brainGames": {
+    "home": {
+      "title": "Brain Games",
+      "subtitle": "Train your brain!",
+      "unlocked": "{{count}} / {{total}} games unlocked"
+    },
+    "level": "Level {{level}}",
+    "moves": "{{count}} moves",
+    "correct": "🎉 Correct!",
+    "wrong": "❌ Try Again!",
+    "games": {
+      "memoryMatch": {
+        "title": "Memory Match",
+        "desc": "Flip cards and find matching pairs"
+      },
+      "matchingPairs": {
+        "title": "Matching Pairs",
+        "desc": "Match related items together"
+      },
+      "patternCompleter": {
+        "title": "Pattern Completer",
+        "desc": "Find what comes next in the pattern"
+      },
+      "oddOneOut": {
+        "title": "Odd One Out",
+        "desc": "Spot the item that doesn't belong"
+      },
+      "numberSequence": {
+        "title": "Number Sequence",
+        "desc": "Fill in the missing number"
+      },
+      "sortIt": {
+        "title": "Sort It",
+        "desc": "Sort items into the right groups"
+      },
+      "findDifference": {
+        "title": "Find the Difference",
+        "desc": "Spot what's different in the picture"
+      }
+    },
+    "patternCompleter": {
+      "prompt": "What comes next?"
+    },
+    "matchingPairs": {
+      "hint": "Tap one from each side"
+    },
+    "sequence": {
+      "prompt": "What's missing?"
+    },
+    "oddOneOut": {
+      "question": "Which one is different?",
+      "explanation": "Great spot!"
+    },
+    "sortIt": {
+      "prompt": "Tap an item, then tap its group!",
+      "allSorted": "🎉 All sorted!"
+    },
+    "findDifference": {
+      "prompt": "Find the one that is different!",
+      "original": "Original",
+      "find": "Spot it!"
+    },
+    "complete": {
+      "nextGame": "Next Game",
+      "playAgain": "🔄 Play Again",
+      "home": "🏠 Back to Games"
+    },
+    "patterns": {
+      "colorHint": "Look at the colors!",
+      "animalHint": "Look at the animals!",
+      "shapeHint": "Look at the shapes!",
+      "fruitHint": "Look at the fruits!",
+      "numberHint": "Look at the numbers!",
+      "weatherHint": "Look at the weather!"
     }
   }
 }

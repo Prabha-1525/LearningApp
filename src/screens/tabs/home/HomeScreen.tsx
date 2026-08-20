@@ -21,6 +21,8 @@ import {
   getMissingProgress,
   getOverallMathAdventureProgress,
 } from '@features/math/data';
+import {readWorldExplorerProgress} from '@features/worldExplorer/data/progress/worldExplorerProgress';
+import {readBrainGamesProgress} from '@features/brainGames/data/progress/brainGamesProgress';
 import {space} from '@shared/ui';
 
 import type {MainStackParamList, MainTabParamList} from '@navigation/types';
@@ -62,6 +64,38 @@ export function HomeScreen({navigation}: Props) {
   const chessProgress = Math.round(
     (getChessLessonProgress().completed.length / CHESS_LESSONS.length) * 100,
   );
+  const worldExplorerProgress = useMemo(() => {
+    try {
+      const p = readWorldExplorerProgress();
+      const totalActivities = 6;
+      const count =
+        (p.exploredCountryCodes.length > 0 ? 1 : 0) +
+        (p.learnedFlagCodes.length > 0 ? 1 : 0) +
+        (p.exploredContinents.length > 0 ? 1 : 0) +
+        (p.learnedCapitals.length > 0 ? 1 : 0) +
+        (p.exploredLandmarkIds.length > 0 ? 1 : 0) +
+        (p.quizCompletedCount > 0 ? 1 : 0);
+      return Math.round((count / totalActivities) * 100);
+    } catch {
+      return 0;
+    }
+  }, []);
+
+  const brainGamesProgress = useMemo(() => {
+    try {
+      const p = readBrainGamesProgress();
+      const games = Object.values(p.gamesProgress);
+      if (games.length === 0) {
+        return 0;
+      }
+      const completed = games.filter(
+        g => g.highScore > 0 || g.stars > 0,
+      ).length;
+      return Math.round((completed / games.length) * 100);
+    } catch {
+      return 0;
+    }
+  }, []);
   const avatar = useMemo(
     () => getChildAvatar(activeChild?.avatarKey ?? 'lion'),
     [activeChild?.avatarKey],
@@ -130,11 +164,17 @@ export function HomeScreen({navigation}: Props) {
               key={subject.id}
               title={t(subject.titleKey, {defaultValue: subject.id})}
               image={subject.image}
+              emoji={subject.emoji}
+              backgroundColor={subject.backgroundColor}
               progressPercent={
                 subject.id === 'math'
                   ? mathProgress
                   : subject.id === 'chess'
                   ? chessProgress
+                  : subject.id === 'worldExplorer'
+                  ? worldExplorerProgress
+                  : subject.id === 'brainGames'
+                  ? brainGamesProgress
                   : subject.progressPercent
               }
               showNewBadge={subject.showNewBadge}

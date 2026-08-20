@@ -11,6 +11,8 @@ import {
 type HomeSubjectCardProps = {
   readonly title: string;
   readonly image: ImageSourcePropType | null;
+  readonly emoji?: string;
+  readonly backgroundColor?: string;
   readonly progressPercent: number;
   readonly showNewBadge?: boolean;
   readonly playLabel: string;
@@ -27,6 +29,8 @@ const H_PAD = 20;
 export function HomeSubjectCard({
   title,
   image,
+  emoji,
+  backgroundColor,
   progressPercent,
   showNewBadge = false,
   playLabel,
@@ -48,11 +52,21 @@ export function HomeSubjectCard({
         {width: cardWidth},
         pressed && styles.pressed,
       ]}>
-      <View style={styles.imageBox}>
+      <View
+        style={[
+          styles.imageBox,
+          backgroundColor ? {backgroundColor} : undefined,
+        ]}>
         {image ? (
           <Image source={image} style={styles.image} resizeMode="cover" />
         ) : (
-          <View style={styles.imagePlaceholder} />
+          <View
+            style={[
+              styles.imagePlaceholder,
+              backgroundColor ? {backgroundColor} : undefined,
+            ]}>
+            {emoji ? <Text style={styles.emojiText}>{emoji}</Text> : null}
+          </View>
         )}
         {showNewBadge ? (
           <View style={styles.badge}>
@@ -112,7 +126,12 @@ const styles = StyleSheet.create({
   },
   imagePlaceholder: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F3F6F9',
+  },
+  emojiText: {
+    fontSize: 52,
   },
   badge: {
     position: 'absolute',

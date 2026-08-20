@@ -2,6 +2,7 @@ import {ModuleId} from '@core/domain';
 import {registerChessModule} from '@features/chess';
 import {registerMathModule} from '@features/math';
 import {registerWorldExplorerModule} from '@features/worldExplorer';
+import {registerBrainGamesModule} from '@features/brainGames';
 import {featureFlags} from '@shared/config';
 
 import {createCatalogModule} from './createCatalogModule';
@@ -19,6 +20,7 @@ export function registerAllModules(): void {
   moduleRegistry.register(registerChessModule());
   moduleRegistry.register(registerMathModule());
   moduleRegistry.register(registerWorldExplorerModule());
+  moduleRegistry.register(registerBrainGamesModule());
 
   moduleRegistry.register(
     createCatalogModule({

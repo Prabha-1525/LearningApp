@@ -2,6 +2,7 @@ export type FeatureFlags = {
   readonly chessEnabled: boolean;
   readonly mathEnabled: boolean;
   readonly worldExplorerEnabled: boolean;
+  readonly brainGamesEnabled: boolean;
   readonly englishEnabled: boolean;
   readonly tamilEnabled: boolean;
   readonly scienceEnabled: boolean;
@@ -22,6 +23,7 @@ export const featureFlags: FeatureFlags = {
   chessEnabled: true,
   mathEnabled: true,
   worldExplorerEnabled: true,
+  brainGamesEnabled: true,
   englishEnabled: false,
   tamilEnabled: false,
   scienceEnabled: false,

@@ -16,6 +16,8 @@ export type BadgeEvalContext = {
   readonly learnedCapitalCount?: number;
   readonly exploredLandmarkCount?: number;
   readonly worldExplorerQuizCount?: number;
+  readonly brainGamesPlayCount?: number;
+  readonly brainGamesStars?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<string>;
 };
@@ -207,6 +209,32 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     evaluate: ctx =>
       (ctx.exploredCountryCount ?? 0) >= 15 &&
       (ctx.worldExplorerQuizCount ?? 0) >= 3,
+  },
+  // ─── Brain Games Badges ───────────────────────────────────────────────────
+  {
+    id: 'brain_beginner',
+    badgeId: asBadgeId('badge.brain_beginner'),
+    titleKey: 'brainGames.badges.brainBeginner',
+    descriptionKey: 'brainGames.badges.brainBeginnerDesc',
+    icon: '🧠',
+    evaluate: ctx => (ctx.brainGamesPlayCount ?? 0) >= 1,
+  },
+  {
+    id: 'memory_master',
+    badgeId: asBadgeId('badge.memory_master'),
+    titleKey: 'brainGames.badges.memoryMaster',
+    descriptionKey: 'brainGames.badges.memoryMasterDesc',
+    icon: '🃏',
+    evaluate: ctx => (ctx.brainGamesPlayCount ?? 0) >= 5,
+  },
+  {
+    id: 'brain_champion',
+    badgeId: asBadgeId('badge.brain_champion'),
+    titleKey: 'brainGames.badges.brainChampion',
+    descriptionKey: 'brainGames.badges.brainChampionDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      (ctx.brainGamesPlayCount ?? 0) >= 7 && (ctx.brainGamesStars ?? 0) >= 15,
   },
 ];
 
