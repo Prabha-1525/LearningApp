@@ -7,17 +7,18 @@ describe('moduleRegistry', () => {
     resetBootstrapForTests();
   });
 
-  it('registers Chess, Math, WorldExplorer, BrainGames, Science, and Time with navigators', () => {
+  it('registers Chess, Math, WorldExplorer, BrainGames, Science, Time, and Coding with navigators', () => {
     registerAllModules();
 
-    expect(moduleRegistry.list()).toHaveLength(14);
+    expect(moduleRegistry.list()).toHaveLength(15);
     expect(moduleRegistry.get(ModuleId.Chess)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.Math)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.WorldExplorer)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.BrainGames)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.Science)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.Time)?.isEnabled()).toBe(true);
-    expect(moduleRegistry.listEnabled()).toHaveLength(6);
+    expect(moduleRegistry.get(ModuleId.Coding)?.isEnabled()).toBe(true);
+    expect(moduleRegistry.listEnabled()).toHaveLength(7);
     expect(moduleRegistry.get(ModuleId.Chess)?.getNavigator()).not.toBeNull();
     expect(moduleRegistry.get(ModuleId.Math)?.getNavigator()).not.toBeNull();
     expect(
@@ -28,12 +29,13 @@ describe('moduleRegistry', () => {
     ).not.toBeNull();
     expect(moduleRegistry.get(ModuleId.Science)?.getNavigator()).not.toBeNull();
     expect(moduleRegistry.get(ModuleId.Time)?.getNavigator()).not.toBeNull();
+    expect(moduleRegistry.get(ModuleId.Coding)?.getNavigator()).not.toBeNull();
   });
 
   it('is idempotent', () => {
     registerAllModules();
     registerAllModules();
 
-    expect(moduleRegistry.list()).toHaveLength(14);
+    expect(moduleRegistry.list()).toHaveLength(15);
   });
 });

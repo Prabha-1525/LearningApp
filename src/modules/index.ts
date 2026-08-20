@@ -5,6 +5,7 @@ import {registerWorldExplorerModule} from '@features/worldExplorer';
 import {registerBrainGamesModule} from '@features/brainGames';
 import {registerScienceModule} from '@features/science';
 import {registerTimeModule} from '@features/time';
+import {registerCodingModule} from '@features/coding';
 import {featureFlags} from '@shared/config';
 
 import {createCatalogModule} from './createCatalogModule';
@@ -25,6 +26,7 @@ export function registerAllModules(): void {
   moduleRegistry.register(registerBrainGamesModule());
   moduleRegistry.register(registerScienceModule());
   moduleRegistry.register(registerTimeModule());
+  moduleRegistry.register(registerCodingModule());
 
   moduleRegistry.register(
     createCatalogModule({

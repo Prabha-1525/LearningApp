@@ -10,6 +10,7 @@ export type {WorldExplorerStackParamList} from './worldExplorerTypes';
 export type {BrainGamesStackParamList} from './brainGamesTypes';
 export type {ScienceStackParamList} from './scienceTypes';
 export type {TimeStackParamList} from './timeTypes';
+export type {CodingStackParamList} from './codingTypes';
 
 export {AuthNavigator} from './AuthNavigator';
 export {MainNavigator} from './MainNavigator';
@@ -21,3 +22,4 @@ export {WorldExplorerNavigator} from './WorldExplorerNavigator';
 export {BrainGamesNavigator} from './BrainGamesNavigator';
 export {ScienceNavigator} from './ScienceNavigator';
 export {TimeNavigator} from './TimeNavigator';
+export {CodingNavigator} from './CodingNavigator';

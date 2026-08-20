@@ -66,12 +66,20 @@ export function MoneyLessonScreen({navigation}: Props) {
       const repo = createMmkvGamificationRepository();
       const res = await grantRewards(repo, {
         childId: cid,
-        ruleId: 'money.completed',
+        source: 'lesson',
         moduleId: ModuleId.Math,
-        topicId: `money.${activeTab}`,
-        baseStars: starCount,
+        reasonCode: `math.money.${activeTab}`,
+        stars: starCount,
+        xp: starCount * 10,
       });
-      dispatch(applyGrantResult(res));
+      if (res.ok) {
+        dispatch(
+          applyGrantResult({
+            snapshot: res.value.snapshot,
+            celebrations: res.value.celebrations,
+          }),
+        );
+      }
     }
   };
 

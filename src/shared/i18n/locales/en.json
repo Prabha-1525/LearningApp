@@ -107,6 +107,10 @@
       "title": "Time & Calendar",
       "subtitle": "Clock, days, months & seasons"
     },
+    "coding": {
+      "title": "Logic & Coding",
+      "subtitle": "Computational thinking & robot games"
+    },
     "memory": {
       "title": "Memory Game",
       "subtitle": "Train your mind"
@@ -1548,6 +1552,235 @@
     "complete": {
       "title": "Super Time Master!",
       "backHome": "Time & Calendar Hub 🏠"
+    }
+  },
+  "coding": {
+    "home": {
+      "title": "Logic & Coding",
+      "subtitle": "Computational Thinking for 1st Standard",
+      "heroTitle": "Little Coder Adventure",
+      "topicsHeader": "Choose a Coding Game:"
+    },
+    "topics": {
+      "robot": {
+        "title": "Meet the Robot",
+        "sub": "Guide the robot to the treasure maze"
+      },
+      "instructions": {
+        "title": "Give Instructions",
+        "sub": "Learn directional commands (⬆️ ⬇️ ⬅️ ➡️)"
+      },
+      "sequencing": {
+        "title": "Arrange Steps",
+        "sub": "Order daily life algorithms step-by-step"
+      },
+      "loops": {
+        "title": "Repeat (Loops)",
+        "sub": "Master repetition with loop blocks (🔁 3x)"
+      },
+      "conditionals": {
+        "title": "If / Then Rules",
+        "sub": "Decision making: IF it rains, THEN umbrella"
+      },
+      "debugging": {
+        "title": "Fix the Bug",
+        "sub": "Find and fix the wrong code command"
+      },
+      "challenge": {
+        "title": "Coding Challenge",
+        "sub": "10 fun logic & computational puzzles"
+      }
+    },
+    "commands": {
+      "up": "UP",
+      "down": "DOWN",
+      "left": "LEFT",
+      "right": "RIGHT",
+      "jump": "JUMP",
+      "grab": "GRAB"
+    },
+    "program": {
+      "title": "Your Program Code"
+    },
+    "palette": {
+      "label": "Tap to add instructions:"
+    },
+    "mazes": {
+      "level1": "Straight Path",
+      "level2": "Down South",
+      "level3": "First Turn",
+      "level4": "Castle Corner",
+      "level5": "Zig-Zag Forest",
+      "level6": "Treasure Hunt",
+      "level7": "Space Spiral",
+      "level8": "Obstacle Bridge",
+      "level9": "Master Maze"
+    },
+    "feedback": {
+      "success": "🎉 YAY! Robot reached the Gold Star! 🌟",
+      "short": "🤖 Robot needs more steps to reach the star! Try adding more arrows.",
+      "boundary": "🚧 Oops! Robot hit the boundary wall! Turn inside the grid.",
+      "obstacle": "🪨 Ouch! Robot bumped into a rock! Plan a path around it."
+    },
+    "instructions": {
+      "tabLearn": "Learn Directions",
+      "tabPractice": "Direction Match"
+    },
+    "sequencing": {
+      "instruction": "Tap the cards below in the order they happen (1 ➔ 2 ➔ 3 ➔ 4):",
+      "morningTitle": "Morning Routine",
+      "morningSummary": "Wake Up ➔ Brush Teeth ➔ Eat Breakfast ➔ Go to School",
+      "plantTitle": "Planting a Flower",
+      "plantSummary": "Plant Seed ➔ Water Plant ➔ Sun Shines ➔ Flower Blooms",
+      "sandwichTitle": "Making a Sandwich",
+      "sandwichSummary": "Get Bread ➔ Spread Jam ➔ Close Bread ➔ Eat Bite",
+      "handsTitle": "Washing Hands Clean",
+      "handsSummary": "Wet Hands ➔ Apply Soap ➔ Rub Hands ➔ Dry with Towel",
+      "snowmanTitle": "Building a Snowman",
+      "snowmanSummary": "Roll Snowball ➔ Add Head ➔ Carrot Nose ➔ Put Hat",
+      "steps": {
+        "wakeUp": "Wake Up ⏰",
+        "brushTeeth": "Brush Teeth 🪥",
+        "eatBreakfast": "Eat Breakfast 🥣",
+        "goSchool": "Go to School 🎒",
+        "plantSeed": "Plant Seed 🌱",
+        "waterSeed": "Water Plant 💧",
+        "sunShines": "Sun Shines ☀️",
+        "flowerBlooms": "Flower Blooms 🌸",
+        "getBread": "Get Bread 🍞",
+        "spreadJam": "Spread Jam 🍓",
+        "closeBread": "Close Bread 🥪",
+        "eatBite": "Delicious Bite 😋",
+        "wetHands": "Turn on Tap 🚰",
+        "applySoap": "Apply Soap 🧼",
+        "rubHands": "Rub Hands 🤲",
+        "dryTowel": "Dry with Towel 🧖",
+        "rollSnowball": "Roll Big Snow ⚪",
+        "addHead": "Add Head ⛄",
+        "carrotNose": "Carrot Nose 🥕",
+        "putHat": "Put Hat & Scarf 🎩"
+      }
+    },
+    "loops": {
+      "conceptTitle": "What is a Repeat Loop?",
+      "conceptText": "When an action happens over and over, we use a Repeat Loop so we do not have to write the same command many times!",
+      "bunnyTitle": "Bunny Hops Right",
+      "bunnyDesc": "Repeat 3 times: Move Right",
+      "rocketTitle": "Rocket Blasts Up",
+      "rocketDesc": "Repeat 4 times: Move Up",
+      "frogTitle": "Frog Jumps Ahead",
+      "frogDesc": "Repeat 5 times: Jump",
+      "dancerTitle": "Dancer Spins",
+      "dancerDesc": "Repeat 2 times: Move Right",
+      "beadsTitle": "Bead Necklace",
+      "beadsDesc": "Repeat 4 times: Grab Bead"
+    },
+    "conditionals": {
+      "title": "If / Then Decision Rules",
+      "intro": "Computers use IF / THEN rules to make smart decisions. IF a condition happens, THEN take the right action!",
+      "ifRain": "IF it is raining outside 🌧️",
+      "thenUmbrella": "THEN take an umbrella ☔",
+      "thenSunglasses": "THEN wear sunglasses 🕶️",
+      "thenIceCream": "THEN eat ice cream 🍦",
+      "ifRedLight": "IF traffic light is RED 🚦",
+      "thenStop": "THEN stop immediately 🛑",
+      "thenSpeedUp": "THEN speed up 🏎️",
+      "thenDance": "THEN do a dance 💃",
+      "ifGreenLight": "IF traffic light is GREEN 🟢",
+      "thenGo": "THEN go forward safely 🚗",
+      "thenSleep": "THEN go to sleep 😴",
+      "ifNight": "IF it is dark night time 🌙",
+      "thenSunbathe": "THEN sunbathe on beach 🏖️",
+      "thenFlyKite": "THEN fly a kite 🪁",
+      "ifLowBattery": "IF robot battery is LOW 🪫",
+      "thenRecharge": "THEN plug into charger 🔋",
+      "thenJump": "THEN jump around 🦘",
+      "thenSing": "THEN sing loudly 🎤",
+      "ifDoorLocked": "IF treasure door is LOCKED 🔒",
+      "thenUseKey": "THEN use the gold key 🔑",
+      "thenPaint": "THEN paint the door 🎨",
+      "thenWaterPlant": "THEN water the plant 💧"
+    },
+    "debugging": {
+      "title": "Fix the Broken Code",
+      "intro": "In coding, a mistake is called a 'Bug'. Can you find the 1 wrong command and replace it with the correct arrow?",
+      "p1Title": "Straight Right Path",
+      "p1Prompt": "Robot needs to move 2 steps RIGHT to reach the star.",
+      "p1Expl": "Replace UP with RIGHT at step 2.",
+      "p2Title": "Downward Journey",
+      "p2Prompt": "Robot needs to move 2 steps DOWN to reach the gem.",
+      "p2Expl": "Replace LEFT with DOWN at step 2.",
+      "p3Title": "Corner Turn",
+      "p3Prompt": "Robot must go RIGHT then DOWN to the goal.",
+      "p3Expl": "Replace UP with RIGHT at step 2.",
+      "p4Title": "Climbing Up",
+      "p4Prompt": "Robot needs to climb 2 steps UP.",
+      "p4Expl": "Replace DOWN with UP at step 2.",
+      "p5Title": "Left Pathway",
+      "p5Prompt": "Robot needs to move LEFT towards the star.",
+      "p5Expl": "Replace RIGHT with LEFT at step 2.",
+      "p6Title": "Long Drop",
+      "p6Prompt": "Robot needs to go 3 steps DOWN.",
+      "p6Expl": "Replace LEFT with DOWN at step 3."
+    },
+    "quiz": {
+      "q1": "Which direction moves the robot towards the star on the right?",
+      "q1Expl": "Right arrow ➡️ moves the robot towards the star!",
+      "q2": "What happens right after watering a seed 💧?",
+      "q2Expl": "With sunlight and water, the beautiful flower blooms 🌸!",
+      "q3": "Which loop replaces: ➡️ ➡️ ➡️ ➡️?",
+      "q3Expl": "Four right arrows equal Repeat 4 times: ➡️!",
+      "q4": "IF it is raining 🌧️, THEN what should you do?",
+      "q4Expl": "Take an umbrella ☔ to stay dry!",
+      "q5": "What does 'Debugging' mean in coding?",
+      "q5Expl": "Debugging means finding and fixing mistakes in instructions!",
+      "q6": "How does a robot follow instructions?",
+      "q6Expl": "Step by step, in the exact order you program!",
+      "q7": "IF the traffic light is RED 🔴, THEN what should the car do?",
+      "q7Expl": "Red light means STOP 🛑!",
+      "q8": "What does 'Repeat 3x 🦘' mean?",
+      "q8Expl": "It means Jump 3 times in a row!",
+      "q9": "What is the correct morning sequence?",
+      "q9Expl": "Wake Up ⏰ ➔ Brush Teeth 🪥 ➔ Eat Breakfast 🥣!",
+      "q10": "What happens when the robot reaches the star ⭐?",
+      "q10Expl": "You win stars, rewards, and celebrate victory 🏆!",
+      "repeat4Right": "Repeat 4x Right (➡️)",
+      "repeat2Right": "Repeat 2x Right (➡️)",
+      "repeat4Up": "Repeat 4x Up (⬆️)",
+      "fixMistake": "Find and fix mistakes 🔧",
+      "breakCode": "Break the computer 💥",
+      "ignoreBug": "Ignore the problem 🙈",
+      "stepByStep": "Step by step in exact order 🪜",
+      "allAtOnce": "All at once randomly ⚡",
+      "randomJump": "Random jumps 🎲",
+      "jump3Times": "Jump 3 times 🦘 🦘 🦘",
+      "jump1Time": "Jump only 1 time 🦘",
+      "walkLeft": "Walk left ⬅️ ⬅️",
+      "wakeBrushEat": "Wake Up ➔ Brush Teeth ➔ Eat Breakfast",
+      "eatWakeBrush": "Eat Breakfast ➔ Wake Up ➔ Brush Teeth",
+      "brushEatWake": "Brush Teeth ➔ Eat Breakfast ➔ Wake Up",
+      "givesReward": "Collects treasure & awards stars ⭐",
+      "robotSleeps": "Robot goes to sleep 💤",
+      "robotDeletes": "Robot deletes itself 🗑️"
+    },
+    "challenge": {
+      "completeTitle": "Coding Arena Finished!"
+    },
+    "badges": {
+      "littleCoder": "Little Coder",
+      "littleCoderDesc": "Guided your first robot safely through the maze",
+      "logicExplorer": "Logic Explorer",
+      "logicExplorerDesc": "Solved daily life sequencing and condition puzzles",
+      "bugFinder": "Bug Finder",
+      "bugFinderDesc": "Squashed bugs and fixed broken code sequences",
+      "codingThinker": "Coding Thinker",
+      "codingThinkerDesc": "Mastered visual repetition loop blocks",
+      "codingChampion": "Coding Champion",
+      "codingChampionDesc": "Aced the master coding challenge arena"
+    },
+    "complete": {
+      "title": "Awesome Coding Champion!",
+      "backHome": "Logic & Coding Hub 🏠"
     }
   }
 }
