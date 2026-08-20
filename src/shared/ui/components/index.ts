@@ -31,3 +31,8 @@ export {
   type SettingRowProps,
 } from './SettingRow';
 export {SoundToggle, type SoundToggleProps} from './SoundToggle';
+export {
+  SubjectProgressRow,
+  type SubjectProgressRowProps,
+} from './SubjectProgressRow';
+export {FavoriteGameCard, type FavoriteGameCardProps} from './FavoriteGameCard';

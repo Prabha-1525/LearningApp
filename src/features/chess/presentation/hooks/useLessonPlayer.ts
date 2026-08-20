@@ -24,10 +24,12 @@ export function useLessonPlayer(lesson: ChessLesson) {
   const [pieces, setPieces] = useState<PieceMap>(emptyBoard());
   const [phase, setPhase] = useState<LessonPhase>('listening');
   const [selectedFrom, setSelectedFrom] = useState<Square | null>(null);
-  const [feedbackTone, setFeedbackTone] = useState<'success' | 'error' | null>(
-    null,
-  );
+  const [feedbackTone, setFeedbackTone] = useState<
+    'success' | 'error' | 'hint' | null
+  >(null);
   const [caption, setCaption] = useState('');
+  const [mistakesCount, setMistakesCount] = useState(0);
+  const [showingHint, setShowingHint] = useState(false);
   const demoToken = useRef(0);
 
   const step: LessonStep | undefined = lesson.steps[stepIndex];
@@ -36,11 +38,29 @@ export function useLessonPlayer(lesson: ChessLesson) {
   const say = useCallback(
     async (ta: string, en: string) => {
       setCaption(preferTamil ? ta : en);
-      // Always speak Tamil — target teacher experience for this module.
       await speakCoachLine(ta);
     },
     [preferTamil],
   );
+
+  const replaySpeech = useCallback(() => {
+    if (step) {
+      void say(step.coachTa, step.coachEn);
+    }
+  }, [say, step]);
+
+  const showHint = useCallback(() => {
+    if (step?.practice) {
+      setShowingHint(true);
+      setFeedbackTone('hint');
+      const hintText = preferTamil
+        ? `குறிப்பு: காயை ${step.practice.targets.join(
+            ', ',
+          )} கட்டத்திற்கு நகர்த்து.`
+        : `Hint: Move piece to ${step.practice.targets.join(', ')}.`;
+      setCaption(hintText);
+    }
+  }, [preferTamil, step]);
 
   const runDemo = useCallback(
     async (current: LessonStep, basePieces: PieceMap) => {
@@ -77,6 +97,7 @@ export function useLessonPlayer(lesson: ChessLesson) {
       stopCoachSpeech();
       setSelectedFrom(null);
       setFeedbackTone(null);
+      setShowingHint(false);
       setPhase('listening');
 
       const base = step.pieces ? {...step.pieces} : emptyBoard();
@@ -147,6 +168,7 @@ export function useLessonPlayer(lesson: ChessLesson) {
           await say(practice.praiseTa, practice.praiseEn);
           setPhase('readyNext');
         } else {
+          setMistakesCount(m => m + 1);
           setFeedbackTone('error');
           await say(practice.comfortTa, practice.comfortEn);
           setFeedbackTone(null);
@@ -158,6 +180,7 @@ export function useLessonPlayer(lesson: ChessLesson) {
       // move mode
       if (!selectedFrom) {
         if (practice.from && square !== practice.from) {
+          setMistakesCount(m => m + 1);
           setFeedbackTone('error');
           await say(practice.comfortTa, practice.comfortEn);
           setFeedbackTone(null);
@@ -188,6 +211,7 @@ export function useLessonPlayer(lesson: ChessLesson) {
         await say(practice.praiseTa, practice.praiseEn);
         setPhase('readyNext');
       } else {
+        setMistakesCount(m => m + 1);
         setSelectedFrom(null);
         setFeedbackTone('error');
         await say(practice.comfortTa, practice.comfortEn);
@@ -202,6 +226,8 @@ export function useLessonPlayer(lesson: ChessLesson) {
     [phase, pieces, replayDemo, say, selectedFrom, step],
   );
 
+  const calculatedStars = Math.max(1, 3 - Math.min(2, mistakesCount));
+
   return {
     step,
     stepIndex,
@@ -211,10 +237,15 @@ export function useLessonPlayer(lesson: ChessLesson) {
     caption,
     selectedFrom,
     feedbackTone,
+    showingHint,
+    mistakesCount,
+    calculatedStars,
     isLast,
     goNext,
     onSquarePress,
     replayDemo,
+    replaySpeech,
+    showHint,
     preferTamil,
   };
 }

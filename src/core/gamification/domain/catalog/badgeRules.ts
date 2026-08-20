@@ -1,8 +1,5 @@
 import type {BadgeId} from '../schema/RewardDatabase';
 
-/**
- * Context for badge rule evaluation — extend freely; rules stay isolated.
- */
 export type BadgeEvalContext = {
   readonly completedLessonCount: number;
   readonly perfectLessonCount: number; // 3-star lessons
@@ -11,6 +8,8 @@ export type BadgeEvalContext = {
   readonly missingAllComplete: boolean;
   readonly countingLessonsCompleted: number;
   readonly countingPerfectCount: number;
+  readonly chessLessonsCompleted?: number;
+  readonly chessLessonsList?: readonly string[];
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<string>;
 };
@@ -28,9 +27,6 @@ function asBadgeId(value: string): BadgeId {
   return value as BadgeId;
 }
 
-/**
- * Declarative badge rules — add new entries without changing grant logic.
- */
 export const BADGE_RULES: readonly BadgeRule[] = [
   {
     id: 'first_lesson',
@@ -79,6 +75,72 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     descriptionKey: 'gamification.badges.mathChampionDesc',
     icon: '🏆',
     evaluate: ctx => ctx.missingAllComplete,
+  },
+
+  // CHESS BADGES
+  {
+    id: 'pawn_beginner',
+    badgeId: asBadgeId('badge.pawn_beginner'),
+    titleKey: 'chess.badges.pawnBeginner',
+    descriptionKey: 'chess.badges.pawnBeginnerDesc',
+    icon: '♙',
+    evaluate: ctx => ctx.chessLessonsList?.includes('pawn') ?? false,
+  },
+  {
+    id: 'rook_explorer',
+    badgeId: asBadgeId('badge.rook_explorer'),
+    titleKey: 'chess.badges.rookExplorer',
+    descriptionKey: 'chess.badges.rookExplorerDesc',
+    icon: '♖',
+    evaluate: ctx => ctx.chessLessonsList?.includes('rook') ?? false,
+  },
+  {
+    id: 'knight_master',
+    badgeId: asBadgeId('badge.knight_master'),
+    titleKey: 'chess.badges.knightMaster',
+    descriptionKey: 'chess.badges.knightMasterDesc',
+    icon: '♘',
+    evaluate: ctx => ctx.chessLessonsList?.includes('knight') ?? false,
+  },
+  {
+    id: 'bishop_star',
+    badgeId: asBadgeId('badge.bishop_star'),
+    titleKey: 'chess.badges.bishopStar',
+    descriptionKey: 'chess.badges.bishopStarDesc',
+    icon: '♗',
+    evaluate: ctx => ctx.chessLessonsList?.includes('bishop') ?? false,
+  },
+  {
+    id: 'queen_champion',
+    badgeId: asBadgeId('badge.queen_champion'),
+    titleKey: 'chess.badges.queenChampion',
+    descriptionKey: 'chess.badges.queenChampionDesc',
+    icon: '♕',
+    evaluate: ctx => ctx.chessLessonsList?.includes('queen') ?? false,
+  },
+  {
+    id: 'king_guardian',
+    badgeId: asBadgeId('badge.king_guardian'),
+    titleKey: 'chess.badges.kingGuardian',
+    descriptionKey: 'chess.badges.kingGuardianDesc',
+    icon: '♔',
+    evaluate: ctx => ctx.chessLessonsList?.includes('king') ?? false,
+  },
+  {
+    id: 'chess_learner',
+    badgeId: asBadgeId('badge.chess_learner'),
+    titleKey: 'chess.badges.chessLearner',
+    descriptionKey: 'chess.badges.chessLearnerDesc',
+    icon: '⚔️',
+    evaluate: ctx => (ctx.chessLessonsCompleted ?? 0) >= 6,
+  },
+  {
+    id: 'chess_master',
+    badgeId: asBadgeId('badge.chess_master'),
+    titleKey: 'chess.badges.chessMaster',
+    descriptionKey: 'chess.badges.chessMasterDesc',
+    icon: '👑',
+    evaluate: ctx => (ctx.chessLessonsCompleted ?? 0) >= 12,
   },
 ];
 

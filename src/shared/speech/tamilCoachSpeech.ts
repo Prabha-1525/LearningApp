@@ -1,10 +1,10 @@
 import {aiGateway} from '@infrastructure/ai';
 
 type TtsModule = {
-  setDefaultLanguage: (lang: string) => void;
-  setDefaultRate: (rate: number) => void;
-  stop: () => void;
-  speak: (text: string) => void;
+  setDefaultLanguage?: (lang: string) => void;
+  setDefaultRate?: (rate: number) => void;
+  stop?: () => void;
+  speak?: (text: string) => void;
 };
 
 let cachedTts: TtsModule | null | undefined;
@@ -14,15 +14,20 @@ function loadTts(): TtsModule | null {
     return cachedTts;
   }
   try {
-    const mod = require('react-native-tts') as TtsModule;
-    if (typeof mod?.setDefaultLanguage === 'function') {
-      void Promise.resolve(mod.setDefaultLanguage('ta-IN')).catch(() => {});
+    const raw = require('react-native-tts');
+    const mod = (raw && raw.default ? raw.default : raw) as TtsModule;
+    if (mod && typeof mod.stop === 'function') {
+      if (typeof mod.setDefaultLanguage === 'function') {
+        void Promise.resolve(mod.setDefaultLanguage('ta-IN')).catch(() => {});
+      }
+      if (typeof mod.setDefaultRate === 'function') {
+        void Promise.resolve(mod.setDefaultRate(0.42)).catch(() => {});
+      }
+      cachedTts = mod;
+      return mod;
     }
-    if (typeof mod?.setDefaultRate === 'function') {
-      void Promise.resolve(mod.setDefaultRate(0.42)).catch(() => {});
-    }
-    cachedTts = mod;
-    return mod;
+    cachedTts = null;
+    return null;
   } catch {
     cachedTts = null;
     return null;
@@ -42,12 +47,21 @@ export async function speakCoachLine(text: string): Promise<void> {
       speechRate: 0.9,
     });
     const tts = loadTts();
-    tts?.speak(text);
+    if (tts && typeof tts.speak === 'function') {
+      tts.speak(text);
+    }
   } catch {
     // optional TTS fallback
   }
 }
 
 export function stopCoachSpeech(): void {
-  loadTts()?.stop();
+  try {
+    const tts = loadTts();
+    if (tts && typeof tts.stop === 'function') {
+      tts.stop();
+    }
+  } catch {
+    // optional TTS stop catch
+  }
 }

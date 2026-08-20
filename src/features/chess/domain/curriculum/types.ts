@@ -1,13 +1,18 @@
 import type {HighlightTone, PieceMap, Square} from '../board/squares';
 
 export type ChessLessonId =
-  | 'board'
   | 'pawn'
   | 'rook'
   | 'knight'
   | 'bishop'
   | 'queen'
-  | 'king';
+  | 'king'
+  | 'capture'
+  | 'check'
+  | 'checkmate'
+  | 'castling'
+  | 'mini-game'
+  | 'full-game';
 
 export type LessonStepKind = 'talk' | 'demo' | 'practice';
 
@@ -47,17 +52,23 @@ export type ChessLesson = {
   readonly titleEn: string;
   readonly subtitleTa: string;
   readonly subtitleEn: string;
+  readonly pieceSymbol?: string;
   readonly steps: readonly LessonStep[];
 };
 
 export function isChessLessonId(value: string): value is ChessLessonId {
   return (
-    value === 'board' ||
     value === 'pawn' ||
     value === 'rook' ||
     value === 'knight' ||
     value === 'bishop' ||
     value === 'queen' ||
-    value === 'king'
+    value === 'king' ||
+    value === 'capture' ||
+    value === 'check' ||
+    value === 'checkmate' ||
+    value === 'castling' ||
+    value === 'mini-game' ||
+    value === 'full-game'
   );
 }

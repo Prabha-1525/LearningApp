@@ -1,5 +1,5 @@
 import {useMemo, useCallback, useState} from 'react';
-import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {AppSafeAreaView} from '@components';
 import {useFocusEffect} from '@react-navigation/native';
@@ -27,9 +27,6 @@ import type {ChessStackParamList} from '@navigation/chessTypes';
 
 type Props = NativeStackScreenProps<ChessStackParamList, 'Hub'>;
 
-/**
- * Cheerful Chess home for ages 5–8 — lessons + Play with Coach.
- */
 export function ChessHubScreen({navigation}: Props) {
   const {t, i18n} = useTranslation();
   const {space: themeSpace, radius} = useTheme();
@@ -54,8 +51,10 @@ export function ChessHubScreen({navigation}: Props) {
   return (
     <AppSafeAreaView testID="chess-hub-screen">
       <TopAppBar
-        title={t('chess.hub.title')}
-        subtitle={t('chess.hub.subtitle')}
+        title={t('chess.hub.title', {defaultValue: 'Chess Learning'})}
+        subtitle={t('chess.hub.subtitle', {
+          defaultValue: 'Learn piece by piece!',
+        })}
         onBack={() => {
           if (navigation.canGoBack()) {
             navigation.goBack();
@@ -70,6 +69,7 @@ export function ChessHubScreen({navigation}: Props) {
       <ScrollView
         contentContainerStyle={[styles.content, {gap: themeSpace.md}]}
         showsVerticalScrollIndicator={false}>
+        {/* Hero Banner */}
         <View
           style={[
             styles.heroCard,
@@ -79,16 +79,19 @@ export function ChessHubScreen({navigation}: Props) {
               borderColor: '#F4B400',
             },
           ]}>
-          <MascotSpot mood="cheer" size={96} label={t('chess.hub.coachName')} />
+          <MascotSpot mood="cheer" size={96} label="Leo" />
           <AppText variant="headline" tone="ink" style={styles.center}>
-            {t('chess.hub.heroTitle')}
+            {preferTamil ? 'சதுரங்கப் பயிற்சி!' : 'Chess Training!'}
           </AppText>
           <AppText variant="body" tone="muted" style={styles.center}>
-            {t('chess.hub.welcomeVoice')}
+            {preferTamil
+              ? 'ஒவ்வொரு காயாக கற்றுக்கொண்டு சதுரங்க நாயகனாக மாறுங்கள்!'
+              : 'Learn piece by piece and become a Chess Champion!'}
           </AppText>
-          <MiniChessBoard size={200} testID="chess-hub-board" />
+          <MiniChessBoard size={190} testID="chess-hub-board" />
         </View>
 
+        {/* Progress Card */}
         <View
           style={[
             styles.progressCard,
@@ -99,52 +102,51 @@ export function ChessHubScreen({navigation}: Props) {
             },
           ]}>
           <AppText variant="title" tone="ink">
-            {t('chess.hub.progressTitle')}
+            {preferTamil ? 'உன் முன்னேற்றம்' : 'Your Progress'}
           </AppText>
           <ProgressBar progress={progressRatio} />
           <AppText variant="caption" tone="muted">
-            {t('chess.hub.progressCount', {
-              done: progress.completed.length,
-              total: CHESS_LESSONS.length,
-            })}
+            {progress.completed.length} / {CHESS_LESSONS.length}{' '}
+            {preferTamil ? 'பாடங்கள் முடிந்தது' : 'Lessons Completed'}
           </AppText>
           <View style={styles.starRow}>
-            {Array.from({length: Math.max(1, progress.stars)}).map((_, i) => (
-              <AppText key={`s${i}`} variant="title">
-                ★
-              </AppText>
-            ))}
-            {progress.stars === 0 ? (
-              <AppText variant="caption" tone="muted">
-                {t('chess.hub.earnStars')}
-              </AppText>
-            ) : null}
+            <Text style={styles.totalStarIcon}>★</Text>
+            <Text style={styles.totalStarText}>{progress.stars} Stars</Text>
           </View>
         </View>
 
+        {/* Action Buttons */}
         <PrimaryButton
-          label={t('chess.hub.playWithCoach')}
-          onPress={() => navigation.navigate('PlayWithCoach')}
-          testID="chess-play-coach"
-        />
-
-        <SecondaryButton
-          label={t('chess.hub.continueLesson', {
-            title: preferTamil ? nextLesson.titleTa : nextLesson.titleEn,
-          })}
+          label={
+            preferTamil
+              ? `கற்றலைத் தொடர்: ${nextLesson.titleTa}`
+              : `Continue: ${nextLesson.titleEn}`
+          }
           onPress={() =>
             navigation.navigate('Lesson', {lessonId: nextLesson.id})
           }
           testID="chess-start-lesson"
         />
 
-        <AppText variant="headline" tone="ink">
-          {t('chess.hub.lessonList')}
+        <SecondaryButton
+          label={preferTamil ? 'ஆசிரியருடன் விளையாடு' : 'Play With Coach'}
+          onPress={() => navigation.navigate('PlayWithCoach')}
+          testID="chess-play-coach"
+        />
+
+        <AppText variant="headline" tone="ink" style={styles.sectionHeading}>
+          {preferTamil
+            ? 'சதுரங்க பாடத்திட்டம் (12 Lessons)'
+            : 'Chess Curriculum (12 Lessons)'}
         </AppText>
 
+        {/* 12 Lessons Map */}
         {CHESS_LESSONS.map(lesson => {
           const unlocked = isLessonUnlocked(lesson.id, progress);
           const done = progress.completed.includes(lesson.id);
+          const earnedStars =
+            progress.lessonStars?.[lesson.id] ?? (done ? 3 : 0);
+
           const accent =
             lesson.id === 'pawn'
               ? '#FF9F1C'
@@ -159,6 +161,7 @@ export function ChessHubScreen({navigation}: Props) {
               : lesson.id === 'rook'
               ? '#0F8B8D'
               : '#3D9A5F';
+
           return (
             <Pressable
               key={lesson.id}
@@ -167,39 +170,61 @@ export function ChessHubScreen({navigation}: Props) {
               onPress={() =>
                 navigation.navigate('Lesson', {lessonId: lesson.id})
               }
-              style={[
+              style={({pressed}) => [
                 styles.lessonCard,
                 {
                   borderRadius: radius.lg,
                   backgroundColor: '#FFFFFF',
                   borderColor: accent,
-                  opacity: unlocked ? 1 : 0.45,
+                  opacity: unlocked ? 1 : 0.5,
                 },
+                pressed && unlocked && styles.cardPressed,
               ]}>
               <View
                 style={[
                   styles.lessonBadge,
-                  {backgroundColor: `${accent}33`, borderRadius: radius.md},
+                  {backgroundColor: `${accent}22`, borderRadius: radius.md},
                 ]}>
-                <AppText variant="headline" tone="ink">
-                  {lesson.order}
-                </AppText>
+                <Text style={styles.pieceSymbol}>
+                  {lesson.pieceSymbol ?? String(lesson.order)}
+                </Text>
               </View>
               <View style={styles.lessonText}>
-                <AppText variant="title" tone="ink">
-                  {preferTamil ? lesson.titleTa : lesson.titleEn}
-                </AppText>
+                <View style={styles.titleRow}>
+                  <AppText variant="title" tone="ink">
+                    {lesson.order}.{' '}
+                    {preferTamil ? lesson.titleTa : lesson.titleEn}
+                  </AppText>
+                </View>
                 <AppText variant="caption" tone="muted">
                   {preferTamil ? lesson.subtitleTa : lesson.subtitleEn}
                 </AppText>
+                {done && (
+                  <View style={styles.starsRatingRow}>
+                    {Array.from({length: 3}).map((_, sIdx) => (
+                      <Text
+                        key={`star-${sIdx}`}
+                        style={[
+                          styles.smallStar,
+                          sIdx < earnedStars && styles.smallStarEarned,
+                        ]}>
+                        ★
+                      </Text>
+                    ))}
+                  </View>
+                )}
               </View>
               <Chip
                 label={
                   done
-                    ? t('chess.hub.done')
+                    ? preferTamil
+                      ? 'மீண்டும் (Replay)'
+                      : 'Replay'
                     : unlocked
-                    ? t('chess.hub.play')
-                    : t('chess.hub.locked')
+                    ? preferTamil
+                      ? 'தொடங்கு'
+                      : 'Start'
+                    : '🔒 பூட்டப்பட்டது'
                 }
                 tone={done ? 'success' : unlocked ? 'sun' : 'locked'}
                 accentColor={accent}
@@ -230,10 +255,22 @@ const styles = StyleSheet.create({
   starRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 6,
+  },
+  totalStarIcon: {
+    fontSize: 20,
+    color: '#F59E0B',
+  },
+  totalStarText: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#1A2A4A',
   },
   center: {
     textAlign: 'center',
+  },
+  sectionHeading: {
+    marginTop: 8,
   },
   lessonCard: {
     borderWidth: 2,
@@ -242,14 +279,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: space.sm,
   },
+  cardPressed: {
+    transform: [{scale: 0.98}],
+  },
   lessonBadge: {
-    width: 44,
-    height: 44,
+    width: 48,
+    height: 48,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  pieceSymbol: {
+    fontSize: 26,
   },
   lessonText: {
     flex: 1,
     gap: 2,
+  },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  starsRatingRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 2,
+    marginTop: 2,
+  },
+  smallStar: {
+    fontSize: 14,
+    color: '#D1D5DB',
+  },
+  smallStarEarned: {
+    color: '#F59E0B',
   },
 });

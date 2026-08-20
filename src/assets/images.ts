@@ -56,7 +56,8 @@ export const chessBishop: ImageSourcePropType = require('./images/png/chess/ches
 export const chessPawn: ImageSourcePropType = require('./images/png/chess/chess_pawn.png');
 export const chessRook: ImageSourcePropType = require('./images/png/chess/chess_rook.png');
 
-/** Child profile avatars (cartoon animals). */
+/** Child profile avatars (cartoon animals & characters). */
+export const avatarGirl: ImageSourcePropType = require('./images/png/avatars/girl.png');
 export const avatarLion: ImageSourcePropType = require('./images/png/avatars/lion.png');
 export const avatarPanda: ImageSourcePropType = require('./images/png/avatars/panda.png');
 export const avatarRabbit: ImageSourcePropType = require('./images/png/avatars/rabbit.png');
@@ -69,6 +70,7 @@ export const avatarElephant: ImageSourcePropType = require('./images/png/avatars
 export const avatarOwl: ImageSourcePropType = require('./images/png/avatars/owl.png');
 
 export type ChildAvatarId =
+  | 'girl'
   | 'lion'
   | 'panda'
   | 'rabbit'
@@ -91,6 +93,7 @@ export type ChildAvatarDef = {
 
 /** At least 12 selectable cartoon avatars for profile setup. */
 export const CHILD_AVATARS: readonly ChildAvatarDef[] = [
+  {id: 'girl', label: 'Prabha', emoji: '👧', image: avatarGirl},
   {id: 'lion', label: 'Lion', emoji: '🦁', image: avatarLion},
   {id: 'panda', label: 'Panda', emoji: '🐼', image: avatarPanda},
   {id: 'rabbit', label: 'Rabbit', emoji: '🐰', image: avatarRabbit},
@@ -108,10 +111,10 @@ export const CHILD_AVATARS: readonly ChildAvatarDef[] = [
 export function getChildAvatar(id: string): ChildAvatarDef {
   return (
     CHILD_AVATARS.find(a => a.id === id) ?? {
-      id: 'lion',
-      label: 'Lion',
-      emoji: '🦁',
-      image: avatarLion,
+      id: 'girl',
+      label: 'Prabha',
+      emoji: '👧',
+      image: avatarGirl,
     }
   );
 }

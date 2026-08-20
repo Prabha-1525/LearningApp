@@ -6,20 +6,28 @@ import {CHESS_LESSONS} from '../domain/curriculum/lessons';
 
 const PROGRESS_KEY = StorageKeys.module('chess', 'lessonProgress');
 
+export type LessonStarMap = Partial<Record<ChessLessonId, number>>;
+
 export type ChessLessonProgress = {
   readonly completed: readonly ChessLessonId[];
   readonly stars: number;
+  readonly lessonStars?: LessonStarMap;
 };
 
 function read(): ChessLessonProgress {
   const raw = mmkvStorage.getString(PROGRESS_KEY);
   if (!raw) {
-    return {completed: [], stars: 0};
+    return {completed: [], stars: 0, lessonStars: {}};
   }
   try {
-    return JSON.parse(raw) as ChessLessonProgress;
+    const parsed = JSON.parse(raw) as ChessLessonProgress;
+    return {
+      completed: parsed.completed ?? [],
+      stars: parsed.stars ?? 0,
+      lessonStars: parsed.lessonStars ?? {},
+    };
   } catch {
-    return {completed: [], stars: 0};
+    return {completed: [], stars: 0, lessonStars: {}};
   }
 }
 
@@ -37,7 +45,6 @@ function write(progress: ChessLessonProgress): void {
   }
 }
 
-/** Replace entire chess progress blob (used when restoring from Firestore). */
 export function replaceChessLessonProgress(
   progress: ChessLessonProgress,
 ): void {
@@ -50,14 +57,31 @@ export function getChessLessonProgress(): ChessLessonProgress {
 
 export function markLessonComplete(
   lessonId: ChessLessonId,
+  starsEarned = 3,
 ): ChessLessonProgress {
   const current = read();
-  if (current.completed.includes(lessonId)) {
-    return current;
-  }
-  const completed = [...current.completed, lessonId];
-  const stars = Math.min(CHESS_LESSONS.length, completed.length);
-  const next = {completed, stars};
+  const alreadyCompleted = current.completed.includes(lessonId);
+  const completed = alreadyCompleted
+    ? current.completed
+    : [...current.completed, lessonId];
+
+  const prevStars = current.lessonStars?.[lessonId] ?? 0;
+  const newStarsForLesson = Math.max(prevStars, starsEarned);
+  const updatedLessonStars: LessonStarMap = {
+    ...(current.lessonStars ?? {}),
+    [lessonId]: newStarsForLesson,
+  };
+
+  const totalStars = Object.values(updatedLessonStars).reduce(
+    (sum, val) => sum + (val ?? 0),
+    0,
+  );
+
+  const next: ChessLessonProgress = {
+    completed,
+    stars: totalStars,
+    lessonStars: updatedLessonStars,
+  };
   write(next);
   return next;
 }
@@ -66,10 +90,10 @@ export function isLessonUnlocked(
   lessonId: ChessLessonId,
   progress = read(),
 ): boolean {
-  const order = CHESS_LESSONS.find(l => l.id === lessonId)?.order ?? 1;
-  if (order === 1) {
+  const target = CHESS_LESSONS.find(l => l.id === lessonId);
+  if (!target || target.order === 1) {
     return true;
   }
-  const previous = CHESS_LESSONS.find(l => l.order === order - 1);
+  const previous = CHESS_LESSONS.find(l => l.order === target.order - 1);
   return previous ? progress.completed.includes(previous.id) : true;
 }

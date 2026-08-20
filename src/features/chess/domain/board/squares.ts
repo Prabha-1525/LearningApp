@@ -1,5 +1,5 @@
 /**
- * Chess board helpers for the kid learning board (not a full rules engine).
+ * Chess board helpers for the kid learning board.
  */
 
 export const FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] as const;
@@ -22,6 +22,15 @@ export type PieceLetter =
   | 'b'
   | 'n'
   | 'p';
+
+export type PieceColor = 'white' | 'black';
+export type PieceType =
+  | 'pawn'
+  | 'rook'
+  | 'knight'
+  | 'bishop'
+  | 'queen'
+  | 'king';
 
 export type PieceMap = Partial<Record<Square, PieceLetter>>;
 
@@ -62,6 +71,42 @@ export function isLightSquare(sq: Square): boolean {
 
 export function emptyBoard(): PieceMap {
   return {};
+}
+
+export function makePiece(type: PieceType, color: PieceColor): PieceLetter {
+  const map: Record<PieceType, {white: PieceLetter; black: PieceLetter}> = {
+    pawn: {white: 'P', black: 'p'},
+    rook: {white: 'R', black: 'r'},
+    knight: {white: 'N', black: 'n'},
+    bishop: {white: 'B', black: 'b'},
+    queen: {white: 'Q', black: 'q'},
+    king: {white: 'K', black: 'k'},
+  };
+  return map[type][color];
+}
+
+export function pieceColor(piece: PieceLetter): PieceColor {
+  return piece === piece.toUpperCase() ? 'white' : 'black';
+}
+
+export function pieceType(piece: PieceLetter): PieceType {
+  const upper = piece.toUpperCase();
+  switch (upper) {
+    case 'P':
+      return 'pawn';
+    case 'R':
+      return 'rook';
+    case 'N':
+      return 'knight';
+    case 'B':
+      return 'bishop';
+    case 'Q':
+      return 'queen';
+    case 'K':
+      return 'king';
+    default:
+      return 'pawn';
+  }
 }
 
 /** Classic starting position — useful for board intro. */
