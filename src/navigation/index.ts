@@ -13,6 +13,7 @@ export type {TimeStackParamList} from './timeTypes';
 export type {CodingStackParamList} from './codingTypes';
 export type {RhymesStackParamList} from './rhymesTypes';
 export type {LifeSkillsStackParamList} from './lifeSkillsTypes';
+export type {GeneralKnowledgeStackParamList} from './generalKnowledgeTypes';
 
 export {AuthNavigator} from './AuthNavigator';
 export {MainNavigator} from './MainNavigator';
@@ -27,3 +28,4 @@ export {TimeNavigator} from './TimeNavigator';
 export {CodingNavigator} from './CodingNavigator';
 export {RhymesNavigator} from './RhymesNavigator';
 export {LifeSkillsNavigator} from './LifeSkillsNavigator';
+export {GeneralKnowledgeNavigator} from './GeneralKnowledgeNavigator';

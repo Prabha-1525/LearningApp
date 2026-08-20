@@ -8,6 +8,7 @@ import {registerTimeModule} from '@features/time';
 import {registerCodingModule} from '@features/coding';
 import {registerRhymesModule} from '@features/rhymes';
 import {registerLifeSkillsModule} from '@features/lifeSkills';
+import {registerGeneralKnowledgeModule} from '@features/generalKnowledge';
 import {featureFlags} from '@shared/config';
 
 import {createCatalogModule} from './createCatalogModule';
@@ -31,6 +32,7 @@ export function registerAllModules(): void {
   moduleRegistry.register(registerCodingModule());
   moduleRegistry.register(registerRhymesModule());
   moduleRegistry.register(registerLifeSkillsModule());
+  moduleRegistry.register(registerGeneralKnowledgeModule());
 
   moduleRegistry.register(
     createCatalogModule({

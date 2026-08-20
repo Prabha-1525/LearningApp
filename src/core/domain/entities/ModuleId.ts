@@ -22,6 +22,7 @@ export const ModuleId = {
   Story: 'story',
   Phonics: 'phonics',
   LifeSkills: 'lifeSkills',
+  GeneralKnowledge: 'generalKnowledge',
 } as const;
 
 export type ModuleId = (typeof ModuleId)[keyof typeof ModuleId];

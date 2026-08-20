@@ -16,6 +16,7 @@ export type FeatureFlags = {
   readonly storyEnabled: boolean;
   readonly phonicsEnabled: boolean;
   readonly lifeSkillsEnabled: boolean;
+  readonly generalKnowledgeEnabled: boolean;
 };
 
 /**
@@ -40,4 +41,5 @@ export const featureFlags: FeatureFlags = {
   storyEnabled: false,
   phonicsEnabled: false,
   lifeSkillsEnabled: true,
+  generalKnowledgeEnabled: true,
 };

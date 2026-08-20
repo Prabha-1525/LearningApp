@@ -156,4 +156,14 @@ export const HOME_SUBJECTS: readonly HomeSubjectDef[] = [
     progressPercent: 0,
     showNewBadge: true,
   },
+  {
+    id: 'generalKnowledge',
+    moduleId: ModuleId.GeneralKnowledge,
+    titleKey: 'modules.generalKnowledge.title',
+    image: null,
+    emoji: '🗣️',
+    backgroundColor: '#FEF3C7',
+    progressPercent: 0,
+    showNewBadge: true,
+  },
 ];

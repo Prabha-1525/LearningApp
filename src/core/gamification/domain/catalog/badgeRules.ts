@@ -43,6 +43,12 @@ export type BadgeEvalContext = {
   readonly hygieneHabitsMastered?: number;
   readonly mannersScenariosSolved?: number;
   readonly routinesSequenced?: number;
+  readonly gkLessonsCompleted?: number;
+  readonly gkStars?: number;
+  readonly gkCategoriesCompleted?: number;
+  readonly vehicleLessonsCompleted?: number;
+  readonly jobLessonsCompleted?: number;
+  readonly natureLessonsCompleted?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<string>;
 };
@@ -516,6 +522,52 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     evaluate: ctx =>
       (ctx.lifeSkillsTopicsCompleted ?? 0) >= 5 &&
       (ctx.lifeSkillsStars ?? 0) >= 15,
+  },
+  // ─── General Knowledge (GK) Badges ─────────────────────────────────────────
+  {
+    id: 'curious_kid',
+    badgeId: asBadgeId('badge.curious_kid'),
+    titleKey: 'generalKnowledge.badges.curiousKid',
+    descriptionKey: 'generalKnowledge.badges.curiousKidDesc',
+    icon: '🌟',
+    evaluate: ctx =>
+      (ctx.gkLessonsCompleted ?? 0) >= 4 || (ctx.gkStars ?? 0) >= 6,
+  },
+  {
+    id: 'vehicle_explorer',
+    badgeId: asBadgeId('badge.vehicle_explorer'),
+    titleKey: 'generalKnowledge.badges.vehicleExplorer',
+    descriptionKey: 'generalKnowledge.badges.vehicleExplorerDesc',
+    icon: '🚗',
+    evaluate: ctx =>
+      (ctx.vehicleLessonsCompleted ?? 0) >= 3 || (ctx.gkStars ?? 0) >= 8,
+  },
+  {
+    id: 'job_explorer',
+    badgeId: asBadgeId('badge.job_explorer'),
+    titleKey: 'generalKnowledge.badges.jobExplorer',
+    descriptionKey: 'generalKnowledge.badges.jobExplorerDesc',
+    icon: '👩‍⚕️',
+    evaluate: ctx =>
+      (ctx.jobLessonsCompleted ?? 0) >= 3 || (ctx.gkStars ?? 0) >= 10,
+  },
+  {
+    id: 'nature_explorer',
+    badgeId: asBadgeId('badge.nature_explorer'),
+    titleKey: 'generalKnowledge.badges.natureExplorer',
+    descriptionKey: 'generalKnowledge.badges.natureExplorerDesc',
+    icon: '🌳',
+    evaluate: ctx =>
+      (ctx.natureLessonsCompleted ?? 0) >= 3 || (ctx.gkStars ?? 0) >= 12,
+  },
+  {
+    id: 'gk_champion',
+    badgeId: asBadgeId('badge.gk_champion'),
+    titleKey: 'generalKnowledge.badges.gkChampion',
+    descriptionKey: 'generalKnowledge.badges.gkChampionDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      (ctx.gkCategoriesCompleted ?? 0) >= 4 && (ctx.gkStars ?? 0) >= 18,
   },
 ];
 
