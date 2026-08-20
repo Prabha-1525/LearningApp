@@ -15,6 +15,7 @@ export type FeatureFlags = {
   readonly rhymesEnabled: boolean;
   readonly storyEnabled: boolean;
   readonly phonicsEnabled: boolean;
+  readonly lifeSkillsEnabled: boolean;
 };
 
 /**
@@ -38,4 +39,5 @@ export const featureFlags: FeatureFlags = {
   rhymesEnabled: true,
   storyEnabled: false,
   phonicsEnabled: false,
+  lifeSkillsEnabled: true,
 };

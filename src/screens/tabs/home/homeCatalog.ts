@@ -146,4 +146,14 @@ export const HOME_SUBJECTS: readonly HomeSubjectDef[] = [
     image: homePhonicsIcon,
     progressPercent: 0,
   },
+  {
+    id: 'lifeSkills',
+    moduleId: ModuleId.LifeSkills,
+    titleKey: 'modules.lifeSkills.title',
+    image: null,
+    emoji: '😊',
+    backgroundColor: '#ECFDF5',
+    progressPercent: 0,
+    showNewBadge: true,
+  },
 ];

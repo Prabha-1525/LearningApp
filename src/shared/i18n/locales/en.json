@@ -139,6 +139,10 @@
       "title": "Phonics",
       "subtitle": "Sounds and letters"
     },
+    "lifeSkills": {
+      "title": "Life Skills",
+      "subtitle": "Hygiene, feelings, manners & safety"
+    },
     "brainGames": {
       "title": "Brain Games",
       "subtitle": "Train your brain with fun games!"
@@ -1959,6 +1963,297 @@
     "complete": {
       "title": "Music Maestro Star!",
       "backHome": "Rhymes & Music Hub 🏠"
+    }
+  },
+  "lifeSkills": {
+    "home": {
+      "subtitle": "Hygiene, Feelings, Manners & Good Habits",
+      "heroTitle": "Kind & Healthy Super Kid",
+      "sectionHeader": "Explore Life Skills Topics:"
+    },
+    "topics": {
+      "hygiene": {
+        "title": "Good Hygiene",
+        "sub": "Brush teeth, bubbly handwash & daily fresh habits"
+      },
+      "emotions": {
+        "title": "My Feelings",
+        "sub": "Understand happy, sad, angry, scared & calm feelings"
+      },
+      "manners": {
+        "title": "Good Manners",
+        "sub": "Magic words: Please, Thank you, Sorry & Excuse me"
+      },
+      "routine": {
+        "title": "Daily Routine",
+        "sub": "Morning sequence from waking up to school time"
+      },
+      "habits": {
+        "title": "Healthy Habits",
+        "sub": "Fruits, drinking water, playful exercise & sleep"
+      },
+      "safety": {
+        "title": "Personal Safety",
+        "sub": "Road crossing, helmets, family safety & awareness"
+      },
+      "quiz": {
+        "title": "Kind Star Arena",
+        "sub": "10 questions on kindness, manners & safe choices"
+      }
+    },
+    "hygiene": {
+      "brushTeeth": {
+        "title": "Brush Teeth Twice a Day",
+        "desc": "Brushing your teeth in the morning and before bed keeps your smile sparkling clean and strong!",
+        "tip": "Brush gently in small circles for 2 whole minutes!"
+      },
+      "washHands": {
+        "title": "Wash Hands with Soap",
+        "desc": "Washing hands with soap and water before eating and after playing washes away all germs!",
+        "tip": "Sing 'Happy Birthday' or count to 20 while scrubbing bubbles!"
+      },
+      "dailyBath": {
+        "title": "Take a Fresh Daily Bath",
+        "desc": "A warm bath or shower washes away sweat and dirt so you feel fresh and energetic all day!",
+        "tip": "Wash all over and dry thoroughly with a soft clean towel!"
+      },
+      "cleanClothes": {
+        "title": "Wear Clean Clothes",
+        "desc": "Wearing fresh, washed clothes every morning protects your skin and keeps you smelling nice!",
+        "tip": "Place dirty clothes in the laundry basket like a helpful champ!"
+      },
+      "coverCough": {
+        "title": "Cover Coughs & Sneezes",
+        "desc": "Cover your mouth with your elbow or tissue when coughing to keep your friends and family healthy!",
+        "tip": "The elbow shield is the superhero way to stop germs from spreading!"
+      },
+      "combHair": {
+        "title": "Comb & Tidy Your Hair",
+        "desc": "Gently brushing or combing your hair keeps it neat, untangled, and tidy for school!",
+        "tip": "Always keep your hairbrush clean and in its proper place!"
+      }
+    },
+    "emotions": {
+      "tabWheel": "Explore Emotions",
+      "tabScenarios": "Feeling Scenarios",
+      "happy": {
+        "name": "Happy",
+        "desc": "You feel joyful, smiling, and full of sunshine inside!",
+        "tip": "Share your smile and do fun activities with family and friends!"
+      },
+      "sad": {
+        "name": "Sad",
+        "desc": "You might feel like crying or sitting quietly when something hurts or is lost.",
+        "tip": "It is okay to cry. Asking for a warm hug from someone you love helps so much!"
+      },
+      "angry": {
+        "name": "Angry",
+        "desc": "Your heart beats fast and your face might feel hot when things feel unfair.",
+        "tip": "Take 3 deep slow breaths: smell the flowers, blow out the birthday candles!"
+      },
+      "scared": {
+        "name": "Scared",
+        "desc": "You might feel jumpy or want to hide when something seems spooky or new.",
+        "tip": "Hold a grown-up's hand or talk to a parent. You are safe!"
+      },
+      "tired": {
+        "name": "Tired",
+        "desc": "Your eyes feel heavy and your body has low energy after playing hard.",
+        "tip": "Drink a sip of water, rest on your cozy bed, and take a peaceful nap!"
+      },
+      "calm": {
+        "name": "Calm",
+        "desc": "Your body is relaxed, your mind is peaceful, and everything feels quiet and safe.",
+        "tip": "Enjoy listening to birds singing, drawing pictures, or reading a nice book!"
+      }
+    },
+    "scenarios": {
+      "s1Story": "Anya receives a surprise birthday gift with her favorite toy inside!",
+      "s1Expl": "Anya feels super Happy 😀 and excited!",
+      "s2Story": "Leo accidentally drops his favorite drawing in a puddle of water.",
+      "s2Expl": "Leo feels Sad 😢, which is completely natural.",
+      "s3Story": "Maya's tower of blocks is knocked over before she could show her family.",
+      "s3Expl": "Maya feels Angry 😡, but taking deep breaths will help her feel better.",
+      "s4Story": "There is a sudden loud thunder sound outside the window during rain.",
+      "s4Expl": "The loud noise can make a child feel Scared 😨.",
+      "s5Story": "Sam played soccer at the playground all afternoon in the park.",
+      "s5Expl": "After running and playing, Sam feels Tired 😴 and ready to rest.",
+      "s6Story": "Mia is curled up in a cozy beanbag reading her favorite picture storybook.",
+      "s6Expl": "Mia feels peaceful, relaxed, and Calm 😌."
+    },
+    "manners": {
+      "m1Title": "Asking for a Snack",
+      "m1Story": "You are sitting at the table and want a glass of milk from mom.",
+      "m2Title": "Receiving a Gift",
+      "m2Story": "Your friend gives you a shiny birthday sticker.",
+      "m3Title": "Accidental Bump",
+      "m3Story": "You were running and accidentally bumped into your classmate's desk.",
+      "m4Title": "Walking Through a Door",
+      "m4Story": "Two adults are talking and blocking the doorway you need to walk past.",
+      "m5Title": "Playing with Toys",
+      "m5Story": "You have two toy race cars and your little brother wants to play too.",
+      "m6Title": "The Playground Slide",
+      "m6Story": "Three children are standing in front of you waiting for the big slide.",
+      "pleaseWord": "Say: 'May I please have some milk?'",
+      "giveNow": "Shout: 'Give me milk right now!'",
+      "pleaseFeedback": "Saying 'Please' is a wonderful magic word that shows respect!",
+      "politeHint": "Using the magic word 'Please' makes people happy to help you.",
+      "thankYouWord": "Say: 'Thank you so much!' with a smile",
+      "walkAway": "Take it and walk away without saying anything",
+      "thankYouFeedback": "'Thank you' shows gratitude and makes your friend feel appreciated!",
+      "thankYouHint": "Saying 'Thank you' shows love and kindness for gifts.",
+      "sorryWord": "Say: 'I am so sorry! Are you okay?'",
+      "blameOther": "Pretend nothing happened or blame someone else",
+      "sorryFeedback": "Saying 'Sorry' bravely fixes mistakes and heals feelings!",
+      "sorryHint": "Apologizing with 'Sorry' is how super kids take responsibility.",
+      "excuseMeWord": "Say: 'Excuse me please, may I pass?'",
+      "pushThrough": "Push right through them with your elbows",
+      "excuseFeedback": "'Excuse me' is the gentle, polite way to walk through or ask for attention!",
+      "excuseHint": "Saying 'Excuse me' is gentle and avoids bumping into others.",
+      "shareToys": "Share one car: 'Let's race together!'",
+      "keepAll": "Hide both cars and refuse to share",
+      "shareFeedback": "Sharing toys doubles the fun and builds great friendships!",
+      "shareHint": "Sharing creates happy smiles for everyone.",
+      "waitTurn": "Stand in line patiently and wait for your turn",
+      "cutLine": "Push to the front and skip the line",
+      "turnFeedback": "Taking turns is fair and keeps everyone safe and smiling!",
+      "turnHint": "Patiently waiting for your turn is a fantastic superpower."
+    },
+    "routine": {
+      "instruction": "Arrange Your Morning Routine!",
+      "wakeUp": "Wake Up Fresh 🌅",
+      "brushTeeth": "Brush Teeth 🪥",
+      "takeBath": "Take a Bath 🚿",
+      "getDressed": "Get Dressed 👕",
+      "eatBreakfast": "Eat Breakfast 🥣",
+      "goToSchool": "Go to School 🎒"
+    },
+    "habits": {
+      "fruitsVeggies": {
+        "title": "Eat Colorful Fruits & Veggies",
+        "desc": "Crunchy apples, carrots, and bananas give your body vitamins and superpowers!"
+      },
+      "drinkWater": {
+        "title": "Drink Fresh Water",
+        "desc": "Water keeps your brain sharp, cool, and refreshed throughout the day!"
+      },
+      "goodSleep": {
+        "title": "Get 9-10 Hours of Sleep",
+        "desc": "Going to bed on time helps your body grow taller and rest your brain!"
+      },
+      "activePlay": {
+        "title": "Active Movement & Play",
+        "desc": "Running, jumping, dancing, and playing games make your heart and muscles strong!"
+      },
+      "healthyBreakfast": {
+        "title": "Nutritious Breakfast",
+        "desc": "A morning meal gives you the energy to learn, play, and smile all morning!"
+      },
+      "outdoorSun": {
+        "title": "Fresh Air & Sunshine",
+        "desc": "Playing outside in nature helps you absorb natural vitamin D and feel cheerful!"
+      }
+    },
+    "safety": {
+      "crossRoad": {
+        "title": "Crossing the Street",
+        "rule": "Always hold a grown-up's hand. Stop, look left and right before crossing!",
+        "choice": "Cross at pedestrian zebra crossings with an adult."
+      },
+      "bikeHelmet": {
+        "title": "Bicycle & Scooter Helmet",
+        "rule": "Always strap on your helmet before riding your bicycle or scooter.",
+        "choice": "Protect your head every time you ride wheels."
+      },
+      "stayClose": {
+        "title": "Staying Near Family in Crowds",
+        "rule": "In malls, markets, or parks, always stay right by your parent's side.",
+        "choice": "Hold hands or keep your family in clear sight."
+      },
+      "hotStove": {
+        "title": "Kitchen & Hot Stoves",
+        "rule": "Never touch hot pots, pans, ovens, or matchsticks in the kitchen.",
+        "choice": "Keep a safe distance from cooking stoves."
+      },
+      "waterSafety": {
+        "title": "Swimming & Water Safety",
+        "rule": "Never swim alone. Always have an adult watching you by the water.",
+        "choice": "Wear floaties and follow lifeguard instructions."
+      },
+      "sharpObjects": {
+        "title": "Scissors & Tools",
+        "rule": "Use child-safe scissors and never run while holding pens or tools.",
+        "choice": "Always carry scissors pointing downwards with care."
+      }
+    },
+    "quiz": {
+      "q1": "When should you brush your teeth?",
+      "q1Opt1": "Twice a day: in the morning and before bed (🪥)",
+      "q1Opt2": "Only on your birthday (🍭)",
+      "q1Opt3": "Never brush them (😴)",
+      "q1Expl": "Brushing in the morning and at night keeps teeth cavity-free 🪥!",
+      "q2": "What should you use to wash away germs on your hands?",
+      "q2Opt1": "Soap and water for 20 seconds (🧼)",
+      "q2Opt2": "Just wipe hands on your shirt (👕)",
+      "q2Opt3": "Wave hands in the air (🏃)",
+      "q2Expl": "Soap and warm water wash away germs completely 🧼!",
+      "q3": "What magic word do you say when someone gives you a gift?",
+      "q3Opt1": "Thank you! (💖)",
+      "q3Opt2": "Nothing at all (🙈)",
+      "q3Opt3": "Give me more! (😠)",
+      "q3Expl": "'Thank you' shows love and appreciation 🙏!",
+      "q4": "What is a kind way to play with toys when friends are around?",
+      "q4Opt1": "Share and take turns happily (🤝)",
+      "q4Opt2": "Hide all toys in a cupboard (🔒)",
+      "q4Opt3": "Run away with all the toys (🏃)",
+      "q4Expl": "Sharing toys makes playtime fun for everyone 🧸!",
+      "q5": "If your friend is feeling sad, what can you do?",
+      "q5Opt1": "Offer a kind word, listening ear, or a hug (🤗)",
+      "q5Opt2": "Laugh at them (😆)",
+      "q5Opt3": "Ignore them completely (🏃)",
+      "q5Expl": "Kindness and empathy comfort our friends ❤️!",
+      "q6": "How should you cover your mouth when sneezing?",
+      "q6Opt1": "Inside your elbow or with a tissue (💪)",
+      "q6Opt2": "Sneeze directly into the air (💨)",
+      "q6Opt3": "Sneeze at someone's face (🙈)",
+      "q6Expl": "The elbow shield blocks germs from spreading 🤧!",
+      "q7": "How do you cross a street safely?",
+      "q7Opt1": "Hold an adult's hand and look both ways (🤝 🚦)",
+      "q7Opt2": "Run across with your eyes closed (🏃 💨)",
+      "q7Opt3": "Cross without looking (🙈)",
+      "q7Expl": "Always hold hands, stop, look, and listen 🚦!",
+      "q8": "Why are fruits and vegetables good for your body?",
+      "q8Opt1": "They give you vitamins, energy, and strong muscles (💪 🌟)",
+      "q8Opt2": "They make you super sleepy instantly (😴)",
+      "q8Opt3": "They have no purpose (👎)",
+      "q8Expl": "Nutritious foods help your body grow strong 🍎 🥦!",
+      "q9": "What comes right after waking up in your morning routine?",
+      "q9Opt1": "Brush your teeth and wash your face (🪥 ✨)",
+      "q9Opt2": "Run out the door without shoes (🎒 🏫)",
+      "q9Opt3": "Go back to sleep forever (😴)",
+      "q9Expl": "Brushing teeth is the first fresh morning step 🪥!",
+      "q10": "What must you wear on your head when riding a bicycle?",
+      "q10Opt1": "A safety helmet (⛑️)",
+      "q10Opt2": "A party hat (🧢)",
+      "q10Opt3": "Nothing at all (🚫)",
+      "q10Expl": "A helmet protects your head every single ride 🚲 ⛑️!",
+      "completeTitle": "Life Skills Star Finished!"
+    },
+    "badges": {
+      "kindKid": "Kind Kid",
+      "kindKidDesc": "Practiced empathy, feelings, and polite magic words",
+      "cleanHabits": "Clean Habits",
+      "cleanHabitsDesc": "Mastered daily hygiene and cleanliness steps",
+      "caringFriend": "Caring Friend",
+      "caringFriendDesc": "Showed sharing, polite manners, and turn-taking",
+      "goodHelper": "Good Helper",
+      "goodHelperDesc": "Organized and sequenced the full daily routine",
+      "lifeSkillsStar": "Life Skills Star",
+      "lifeSkillsStarDesc": "Mastered all life skills and aced the arena"
+    },
+    "complete": {
+      "title": "Kind Life Skills Star!",
+      "backHome": "Life Skills Hub 🏠"
     }
   }
 }

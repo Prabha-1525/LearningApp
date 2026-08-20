@@ -38,6 +38,11 @@ export type BadgeEvalContext = {
   readonly soundGuessesCorrect?: number;
   readonly musicTopicsCompleted?: number;
   readonly musicStars?: number;
+  readonly lifeSkillsTopicsCompleted?: number;
+  readonly lifeSkillsStars?: number;
+  readonly hygieneHabitsMastered?: number;
+  readonly mannersScenariosSolved?: number;
+  readonly routinesSequenced?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<string>;
 };
@@ -462,6 +467,55 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     icon: '🎶',
     evaluate: ctx =>
       (ctx.musicTopicsCompleted ?? 0) >= 5 && (ctx.musicStars ?? 0) >= 12,
+  },
+  // ─── Life Skills Badges ───────────────────────────────────────────────────
+  {
+    id: 'kind_kid',
+    badgeId: asBadgeId('badge.kind_kid'),
+    titleKey: 'lifeSkills.badges.kindKid',
+    descriptionKey: 'lifeSkills.badges.kindKidDesc',
+    icon: '😊',
+    evaluate: ctx =>
+      (ctx.mannersScenariosSolved ?? 0) >= 2 ||
+      (ctx.lifeSkillsTopicsCompleted ?? 0) >= 1,
+  },
+  {
+    id: 'clean_habits',
+    badgeId: asBadgeId('badge.clean_habits'),
+    titleKey: 'lifeSkills.badges.cleanHabits',
+    descriptionKey: 'lifeSkills.badges.cleanHabitsDesc',
+    icon: '🪥',
+    evaluate: ctx =>
+      (ctx.hygieneHabitsMastered ?? 0) >= 4 || (ctx.lifeSkillsStars ?? 0) >= 4,
+  },
+  {
+    id: 'caring_friend',
+    badgeId: asBadgeId('badge.caring_friend'),
+    titleKey: 'lifeSkills.badges.caringFriend',
+    descriptionKey: 'lifeSkills.badges.caringFriendDesc',
+    icon: '❤️',
+    evaluate: ctx =>
+      (ctx.mannersScenariosSolved ?? 0) >= 4 ||
+      (ctx.lifeSkillsTopicsCompleted ?? 0) >= 3,
+  },
+  {
+    id: 'good_helper',
+    badgeId: asBadgeId('badge.good_helper'),
+    titleKey: 'lifeSkills.badges.goodHelper',
+    descriptionKey: 'lifeSkills.badges.goodHelperDesc',
+    icon: '🤝',
+    evaluate: ctx =>
+      (ctx.routinesSequenced ?? 0) >= 2 || (ctx.lifeSkillsStars ?? 0) >= 8,
+  },
+  {
+    id: 'life_skills_star',
+    badgeId: asBadgeId('badge.life_skills_star'),
+    titleKey: 'lifeSkills.badges.lifeSkillsStar',
+    descriptionKey: 'lifeSkills.badges.lifeSkillsStarDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      (ctx.lifeSkillsTopicsCompleted ?? 0) >= 5 &&
+      (ctx.lifeSkillsStars ?? 0) >= 15,
   },
 ];
 
