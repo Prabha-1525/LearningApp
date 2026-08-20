@@ -42,7 +42,8 @@ describe('Science Module', () => {
     expect(WEATHER_TYPES.length).toBeGreaterThanOrEqual(5);
     expect(FLOAT_EXPERIMENT_ITEMS.length).toBeGreaterThanOrEqual(6);
     expect(COLOR_MIXES.length).toBeGreaterThanOrEqual(3);
-    expect(SCIENCE_QUIZ_QUESTIONS.length).toBeGreaterThanOrEqual(6);
+    expect(SCIENCE_QUIZ_QUESTIONS).toHaveLength(20);
+    expect(SCIENCE_QUIZ_QUESTIONS.map(q => q.id)).toContain('sq-20');
   });
 
   it('unlocks all science topics for young learners', () => {

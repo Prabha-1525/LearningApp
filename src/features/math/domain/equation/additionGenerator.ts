@@ -287,9 +287,7 @@ export function buildAdditionDistractors(
 
   if (lessonIndex === 4 && onesSum >= 10) {
     // Classic carry miss: add tens only, keep ones digit without +1 ten
-    candidates.add(
-      (leftDigits.tens + rightDigits.tens) * 10 + (onesSum % 10),
-    );
+    candidates.add((leftDigits.tens + rightDigits.tens) * 10 + (onesSum % 10));
   }
 
   return shuffle(

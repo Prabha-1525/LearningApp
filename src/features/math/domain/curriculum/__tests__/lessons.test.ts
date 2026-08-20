@@ -2,10 +2,11 @@ import {MATH_LESSONS, MATH_ADVENTURE_TOPICS, getLesson} from '../index';
 import {isLessonUnlocked} from '../../../data/mathProgress';
 
 describe('math curriculum', () => {
-  it('includes fourteen lessons with intros', () => {
-    expect(MATH_LESSONS).toHaveLength(14);
+  it('includes fifteen lessons with intros', () => {
+    expect(MATH_LESSONS).toHaveLength(15);
     expect(MATH_LESSONS[0]?.id).toBe('numbers');
-    expect(MATH_LESSONS[13]?.id).toBe('practice');
+    expect(MATH_LESSONS[13]?.id).toBe('money');
+    expect(MATH_LESSONS[14]?.id).toBe('practice');
     for (const lesson of MATH_LESSONS) {
       expect(lesson.introTa.length).toBeGreaterThan(0);
       expect(lesson.introEn.length).toBeGreaterThan(0);

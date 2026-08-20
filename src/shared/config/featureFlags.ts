@@ -6,6 +6,7 @@ export type FeatureFlags = {
   readonly englishEnabled: boolean;
   readonly tamilEnabled: boolean;
   readonly scienceEnabled: boolean;
+  readonly timeEnabled: boolean;
   readonly memoryEnabled: boolean;
   readonly drawingEnabled: boolean;
   readonly shapesEnabled: boolean;
@@ -27,6 +28,7 @@ export const featureFlags: FeatureFlags = {
   englishEnabled: false,
   tamilEnabled: false,
   scienceEnabled: true,
+  timeEnabled: true,
   memoryEnabled: false,
   drawingEnabled: false,
   shapesEnabled: false,

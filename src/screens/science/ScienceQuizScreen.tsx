@@ -21,14 +21,16 @@ type Nav = NativeStackNavigationProp<ScienceStackParamList, 'ScienceQuiz'>;
 export function ScienceQuizScreen() {
   const {t} = useTranslation();
   const navigation = useNavigation<Nav>();
+  const [questions] = useState(() =>
+    [...SCIENCE_QUIZ_QUESTIONS].sort(() => Math.random() - 0.5),
+  );
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [score, setScore] = useState(0);
 
-  const total = SCIENCE_QUIZ_QUESTIONS.length;
-  const currentQ =
-    SCIENCE_QUIZ_QUESTIONS[currentIdx] ?? SCIENCE_QUIZ_QUESTIONS[0];
+  const total = questions.length;
+  const currentQ = questions[currentIdx] ?? questions[0]!;
 
   const handleSelectOption = (optionId: string, isCorrect: boolean) => {
     setSelectedOptionId(optionId);

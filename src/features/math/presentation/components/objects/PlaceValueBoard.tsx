@@ -26,7 +26,9 @@ function BlockRow({
 }) {
   const visible = Math.min(count, maxVisible);
   const size =
-    kind === 'hundred' ? {width: 28, height: 28} : kind === 'ten'
+    kind === 'hundred'
+      ? {width: 28, height: 28}
+      : kind === 'ten'
       ? {width: 12, height: 36}
       : {width: 14, height: 14};
 
@@ -65,7 +67,9 @@ function PlaceRow({
 }) {
   return (
     <View style={styles.placeRow}>
-      {operator ? <Text style={styles.op}>{operator}</Text> : (
+      {operator ? (
+        <Text style={styles.op}>{operator}</Text>
+      ) : (
         <View style={styles.opSpacer} />
       )}
       <Text style={styles.numberLabel}>{value}</Text>
@@ -73,11 +77,7 @@ function PlaceRow({
         {showHundreds ? (
           <View style={styles.column}>
             <Text style={styles.columnTitle}>H</Text>
-            <BlockRow
-              count={digits.hundreds}
-              color="#7C3AED"
-              kind="hundred"
-            />
+            <BlockRow count={digits.hundreds} color="#7C3AED" kind="hundred" />
             <Text style={styles.digitLabel}>{digits.hundreds}</Text>
           </View>
         ) : null}
@@ -116,11 +116,7 @@ export function PlaceValueBoard({
         {showHundreds ? 'Hundreds · Tens · Ones' : 'Tens · Ones'}
       </Text>
 
-      <PlaceRow
-        value={left}
-        digits={leftDigits}
-        showHundreds={showHundreds}
-      />
+      <PlaceRow value={left} digits={leftDigits} showHundreds={showHundreds} />
       <PlaceRow
         value={right}
         digits={rightDigits}

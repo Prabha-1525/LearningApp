@@ -74,6 +74,16 @@ export const HOME_SUBJECTS: readonly HomeSubjectDef[] = [
     showNewBadge: true,
   },
   {
+    id: 'time',
+    moduleId: ModuleId.Time,
+    titleKey: 'modules.time.title',
+    image: null,
+    emoji: '🕐',
+    backgroundColor: '#F0F9FF',
+    progressPercent: 0,
+    showNewBadge: true,
+  },
+  {
     id: 'english',
     moduleId: ModuleId.English,
     titleKey: 'modules.english.title',

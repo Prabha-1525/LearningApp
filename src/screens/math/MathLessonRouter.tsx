@@ -9,6 +9,7 @@ import {CountingScreen} from './CountingScreen';
 import {LearnNumbersScreen} from './LearnNumbersScreen';
 import {MathLessonScreen} from './MathLessonScreen';
 import {MissingNumberScreen} from './MissingNumberScreen';
+import {MoneyLessonScreen} from './MoneyLessonScreen';
 import {OddEvenScreen} from './OddEvenScreen';
 import type {MathStackParamList} from '@navigation/mathTypes';
 
@@ -42,6 +43,9 @@ export function MathLessonRouter(props: Props) {
   }
   if (lessonId === 'odd-even') {
     return <OddEvenScreen {...props} />;
+  }
+  if (lessonId === 'money') {
+    return <MoneyLessonScreen {...props} />;
   }
   return <MathLessonScreen {...props} />;
 }

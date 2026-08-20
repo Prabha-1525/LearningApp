@@ -141,9 +141,7 @@ export function recordEquationLessonStars(
 
 export function equationCompletionPercent(mode: EquationMode): number {
   const total = getEquationLessonCount(mode);
-  return Math.round(
-    (read(mode).completedLessonIndexes.length / total) * 100,
-  );
+  return Math.round((read(mode).completedLessonIndexes.length / total) * 100);
 }
 
 export function nextEquationLessonIndex(mode: EquationMode): number {

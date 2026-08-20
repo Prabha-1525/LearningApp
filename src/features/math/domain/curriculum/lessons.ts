@@ -160,8 +160,22 @@ export const MATH_LESSONS: readonly MathLesson[] = [
     introEn: 'Look at the pattern and find what comes next!',
   },
   {
-    id: 'practice',
+    id: 'money',
     order: 14,
+    icon: '💰',
+    accent: '#10B981',
+    titleTa: 'பணம் & நாணயங்கள்',
+    titleEn: 'Money Explorer',
+    subtitleTa: 'நாணயங்கள், நோட்டுகள் & கடை',
+    subtitleEn: 'Coins, notes & shopping',
+    introTa:
+      'வணக்கம்! இன்று நாம் இந்திய நாணயங்கள் மற்றும் நோட்டுகளைக் கொண்டு கணக்கிடவும் கடையில் வாங்கவும் கற்போம்!',
+    introEn:
+      'Hello! Today we learn Indian coins, notes, counting money, and shopping!',
+  },
+  {
+    id: 'practice',
+    order: 15,
     icon: '🏆',
     accent: '#F4B400',
     titleTa: 'பயிற்சி மண்டலம்',

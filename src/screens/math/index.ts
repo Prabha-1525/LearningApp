@@ -7,3 +7,4 @@ export {MathLessonRouter} from './MathLessonRouter';
 export {MathLessonScreen} from './MathLessonScreen';
 export {MissingNumberScreen} from './MissingNumberScreen';
 export {OddEvenScreen} from './OddEvenScreen';
+export {MoneyLessonScreen} from './MoneyLessonScreen';

@@ -81,7 +81,9 @@ export type EquationQuestion = {
   }[];
 };
 
-function additionLessonAsEquation(lesson: AdditionLessonDef): EquationLessonDef {
+function additionLessonAsEquation(
+  lesson: AdditionLessonDef,
+): EquationLessonDef {
   return {
     index: lesson.index,
     titleEn: lesson.titleEn,

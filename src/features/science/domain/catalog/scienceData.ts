@@ -867,4 +867,299 @@ export const SCIENCE_QUIZ_QUESTIONS: readonly ScienceQuizQuestion[] = [
     ],
     explanationKey: 'science.quiz.q8.exp',
   },
+  {
+    id: 'sq-9',
+    questionKey: 'science.quiz.q9',
+    options: [
+      {id: 'o1', emoji: '🌱', textKey: 'science.quiz.q9.opt1', isCorrect: true},
+      {
+        id: 'o2',
+        emoji: '🌸',
+        textKey: 'science.quiz.q9.opt2',
+        isCorrect: false,
+      },
+      {
+        id: 'o3',
+        emoji: '🍃',
+        textKey: 'science.quiz.q9.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q9.exp',
+  },
+  {
+    id: 'sq-10',
+    questionKey: 'science.quiz.q10',
+    options: [
+      {
+        id: 'o1',
+        emoji: '🧠',
+        textKey: 'science.quiz.q10.opt1',
+        isCorrect: true,
+      },
+      {
+        id: 'o2',
+        emoji: '🦵',
+        textKey: 'science.quiz.q10.opt2',
+        isCorrect: false,
+      },
+      {
+        id: 'o3',
+        emoji: '🦶',
+        textKey: 'science.quiz.q10.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q10.exp',
+  },
+  {
+    id: 'sq-11',
+    questionKey: 'science.quiz.q11',
+    options: [
+      {
+        id: 'o1',
+        emoji: '🔴',
+        textKey: 'science.quiz.q11.opt1',
+        isCorrect: false,
+      },
+      {
+        id: 'o2',
+        emoji: '🌍',
+        textKey: 'science.quiz.q11.opt2',
+        isCorrect: true,
+      },
+      {
+        id: 'o3',
+        emoji: '🪐',
+        textKey: 'science.quiz.q11.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q11.exp',
+  },
+  {
+    id: 'sq-12',
+    questionKey: 'science.quiz.q12',
+    options: [
+      {
+        id: 'o1',
+        emoji: '🦜',
+        textKey: 'science.quiz.q12.opt1',
+        isCorrect: true,
+      },
+      {
+        id: 'o2',
+        emoji: '🐘',
+        textKey: 'science.quiz.q12.opt2',
+        isCorrect: false,
+      },
+      {
+        id: 'o3',
+        emoji: '🐍',
+        textKey: 'science.quiz.q12.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q12.exp',
+  },
+  {
+    id: 'sq-13',
+    questionKey: 'science.quiz.q13',
+    options: [
+      {
+        id: 'o1',
+        emoji: '💨',
+        textKey: 'science.quiz.q13.opt1',
+        isCorrect: false,
+      },
+      {
+        id: 'o2',
+        emoji: '🧊',
+        textKey: 'science.quiz.q13.opt2',
+        isCorrect: true,
+      },
+      {
+        id: 'o3',
+        emoji: '🪨',
+        textKey: 'science.quiz.q13.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q13.exp',
+  },
+  {
+    id: 'sq-14',
+    questionKey: 'science.quiz.q14',
+    options: [
+      {
+        id: 'o1',
+        emoji: '3️⃣',
+        textKey: 'science.quiz.q14.opt1',
+        isCorrect: false,
+      },
+      {
+        id: 'o2',
+        emoji: '7️⃣',
+        textKey: 'science.quiz.q14.opt2',
+        isCorrect: true,
+      },
+      {
+        id: 'o3',
+        emoji: '🔟',
+        textKey: 'science.quiz.q14.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q14.exp',
+  },
+  {
+    id: 'sq-15',
+    questionKey: 'science.quiz.q15',
+    options: [
+      {
+        id: 'o1',
+        emoji: '🐄',
+        textKey: 'science.quiz.q15.opt1',
+        isCorrect: true,
+      },
+      {
+        id: 'o2',
+        emoji: '🦁',
+        textKey: 'science.quiz.q15.opt2',
+        isCorrect: false,
+      },
+      {
+        id: 'o3',
+        emoji: '🦈',
+        textKey: 'science.quiz.q15.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q15.exp',
+  },
+  {
+    id: 'sq-16',
+    questionKey: 'science.quiz.q16',
+    options: [
+      {
+        id: 'o1',
+        emoji: '🫁',
+        textKey: 'science.quiz.q16.opt1',
+        isCorrect: true,
+      },
+      {
+        id: 'o2',
+        emoji: '🦴',
+        textKey: 'science.quiz.q16.opt2',
+        isCorrect: false,
+      },
+      {
+        id: 'o3',
+        emoji: '🦶',
+        textKey: 'science.quiz.q16.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q16.exp',
+  },
+  {
+    id: 'sq-17',
+    questionKey: 'science.quiz.q17',
+    options: [
+      {
+        id: 'o1',
+        emoji: '🟢',
+        textKey: 'science.quiz.q17.opt1',
+        isCorrect: true,
+      },
+      {
+        id: 'o2',
+        emoji: '🟣',
+        textKey: 'science.quiz.q17.opt2',
+        isCorrect: false,
+      },
+      {
+        id: 'o3',
+        emoji: '🟠',
+        textKey: 'science.quiz.q17.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q17.exp',
+  },
+  {
+    id: 'sq-18',
+    questionKey: 'science.quiz.q18',
+    options: [
+      {
+        id: 'o1',
+        emoji: '🌱',
+        textKey: 'science.quiz.q18.opt1',
+        isCorrect: true,
+      },
+      {
+        id: 'o2',
+        emoji: '☁️',
+        textKey: 'science.quiz.q18.opt2',
+        isCorrect: false,
+      },
+      {
+        id: 'o3',
+        emoji: '🪨',
+        textKey: 'science.quiz.q18.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q18.exp',
+  },
+  {
+    id: 'sq-19',
+    questionKey: 'science.quiz.q19',
+    options: [
+      {
+        id: 'o1',
+        emoji: '🧲',
+        textKey: 'science.quiz.q19.opt1',
+        isCorrect: true,
+      },
+      {
+        id: 'o2',
+        emoji: '✏️',
+        textKey: 'science.quiz.q19.opt2',
+        isCorrect: false,
+      },
+      {
+        id: 'o3',
+        emoji: '🪵',
+        textKey: 'science.quiz.q19.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q19.exp',
+  },
+  {
+    id: 'sq-20',
+    questionKey: 'science.quiz.q20',
+    options: [
+      {
+        id: 'o1',
+        emoji: '🌙',
+        textKey: 'science.quiz.q20.opt1',
+        isCorrect: true,
+      },
+      {
+        id: 'o2',
+        emoji: '☀️',
+        textKey: 'science.quiz.q20.opt2',
+        isCorrect: false,
+      },
+      {
+        id: 'o3',
+        emoji: '🌈',
+        textKey: 'science.quiz.q20.opt3',
+        isCorrect: false,
+      },
+    ],
+    explanationKey: 'science.quiz.q20.exp',
+  },
 ];

@@ -12,6 +12,7 @@ export type MathLessonId =
   | 'colors'
   | 'big-small'
   | 'patterns'
+  | 'money'
   | 'practice';
 
 export type MathHubActivityId =
@@ -114,6 +115,7 @@ export function isMathLessonId(value: string): value is MathLessonId {
     value === 'colors' ||
     value === 'big-small' ||
     value === 'patterns' ||
+    value === 'money' ||
     value === 'practice'
   );
 }

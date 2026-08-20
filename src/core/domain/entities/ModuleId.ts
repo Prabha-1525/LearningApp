@@ -12,6 +12,7 @@ export const ModuleId = {
   English: 'english',
   Tamil: 'tamil',
   Science: 'science',
+  Time: 'time',
   Memory: 'memory',
   Drawing: 'drawing',
   Shapes: 'shapes',

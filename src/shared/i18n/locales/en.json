@@ -103,6 +103,10 @@
       "title": "Science",
       "subtitle": "Discover how things work"
     },
+    "time": {
+      "title": "Time & Calendar",
+      "subtitle": "Clock, days, months & seasons"
+    },
     "memory": {
       "title": "Memory Game",
       "subtitle": "Train your mind"
@@ -298,6 +302,129 @@
       "completeSubtitle": "You can spot odd and even numbers by making pairs!",
       "stars": "Stars",
       "keepPairing": "Keep pairing"
+    },
+    "money": {
+      "title": "Money Explorer",
+      "tabs": {
+        "coins": "Coins",
+        "notes": "Notes",
+        "counting": "Count Money",
+        "shopping": "Shopping",
+        "quiz": "Money Quiz"
+      },
+      "coins": {
+        "one": "₹1 Coin",
+        "oneFact": "₹1 is a silver stainless steel coin with Rupee symbol ₹.",
+        "two": "₹2 Coin",
+        "twoFact": "₹2 is slightly larger with bold number 2.",
+        "five": "₹5 Coin",
+        "fiveFact": "₹5 is a golden brass coin with thick ridges.",
+        "ten": "₹10 Coin",
+        "tenFact": "₹10 is a bi-metallic coin with a silver outer ring and golden core!",
+        "twenty": "₹20 Coin",
+        "twentyFact": "₹20 is a special 12-sided coin with golden outer ring and silver core!"
+      },
+      "metals": {
+        "steel": "Stainless Steel",
+        "brass": "Golden Brass",
+        "bimetal": "Bi-Metallic",
+        "dodecagon": "12-Sided Bi-Metal"
+      },
+      "notes": {
+        "ten": "₹10 Note",
+        "twenty": "₹20 Note",
+        "fifty": "₹50 Note",
+        "hundred": "₹100 Note",
+        "twoHundred": "₹200 Note",
+        "fiveHundred": "₹500 Note"
+      },
+      "colors": {
+        "chocolateBrown": "Chocolate Brown",
+        "greenishYellow": "Greenish Yellow",
+        "fluorescentBlue": "Fluorescent Blue",
+        "lavender": "Lavender Purple",
+        "brightOrange": "Bright Orange",
+        "stoneGrey": "Stone Grey"
+      },
+      "motifs": {
+        "konark": "Sun Temple Konark Wheel",
+        "ellora": "Ellora Caves",
+        "hampi": "Hampi Stone Chariot",
+        "ranikivav": "Rani ki Vav Stepwell",
+        "sanchi": "Sanchi Stupa",
+        "redfort": "Red Fort Landmark"
+      },
+      "equiv": {
+        "fiveOne": "Five ₹1 coins make ₹5",
+        "tenFive": "Two ₹5 coins make ₹10",
+        "twentyTen": "Two ₹10 coins make ₹20",
+        "twentyFive": "Four ₹5 coins make ₹20"
+      },
+      "count": {
+        "pay3": "Tap three ₹1 coins to make ₹3!",
+        "pay5": "Tap coins to make ₹5!",
+        "pay10": "Tap coins or notes to make ₹10!",
+        "pay15": "Tap money to make ₹15!",
+        "pay20": "Tap money to make ₹20!",
+        "pay35": "Combine notes and coins to make ₹35!",
+        "exp3": "₹1 + ₹1 + ₹1 = ₹3!",
+        "exp5": "₹5 (or ₹2 + ₹2 + ₹1) = ₹5!",
+        "exp10": "₹5 + ₹5 = ₹10 (or a ₹10 note)!",
+        "exp15": "₹10 + ₹5 = ₹15!",
+        "exp20": "₹10 + ₹10 = ₹20 (or a ₹20 note)!",
+        "exp35": "₹20 + ₹10 + ₹5 = ₹35!"
+      },
+      "shop": {
+        "apple": "Fresh Apple",
+        "banana": "Sweet Banana",
+        "milk": "Bottle of Milk",
+        "chocolate": "Yummy Chocolate",
+        "pencil": "Color Pencil",
+        "teddy": "Teddy Bear",
+        "icecream": "Ice Cream",
+        "cupcake": "Berry Cupcake",
+        "book": "Story Book",
+        "football": "Soccer Football"
+      },
+      "change": {
+        "exp1": "₹10 (Paid) - ₹7 (Cost) = ₹3 Change!",
+        "exp2": "₹5 (Paid) - ₹4 (Cost) = ₹1 Change!",
+        "exp3": "₹20 (Paid) - ₹15 (Cost) = ₹5 Change!",
+        "exp4": "₹20 (Paid) - ₹12 (Cost) = ₹8 Change!",
+        "exp5": "₹50 (Paid) - ₹30 (Cost) = ₹20 Change!"
+      },
+      "quiz": {
+        "qCoin5": "Which coin is ₹5?",
+        "expCoin5": "The golden brass coin with number 5 is ₹5!",
+        "qCountOneOneOne": "How much is ₹1 + ₹1 + ₹1?",
+        "expCountOneOneOne": "Three ₹1 coins add up to ₹3!",
+        "qHowMany1In5": "How many ₹1 coins make ₹5?",
+        "expHowMany1In5": "5 coins of ₹1 make ₹5!",
+        "qCountFiveFive": "How much is ₹5 + ₹5?",
+        "expCountFiveFive": "Two ₹5 coins add up to ₹10!",
+        "qNote50": "Which note is ₹50?",
+        "expNote50": "The vibrant blue note with number 50 is ₹50!",
+        "qCanBuyMilk20": "A bottle of milk costs ₹20. You have ₹20. Can you buy it?",
+        "expCanBuyMilk20": "Yes! You have the exact amount needed.",
+        "qChange7From10": "An item costs ₹7. You pay ₹10. What change should you get?",
+        "expChange7From10": "₹10 - ₹7 = ₹3 change!",
+        "qCountTenTen": "How much is ₹10 + ₹10?",
+        "expCountTenTen": "₹10 + ₹10 = ₹20!",
+        "qCoinBimetal10": "Which coin has a golden center and silver ring?",
+        "expCoinBimetal10": "The ₹10 coin is bi-metallic!",
+        "qChange15From20": "A toy costs ₹15. You pay ₹20. What change should you get?",
+        "expChange15From20": "₹20 - ₹15 = ₹5 change!"
+      },
+      "badges": {
+        "moneyLearner": "Money Learner",
+        "moneyLearnerDesc": "Complete your first Money lesson",
+        "coinCollector": "Coin Collector",
+        "coinCollectorDesc": "Master Indian coin recognition & equivalence",
+        "smartShopper": "Smart Shopper",
+        "smartShopperDesc": "Buy items and calculate correct change in the shop",
+        "moneyMaster": "Money Master",
+        "moneyMasterDesc": "Master coins, notes, counting, and score high on money quiz"
+      }
     }
   },
   "chess": {
@@ -1087,7 +1214,67 @@
       "q8.opt1": "Purple",
       "q8.opt2": "Green",
       "q8.opt3": "Orange",
-      "q8.exp": "Red + Blue = Magical Purple!"
+      "q8.exp": "Red + Blue = Magical Purple!",
+      "q9": "What part of a plant grows underground and drinks water?",
+      "q9.opt1": "Roots",
+      "q9.opt2": "Flower",
+      "q9.opt3": "Leaf",
+      "q9.exp": "Roots anchor the plant firmly in the soil and absorb water & minerals!",
+      "q10": "Which body organ helps you think, learn, and remember?",
+      "q10.opt1": "Brain",
+      "q10.opt2": "Leg",
+      "q10.opt3": "Foot",
+      "q10.exp": "The brain is your body's super smart control center!",
+      "q11": "Which planet is our home in the Solar System?",
+      "q11.opt1": "Mars",
+      "q11.opt2": "Earth",
+      "q11.opt3": "Saturn",
+      "q11.exp": "Earth is our beautiful blue planet filled with plants, animals, and water!",
+      "q12": "Which animal has colorful feathers and can fly?",
+      "q12.opt1": "Parrot",
+      "q12.opt2": "Elephant",
+      "q12.opt3": "Snake",
+      "q12.exp": "Birds like parrots have wings and feathers to soar in the sky!",
+      "q13": "What happens to water when it gets very cold and freezes?",
+      "q13.opt1": "Turns to Steam",
+      "q13.opt2": "Turns to Ice",
+      "q13.opt3": "Turns to Stone",
+      "q13.exp": "Water freezes into solid cold ice cubes when temperatures drop!",
+      "q14": "How many beautiful colors are in a rainbow?",
+      "q14.opt1": "3 Colors",
+      "q14.opt2": "7 Colors",
+      "q14.opt3": "10 Colors",
+      "q14.exp": "A rainbow has 7 colors: Violet, Indigo, Blue, Green, Yellow, Orange & Red!",
+      "q15": "Which of these gentle animals gives us fresh milk and eats grass?",
+      "q15.opt1": "Cow",
+      "q15.opt2": "Lion",
+      "q15.opt3": "Shark",
+      "q15.exp": "Cows are herbivores that eat grass and provide healthy milk!",
+      "q16": "Which organ in your chest fills with air every time you breathe in?",
+      "q16.opt1": "Lungs",
+      "q16.opt2": "Bones",
+      "q16.opt3": "Foot",
+      "q16.exp": "Our lungs take in fresh oxygen from the air around us!",
+      "q17": "What color do you get when you mix Yellow and Blue?",
+      "q17.opt1": "Green",
+      "q17.opt2": "Purple",
+      "q17.opt3": "Orange",
+      "q17.exp": "Yellow + Blue = Fresh Green!",
+      "q18": "What is a young baby plant called after it sprouts from a seed?",
+      "q18.opt1": "Seedling",
+      "q18.opt2": "Cloud",
+      "q18.opt3": "Rock",
+      "q18.exp": "A tiny seed sprouts into a baby seedling and grows towards the sunlight!",
+      "q19": "Which tool attracts metal paperclips and iron pins?",
+      "q19.opt1": "Magnet",
+      "q19.opt2": "Pencil",
+      "q19.opt3": "Wooden Stick",
+      "q19.exp": "Magnets have magnetic power to attract iron and steel objects!",
+      "q20": "Which celestial body shines at night and changes its shape each month?",
+      "q20.opt1": "The Moon",
+      "q20.opt2": "The Sun",
+      "q20.opt3": "Rainbow",
+      "q20.exp": "The Moon orbits Earth and shows different phases from crescent to full moon!"
     },
     "badges": {
       "littleScientist": "Little Scientist",
@@ -1110,5 +1297,257 @@
       "exploreMore": "Explore More Science"
     },
     "finishLesson": "Complete Lesson"
+  },
+  "time": {
+    "home": {
+      "title": "Time & Calendar",
+      "subtitle": "Learn clocks, days, months & seasons!",
+      "progress": "{{completed}} / {{total}} lessons completed"
+    },
+    "topics": {
+      "clock": {
+        "title": "Learn the Clock",
+        "desc": "Hour hand, minute hand & telling time"
+      },
+      "dayParts": {
+        "title": "Parts of the Day",
+        "desc": "Morning, afternoon, evening & night"
+      },
+      "days": {
+        "title": "Days of the Week",
+        "desc": "7 days, sequences & yesterday/today/tomorrow"
+      },
+      "months": {
+        "title": "Months of the Year",
+        "desc": "12 months, day counts & ordering"
+      },
+      "seasons": {
+        "title": "Seasons",
+        "desc": "Summer, rainy, autumn & winter"
+      },
+      "calendar": {
+        "title": "Interactive Calendar",
+        "desc": "Explore months, weeks & find dates"
+      },
+      "quiz": {
+        "title": "Time Quiz",
+        "desc": "Fun challenges & test your knowledge"
+      }
+    },
+    "clock": {
+      "introHandsTitle": "Hour Hand & Minute Hand",
+      "introHandsDesc": "The short blue hand tells the hour. The long red hand tells the minutes!",
+      "oclock3Title": "3:00 (3 O'Clock)",
+      "oclock3Desc": "When the long red hand points at 12, it is o'clock! Short hand points at 3, so it is 3:00!",
+      "halfPast3Title": "3:30 (Half Past 3)",
+      "halfPast3Desc": "When the red hand points down at 6, half an hour (30 minutes) has passed!",
+      "oclock4Title": "4:00 (4 O'Clock)",
+      "oclock4Desc": "Now the short blue hand is on 4 and the red hand is on 12. It's 4:00!",
+      "halfPast5Title": "5:30 (Half Past 5)",
+      "halfPast5Desc": "Short hand is between 5 and 6, and long hand points at 6. That is 5:30!",
+      "tabGuided": "Lessons",
+      "tabChallenges": "Challenges",
+      "tabFreePlay": "Free Play",
+      "dragHint": "Touch or drag hands around the clock face!",
+      "setTarget": "Set Clock to",
+      "matchedYay": "Great Job!",
+      "challenge": {
+        "set300": "Set the clock hands to 3:00!",
+        "set300Exp": "The short hand points at 3 and the long hand points at 12.",
+        "set330": "Set the clock hands to 3:30 (Half Past 3)!",
+        "set330Exp": "Short hand is near 3 and long hand is pointing straight down at 6.",
+        "set400": "Set the clock hands to 4:00!",
+        "set400Exp": "Short hand points at 4 and long hand at 12.",
+        "set530": "Set the clock hands to 5:30 (Half Past 5)!",
+        "set530Exp": "Short hand is between 5 and 6, and long hand points at 6.",
+        "set700": "Set the clock hands to 7:00!",
+        "set700Exp": "Short hand points at 7 and long hand points at 12.",
+        "set930": "Set the clock hands to 9:30!",
+        "set930Exp": "Short hand is between 9 and 10, long hand at 6."
+      }
+    },
+    "dayParts": {
+      "morning": {
+        "name": "Morning",
+        "desc": "The sun rises, birds chirp, and we start our fresh new day!",
+        "act1": "Wake Up",
+        "act2": "Brush Teeth",
+        "act3": "Eat Breakfast",
+        "act4": "Go to School"
+      },
+      "afternoon": {
+        "name": "Afternoon",
+        "desc": "The sun shines highest in the sky. Time for lunch and fun learning!",
+        "act1": "Eat Lunch",
+        "act2": "Study & Reading",
+        "act3": "Drawing & Art",
+        "act4": "Snack Time"
+      },
+      "evening": {
+        "name": "Evening",
+        "desc": "The sun sets with orange skies. We play outside with friends!",
+        "act1": "Play Outdoors",
+        "act2": "Ride Bicycle",
+        "act3": "Homework",
+        "act4": "Family Dinner"
+      },
+      "night": {
+        "name": "Night",
+        "desc": "The moon and stars appear. Time to rest and have sweet dreams!",
+        "act1": "Stargazing",
+        "act2": "Bedtime Story",
+        "act3": "Cuddle Teddy",
+        "act4": "Sleep & Dream"
+      },
+      "activitiesTitle": "What do we do in the"
+    },
+    "days": {
+      "tabLearn": "7 Days",
+      "tabScenario": "Today & Tomorrow",
+      "tabGame": "Day Game",
+      "learnTitle": "Days of the Week in Order",
+      "learnSub": "There are 7 days in every single week!",
+      "scenarioTitle": "Yesterday, Today & Tomorrow",
+      "scenarioSub": "Pick any day to be 'Today' and see what happens!",
+      "storySentence": "Day Story",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun",
+      "mondayAct": "Start of school week!",
+      "tuesdayAct": "Math & Art class",
+      "wednesdayAct": "Music & Singing",
+      "thursdayAct": "Science exploration",
+      "fridayAct": "Sports & Games",
+      "saturdayAct": "Weekend fun & Ice cream!",
+      "sundayAct": "Family picnic & Rest"
+    },
+    "months": {
+      "tabExplore": "12 Months",
+      "tabOrder": "Order Game",
+      "tabMissing": "Missing Month",
+      "orderTitle": "Tap the Months in Order!",
+      "allMonths": "Tap any month to explore:",
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December",
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "mayShort": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec",
+      "janHighlight": "New Year celebrations & chilly breeze!",
+      "febHighlight": "Shortest month of the year with 28 or 29 days!",
+      "marHighlight": "Spring flowers bloom and pleasant sunshine.",
+      "aprHighlight": "Warm days and colorful gardens.",
+      "mayHighlight": "Sunny holidays and juicy mangoes!",
+      "junHighlight": "School begins & raindrops arrive!",
+      "julHighlight": "Puddles, paper boats and cloudy skies.",
+      "augHighlight": "Independence Day celebrations & monsoon breezes.",
+      "sepHighlight": "Fresh breeze and festive beginnings.",
+      "octHighlight": "Autumn leaves and festive lights!",
+      "novHighlight": "Cool winter breeze and Children's Day.",
+      "decHighlight": "Christmas carols, holidays and year-end joy!"
+    },
+    "seasons": {
+      "summer": {
+        "name": "Summer",
+        "months": "March to May",
+        "weather": "Hot and sunny days with bright blue skies.",
+        "clothes": "Light cotton t-shirts, shorts, hats and sunglasses.",
+        "activities": "Swimming, eating ice cream and drinking coconut water!",
+        "funFact": "Summer days have the longest daylight hours in the year!"
+      },
+      "rainy": {
+        "name": "Rainy / Monsoon",
+        "months": "June to August",
+        "weather": "Dark clouds, heavy showers, thunder and rainbows.",
+        "clothes": "Raincoats, gumboots and holding colorful umbrellas.",
+        "activities": "Floating paper boats, splashing in puddles and watching peacocks.",
+        "funFact": "Rainwater fills rivers and helps farmers grow delicious crops!"
+      },
+      "autumn": {
+        "name": "Autumn",
+        "months": "September to October",
+        "weather": "Cool, pleasant breeze and golden sunshine.",
+        "clothes": "Light jackets, full sleeves and cozy vests.",
+        "activities": "Collecting colorful fallen leaves and outdoor cycling.",
+        "funFact": "Tree leaves turn yellow, orange, and red before falling gently!"
+      },
+      "winter": {
+        "name": "Winter",
+        "months": "November to February",
+        "weather": "Cold, chilly winds, morning fog and snowflakes in the mountains.",
+        "clothes": "Warm woolen sweaters, mufflers, gloves and beanies.",
+        "activities": "Drinking hot cocoa, building snowmen and enjoying campfires.",
+        "funFact": "Some animals hibernate and sleep throughout the cold winter!"
+      }
+    },
+    "quiz": {
+      "qClock300": "What time does this clock show?",
+      "expClock300": "Short hand is at 3 and long hand is at 12, so it is 3:00!",
+      "qDayAfterTue": "What day comes right after Tuesday?",
+      "expDayAfterTue": "Wednesday comes right after Tuesday!",
+      "qClock530": "What time does this clock show?",
+      "expClock530": "Long hand points at 6 (30 mins) and short hand is between 5 and 6: 5:30!",
+      "qYesterdayMon": "If Today is Monday, what was Yesterday?",
+      "expYesterdayMon": "Sunday is the day before Monday!",
+      "qTomorrowFri": "If Today is Friday, what day is Tomorrow?",
+      "expTomorrowFri": "Saturday comes right after Friday!",
+      "qFirstMonth": "Which month is the first month of the year?",
+      "expFirstMonth": "January is the 1st month of every year!",
+      "qMonthAfterAug": "Which month comes after August?",
+      "expMonthAfterAug": "September comes after August!",
+      "qSeasonUmbrella": "In which season do we use umbrellas and raincoats?",
+      "expSeasonUmbrella": "We use umbrellas in the Rainy (Monsoon) season!",
+      "qDayPartsBreakfast": "In which part of the day do we eat breakfast?",
+      "expDayPartsBreakfast": "We eat breakfast in the morning after waking up!",
+      "qClock400": "What time does this clock show?",
+      "expClock400": "Short hand is at 4 and long hand at 12, which is 4:00!",
+      "qCalendarDaysWeek": "How many days are there in one week?",
+      "expCalendarDaysWeek": "There are 7 days in a week: Monday to Sunday!",
+      "qMonthsInYear": "How many months are there in one year?",
+      "expMonthsInYear": "There are 12 months in one full year!"
+    },
+    "badges": {
+      "timeLearner": "Time Learner",
+      "timeLearnerDesc": "Completed your first Time & Clock lesson",
+      "calendarExplorer": "Calendar Explorer",
+      "calendarExplorerDesc": "Explored all 12 months and the interactive calendar",
+      "clockMaster": "Clock Master",
+      "clockMasterDesc": "Mastered setting and reading clock hands",
+      "timeChampion": "Time Champion",
+      "timeChampionDesc": "Completed all time lessons and aced the time quiz"
+    },
+    "complete": {
+      "title": "Super Time Master!",
+      "backHome": "Time & Calendar Hub 🏠"
+    }
   }
 }

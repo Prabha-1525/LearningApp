@@ -20,6 +20,14 @@ export type BadgeEvalContext = {
   readonly brainGamesStars?: number;
   readonly scienceTopicsCompleted?: number;
   readonly scienceStars?: number;
+  readonly timeTopicsCompleted?: number;
+  readonly timeStars?: number;
+  readonly clockLessonsCompleted?: number;
+  readonly calendarExplored?: boolean;
+  readonly moneyLessonsCompleted?: number;
+  readonly moneyStars?: number;
+  readonly shoppingItemsBought?: number;
+  readonly coinChallengesCompleted?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<string>;
 };
@@ -287,6 +295,81 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     icon: '🏆',
     evaluate: ctx =>
       (ctx.scienceTopicsCompleted ?? 0) >= 9 && (ctx.scienceStars ?? 0) >= 20,
+  },
+  // ─── Time & Calendar Badges ───────────────────────────────────────────────
+  {
+    id: 'time_learner',
+    badgeId: asBadgeId('badge.time_learner'),
+    titleKey: 'time.badges.timeLearner',
+    descriptionKey: 'time.badges.timeLearnerDesc',
+    icon: '⏰',
+    evaluate: ctx =>
+      (ctx.timeTopicsCompleted ?? 0) >= 1 || (ctx.timeStars ?? 0) >= 1,
+  },
+  {
+    id: 'calendar_explorer',
+    badgeId: asBadgeId('badge.calendar_explorer'),
+    titleKey: 'time.badges.calendarExplorer',
+    descriptionKey: 'time.badges.calendarExplorerDesc',
+    icon: '📅',
+    evaluate: ctx =>
+      Boolean(ctx.calendarExplored) || (ctx.timeTopicsCompleted ?? 0) >= 3,
+  },
+  {
+    id: 'clock_master',
+    badgeId: asBadgeId('badge.clock_master'),
+    titleKey: 'time.badges.clockMaster',
+    descriptionKey: 'time.badges.clockMasterDesc',
+    icon: '🕐',
+    evaluate: ctx =>
+      (ctx.clockLessonsCompleted ?? 0) >= 1 || (ctx.timeStars ?? 0) >= 6,
+  },
+  {
+    id: 'time_champion',
+    badgeId: asBadgeId('badge.time_champion'),
+    titleKey: 'time.badges.timeChampion',
+    descriptionKey: 'time.badges.timeChampionDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      (ctx.timeTopicsCompleted ?? 0) >= 6 && (ctx.timeStars ?? 0) >= 15,
+  },
+  // ─── Money Badges ─────────────────────────────────────────────────────────
+  {
+    id: 'money_learner',
+    badgeId: asBadgeId('badge.money_learner'),
+    titleKey: 'math.money.badges.moneyLearner',
+    descriptionKey: 'math.money.badges.moneyLearnerDesc',
+    icon: '💰',
+    evaluate: ctx =>
+      (ctx.moneyLessonsCompleted ?? 0) >= 1 || (ctx.moneyStars ?? 0) >= 1,
+  },
+  {
+    id: 'coin_collector',
+    badgeId: asBadgeId('badge.coin_collector'),
+    titleKey: 'math.money.badges.coinCollector',
+    descriptionKey: 'math.money.badges.coinCollectorDesc',
+    icon: '🪙',
+    evaluate: ctx =>
+      (ctx.coinChallengesCompleted ?? 0) >= 2 || (ctx.moneyStars ?? 0) >= 4,
+  },
+  {
+    id: 'smart_shopper',
+    badgeId: asBadgeId('badge.smart_shopper'),
+    titleKey: 'math.money.badges.smartShopper',
+    descriptionKey: 'math.money.badges.smartShopperDesc',
+    icon: '🛒',
+    evaluate: ctx =>
+      (ctx.shoppingItemsBought ?? 0) >= 3 ||
+      (ctx.moneyLessonsCompleted ?? 0) >= 3,
+  },
+  {
+    id: 'money_master',
+    badgeId: asBadgeId('badge.money_master'),
+    titleKey: 'math.money.badges.moneyMaster',
+    descriptionKey: 'math.money.badges.moneyMasterDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      (ctx.moneyLessonsCompleted ?? 0) >= 5 && (ctx.moneyStars ?? 0) >= 12,
   },
 ];
 

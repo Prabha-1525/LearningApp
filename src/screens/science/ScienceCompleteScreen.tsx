@@ -1,11 +1,12 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import type {
-  NativeStackNavigationProp,
-  RouteProp,
-} from '@react-navigation/native-stack';
+import {
+  useNavigation,
+  useRoute,
+  type RouteProp,
+} from '@react-navigation/native';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {AppSafeAreaView} from '@components/AppSafeAreaView';
 import type {ScienceStackParamList} from '../../navigation/scienceTypes';
