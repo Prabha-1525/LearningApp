@@ -23,6 +23,7 @@ import {
 } from '@features/math/data';
 import {readWorldExplorerProgress} from '@features/worldExplorer/data/progress/worldExplorerProgress';
 import {readBrainGamesProgress} from '@features/brainGames/data/progress/brainGamesProgress';
+import {readScienceProgress} from '@features/science/data/progress/scienceProgress';
 import {space} from '@shared/ui';
 
 import type {MainStackParamList, MainTabParamList} from '@navigation/types';
@@ -92,6 +93,20 @@ export function HomeScreen({navigation}: Props) {
         g => g.highScore > 0 || g.stars > 0,
       ).length;
       return Math.round((completed / games.length) * 100);
+    } catch {
+      return 0;
+    }
+  }, []);
+
+  const scienceProgress = useMemo(() => {
+    try {
+      const p = readScienceProgress();
+      const topics = Object.values(p.topicsProgress);
+      if (topics.length === 0) {
+        return 0;
+      }
+      const completed = topics.filter(topic => topic.completed).length;
+      return Math.round((completed / topics.length) * 100);
     } catch {
       return 0;
     }
@@ -175,6 +190,8 @@ export function HomeScreen({navigation}: Props) {
                   ? worldExplorerProgress
                   : subject.id === 'brainGames'
                   ? brainGamesProgress
+                  : subject.id === 'science'
+                  ? scienceProgress
                   : subject.progressPercent
               }
               showNewBadge={subject.showNewBadge}

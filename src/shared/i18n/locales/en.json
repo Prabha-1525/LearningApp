@@ -669,5 +669,446 @@
       "numberHint": "Look at the numbers!",
       "weatherHint": "Look at the weather!"
     }
+  },
+  "science": {
+    "home": {
+      "title": "Little Scientist",
+      "subtitle": "Explore, discover & experiment!",
+      "progress": "{{completed}} / {{total}} topics completed"
+    },
+    "topics": {
+      "plants": {
+        "title": "Plants",
+        "desc": "Seeds, roots, leaves, flowers & fruits"
+      },
+      "humanBody": {
+        "title": "Human Body",
+        "desc": "Eyes, ears, heart, lungs & bones"
+      },
+      "animals": {
+        "title": "Animals",
+        "desc": "Farm, wild, ocean animals & birds"
+      },
+      "space": {
+        "title": "Space & Sky",
+        "desc": "Sun, Moon, Earth, stars & planets"
+      },
+      "weather": {
+        "title": "Weather",
+        "desc": "Sunny, rainy, cloudy, windy & cold"
+      },
+      "water": {
+        "title": "Water & Earth",
+        "desc": "Ice, water, steam & Earth care"
+      },
+      "earth": {
+        "title": "Earth & Nature",
+        "desc": "Land, oceans, forests & mountains"
+      },
+      "experiments": {
+        "title": "Simple Experiments",
+        "desc": "Sink or float, color mix & shadows"
+      },
+      "quiz": {
+        "title": "Science Quiz",
+        "desc": "Fun quiz to test your science smarts"
+      }
+    },
+    "plants": {
+      "growthTitle": "How Plants Grow",
+      "growthSubtitle": "Tap water and sun to watch the seed grow into a plant!",
+      "waterPlant": "Water Plant",
+      "giveSun": "Give Sunlight",
+      "partsTitle": "Parts of a Plant",
+      "partsSubtitle": "Tap each part to learn its job:",
+      "needsTitle": "What Plants Need",
+      "quizQ": "What does a plant need to grow?",
+      "stages": {
+        "seed": "1. Seed",
+        "seedDesc": "A tiny seed rests safely in warm soil.",
+        "sprout": "2. Sprout",
+        "sproutDesc": "The seed wakes up and shoots tiny roots down.",
+        "plant": "3. Plant",
+        "plantDesc": "Green leaves reach high up toward the sunlight.",
+        "flower": "4. Flower",
+        "flowerDesc": "Colorful blossoms bloom to welcome friendly bees.",
+        "fruit": "5. Fruit",
+        "fruitDesc": "Sweet healthy fruit grows with seeds inside!"
+      },
+      "parts": {
+        "roots": "Roots",
+        "rootsDesc": "Roots hold the plant in soil and drink up water and minerals.",
+        "stem": "Stem",
+        "stemDesc": "The strong stem carries water and nutrients up to leaves.",
+        "leaf": "Leaf",
+        "leafDesc": "Leaves catch sunlight and make yummy food for the plant.",
+        "flower": "Flower",
+        "flowerDesc": "Flowers make seeds and attract bees and butterflies.",
+        "fruit": "Fruit",
+        "fruitDesc": "Fruit protects seeds and is tasty to eat.",
+        "seed": "Seed",
+        "seedDesc": "Each seed can grow into a whole new plant!"
+      },
+      "needs": {
+        "sun": "Sunlight",
+        "sunDesc": "Gives warm energy to make food",
+        "water": "Water",
+        "waterDesc": "Keeps the plant fresh and strong",
+        "soil": "Soil",
+        "soilDesc": "Provides healthy nutrients and grip",
+        "air": "Fresh Air",
+        "airDesc": "Plants breathe air just like us"
+      }
+    },
+    "body": {
+      "exploreTitle": "Explore Your Body",
+      "exploreDesc": "Tap parts to see what superpowers they have!",
+      "tapPrompt": "Tap a body part to learn its superpower!",
+      "challengeTitle": "Body Quiz Game",
+      "challengeSee": "Tap the part we use to see 👁️",
+      "challengeHear": "Tap the part we use to hear sounds 👂",
+      "challengePump": "Tap the organ that pumps blood ❤️",
+      "challengeBreathe": "Tap the organ that helps us breathe air 🫁",
+      "eyes": "Eyes",
+      "eyesSense": "Sense of Sight 👁️",
+      "eyesFact": "Your eyes blink about 15 times every minute to stay clean!",
+      "ears": "Ears",
+      "earsSense": "Sense of Hearing 👂",
+      "earsFact": "Your ears also help you balance when you run and jump!",
+      "nose": "Nose",
+      "noseSense": "Sense of Smell 👃",
+      "noseFact": "Your nose can remember thousands of different smells!",
+      "mouth": "Mouth & Tongue",
+      "mouthSense": "Sense of Taste 👄",
+      "mouthFact": "Your tongue has taste buds for sweet, salty, and sour flavors!",
+      "heart": "Heart",
+      "heartSense": "The Body's Engine ❤️",
+      "heartFact": "Your heart beats about 100 times a minute to pump fresh blood!",
+      "lungs": "Lungs",
+      "lungsSense": "Breathing Power 🫁",
+      "lungsFact": "Lungs take in oxygen from air every time you breathe in!",
+      "bones": "Bones & Skeleton",
+      "bonesSense": "Strong Frame 🦴",
+      "bonesFact": "Bones protect your brain, heart, and help you stand tall!",
+      "hands": "Hands & Skin",
+      "handsSense": "Sense of Touch ✋",
+      "handsFact": "Your fingertips have unique patterns called fingerprints!"
+    },
+    "animals": {
+      "choosePrompt": "Tap an animal to explore:",
+      "catFarm": "Farm",
+      "catWild": "Wild",
+      "catSea": "Sea",
+      "catBirds": "Birds",
+      "catInsects": "Insects",
+      "cow": {
+        "name": "Cow",
+        "sound": "Moo Moo!",
+        "habitat": "Farm Barn",
+        "food": "Green Grass",
+        "fact": "Cows give us nutritious milk and love grazing in open fields."
+      },
+      "sheep": {
+        "name": "Sheep",
+        "sound": "Baa Baa!",
+        "habitat": "Green Pasture",
+        "food": "Grass & Hay",
+        "fact": "Sheep have warm wool that helps make cozy winter sweaters."
+      },
+      "horse": {
+        "name": "Horse",
+        "sound": "Neigh!",
+        "habitat": "Stable",
+        "food": "Oats & Hay",
+        "fact": "Horses can sleep both lying down and standing up!"
+      },
+      "lion": {
+        "name": "Lion",
+        "sound": "Roaaar!",
+        "habitat": "Savannah Grasslands",
+        "food": "Meat",
+        "fact": "The lion is known as the King of the Jungle!"
+      },
+      "elephant": {
+        "name": "Elephant",
+        "sound": "Pawoo Trumpet!",
+        "habitat": "Forest & Jungle",
+        "food": "Leaves & Fruits",
+        "fact": "Elephants are the largest land animals and use trunks like a hand."
+      },
+      "monkey": {
+        "name": "Monkey",
+        "sound": "Ooh Ooh Aah Aah!",
+        "habitat": "Treetops",
+        "food": "Bananas & Fruits",
+        "fact": "Monkeys use their strong tails to swing between tree branches."
+      },
+      "dolphin": {
+        "name": "Dolphin",
+        "sound": "Click-Whistle!",
+        "habitat": "Ocean",
+        "food": "Small Fish",
+        "fact": "Dolphins are super friendly and jump high out of the waves."
+      },
+      "clownfish": {
+        "name": "Clownfish",
+        "sound": "Glub Glub!",
+        "habitat": "Coral Reef",
+        "food": "Algae & Plankton",
+        "fact": "Bright orange clownfish live safely inside sea anemones."
+      },
+      "octopus": {
+        "name": "Octopus",
+        "sound": "Splash!",
+        "habitat": "Deep Ocean",
+        "food": "Crabs & Shells",
+        "fact": "An octopus has 8 flexible arms and 3 hearts!"
+      },
+      "parrot": {
+        "name": "Parrot",
+        "sound": "Squawk-Hello!",
+        "habitat": "Rainforest",
+        "food": "Seeds & Nuts",
+        "fact": "Parrots are colorful birds that can learn to repeat words!"
+      },
+      "penguin": {
+        "name": "Penguin",
+        "sound": "Honk Honk!",
+        "habitat": "Icy Antarctica",
+        "food": "Fish & Krill",
+        "fact": "Penguins cannot fly in the air, but are great swimmers in water!"
+      },
+      "owl": {
+        "name": "Owl",
+        "sound": "Hoo Hoo!",
+        "habitat": "Tree Hollow",
+        "food": "Small insects",
+        "fact": "Owls can see clearly in the dark night and turn their heads all around."
+      },
+      "butterfly": {
+        "name": "Butterfly",
+        "sound": "Flutter flutter!",
+        "habitat": "Flower Garden",
+        "food": "Sweet Flower Nectar",
+        "fact": "A caterpillar transforms into a beautiful winged butterfly!"
+      },
+      "bee": {
+        "name": "Honeybee",
+        "sound": "Buzzzzz!",
+        "habitat": "Beehive",
+        "food": "Pollen & Nectar",
+        "fact": "Bees help flowers grow and make delicious sweet honey."
+      },
+      "ladybug": {
+        "name": "Ladybug",
+        "sound": "Tiny crawl!",
+        "habitat": "Plant Leaves",
+        "food": "Garden Aphids",
+        "fact": "Ladybugs have bright red coats with black polka dots."
+      }
+    },
+    "space": {
+      "dayNightTitle": "Day and Night on Earth",
+      "dayTime": "Daytime: The Sun gives us light & warmth!",
+      "nightTime": "Nighttime: Earth turns away from the Sun!",
+      "solarSystemTitle": "Solar System Explorer",
+      "sun": {
+        "name": "The Sun",
+        "type": "Giant Star ☀️",
+        "fact": "The Sun is a huge glowing ball of fire that gives Earth light and life."
+      },
+      "moon": {
+        "name": "The Moon",
+        "type": "Earth's Best Friend 🌙",
+        "fact": "The Moon orbits Earth and shines bright by reflecting sunlight."
+      },
+      "earth": {
+        "name": "Planet Earth",
+        "type": "Our Home 🌎",
+        "fact": "Earth is our blue planet with oceans, trees, animals, and people!"
+      },
+      "mercury": {
+        "name": "Mercury",
+        "type": "Smallest Planet 🪐",
+        "fact": "Mercury is the closest planet to the Sun and is super speedy."
+      },
+      "mars": {
+        "name": "Mars",
+        "type": "Red Planet 🔴",
+        "fact": "Mars has red rusty dust and huge mountains and canyons."
+      },
+      "jupiter": {
+        "name": "Jupiter",
+        "type": "Largest Planet 🪐",
+        "fact": "Jupiter is a giant gas planet with a famous giant red storm spot."
+      },
+      "saturn": {
+        "name": "Saturn",
+        "type": "Ringed Planet 🪐",
+        "fact": "Saturn is famous for its gorgeous rings made of ice and rock chunks."
+      },
+      "stars": {
+        "name": "Distant Stars",
+        "type": "Twinkling Lights ⭐",
+        "fact": "Stars twinkle in the night sky and form fun shapes called constellations."
+      }
+    },
+    "weather": {
+      "prompt": "Change the weather by tapping below:",
+      "gearTitle": "It is raining outside!",
+      "gearSubtitle": "What should you take with you?",
+      "sunny": {
+        "name": "Sunny",
+        "desc": "Bright sunshine with clear blue skies.",
+        "clothes": "T-shirt, shorts & sunglasses",
+        "activity": "Playing outdoor games & riding bicycles"
+      },
+      "rainy": {
+        "name": "Rainy",
+        "desc": "Water drops falling from clouds to nourish plants.",
+        "clothes": "Raincoat, boots & umbrella",
+        "activity": "Jumping in puddles & listening to rain"
+      },
+      "cloudy": {
+        "name": "Cloudy",
+        "desc": "Fluffy gray and white clouds covering the sky.",
+        "clothes": "Light jacket or hoodie",
+        "activity": "Flying kites and watching cloud shapes"
+      },
+      "windy": {
+        "name": "Windy",
+        "desc": "Fresh breezes blowing through trees and leaves.",
+        "clothes": "Windbreaker jacket & cap",
+        "activity": "Flying kites and sailing paper boats"
+      },
+      "snowy": {
+        "name": "Cold & Snowy",
+        "desc": "Fluffy white snowflakes covering the ground.",
+        "clothes": "Warm winter coat, mittens & woolly hat",
+        "activity": "Building snowmen and drinking warm cocoa"
+      }
+    },
+    "water": {
+      "statesTitle": "3 States of Water",
+      "statesSubtitle": "Water can freeze into ice or boil into steam!",
+      "solid": "Solid Ice",
+      "solidDesc": "When water gets very cold below 0°C, it freezes solid into ice cubes!",
+      "liquid": "Liquid Water",
+      "liquidDesc": "Water you drink and bathe with flows freely as a liquid.",
+      "gas": "Gas Steam",
+      "gasDesc": "When water gets very hot, it evaporates into invisible warm vapor.",
+      "cycleTitle": "The Water Cycle",
+      "evap": "1. Evaporation",
+      "evapDesc": "Sun warms the lakes and oceans, lifting water vapor up into the sky.",
+      "cond": "2. Cloud Formation",
+      "condDesc": "Water vapor cools down and gathers into fluffy white clouds.",
+      "precip": "3. Rain & Snow",
+      "precipDesc": "When clouds get heavy, water drops fall as gentle rain or snow.",
+      "collect": "4. Rivers & Oceans",
+      "collectDesc": "Rainwater flows into rivers and returns to oceans to start again!"
+    },
+    "earth": {
+      "title": "Our Wonderful Earth",
+      "oceans": "Vast Oceans",
+      "oceansDesc": "70% of Earth is covered with salty blue water full of sea life.",
+      "land": "Continents & Mountains",
+      "landDesc": "Sturdy green land where trees, animals, and cities thrive.",
+      "forests": "Lush Forests",
+      "forestsDesc": "Forests are Earth's green lungs providing clean oxygen.",
+      "care": "Love Our Earth",
+      "careDesc": "Planting trees, saving water, and keeping our planet clean!"
+    },
+    "experiments": {
+      "labTitle": "Little Lab",
+      "labSubtitle": "Safe, fun hands-on experiments you can try right here!",
+      "floatTab": "Sink or Float",
+      "colorsTab": "Mix Colors",
+      "shadowTab": "Shadows",
+      "floatPrompt": "Tap an object below to drop it into the water tank!",
+      "colorsPrompt": "Pick two primary colors to mix and discover the new color!",
+      "tryAgain": "Mix Again",
+      "float": {
+        "leaf": "Leaf",
+        "leafExp": "Leaves are light and flat, so they float gently on top!",
+        "rock": "Rock",
+        "rockExp": "Rocks are heavy and dense, so they sink straight to the bottom!",
+        "boat": "Toy Boat",
+        "boatExp": "Boats have hollow shape that traps air, helping them float!",
+        "coin": "Metal Coin",
+        "coinExp": "Heavy metals are dense and sink in water.",
+        "apple": "Apple",
+        "appleExp": "Apples have 25% air inside, which lets them bob on water!",
+        "key": "Metal Key",
+        "keyExp": "Solid metal keys sink down to the tank floor."
+      },
+      "color": {
+        "purple": "Purple (Red + Blue)",
+        "orange": "Orange (Red + Yellow)",
+        "green": "Green (Blue + Yellow)"
+      }
+    },
+    "quiz": {
+      "q1": "What does a plant need to grow strong and healthy?",
+      "q1.opt1": "Sunlight & Water",
+      "q1.opt2": "Teddy Bear",
+      "q1.opt3": "Toy Car",
+      "q1.exp": "Plants need sunlight, water, soil, and air to grow!",
+      "q2": "Which part of our body do we use to see colors and books?",
+      "q2.opt1": "Eyes",
+      "q2.opt2": "Ears",
+      "q2.opt3": "Nose",
+      "q2.exp": "Our eyes give us the sense of sight!",
+      "q3": "What gives planet Earth warmth and daylight?",
+      "q3.opt1": "The Moon",
+      "q3.opt2": "The Sun",
+      "q3.opt3": "Stars",
+      "q3.exp": "The Sun is our closest star and lights up our daytime!",
+      "q4": "Which of these animals loves swimming in the ocean?",
+      "q4.opt1": "Dolphin",
+      "q4.opt2": "Lion",
+      "q4.opt3": "Cow",
+      "q4.exp": "Dolphins are playful sea mammals that swim in ocean waters!",
+      "q5": "What should you take when it is rainy outside?",
+      "q5.opt1": "Winter Coat",
+      "q5.opt2": "Sunglasses",
+      "q5.opt3": "Umbrella",
+      "q5.exp": "An umbrella protects you from raindrops!",
+      "q6": "Which object will float on top of water?",
+      "q6.opt1": "Heavy Rock",
+      "q6.opt2": "Tree Leaf",
+      "q6.opt3": "Metal Coin",
+      "q6.exp": "Leaves are light and float on water!",
+      "q7": "Which organ inside your chest pumps blood?",
+      "q7.opt1": "Heart",
+      "q7.opt2": "Lungs",
+      "q7.opt3": "Bones",
+      "q7.exp": "Your heart beats constantly to pump blood throughout your body!",
+      "q8": "What color do you get when you mix Red and Blue?",
+      "q8.opt1": "Purple",
+      "q8.opt2": "Green",
+      "q8.opt3": "Orange",
+      "q8.exp": "Red + Blue = Magical Purple!"
+    },
+    "badges": {
+      "littleScientist": "Little Scientist",
+      "littleScientistDesc": "Complete your first science topic",
+      "scienceExplorer": "Science Explorer",
+      "scienceExplorerDesc": "Explore 3 different science topics",
+      "spaceExplorer": "Space Explorer",
+      "spaceExplorerDesc": "Discover planets, sun, moon, and stars",
+      "animalExpert": "Animal Expert",
+      "animalExpertDesc": "Learn about 6 different animal kingdoms",
+      "weatherWatcher": "Weather Watcher",
+      "weatherWatcherDesc": "Master all weather seasons and water cycle",
+      "youngScientist": "Young Scientist",
+      "youngScientistDesc": "Complete 9 science topics and earn 20 stars"
+    },
+    "complete": {
+      "awesome": "Awesome Science Explorer!",
+      "starsEarned": "Stars Earned!",
+      "badgeUnlocked": "Badge progress updated in your profile!",
+      "exploreMore": "Explore More Science"
+    },
+    "finishLesson": "Complete Lesson"
   }
 }

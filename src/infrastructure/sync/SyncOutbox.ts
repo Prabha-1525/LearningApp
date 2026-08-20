@@ -11,6 +11,7 @@ export type SyncOutboxItem = {
     | 'chess'
     | 'worldExplorer'
     | 'brainGames'
+    | 'science'
     | 'english'
     | 'gamification'
     | 'general';

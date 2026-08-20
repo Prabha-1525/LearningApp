@@ -64,6 +64,16 @@ export const HOME_SUBJECTS: readonly HomeSubjectDef[] = [
     showNewBadge: true,
   },
   {
+    id: 'science',
+    moduleId: ModuleId.Science,
+    titleKey: 'modules.science.title',
+    image: null,
+    emoji: '🔬',
+    backgroundColor: '#ECFDF5',
+    progressPercent: 0,
+    showNewBadge: true,
+  },
+  {
     id: 'english',
     moduleId: ModuleId.English,
     titleKey: 'modules.english.title',

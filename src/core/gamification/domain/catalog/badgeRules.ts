@@ -18,6 +18,8 @@ export type BadgeEvalContext = {
   readonly worldExplorerQuizCount?: number;
   readonly brainGamesPlayCount?: number;
   readonly brainGamesStars?: number;
+  readonly scienceTopicsCompleted?: number;
+  readonly scienceStars?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<string>;
 };
@@ -235,6 +237,56 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     icon: '🏆',
     evaluate: ctx =>
       (ctx.brainGamesPlayCount ?? 0) >= 7 && (ctx.brainGamesStars ?? 0) >= 15,
+  },
+  // ─── Science Badges ────────────────────────────────────────────────────────
+  {
+    id: 'little_scientist',
+    badgeId: asBadgeId('badge.little_scientist'),
+    titleKey: 'science.badges.littleScientist',
+    descriptionKey: 'science.badges.littleScientistDesc',
+    icon: '🌱',
+    evaluate: ctx => (ctx.scienceTopicsCompleted ?? 0) >= 1,
+  },
+  {
+    id: 'science_explorer',
+    badgeId: asBadgeId('badge.science_explorer'),
+    titleKey: 'science.badges.scienceExplorer',
+    descriptionKey: 'science.badges.scienceExplorerDesc',
+    icon: '🔬',
+    evaluate: ctx => (ctx.scienceTopicsCompleted ?? 0) >= 3,
+  },
+  {
+    id: 'space_explorer',
+    badgeId: asBadgeId('badge.space_explorer'),
+    titleKey: 'science.badges.spaceExplorer',
+    descriptionKey: 'science.badges.spaceExplorerDesc',
+    icon: '🚀',
+    evaluate: ctx => (ctx.scienceTopicsCompleted ?? 0) >= 5,
+  },
+  {
+    id: 'animal_expert',
+    badgeId: asBadgeId('badge.animal_expert'),
+    titleKey: 'science.badges.animalExpert',
+    descriptionKey: 'science.badges.animalExpertDesc',
+    icon: '🐾',
+    evaluate: ctx => (ctx.scienceTopicsCompleted ?? 0) >= 6,
+  },
+  {
+    id: 'weather_watcher',
+    badgeId: asBadgeId('badge.weather_watcher'),
+    titleKey: 'science.badges.weatherWatcher',
+    descriptionKey: 'science.badges.weatherWatcherDesc',
+    icon: '🌦️',
+    evaluate: ctx => (ctx.scienceTopicsCompleted ?? 0) >= 7,
+  },
+  {
+    id: 'young_scientist',
+    badgeId: asBadgeId('badge.young_scientist'),
+    titleKey: 'science.badges.youngScientist',
+    descriptionKey: 'science.badges.youngScientistDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      (ctx.scienceTopicsCompleted ?? 0) >= 9 && (ctx.scienceStars ?? 0) >= 20,
   },
 ];
 

@@ -3,6 +3,7 @@ import {registerChessModule} from '@features/chess';
 import {registerMathModule} from '@features/math';
 import {registerWorldExplorerModule} from '@features/worldExplorer';
 import {registerBrainGamesModule} from '@features/brainGames';
+import {registerScienceModule} from '@features/science';
 import {featureFlags} from '@shared/config';
 
 import {createCatalogModule} from './createCatalogModule';
@@ -21,6 +22,7 @@ export function registerAllModules(): void {
   moduleRegistry.register(registerMathModule());
   moduleRegistry.register(registerWorldExplorerModule());
   moduleRegistry.register(registerBrainGamesModule());
+  moduleRegistry.register(registerScienceModule());
 
   moduleRegistry.register(
     createCatalogModule({
@@ -103,18 +105,6 @@ export function registerAllModules(): void {
       accentColor: '#F06292',
       deepLinkPrefix: 'learningapp://module/phonics',
       isEnabled: () => featureFlags.phonicsEnabled,
-    }),
-  );
-
-  moduleRegistry.register(
-    createCatalogModule({
-      id: ModuleId.Science,
-      titleKey: 'modules.science.title',
-      subtitleKey: 'modules.science.subtitle',
-      iconKey: 'science',
-      accentColor: '#5B7CFA',
-      deepLinkPrefix: 'learningapp://module/science',
-      isEnabled: () => featureFlags.scienceEnabled,
     }),
   );
 
