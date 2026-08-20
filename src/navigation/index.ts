@@ -14,6 +14,7 @@ export type {CodingStackParamList} from './codingTypes';
 export type {RhymesStackParamList} from './rhymesTypes';
 export type {LifeSkillsStackParamList} from './lifeSkillsTypes';
 export type {GeneralKnowledgeStackParamList} from './generalKnowledgeTypes';
+export type {EnglishStackParamList} from './englishTypes';
 
 export {AuthNavigator} from './AuthNavigator';
 export {MainNavigator} from './MainNavigator';
@@ -29,3 +30,4 @@ export {CodingNavigator} from './CodingNavigator';
 export {RhymesNavigator} from './RhymesNavigator';
 export {LifeSkillsNavigator} from './LifeSkillsNavigator';
 export {GeneralKnowledgeNavigator} from './GeneralKnowledgeNavigator';
+export {EnglishNavigator} from './EnglishNavigator';

@@ -24,6 +24,10 @@ import {
 import {readWorldExplorerProgress} from '@features/worldExplorer/data/progress/worldExplorerProgress';
 import {readBrainGamesProgress} from '@features/brainGames/data/progress/brainGamesProgress';
 import {readScienceProgress} from '@features/science/data/progress/scienceProgress';
+import {
+  readEnglishProgress,
+  getEnglishOverallProgress,
+} from '@features/english/data/progress/englishProgress';
 import {space} from '@shared/ui';
 
 import type {MainStackParamList, MainTabParamList} from '@navigation/types';
@@ -111,6 +115,16 @@ export function HomeScreen({navigation}: Props) {
       return 0;
     }
   }, []);
+
+  const englishProgress = useMemo(() => {
+    try {
+      const p = readEnglishProgress();
+      return getEnglishOverallProgress(p).percent;
+    } catch {
+      return 0;
+    }
+  }, []);
+
   const avatar = useMemo(
     () => getChildAvatar(activeChild?.avatarKey ?? 'lion'),
     [activeChild?.avatarKey],
@@ -192,6 +206,8 @@ export function HomeScreen({navigation}: Props) {
                   ? brainGamesProgress
                   : subject.id === 'science'
                   ? scienceProgress
+                  : subject.id === 'english'
+                  ? englishProgress
                   : subject.progressPercent
               }
               showNewBadge={subject.showNewBadge}

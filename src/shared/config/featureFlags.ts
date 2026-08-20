@@ -28,7 +28,7 @@ export const featureFlags: FeatureFlags = {
   mathEnabled: true,
   worldExplorerEnabled: true,
   brainGamesEnabled: true,
-  englishEnabled: false,
+  englishEnabled: true,
   tamilEnabled: false,
   scienceEnabled: true,
   timeEnabled: true,

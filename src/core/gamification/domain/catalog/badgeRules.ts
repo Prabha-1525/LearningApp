@@ -49,6 +49,14 @@ export type BadgeEvalContext = {
   readonly vehicleLessonsCompleted?: number;
   readonly jobLessonsCompleted?: number;
   readonly natureLessonsCompleted?: number;
+  readonly englishLessonsCompleted?: number;
+  readonly englishStars?: number;
+  readonly englishWordsMastered?: number;
+  readonly cvcWordsMastered?: number;
+  readonly sightWordsLearned?: number;
+  readonly sentencesRead?: number;
+  readonly storiesCompleted?: number;
+  readonly readingChallengeCompleted?: boolean;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<string>;
 };
@@ -568,6 +576,95 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     icon: '🏆',
     evaluate: ctx =>
       (ctx.gkCategoriesCompleted ?? 0) >= 4 && (ctx.gkStars ?? 0) >= 18,
+  },
+  // ─── English Badges ───────────────────────────────────────────────────────
+  {
+    id: 'alphabet_starter',
+    badgeId: asBadgeId('badge.alphabet_starter'),
+    titleKey: 'english.badges.alphabetStarter',
+    descriptionKey: 'english.badges.alphabetStarterDesc',
+    icon: '🔤',
+    evaluate: ctx =>
+      (ctx.englishLessonsCompleted ?? 0) >= 1 || (ctx.englishStars ?? 0) >= 1,
+  },
+  {
+    id: 'sound_explorer',
+    badgeId: asBadgeId('badge.sound_explorer'),
+    titleKey: 'english.badges.soundExplorer',
+    descriptionKey: 'english.badges.soundExplorerDesc',
+    icon: '🔊',
+    evaluate: ctx => (ctx.englishStars ?? 0) >= 3,
+  },
+  {
+    id: 'sound_detective',
+    badgeId: asBadgeId('badge.sound_detective'),
+    titleKey: 'english.badges.soundDetective',
+    descriptionKey: 'english.badges.soundDetectiveDesc',
+    icon: '👂',
+    evaluate: ctx => (ctx.englishStars ?? 0) >= 6,
+  },
+  {
+    id: 'phonics_star',
+    badgeId: asBadgeId('badge.phonics_star'),
+    titleKey: 'english.badges.phonicsStar',
+    descriptionKey: 'english.badges.phonicsStarDesc',
+    icon: '🧩',
+    evaluate: ctx => (ctx.englishStars ?? 0) >= 9,
+  },
+  {
+    id: 'blending_star',
+    badgeId: asBadgeId('badge.blending_star'),
+    titleKey: 'english.badges.blendingStar',
+    descriptionKey: 'english.badges.blendingStarDesc',
+    icon: '🔗',
+    evaluate: ctx => (ctx.englishStars ?? 0) >= 12,
+  },
+  {
+    id: 'word_builder',
+    badgeId: asBadgeId('badge.word_builder'),
+    titleKey: 'english.badges.wordBuilder',
+    descriptionKey: 'english.badges.wordBuilderDesc',
+    icon: '📝',
+    evaluate: ctx =>
+      (ctx.englishWordsMastered ?? 0) >= 3 ||
+      (ctx.englishLessonsCompleted ?? 0) >= 5,
+  },
+  {
+    id: 'cvc_reader',
+    badgeId: asBadgeId('badge.cvc_reader'),
+    titleKey: 'english.badges.cvcReader',
+    descriptionKey: 'english.badges.cvcReaderDesc',
+    icon: '📖',
+    evaluate: ctx =>
+      (ctx.cvcWordsMastered ?? 0) >= 5 || (ctx.englishStars ?? 0) >= 15,
+  },
+  {
+    id: 'little_reader',
+    badgeId: asBadgeId('badge.little_reader'),
+    titleKey: 'english.badges.littleReader',
+    descriptionKey: 'english.badges.littleReaderDesc',
+    icon: '⭐',
+    evaluate: ctx =>
+      (ctx.sightWordsLearned ?? 0) >= 4 || (ctx.sentencesRead ?? 0) >= 2,
+  },
+  {
+    id: 'story_reader',
+    badgeId: asBadgeId('badge.story_reader'),
+    titleKey: 'english.badges.storyReader',
+    descriptionKey: 'english.badges.storyReaderDesc',
+    icon: '📚',
+    evaluate: ctx => (ctx.storiesCompleted ?? 0) >= 1,
+  },
+  {
+    id: 'reading_champion',
+    badgeId: asBadgeId('badge.reading_champion'),
+    titleKey: 'english.badges.readingChampion',
+    descriptionKey: 'english.badges.readingChampionDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      ctx.readingChallengeCompleted === true ||
+      ((ctx.englishLessonsCompleted ?? 0) >= 10 &&
+        (ctx.englishStars ?? 0) >= 25),
   },
 ];
 

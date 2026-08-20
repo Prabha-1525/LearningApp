@@ -23,7 +23,8 @@ describe('moduleRegistry', () => {
     expect(moduleRegistry.get(ModuleId.GeneralKnowledge)?.isEnabled()).toBe(
       true,
     );
-    expect(moduleRegistry.listEnabled()).toHaveLength(10);
+    expect(moduleRegistry.get(ModuleId.English)?.isEnabled()).toBe(true);
+    expect(moduleRegistry.listEnabled()).toHaveLength(11);
     expect(moduleRegistry.get(ModuleId.Chess)?.getNavigator()).not.toBeNull();
     expect(moduleRegistry.get(ModuleId.Math)?.getNavigator()).not.toBeNull();
     expect(
@@ -42,6 +43,7 @@ describe('moduleRegistry', () => {
     expect(
       moduleRegistry.get(ModuleId.GeneralKnowledge)?.getNavigator(),
     ).not.toBeNull();
+    expect(moduleRegistry.get(ModuleId.English)?.getNavigator()).not.toBeNull();
   });
 
   it('is idempotent', () => {

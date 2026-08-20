@@ -9,6 +9,7 @@ import {registerCodingModule} from '@features/coding';
 import {registerRhymesModule} from '@features/rhymes';
 import {registerLifeSkillsModule} from '@features/lifeSkills';
 import {registerGeneralKnowledgeModule} from '@features/generalKnowledge';
+import {registerEnglishModule} from '@features/english';
 import {featureFlags} from '@shared/config';
 
 import {createCatalogModule} from './createCatalogModule';
@@ -33,18 +34,7 @@ export function registerAllModules(): void {
   moduleRegistry.register(registerRhymesModule());
   moduleRegistry.register(registerLifeSkillsModule());
   moduleRegistry.register(registerGeneralKnowledgeModule());
-
-  moduleRegistry.register(
-    createCatalogModule({
-      id: ModuleId.English,
-      titleKey: 'modules.english.title',
-      subtitleKey: 'modules.english.subtitle',
-      iconKey: 'english',
-      accentColor: '#E4578C',
-      deepLinkPrefix: 'learningapp://module/english',
-      isEnabled: () => featureFlags.englishEnabled,
-    }),
-  );
+  moduleRegistry.register(registerEnglishModule());
 
   moduleRegistry.register(
     createCatalogModule({
