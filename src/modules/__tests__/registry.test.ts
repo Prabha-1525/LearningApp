@@ -7,21 +7,25 @@ describe('moduleRegistry', () => {
     resetBootstrapForTests();
   });
 
-  it('registers Chess and Math with navigators', () => {
+  it('registers Chess, Math, and WorldExplorer with navigators', () => {
     registerAllModules();
 
-    expect(moduleRegistry.list()).toHaveLength(11);
+    expect(moduleRegistry.list()).toHaveLength(12);
     expect(moduleRegistry.get(ModuleId.Chess)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.Math)?.isEnabled()).toBe(true);
-    expect(moduleRegistry.listEnabled()).toHaveLength(2);
+    expect(moduleRegistry.get(ModuleId.WorldExplorer)?.isEnabled()).toBe(true);
+    expect(moduleRegistry.listEnabled()).toHaveLength(3);
     expect(moduleRegistry.get(ModuleId.Chess)?.getNavigator()).not.toBeNull();
     expect(moduleRegistry.get(ModuleId.Math)?.getNavigator()).not.toBeNull();
+    expect(
+      moduleRegistry.get(ModuleId.WorldExplorer)?.getNavigator(),
+    ).not.toBeNull();
   });
 
   it('is idempotent', () => {
     registerAllModules();
     registerAllModules();
 
-    expect(moduleRegistry.list()).toHaveLength(11);
+    expect(moduleRegistry.list()).toHaveLength(12);
   });
 });

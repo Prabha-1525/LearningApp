@@ -7,6 +7,7 @@ import type {Brand} from '@shared/types';
 export const ModuleId = {
   Chess: 'chess',
   Math: 'math',
+  WorldExplorer: 'worldExplorer',
   English: 'english',
   Tamil: 'tamil',
   Science: 'science',

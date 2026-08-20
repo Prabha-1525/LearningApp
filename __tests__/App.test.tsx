@@ -22,5 +22,5 @@ test('registers chess module into the registry', () => {
   moduleRegistry.clear();
   registerAllModules();
   expect(moduleRegistry.get(ModuleId.Chess)?.id).toBe(ModuleId.Chess);
-  expect(moduleRegistry.list().length).toBe(11);
+  expect(moduleRegistry.list().length).toBe(12);
 });

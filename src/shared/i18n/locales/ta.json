@@ -91,6 +91,10 @@
       "title": "கணிதம்",
       "subtitle": "எண்களும் புதிர்களும்"
     },
+    "worldExplorer": {
+      "title": "உலக ஆய்வாளர் (World Explorer)",
+      "subtitle": "நாடுகள், கொடிகள் மற்றும் அடையாளங்களை ஆராய்"
+    },
     "english": {
       "title": "ஆங்கிலம்",
       "subtitle": "சொற்களும் கதைகளும்"
@@ -529,5 +533,61 @@
     "locked": "திறக்க தொடர்ந்து கற்றுக்கொள்",
     "mathStars": "கணித சாகச நட்சத்திரங்கள்",
     "mathStarsDetail": "காணாமல் போன எண் பாடங்களில் இருந்து {{count}} நட்சத்திரங்கள்"
+  },
+  "worldExplorer": {
+    "title": "உலக ஆய்வாளர்",
+    "subtitle": "உலகை ஆராய்வோம்!",
+    "activities": {
+      "countries": "நாடுகள் (Countries)",
+      "countriesDesc": "பல்வேறு நாடுகளைப் பற்றி கற்றுக்கொள்",
+      "flags": "கொடிகள் (Flags)",
+      "flagsDesc": "நாட்டுக் கொடிகளை அறியவும் அடையவும்",
+      "continents": "கண்டங்கள் (Continents)",
+      "continentsDesc": "ஏழு கண்டங்களை ஆராய்",
+      "capitals": "தலைநகரங்கள் (Capitals)",
+      "capitalsDesc": "நாடுகளின் தலைநகரங்களை அறி",
+      "landmarks": "அடையாளங்கள் (Landmarks)",
+      "landmarksDesc": "உலகப் புகழ்பெற்ற இடங்களை கண்டறி",
+      "quiz": "புவியியல் புதிர் (Quiz)",
+      "quizDesc": "கற்றதை பரிசோதித்துக் பார்"
+    },
+    "labels": {
+      "explored": "ஆராய்ந்தது {{done}} / {{total}}",
+      "learned": "கற்றது {{done}} / {{total}}",
+      "quizCount": "{{count}} புதிர்கள் முடிந்தது",
+      "capital": "தலைநகரம்",
+      "continent": "கண்டம்",
+      "languages": "மொழிகள்",
+      "currency": "நாணயம்",
+      "population": "மக்கள் தொகை",
+      "funFact": "சுவாரஸ்யமான தகவல்",
+      "searchPlaceholder": "நாட்டின் பெயரைத் தேடு...",
+      "allContinents": "அனைத்து கண்டங்கள்",
+      "locked": "🔒 பூட்டப்பட்டது",
+      "unlocked": "திறக்கப்பட்டது",
+      "listen": "கேள்",
+      "next": "அடுத்து",
+      "continue": "தொடர்க",
+      "tryAgain": "மீண்டும் முயற்சி செய்!",
+      "correct": "அருமை! சரியான விடை!",
+      "awesome": "பிரமாதம்!",
+      "completed": "பயிற்சி முடிந்தது!"
+    },
+    "badges": {
+      "worldExplorer": "உலக ஆய்வாளர்",
+      "worldExplorerDesc": "5 நாடுகளை ஆராய்",
+      "flagFinder": "கொடி கண்டறிபவர்",
+      "flagFinderDesc": "5 நாட்டின் கொடிகளை அறி",
+      "continentExplorer": "கண்ட ஆய்வாளர்",
+      "continentExplorerDesc": "3 கண்டங்களை கண்டறி",
+      "capitalExplorer": "தலைநகர் ஆய்வாளர்",
+      "capitalExplorerDesc": "5 தலைநகரங்களை அறி",
+      "landmarkExplorer": "அடையாள ஆய்வாளர்",
+      "landmarkExplorerDesc": "5 உலக அடையாளங்களை அறி",
+      "geographyStar": "புவியியல் நட்சத்திரம்",
+      "geographyStarDesc": "முதல் புதிரை முடி",
+      "geographyChampion": "புவியியல் சாம்பியன்",
+      "geographyChampionDesc": "15 நாடுகள் மற்றும் 3 புதிர்களை முடி"
+    }
   }
 }

@@ -91,6 +91,10 @@
       "title": "Math",
       "subtitle": "Numbers and puzzles"
     },
+    "worldExplorer": {
+      "title": "World Explorer",
+      "subtitle": "Explore countries, flags, and landmarks"
+    },
     "english": {
       "title": "English",
       "subtitle": "Words and stories"
@@ -529,5 +533,61 @@
     "locked": "Keep learning to unlock",
     "mathStars": "Math Adventure Stars",
     "mathStarsDetail": "{{count}} best stars from Missing Number lessons"
+  },
+  "worldExplorer": {
+    "title": "World Explorer",
+    "subtitle": "Let's explore the world!",
+    "activities": {
+      "countries": "Countries",
+      "countriesDesc": "Learn about different countries",
+      "flags": "Flags",
+      "flagsDesc": "Learn and identify country flags",
+      "continents": "Continents",
+      "continentsDesc": "Explore the seven continents",
+      "capitals": "Capitals",
+      "capitalsDesc": "Learn country capital cities",
+      "landmarks": "Landmarks",
+      "landmarksDesc": "Discover famous world places",
+      "quiz": "Geography Quiz",
+      "quizDesc": "Test what you have learned"
+    },
+    "labels": {
+      "explored": "Explored {{done}} / {{total}}",
+      "learned": "Learned {{done}} / {{total}}",
+      "quizCount": "{{count}} Quizzes Completed",
+      "capital": "Capital",
+      "continent": "Continent",
+      "languages": "Languages",
+      "currency": "Currency",
+      "population": "Population",
+      "funFact": "Fun Fact",
+      "searchPlaceholder": "Search country name...",
+      "allContinents": "All Continents",
+      "locked": "🔒 Locked",
+      "unlocked": "Unlocked",
+      "listen": "Listen",
+      "next": "Next",
+      "continue": "Continue",
+      "tryAgain": "Try again!",
+      "correct": "Great job! Correct answer!",
+      "awesome": "Awesome!",
+      "completed": "Activity Complete!"
+    },
+    "badges": {
+      "worldExplorer": "World Explorer",
+      "worldExplorerDesc": "Explore 5 different countries",
+      "flagFinder": "Flag Finder",
+      "flagFinderDesc": "Learn 5 country flags",
+      "continentExplorer": "Continent Explorer",
+      "continentExplorerDesc": "Discover 3 continents",
+      "capitalExplorer": "Capital Explorer",
+      "capitalExplorerDesc": "Learn 5 capital cities",
+      "landmarkExplorer": "Landmark Explorer",
+      "landmarkExplorerDesc": "Explore 5 world landmarks",
+      "geographyStar": "Geography Star",
+      "geographyStarDesc": "Complete your first geography quiz",
+      "geographyChampion": "Geography Champion",
+      "geographyChampionDesc": "Master 15 countries and 3 quizzes"
+    }
   }
 }

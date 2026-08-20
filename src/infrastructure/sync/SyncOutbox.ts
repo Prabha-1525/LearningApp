@@ -6,7 +6,13 @@ const OUTBOX_KEY = StorageKeys.module('sync', 'outbox');
 export type SyncOutboxItem = {
   readonly id: string;
   readonly uid: string;
-  readonly module: 'math' | 'chess' | 'english' | 'gamification' | 'general';
+  readonly module:
+    | 'math'
+    | 'chess'
+    | 'worldExplorer'
+    | 'english'
+    | 'gamification'
+    | 'general';
   readonly createdAt: string;
 };
 

@@ -10,6 +10,12 @@ export type BadgeEvalContext = {
   readonly countingPerfectCount: number;
   readonly chessLessonsCompleted?: number;
   readonly chessLessonsList?: readonly string[];
+  readonly exploredCountryCount?: number;
+  readonly learnedFlagCount?: number;
+  readonly exploredContinentCount?: number;
+  readonly learnedCapitalCount?: number;
+  readonly exploredLandmarkCount?: number;
+  readonly worldExplorerQuizCount?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<string>;
 };
@@ -141,6 +147,66 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     descriptionKey: 'chess.badges.chessMasterDesc',
     icon: '👑',
     evaluate: ctx => (ctx.chessLessonsCompleted ?? 0) >= 12,
+  },
+
+  // WORLD EXPLORER BADGES
+  {
+    id: 'world_explorer',
+    badgeId: asBadgeId('badge.world_explorer'),
+    titleKey: 'worldExplorer.badges.worldExplorer',
+    descriptionKey: 'worldExplorer.badges.worldExplorerDesc',
+    icon: '🌍',
+    evaluate: ctx => (ctx.exploredCountryCount ?? 0) >= 5,
+  },
+  {
+    id: 'flag_finder',
+    badgeId: asBadgeId('badge.flag_finder'),
+    titleKey: 'worldExplorer.badges.flagFinder',
+    descriptionKey: 'worldExplorer.badges.flagFinderDesc',
+    icon: '🚩',
+    evaluate: ctx => (ctx.learnedFlagCount ?? 0) >= 5,
+  },
+  {
+    id: 'continent_explorer',
+    badgeId: asBadgeId('badge.continent_explorer'),
+    titleKey: 'worldExplorer.badges.continentExplorer',
+    descriptionKey: 'worldExplorer.badges.continentExplorerDesc',
+    icon: '🗺️',
+    evaluate: ctx => (ctx.exploredContinentCount ?? 0) >= 3,
+  },
+  {
+    id: 'capital_explorer',
+    badgeId: asBadgeId('badge.capital_explorer'),
+    titleKey: 'worldExplorer.badges.capitalExplorer',
+    descriptionKey: 'worldExplorer.badges.capitalExplorerDesc',
+    icon: '🏛️',
+    evaluate: ctx => (ctx.learnedCapitalCount ?? 0) >= 5,
+  },
+  {
+    id: 'landmark_explorer',
+    badgeId: asBadgeId('badge.landmark_explorer'),
+    titleKey: 'worldExplorer.badges.landmarkExplorer',
+    descriptionKey: 'worldExplorer.badges.landmarkExplorerDesc',
+    icon: '📍',
+    evaluate: ctx => (ctx.exploredLandmarkCount ?? 0) >= 5,
+  },
+  {
+    id: 'geography_star',
+    badgeId: asBadgeId('badge.geography_star'),
+    titleKey: 'worldExplorer.badges.geographyStar',
+    descriptionKey: 'worldExplorer.badges.geographyStarDesc',
+    icon: '🎯',
+    evaluate: ctx => (ctx.worldExplorerQuizCount ?? 0) >= 1,
+  },
+  {
+    id: 'geography_champion',
+    badgeId: asBadgeId('badge.geography_champion'),
+    titleKey: 'worldExplorer.badges.geographyChampion',
+    descriptionKey: 'worldExplorer.badges.geographyChampionDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      (ctx.exploredCountryCount ?? 0) >= 15 &&
+      (ctx.worldExplorerQuizCount ?? 0) >= 3,
   },
 ];
 
