@@ -82,6 +82,8 @@ export type BadgeEvalContext = {
   readonly animalHabitatsCount?: number;
   readonly animalMatchesCount?: number;
   readonly animalPuzzlesCount?: number;
+  readonly storiesCompletedCount?: number;
+  readonly storyStars?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<BadgeId>;
 };
@@ -500,6 +502,49 @@ export const BADGE_RULES: readonly BadgeRule[] = [
       ((ctx.animalsLessonsCompleted ?? 0) >= 10 &&
         (ctx.animalsStars ?? 0) >= 30) ||
       (ctx.animalPuzzlesCount ?? 0) >= 3,
+  },
+  // ─── Story Time Badges ───────────────────────────────────────────────────
+  {
+    id: 'first_story',
+    badgeId: asBadgeId('badge.first_story'),
+    titleKey: 'story.badges.firstStory',
+    descriptionKey: 'story.badges.firstStoryDesc',
+    icon: '📖',
+    evaluate: ctx => (ctx.storiesCompletedCount ?? 0) >= 1,
+  },
+  {
+    id: 'story_lover',
+    badgeId: asBadgeId('badge.story_lover'),
+    titleKey: 'story.badges.storyLover',
+    descriptionKey: 'story.badges.storyLoverDesc',
+    icon: '📚',
+    evaluate: ctx => (ctx.storiesCompletedCount ?? 0) >= 3,
+  },
+  {
+    id: 'story_explorer',
+    badgeId: asBadgeId('badge.story_explorer'),
+    titleKey: 'story.badges.storyExplorer',
+    descriptionKey: 'story.badges.storyExplorerDesc',
+    icon: '🌟',
+    evaluate: ctx => (ctx.storiesCompletedCount ?? 0) >= 5,
+  },
+  {
+    id: 'reading_star',
+    badgeId: asBadgeId('badge.reading_star'),
+    titleKey: 'story.badges.readingStar',
+    descriptionKey: 'story.badges.readingStarDesc',
+    icon: '⭐',
+    evaluate: ctx => (ctx.storiesCompletedCount ?? 0) >= 7,
+  },
+  {
+    id: 'story_champion',
+    badgeId: asBadgeId('badge.story_champion'),
+    titleKey: 'story.badges.storyChampion',
+    descriptionKey: 'story.badges.storyChampionDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      (ctx.storiesCompletedCount ?? 0) >= 8 ||
+      ((ctx.storiesCompletedCount ?? 0) >= 6 && (ctx.storyStars ?? 0) >= 18),
   },
   // ─── Logic & Coding Badges ─────────────────────────────────────────────────
   {

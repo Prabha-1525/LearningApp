@@ -18,6 +18,7 @@ export type {EnglishStackParamList} from './englishTypes';
 export type {DrawingStackParamList} from './drawingTypes';
 export type {ShapesStackParamList} from './shapesTypes';
 export type {AnimalsStackParamList} from './animalsTypes';
+export type {StoryStackParamList} from './storyTypes';
 
 export {AuthNavigator} from './AuthNavigator';
 export {MainNavigator} from './MainNavigator';
@@ -37,3 +38,4 @@ export {EnglishNavigator} from './EnglishNavigator';
 export {DrawingNavigator} from './DrawingNavigator';
 export {ShapesNavigator} from './ShapesNavigator';
 export {AnimalsNavigator} from './AnimalsNavigator';
+export {StoryNavigator} from './StoryNavigator';

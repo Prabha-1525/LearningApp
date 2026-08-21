@@ -40,6 +40,10 @@ import {
   readAnimalsProgress,
   getAnimalsOverallProgress,
 } from '@features/animals/data/progress/animalsProgress';
+import {
+  readStoryProgress,
+  getStoryOverallProgress,
+} from '@features/story/data/progress/storyProgress';
 import {space} from '@shared/ui';
 
 import type {MainStackParamList, MainTabParamList} from '@navigation/types';
@@ -164,6 +168,15 @@ export function HomeScreen({navigation}: Props) {
     }
   }, []);
 
+  const storyProgress = useMemo(() => {
+    try {
+      const p = readStoryProgress();
+      return getStoryOverallProgress(p).percent;
+    } catch {
+      return 0;
+    }
+  }, []);
+
   const avatar = useMemo(
     () => getChildAvatar(activeChild?.avatarKey ?? 'lion'),
     [activeChild?.avatarKey],
@@ -253,6 +266,8 @@ export function HomeScreen({navigation}: Props) {
                   ? shapesProgress
                   : subject.id === 'animals'
                   ? animalsProgress
+                  : subject.id === 'story'
+                  ? storyProgress
                   : subject.progressPercent
               }
               showNewBadge={subject.showNewBadge}

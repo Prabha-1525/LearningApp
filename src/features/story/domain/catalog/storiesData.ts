@@ -1,0 +1,1510 @@
+import type {StoryCategory, StoryItem} from '../entities/storyEntities';
+
+export const STORY_CATEGORIES: readonly StoryCategory[] = [
+  {
+    id: 'moral',
+    titleKey: 'story.categories.moral',
+    emoji: '🌟',
+    color: '#F59E0B',
+    lightColor: '#FEF3C7',
+  },
+  {
+    id: 'animals',
+    titleKey: 'story.categories.animals',
+    emoji: '🐰',
+    color: '#10B981',
+    lightColor: '#ECFDF5',
+  },
+  {
+    id: 'friendship',
+    titleKey: 'story.categories.friendship',
+    emoji: '🤝',
+    color: '#EC4899',
+    lightColor: '#FDF2F8',
+  },
+  {
+    id: 'nature',
+    titleKey: 'story.categories.nature',
+    emoji: '🌳',
+    color: '#059669',
+    lightColor: '#D1FAE5',
+  },
+  {
+    id: 'adventure',
+    titleKey: 'story.categories.adventure',
+    emoji: '🚀',
+    color: '#8B5CF6',
+    lightColor: '#EDE9FE',
+  },
+  {
+    id: 'school',
+    titleKey: 'story.categories.school',
+    emoji: '🏫',
+    color: '#3B82F6',
+    lightColor: '#EFF6FF',
+  },
+  {
+    id: 'indian',
+    titleKey: 'story.categories.indian',
+    emoji: '🇮🇳',
+    color: '#EA580C',
+    lightColor: '#FFEDD5',
+  },
+  {
+    id: 'bedtime',
+    titleKey: 'story.categories.bedtime',
+    emoji: '🌙',
+    color: '#6366F1',
+    lightColor: '#EEF2FF',
+  },
+];
+
+export const STORIES_DATA: readonly StoryItem[] = [
+  // 1. The Little Rabbit & The Big Oak
+  {
+    id: 'little_rabbit',
+    title: 'The Little Rabbit & The Big Oak',
+    titleKey: 'story.stories.littleRabbit.title',
+    description:
+      'A little rabbit learns why sharing and helping others brings joy.',
+    descriptionKey: 'story.stories.littleRabbit.desc',
+    categoryId: 'animals',
+    level: 1,
+    durationMinutes: 3,
+    coverEmoji: '🐰',
+    coverBgColor: '#FEF3C7',
+    accentColor: '#F59E0B',
+    moralLesson: 'Kindness and sharing make the world happier for everyone.',
+    moralKey: 'story.stories.littleRabbit.moral',
+    characters: [
+      {
+        id: 'milo',
+        name: 'Milo',
+        emoji: '🐰',
+        roleDescription: 'A cheerful little rabbit',
+        defaultPosition: 'left',
+        defaultAnimation: 'hop',
+      },
+      {
+        id: 'sammy',
+        name: 'Sammy',
+        emoji: '🐿️',
+        roleDescription: 'A busy little squirrel',
+        defaultPosition: 'right',
+        defaultAnimation: 'bounce',
+      },
+    ],
+    scenes: [
+      {
+        id: 'rabbit_s1',
+        sceneNumber: 1,
+        backgroundKey: 'sunny_forest',
+        bgColors: ['#BAE6FD', '#86EFAC'],
+        bgDecorEmoji: ['🌳', '☀️', '🌸'],
+        characters: [
+          {
+            id: 'milo',
+            name: 'Milo',
+            emoji: '🐰',
+            position: 'center',
+            animation: 'hop',
+            speechBubble: 'What a sunny day! ☀️',
+          },
+        ],
+        text: 'One sunny morning, Milo the little rabbit hopped into the green forest.',
+        narrationText:
+          'One sunny morning, Milo the little rabbit hopped into the green forest.',
+      },
+      {
+        id: 'rabbit_s2',
+        sceneNumber: 2,
+        backgroundKey: 'berry_bush',
+        bgColors: ['#A7F3D0', '#6EE7B7'],
+        bgDecorEmoji: ['🍓', '🌿', '🦋'],
+        characters: [
+          {
+            id: 'milo',
+            name: 'Milo',
+            emoji: '🐰',
+            position: 'left',
+            animation: 'bounce',
+            speechBubble: 'Yummy red berries! 🍓',
+          },
+        ],
+        text: 'Milo found a bush full of sweet, juicy red berries under a big oak tree.',
+        narrationText:
+          'Milo found a bush full of sweet, juicy red berries under a big oak tree.',
+      },
+      {
+        id: 'rabbit_s3',
+        sceneNumber: 3,
+        backgroundKey: 'sad_squirrel',
+        bgColors: ['#FDE68A', '#FCA5A5'],
+        bgDecorEmoji: ['🌳', '🍂'],
+        characters: [
+          {
+            id: 'milo',
+            name: 'Milo',
+            emoji: '🐰',
+            position: 'left',
+            animation: 'idle',
+          },
+          {
+            id: 'sammy',
+            name: 'Sammy',
+            emoji: '🐿️',
+            position: 'right',
+            animation: 'idle',
+            speechBubble: 'I am so hungry... 😢',
+          },
+        ],
+        text: 'Suddenly, he saw Sammy the squirrel sitting on a branch, looking hungry and tired.',
+        narrationText:
+          'Suddenly, he saw Sammy the squirrel sitting on a branch, looking hungry and tired.',
+      },
+      {
+        id: 'rabbit_s4',
+        sceneNumber: 4,
+        backgroundKey: 'sharing_berries',
+        bgColors: ['#FEF08A', '#BBF7D0'],
+        bgDecorEmoji: ['🍓', '🌸', '✨'],
+        characters: [
+          {
+            id: 'milo',
+            name: 'Milo',
+            emoji: '🐰',
+            position: 'left',
+            animation: 'wave',
+            speechBubble: 'Here, let us share these! 🍓',
+          },
+          {
+            id: 'sammy',
+            name: 'Sammy',
+            emoji: '🐿️',
+            position: 'right',
+            animation: 'bounce',
+            speechBubble: 'Thank you, Milo! 😊',
+          },
+        ],
+        text: 'Milo smiled and shared his delicious berries with his new friend Sammy.',
+        narrationText:
+          'Milo smiled and shared his delicious berries with his new friend Sammy.',
+      },
+      {
+        id: 'rabbit_s5',
+        sceneNumber: 5,
+        backgroundKey: 'happy_sunset',
+        bgColors: ['#FED7AA', '#FBCFE8'],
+        bgDecorEmoji: ['🌳', '🌅', '✨', '💖'],
+        characters: [
+          {
+            id: 'milo',
+            name: 'Milo',
+            emoji: '🐰',
+            position: 'left',
+            animation: 'hop',
+          },
+          {
+            id: 'sammy',
+            name: 'Sammy',
+            emoji: '🐿️',
+            position: 'right',
+            animation: 'bounce',
+          },
+        ],
+        text: 'They ate together happily and became the best of forest friends forever.',
+        narrationText:
+          'They ate together happily and became the best of forest friends forever.',
+      },
+    ],
+  },
+
+  // 2. The Patient Little Turtle
+  {
+    id: 'patient_turtle',
+    title: 'The Patient Little Turtle',
+    titleKey: 'story.stories.patientTurtle.title',
+    description:
+      'Toby the turtle shows that being calm and patient leads to great rewards.',
+    descriptionKey: 'story.stories.patientTurtle.desc',
+    categoryId: 'moral',
+    level: 1,
+    durationMinutes: 3,
+    coverEmoji: '🐢',
+    coverBgColor: '#D1FAE5',
+    accentColor: '#10B981',
+    moralLesson:
+      'Patience and gentle steps help you reach your sweetest goals.',
+    moralKey: 'story.stories.patientTurtle.moral',
+    characters: [
+      {
+        id: 'toby',
+        name: 'Toby',
+        emoji: '🐢',
+        roleDescription: 'A calm and gentle turtle',
+        defaultPosition: 'left',
+        defaultAnimation: 'walk',
+      },
+      {
+        id: 'flutter',
+        name: 'Flutter',
+        emoji: '🦋',
+        roleDescription: 'A colorful flying butterfly',
+        defaultPosition: 'right',
+        defaultAnimation: 'fly',
+      },
+    ],
+    scenes: [
+      {
+        id: 'turtle_s1',
+        sceneNumber: 1,
+        backgroundKey: 'riverbank_morning',
+        bgColors: ['#BAE6FD', '#67E8F9'],
+        bgDecorEmoji: ['🌊', '🌸', '🌿'],
+        characters: [
+          {
+            id: 'toby',
+            name: 'Toby',
+            emoji: '🐢',
+            position: 'center',
+            animation: 'walk',
+            speechBubble: 'Slow and steady! 🐢',
+          },
+        ],
+        text: 'Toby the little turtle wanted to climb the big green hill to see the rainbow.',
+        narrationText:
+          'Toby the little turtle wanted to climb the big green hill to see the rainbow.',
+      },
+      {
+        id: 'turtle_s2',
+        sceneNumber: 2,
+        backgroundKey: 'climbing_hill',
+        bgColors: ['#BBF7D0', '#86EFAC'],
+        bgDecorEmoji: ['⛰️', '🌱', '☀️'],
+        characters: [
+          {
+            id: 'toby',
+            name: 'Toby',
+            emoji: '🐢',
+            position: 'left',
+            animation: 'walk',
+          },
+          {
+            id: 'flutter',
+            name: 'Flutter',
+            emoji: '🦋',
+            position: 'top',
+            animation: 'fly',
+            speechBubble: 'It is very far, Toby! 🦋',
+          },
+        ],
+        text: 'Flutter the butterfly flew past and said the hill was too steep for small legs.',
+        narrationText:
+          'Flutter the butterfly flew past and said the hill was too steep for small legs.',
+      },
+      {
+        id: 'turtle_s3',
+        sceneNumber: 3,
+        backgroundKey: 'taking_breaks',
+        bgColors: ['#FEF08A', '#86EFAC'],
+        bgDecorEmoji: ['🌼', '🍃'],
+        characters: [
+          {
+            id: 'toby',
+            name: 'Toby',
+            emoji: '🐢',
+            position: 'center',
+            animation: 'idle',
+            speechBubble: 'One step at a time! 😊',
+          },
+        ],
+        text: 'Toby did not give up. He smiled, took deep breaths, and took one gentle step at a time.',
+        narrationText:
+          'Toby did not give up. He smiled, took deep breaths, and took one gentle step at a time.',
+      },
+      {
+        id: 'turtle_s4',
+        sceneNumber: 4,
+        backgroundKey: 'hilltop_rainbow',
+        bgColors: ['#DDD6FE', '#FDE047'],
+        bgDecorEmoji: ['🌈', '✨', '⛰️'],
+        characters: [
+          {
+            id: 'toby',
+            name: 'Toby',
+            emoji: '🐢',
+            position: 'left',
+            animation: 'wave',
+            speechBubble: 'Look at the colors! 🌈',
+          },
+          {
+            id: 'flutter',
+            name: 'Flutter',
+            emoji: '🦋',
+            position: 'right',
+            animation: 'fly',
+            speechBubble: 'You did it, Toby! 🌟',
+          },
+        ],
+        text: 'By afternoon, Toby reached the very top and saw the most beautiful rainbow in the sky.',
+        narrationText:
+          'By afternoon, Toby reached the very top and saw the most beautiful rainbow in the sky.',
+      },
+      {
+        id: 'turtle_s5',
+        sceneNumber: 5,
+        backgroundKey: 'happy_celebration',
+        bgColors: ['#FBCFE8', '#C7D2FE'],
+        bgDecorEmoji: ['⭐', '💖', '🌈'],
+        characters: [
+          {
+            id: 'toby',
+            name: 'Toby',
+            emoji: '🐢',
+            position: 'center',
+            animation: 'bounce',
+          },
+        ],
+        text: 'Toby was proud because patience and steady steps can conquer any hill.',
+        narrationText:
+          'Toby was proud because patience and steady steps can conquer any hill.',
+      },
+    ],
+  },
+
+  // 3. The Brave Little Lion
+  {
+    id: 'brave_lion',
+    title: 'The Brave Little Lion',
+    titleKey: 'story.stories.braveLion.title',
+    description:
+      'Leo the lion cub learns that true courage means helping others in need.',
+    descriptionKey: 'story.stories.braveLion.desc',
+    categoryId: 'adventure',
+    level: 1,
+    durationMinutes: 3,
+    coverEmoji: '🦁',
+    coverBgColor: '#FFEDD5',
+    accentColor: '#EA580C',
+    moralLesson:
+      'True bravery is having a gentle heart and helping someone in trouble.',
+    moralKey: 'story.stories.braveLion.moral',
+    characters: [
+      {
+        id: 'leo',
+        name: 'Leo',
+        emoji: '🦁',
+        roleDescription: 'A playful little lion cub',
+        defaultPosition: 'left',
+        defaultAnimation: 'bounce',
+      },
+      {
+        id: 'coco',
+        name: 'Coco',
+        emoji: '🐒',
+        roleDescription: 'A tiny monkey friend',
+        defaultPosition: 'right',
+        defaultAnimation: 'hop',
+      },
+    ],
+    scenes: [
+      {
+        id: 'lion_s1',
+        sceneNumber: 1,
+        backgroundKey: 'sunny_savannah',
+        bgColors: ['#FDE68A', '#FDBA74'],
+        bgDecorEmoji: ['🌾', '☀️', '🌳'],
+        characters: [
+          {
+            id: 'leo',
+            name: 'Leo',
+            emoji: '🦁',
+            position: 'center',
+            animation: 'bounce',
+            speechBubble: 'Roar! I am brave! 🦁',
+          },
+        ],
+        text: 'Leo was a little lion cub who wanted to show the savannah how brave he was.',
+        narrationText:
+          'Leo was a little lion cub who wanted to show the savannah how brave he was.',
+      },
+      {
+        id: 'lion_s2',
+        sceneNumber: 2,
+        backgroundKey: 'rocky_path',
+        bgColors: ['#FED7AA', '#FCA5A5'],
+        bgDecorEmoji: ['🪨', '🌿'],
+        characters: [
+          {
+            id: 'leo',
+            name: 'Leo',
+            emoji: '🦁',
+            position: 'left',
+            animation: 'idle',
+          },
+          {
+            id: 'coco',
+            name: 'Coco',
+            emoji: '🐒',
+            position: 'right',
+            animation: 'idle',
+            speechBubble: 'Help! My foot is stuck! 😢',
+          },
+        ],
+        text: 'While walking, Leo heard soft crying. Coco the tiny monkey was stuck behind rocks.',
+        narrationText:
+          'While walking, Leo heard soft crying. Coco the tiny monkey was stuck behind rocks.',
+      },
+      {
+        id: 'lion_s3',
+        sceneNumber: 3,
+        backgroundKey: 'helping_coco',
+        bgColors: ['#FEF08A', '#BBF7D0'],
+        bgDecorEmoji: ['✨', '💪'],
+        characters: [
+          {
+            id: 'leo',
+            name: 'Leo',
+            emoji: '🦁',
+            position: 'left',
+            animation: 'wave',
+            speechBubble: 'Hold on, I will help you! 💪',
+          },
+          {
+            id: 'coco',
+            name: 'Coco',
+            emoji: '🐒',
+            position: 'right',
+            animation: 'hop',
+          },
+        ],
+        text: 'Leo used his strong paws gently to move the rocks and free his new friend.',
+        narrationText:
+          'Leo used his strong paws gently to move the rocks and free his new friend.',
+      },
+      {
+        id: 'lion_s4',
+        sceneNumber: 4,
+        backgroundKey: 'happy_friends',
+        bgColors: ['#BAE6FD', '#86EFAC'],
+        bgDecorEmoji: ['🍌', '🌸', '✨'],
+        characters: [
+          {
+            id: 'leo',
+            name: 'Leo',
+            emoji: '🦁',
+            position: 'left',
+            animation: 'bounce',
+          },
+          {
+            id: 'coco',
+            name: 'Coco',
+            emoji: '🐒',
+            position: 'right',
+            animation: 'hop',
+            speechBubble: 'You are my hero! 🐒',
+          },
+        ],
+        text: 'Coco clapped with joy and shared sweet yellow bananas with brave Leo.',
+        narrationText:
+          'Coco clapped with joy and shared sweet yellow bananas with brave Leo.',
+      },
+      {
+        id: 'lion_s5',
+        sceneNumber: 5,
+        backgroundKey: 'proud_lion',
+        bgColors: ['#FDE68A', '#FBCFE8'],
+        bgDecorEmoji: ['👑', '⭐', '💖'],
+        characters: [
+          {
+            id: 'leo',
+            name: 'Leo',
+            emoji: '🦁',
+            position: 'center',
+            animation: 'wave',
+          },
+        ],
+        text: 'Leo learned that true bravery is not about being loud, but helping others with love.',
+        narrationText:
+          'Leo learned that true bravery is not about being loud, but helping others with love.',
+      },
+    ],
+  },
+
+  // 4. Pip the Lost Bluebird
+  {
+    id: 'lost_bird',
+    title: 'Pip the Lost Bluebird',
+    titleKey: 'story.stories.lostBird.title',
+    description:
+      'A little bluebird finds his way back home with the help of friendly forest creatures.',
+    descriptionKey: 'story.stories.lostBird.desc',
+    categoryId: 'friendship',
+    level: 2,
+    durationMinutes: 4,
+    coverEmoji: '🐦',
+    coverBgColor: '#EFF6FF',
+    accentColor: '#3B82F6',
+    moralLesson:
+      'When you are lost or unsure, friendly helpers are all around you.',
+    moralKey: 'story.stories.lostBird.moral',
+    characters: [
+      {
+        id: 'pip',
+        name: 'Pip',
+        emoji: '🐦',
+        roleDescription: 'A tiny bluebird with bright feathers',
+        defaultPosition: 'left',
+        defaultAnimation: 'fly',
+      },
+      {
+        id: 'barnaby',
+        name: 'Barnaby',
+        emoji: '🦉',
+        roleDescription: 'A wise old owl',
+        defaultPosition: 'right',
+        defaultAnimation: 'idle',
+      },
+      {
+        id: 'benny',
+        name: 'Benny',
+        emoji: '🐻',
+        roleDescription: 'A gentle brown bear',
+        defaultPosition: 'center',
+        defaultAnimation: 'wave',
+      },
+    ],
+    scenes: [
+      {
+        id: 'bird_s1',
+        sceneNumber: 1,
+        backgroundKey: 'windy_sky',
+        bgColors: ['#93C5FD', '#E0F2FE'],
+        bgDecorEmoji: ['☁️', '💨', '🍃'],
+        characters: [
+          {
+            id: 'pip',
+            name: 'Pip',
+            emoji: '🐦',
+            position: 'center',
+            animation: 'fly',
+            speechBubble: 'The wind is so strong! 💨',
+          },
+        ],
+        text: 'Pip the little bluebird flew too far while chasing a shiny golden leaf in the breeze.',
+        narrationText:
+          'Pip the little bluebird flew too far while chasing a shiny golden leaf in the breeze.',
+      },
+      {
+        id: 'bird_s2',
+        sceneNumber: 2,
+        backgroundKey: 'deep_woods',
+        bgColors: ['#A7F3D0', '#6EE7B7'],
+        bgDecorEmoji: ['🌲', '🌲', '🍂'],
+        characters: [
+          {
+            id: 'pip',
+            name: 'Pip',
+            emoji: '🐦',
+            position: 'left',
+            animation: 'idle',
+            speechBubble: 'Where is my nest? 😢',
+          },
+        ],
+        text: 'When the wind stopped, Pip found himself in tall trees he had never seen before.',
+        narrationText:
+          'When the wind stopped, Pip found himself in tall trees he had never seen before.',
+      },
+      {
+        id: 'bird_s3',
+        sceneNumber: 3,
+        backgroundKey: 'meeting_owl',
+        bgColors: ['#C7D2FE', '#DDD6FE'],
+        bgDecorEmoji: ['🌙', '🌳'],
+        characters: [
+          {
+            id: 'pip',
+            name: 'Pip',
+            emoji: '🐦',
+            position: 'left',
+            animation: 'fly',
+          },
+          {
+            id: 'barnaby',
+            name: 'Barnaby',
+            emoji: '🦉',
+            position: 'right',
+            animation: 'idle',
+            speechBubble: 'Hoo hoo! Follow the river, little one! 🦉',
+          },
+        ],
+        text: 'Wise old Barnaby the owl peered down and told Pip to follow the sparkling river water.',
+        narrationText:
+          'Wise old Barnaby the owl peered down and told Pip to follow the sparkling river water.',
+      },
+      {
+        id: 'bird_s4',
+        sceneNumber: 4,
+        backgroundKey: 'river_bear',
+        bgColors: ['#BAE6FD', '#86EFAC'],
+        bgDecorEmoji: ['🌊', '🐟', '🌸'],
+        characters: [
+          {
+            id: 'pip',
+            name: 'Pip',
+            emoji: '🐦',
+            position: 'top',
+            animation: 'fly',
+          },
+          {
+            id: 'benny',
+            name: 'Benny',
+            emoji: '🐻',
+            position: 'center',
+            animation: 'wave',
+            speechBubble: 'Your nest is by the big willow tree! 🐻',
+          },
+        ],
+        text: 'Along the river, Benny the gentle bear pointed toward the grand willow tree.',
+        narrationText:
+          'Along the river, Benny the gentle bear pointed toward the grand willow tree.',
+      },
+      {
+        id: 'bird_s5',
+        sceneNumber: 5,
+        backgroundKey: 'family_nest',
+        bgColors: ['#FEF08A', '#FBCFE8'],
+        bgDecorEmoji: ['🪺', '🌳', '✨', '💖'],
+        characters: [
+          {
+            id: 'pip',
+            name: 'Pip',
+            emoji: '🐦',
+            position: 'center',
+            animation: 'bounce',
+            speechBubble: 'I am home! Chirp chirp! 🎶',
+          },
+        ],
+        text: 'Pip flew joyfully into his cozy nest where his loving family welcomed him with hugs.',
+        narrationText:
+          'Pip flew joyfully into his cozy nest where his loving family welcomed him with hugs.',
+      },
+      {
+        id: 'bird_s6',
+        sceneNumber: 6,
+        backgroundKey: 'grateful_evening',
+        bgColors: ['#DDD6FE', '#FDE68A'],
+        bgDecorEmoji: ['⭐', '💖', '🌈'],
+        characters: [
+          {
+            id: 'pip',
+            name: 'Pip',
+            emoji: '🐦',
+            position: 'center',
+            animation: 'wave',
+          },
+        ],
+        text: 'Pip sang a sweet song of gratitude for all the helpful friends in the forest.',
+        narrationText:
+          'Pip sang a sweet song of gratitude for all the helpful friends in the forest.',
+      },
+    ],
+  },
+
+  // 5. The Wonder Seed
+  {
+    id: 'wonder_seed',
+    title: 'The Wonder Seed',
+    titleKey: 'story.stories.wonderSeed.title',
+    description:
+      'A tiny seed learns to grow with sunshine, water, and cheerful patience.',
+    descriptionKey: 'story.stories.wonderSeed.desc',
+    categoryId: 'nature',
+    level: 2,
+    durationMinutes: 4,
+    coverEmoji: '🌱',
+    coverBgColor: '#D1FAE5',
+    accentColor: '#059669',
+    moralLesson:
+      'Everything beautiful in nature takes time, care, and love to bloom.',
+    moralKey: 'story.stories.wonderSeed.moral',
+    characters: [
+      {
+        id: 'sprout',
+        name: 'Sprout',
+        emoji: '🌱',
+        roleDescription: 'A cheerful little seed in rich soil',
+        defaultPosition: 'center',
+        defaultAnimation: 'idle',
+      },
+      {
+        id: 'sunny',
+        name: 'Sunny',
+        emoji: '☀️',
+        roleDescription: 'The warm, golden sun',
+        defaultPosition: 'top',
+        defaultAnimation: 'float',
+      },
+      {
+        id: 'droplet',
+        name: 'Droplet',
+        emoji: '🌧️',
+        roleDescription: 'Gentle raindrops from a friendly cloud',
+        defaultPosition: 'right',
+        defaultAnimation: 'float',
+      },
+    ],
+    scenes: [
+      {
+        id: 'seed_s1',
+        sceneNumber: 1,
+        backgroundKey: 'underground',
+        bgColors: ['#FED7AA', '#E2E8F0'],
+        bgDecorEmoji: ['🪨', '🍂', '🕳️'],
+        characters: [
+          {
+            id: 'sprout',
+            name: 'Sprout',
+            emoji: '🌰',
+            position: 'center',
+            animation: 'idle',
+            speechBubble: 'It is so dark down here! 🌰',
+          },
+        ],
+        text: 'Deep inside the warm brown soil, a tiny seed named Sprout was resting quietly.',
+        narrationText:
+          'Deep inside the warm brown soil, a tiny seed named Sprout was resting quietly.',
+      },
+      {
+        id: 'seed_s2',
+        sceneNumber: 2,
+        backgroundKey: 'spring_rain',
+        bgColors: ['#93C5FD', '#BAE6FD'],
+        bgDecorEmoji: ['🌧️', '💧', '💧'],
+        characters: [
+          {
+            id: 'sprout',
+            name: 'Sprout',
+            emoji: '🌰',
+            position: 'center',
+            animation: 'bounce',
+          },
+          {
+            id: 'droplet',
+            name: 'Droplet',
+            emoji: '🌧️',
+            position: 'top',
+            animation: 'float',
+            speechBubble: 'Drink up, little seed! 💧',
+          },
+        ],
+        text: 'Gentle spring raindrops fell from the sky and gave Sprout a refreshing cool drink.',
+        narrationText:
+          'Gentle spring raindrops fell from the sky and gave Sprout a refreshing cool drink.',
+      },
+      {
+        id: 'seed_s3',
+        sceneNumber: 3,
+        backgroundKey: 'sunshine_warmth',
+        bgColors: ['#FEF08A', '#FDE68A'],
+        bgDecorEmoji: ['☀️', '✨', '🌿'],
+        characters: [
+          {
+            id: 'sprout',
+            name: 'Sprout',
+            emoji: '🌱',
+            position: 'center',
+            animation: 'bounce',
+            speechBubble: 'I can feel the warmth! 🌱',
+          },
+          {
+            id: 'sunny',
+            name: 'Sunny',
+            emoji: '☀️',
+            position: 'top',
+            animation: 'float',
+            speechBubble: 'Reach up to the sky! ☀️',
+          },
+        ],
+        text: 'The golden sun beamed down with bright warmth, encouraging Sprout to stretch upward.',
+        narrationText:
+          'The golden sun beamed down with bright warmth, encouraging Sprout to stretch upward.',
+      },
+      {
+        id: 'seed_s4',
+        sceneNumber: 4,
+        backgroundKey: 'green_shoots',
+        bgColors: ['#BBF7D0', '#86EFAC'],
+        bgDecorEmoji: ['🌿', '🦋', '🌸'],
+        characters: [
+          {
+            id: 'sprout',
+            name: 'Sprout',
+            emoji: '🌿',
+            position: 'center',
+            animation: 'wave',
+            speechBubble: 'Look at my green leaves! 🌿',
+          },
+        ],
+        text: 'Pop! Two bright green leaves burst through the soil into the fresh morning air.',
+        narrationText:
+          'Pop! Two bright green leaves burst through the soil into the fresh morning air.',
+      },
+      {
+        id: 'seed_s5',
+        sceneNumber: 5,
+        backgroundKey: 'blooming_sunflower',
+        bgColors: ['#FEF08A', '#FBCFE8'],
+        bgDecorEmoji: ['🌻', '🐝', '✨'],
+        characters: [
+          {
+            id: 'sprout',
+            name: 'Sprout',
+            emoji: '🌻',
+            position: 'center',
+            animation: 'bounce',
+            speechBubble: 'I am a tall sunflower! 🌻',
+          },
+        ],
+        text: 'Day by day, Sprout grew taller until he bloomed into a magnificent golden sunflower.',
+        narrationText:
+          'Day by day, Sprout grew taller until he bloomed into a magnificent golden sunflower.',
+      },
+      {
+        id: 'seed_s6',
+        sceneNumber: 6,
+        backgroundKey: 'garden_harmony',
+        bgColors: ['#DDD6FE', '#BBF7D0'],
+        bgDecorEmoji: ['🌻', '🐝', '🦋', '💖'],
+        characters: [
+          {
+            id: 'sprout',
+            name: 'Sprout',
+            emoji: '🌻',
+            position: 'center',
+            animation: 'wave',
+          },
+        ],
+        text: 'Bees and butterflies came to dance around him, thanking Sprout for sharing his sweet nectar.',
+        narrationText:
+          'Bees and butterflies came to dance around him, thanking Sprout for sharing his sweet nectar.',
+      },
+    ],
+  },
+
+  // 6. Gajju The Helpful Elephant
+  {
+    id: 'helpful_elephant',
+    title: 'Gajju The Helpful Elephant',
+    titleKey: 'story.stories.helpfulElephant.title',
+    description:
+      'A cheerful baby elephant in India helps clear a fallen log for his friends.',
+    descriptionKey: 'story.stories.helpfulElephant.desc',
+    categoryId: 'indian',
+    level: 2,
+    durationMinutes: 4,
+    coverEmoji: '🐘',
+    coverBgColor: '#FFEDD5',
+    accentColor: '#EA580C',
+    moralLesson:
+      'Working together with strength and kindness solves big problems.',
+    moralKey: 'story.stories.helpfulElephant.moral',
+    characters: [
+      {
+        id: 'gajju',
+        name: 'Gajju',
+        emoji: '🐘',
+        roleDescription: 'A kind and strong baby elephant',
+        defaultPosition: 'left',
+        defaultAnimation: 'walk',
+      },
+      {
+        id: 'mayil',
+        name: 'Mayil',
+        emoji: '🦚',
+        roleDescription: 'A graceful Indian peacock',
+        defaultPosition: 'right',
+        defaultAnimation: 'bounce',
+      },
+      {
+        id: 'chintu',
+        name: 'Chintu',
+        emoji: '🦌',
+        roleDescription: 'A quick little spotted deer',
+        defaultPosition: 'center',
+        defaultAnimation: 'hop',
+      },
+    ],
+    scenes: [
+      {
+        id: 'elephant_s1',
+        sceneNumber: 1,
+        backgroundKey: 'jungle_morning',
+        bgColors: ['#FED7AA', '#86EFAC'],
+        bgDecorEmoji: ['🌴', '🌺', '☀️'],
+        characters: [
+          {
+            id: 'gajju',
+            name: 'Gajju',
+            emoji: '🐘',
+            position: 'center',
+            animation: 'walk',
+            speechBubble: 'Pawoo! Good morning, jungle! 🐘',
+          },
+        ],
+        text: 'In the lush green forests of India, Gajju the elephant loved splashing in clear rivers.',
+        narrationText:
+          'In the lush green forests of India, Gajju the elephant loved splashing in clear rivers.',
+      },
+      {
+        id: 'elephant_s2',
+        sceneNumber: 2,
+        backgroundKey: 'blocked_path',
+        bgColors: ['#FDE68A', '#FCA5A5'],
+        bgDecorEmoji: ['🪵', '🌴', '🍂'],
+        characters: [
+          {
+            id: 'gajju',
+            name: 'Gajju',
+            emoji: '🐘',
+            position: 'left',
+            animation: 'idle',
+          },
+          {
+            id: 'chintu',
+            name: 'Chintu',
+            emoji: '🦌',
+            position: 'right',
+            animation: 'idle',
+            speechBubble: 'A heavy log blocked the bridge! 🦌',
+          },
+        ],
+        text: 'One afternoon, Chintu the spotted deer called out because a heavy tree log blocked their bridge.',
+        narrationText:
+          'One afternoon, Chintu the spotted deer called out because a heavy tree log blocked their bridge.',
+      },
+      {
+        id: 'elephant_s3',
+        sceneNumber: 3,
+        backgroundKey: 'peacock_calls',
+        bgColors: ['#A7F3D0', '#93C5FD'],
+        bgDecorEmoji: ['🪶', '🌴'],
+        characters: [
+          {
+            id: 'gajju',
+            name: 'Gajju',
+            emoji: '🐘',
+            position: 'left',
+            animation: 'walk',
+          },
+          {
+            id: 'mayil',
+            name: 'Mayil',
+            emoji: '🦚',
+            position: 'right',
+            animation: 'bounce',
+            speechBubble: 'We cannot cross to get fresh mangoes! 🦚',
+          },
+        ],
+        text: 'Mayil the peacock danced worriedly because no one could cross over to the fruit orchard.',
+        narrationText:
+          'Mayil the peacock danced worriedly because no one could cross over to the fruit orchard.',
+      },
+      {
+        id: 'elephant_s4',
+        sceneNumber: 4,
+        backgroundKey: 'lifting_log',
+        bgColors: ['#FEF08A', '#86EFAC'],
+        bgDecorEmoji: ['💪', '✨', '🪵'],
+        characters: [
+          {
+            id: 'gajju',
+            name: 'Gajju',
+            emoji: '🐘',
+            position: 'center',
+            animation: 'bounce',
+            speechBubble: 'Heave-ho! Together we can do it! 💪',
+          },
+        ],
+        text: 'Gajju wrapped his strong trunk around the log, and with one mighty push, moved it aside.',
+        narrationText:
+          'Gajju wrapped his strong trunk around the log, and with one mighty push, moved it aside.',
+      },
+      {
+        id: 'elephant_s5',
+        sceneNumber: 5,
+        backgroundKey: 'mango_feast',
+        bgColors: ['#FED7AA', '#FBCFE8'],
+        bgDecorEmoji: ['🥭', '🌺', '🎉'],
+        characters: [
+          {
+            id: 'gajju',
+            name: 'Gajju',
+            emoji: '🐘',
+            position: 'left',
+            animation: 'wave',
+          },
+          {
+            id: 'mayil',
+            name: 'Mayil',
+            emoji: '🦚',
+            position: 'center',
+            animation: 'bounce',
+          },
+          {
+            id: 'chintu',
+            name: 'Chintu',
+            emoji: '🦌',
+            position: 'right',
+            animation: 'hop',
+            speechBubble: 'Sweet mangoes for everyone! 🥭',
+          },
+        ],
+        text: 'All the animals cheered and crossed the bridge together to enjoy a sweet mango feast.',
+        narrationText:
+          'All the animals cheered and crossed the bridge together to enjoy a sweet mango feast.',
+      },
+      {
+        id: 'elephant_s6',
+        sceneNumber: 6,
+        backgroundKey: 'happy_sunset',
+        bgColors: ['#FBCFE8', '#C7D2FE'],
+        bgDecorEmoji: ['🌅', '⭐', '💖'],
+        characters: [
+          {
+            id: 'gajju',
+            name: 'Gajju',
+            emoji: '🐘',
+            position: 'center',
+            animation: 'bounce',
+          },
+        ],
+        text: 'Gajju felt happy inside knowing that using his strength to help friends made everyone smile.',
+        narrationText:
+          'Gajju felt happy inside knowing that using his strength to help friends made everyone smile.',
+      },
+    ],
+  },
+
+  // 7. Leo's Moon Adventure
+  {
+    id: 'moon_adventure',
+    title: "Leo's Moon Adventure",
+    titleKey: 'story.stories.moonAdventure.title',
+    description:
+      'A curious child builds a cardboard rocket and journeys across the stars in imagination.',
+    descriptionKey: 'story.stories.moonAdventure.desc',
+    categoryId: 'adventure',
+    level: 3,
+    durationMinutes: 5,
+    coverEmoji: '🚀',
+    coverBgColor: '#EDE9FE',
+    accentColor: '#8B5CF6',
+    moralLesson:
+      'With curiosity and big dreams, your imagination can take you anywhere.',
+    moralKey: 'story.stories.moonAdventure.moral',
+    characters: [
+      {
+        id: 'leo_kid',
+        name: 'Leo',
+        emoji: '🧑‍🚀',
+        roleDescription: 'A dreamy little astronaut',
+        defaultPosition: 'left',
+        defaultAnimation: 'hop',
+      },
+      {
+        id: 'astro_dog',
+        name: 'Rover',
+        emoji: '🐶',
+        roleDescription: 'Leo faithful space pup',
+        defaultPosition: 'right',
+        defaultAnimation: 'wag_tail',
+      },
+    ],
+    scenes: [
+      {
+        id: 'moon_s1',
+        sceneNumber: 1,
+        backgroundKey: 'cozy_bedroom',
+        bgColors: ['#DDD6FE', '#C7D2FE'],
+        bgDecorEmoji: ['📦', '🖍️', '✨'],
+        characters: [
+          {
+            id: 'leo_kid',
+            name: 'Leo',
+            emoji: '🧑‍🚀',
+            position: 'left',
+            animation: 'bounce',
+            speechBubble: '3, 2, 1... Blast off! 🚀',
+          },
+          {
+            id: 'astro_dog',
+            name: 'Rover',
+            emoji: '🐶',
+            position: 'right',
+            animation: 'wag_tail',
+            speechBubble: 'Woof woof! 🐶',
+          },
+        ],
+        text: 'Leo and his puppy Rover built a shiny rocket from cardboard boxes and silver foil.',
+        narrationText:
+          'Leo and his puppy Rover built a shiny rocket from cardboard boxes and silver foil.',
+      },
+      {
+        id: 'moon_s2',
+        sceneNumber: 2,
+        backgroundKey: 'flying_clouds',
+        bgColors: ['#93C5FD', '#C7D2FE'],
+        bgDecorEmoji: ['☁️', '🚀', '⭐'],
+        characters: [
+          {
+            id: 'leo_kid',
+            name: 'Leo',
+            emoji: '🧑‍🚀',
+            position: 'center',
+            animation: 'float',
+            speechBubble: 'We are soaring high! ☁️',
+          },
+        ],
+        text: 'Whoosh! Their rocket zoomed past fluffy white clouds into the quiet blue sky.',
+        narrationText:
+          'Whoosh! Their rocket zoomed past fluffy white clouds into the quiet blue sky.',
+      },
+      {
+        id: 'moon_s3',
+        sceneNumber: 3,
+        backgroundKey: 'starry_space',
+        bgColors: ['#1E1B4B', '#312E81'],
+        bgDecorEmoji: ['✨', '🪐', '🌟', '☄️'],
+        characters: [
+          {
+            id: 'leo_kid',
+            name: 'Leo',
+            emoji: '🧑‍🚀',
+            position: 'left',
+            animation: 'float',
+          },
+          {
+            id: 'astro_dog',
+            name: 'Rover',
+            emoji: '🐶',
+            position: 'right',
+            animation: 'float',
+            speechBubble: 'Look at Saturn rings! 🪐',
+          },
+        ],
+        text: 'Out in deep space, twinkling stars sparkled like diamonds around colorful planets.',
+        narrationText:
+          'Out in deep space, twinkling stars sparkled like diamonds around colorful planets.',
+      },
+      {
+        id: 'moon_s4',
+        sceneNumber: 4,
+        backgroundKey: 'moon_surface',
+        bgColors: ['#475569', '#334155'],
+        bgDecorEmoji: ['🌕', '🪨', '⭐'],
+        characters: [
+          {
+            id: 'leo_kid',
+            name: 'Leo',
+            emoji: '🧑‍🚀',
+            position: 'center',
+            animation: 'hop',
+            speechBubble: 'Look at me bounce! 🌕',
+          },
+        ],
+        text: 'They touched down softly on the moon and did giant, floating astronaut hops.',
+        narrationText:
+          'They touched down softly on the moon and did giant, floating astronaut hops.',
+      },
+      {
+        id: 'moon_s5',
+        sceneNumber: 5,
+        backgroundKey: 'earth_view',
+        bgColors: ['#0F172A', '#1E293B'],
+        bgDecorEmoji: ['🌍', '✨', '💖'],
+        characters: [
+          {
+            id: 'leo_kid',
+            name: 'Leo',
+            emoji: '🧑‍🚀',
+            position: 'left',
+            animation: 'wave',
+            speechBubble: 'Earth is so beautiful! 🌍',
+          },
+          {
+            id: 'astro_dog',
+            name: 'Rover',
+            emoji: '🐶',
+            position: 'right',
+            animation: 'wag_tail',
+          },
+        ],
+        text: 'From the moon, Planet Earth looked like a glowing blue marble full of oceans and clouds.',
+        narrationText:
+          'From the moon, Planet Earth looked like a glowing blue marble full of oceans and clouds.',
+      },
+      {
+        id: 'moon_s6',
+        sceneNumber: 6,
+        backgroundKey: 'flying_home',
+        bgColors: ['#4338CA', '#818CF8'],
+        bgDecorEmoji: ['🚀', '🌟', '🏠'],
+        characters: [
+          {
+            id: 'leo_kid',
+            name: 'Leo',
+            emoji: '🧑‍🚀',
+            position: 'center',
+            animation: 'float',
+          },
+        ],
+        text: 'When it was time for bedtime, they steered their rocket safely back home to Earth.',
+        narrationText:
+          'When it was time for bedtime, they steered their rocket safely back home to Earth.',
+      },
+      {
+        id: 'moon_s7',
+        sceneNumber: 7,
+        backgroundKey: 'sleepy_bed',
+        bgColors: ['#312E81', '#1E1B4B'],
+        bgDecorEmoji: ['🌙', '⭐', '😴', '🛌'],
+        characters: [
+          {
+            id: 'leo_kid',
+            name: 'Leo',
+            emoji: '🧑‍🚀',
+            position: 'center',
+            animation: 'idle',
+            speechBubble: 'Sweet dreams, space explorer! 🌙',
+          },
+        ],
+        text: 'Leo tucked Rover into bed, smiling with wonder at all the amazing places books and dreams can go.',
+        narrationText:
+          'Leo tucked Rover into bed, smiling with wonder at all the amazing places books and dreams can go.',
+      },
+    ],
+  },
+
+  // 8. Mia's First Day at Forest School
+  {
+    id: 'forest_school',
+    title: "Mia's First Day at Forest School",
+    titleKey: 'story.stories.forestSchool.title',
+    description:
+      'A little fawn overcomes first-day nervousness by making friends and drawing together.',
+    descriptionKey: 'story.stories.forestSchool.desc',
+    categoryId: 'school',
+    level: 3,
+    durationMinutes: 5,
+    coverEmoji: '🏫',
+    coverBgColor: '#EFF6FF',
+    accentColor: '#3B82F6',
+    moralLesson:
+      'New beginnings can feel scary, but kind friends make every place feel like home.',
+    moralKey: 'story.stories.forestSchool.moral',
+    characters: [
+      {
+        id: 'mia',
+        name: 'Mia',
+        emoji: '🦌',
+        roleDescription: 'A shy little fawn',
+        defaultPosition: 'left',
+        defaultAnimation: 'walk',
+      },
+      {
+        id: 'oliver',
+        name: 'Oliver',
+        emoji: '🦊',
+        roleDescription: 'A friendly fox classmate',
+        defaultPosition: 'right',
+        defaultAnimation: 'wave',
+      },
+      {
+        id: 'teacher_bear',
+        name: 'Mrs. Bear',
+        emoji: '🐻',
+        roleDescription: 'The kind forest school teacher',
+        defaultPosition: 'center',
+        defaultAnimation: 'idle',
+      },
+    ],
+    scenes: [
+      {
+        id: 'school_s1',
+        sceneNumber: 1,
+        backgroundKey: 'school_morning',
+        bgColors: ['#BAE6FD', '#BBF7D0'],
+        bgDecorEmoji: ['🎒', '🏫', '🌸'],
+        characters: [
+          {
+            id: 'mia',
+            name: 'Mia',
+            emoji: '🦌',
+            position: 'center',
+            animation: 'walk',
+            speechBubble: 'My tummy has butterflies... 🦋',
+          },
+        ],
+        text: 'Today was Mia the little fawn very first day at the Sunny Forest School.',
+        narrationText:
+          'Today was Mia the little fawn very first day at the Sunny Forest School.',
+      },
+      {
+        id: 'school_s2',
+        sceneNumber: 2,
+        backgroundKey: 'school_gate',
+        bgColors: ['#FEF08A', '#86EFAC'],
+        bgDecorEmoji: ['🏫', '🔔', '🌳'],
+        characters: [
+          {
+            id: 'mia',
+            name: 'Mia',
+            emoji: '🦌',
+            position: 'left',
+            animation: 'idle',
+          },
+          {
+            id: 'teacher_bear',
+            name: 'Mrs. Bear',
+            emoji: '🐻',
+            position: 'center',
+            animation: 'wave',
+            speechBubble: 'Welcome to our class, Mia! 🐻',
+          },
+        ],
+        text: 'Mrs. Bear greeted Mia with a warm smile and showed her to her cozy wooden desk.',
+        narrationText:
+          'Mrs. Bear greeted Mia with a warm smile and showed her to her cozy wooden desk.',
+      },
+      {
+        id: 'school_s3',
+        sceneNumber: 3,
+        backgroundKey: 'drawing_time',
+        bgColors: ['#FDE68A', '#FBCFE8'],
+        bgDecorEmoji: ['🖍️', '🎨', '📄'],
+        characters: [
+          {
+            id: 'mia',
+            name: 'Mia',
+            emoji: '🦌',
+            position: 'left',
+            animation: 'idle',
+          },
+          {
+            id: 'oliver',
+            name: 'Oliver',
+            emoji: '🦊',
+            position: 'right',
+            animation: 'wave',
+            speechBubble: 'Do you want to share my crayons? 🖍️',
+          },
+        ],
+        text: 'During art time, Oliver the friendly little fox offered his colorful crayons to Mia.',
+        narrationText:
+          'During art time, Oliver the friendly little fox offered his colorful crayons to Mia.',
+      },
+      {
+        id: 'school_s4',
+        sceneNumber: 4,
+        backgroundKey: 'drawing_rainbow',
+        bgColors: ['#BBF7D0', '#BAE6FD'],
+        bgDecorEmoji: ['🌈', '🌳', '✨'],
+        characters: [
+          {
+            id: 'mia',
+            name: 'Mia',
+            emoji: '🦌',
+            position: 'left',
+            animation: 'bounce',
+            speechBubble: 'We made a huge rainbow! 🌈',
+          },
+          {
+            id: 'oliver',
+            name: 'Oliver',
+            emoji: '🦊',
+            position: 'right',
+            animation: 'bounce',
+          },
+        ],
+        text: 'Together, they painted a giant rainbow with green trees and singing bluebirds.',
+        narrationText:
+          'Together, they painted a giant rainbow with green trees and singing bluebirds.',
+      },
+      {
+        id: 'school_s5',
+        sceneNumber: 5,
+        backgroundKey: 'playground_fun',
+        bgColors: ['#FED7AA', '#86EFAC'],
+        bgDecorEmoji: ['⚽', '🤸', '🎉'],
+        characters: [
+          {
+            id: 'mia',
+            name: 'Mia',
+            emoji: '🦌',
+            position: 'center',
+            animation: 'hop',
+            speechBubble: 'Tag, you are it! 😄',
+          },
+        ],
+        text: 'At recess, Mia played tag with all the animal classmates and laughed happily.',
+        narrationText:
+          'At recess, Mia played tag with all the animal classmates and laughed happily.',
+      },
+      {
+        id: 'school_s6',
+        sceneNumber: 6,
+        backgroundKey: 'story_circle',
+        bgColors: ['#DDD6FE', '#C7D2FE'],
+        bgDecorEmoji: ['📖', '✨', '💖'],
+        characters: [
+          {
+            id: 'teacher_bear',
+            name: 'Mrs. Bear',
+            emoji: '🐻',
+            position: 'center',
+            animation: 'idle',
+            speechBubble: 'Once upon a time... 📖',
+          },
+          {
+            id: 'mia',
+            name: 'Mia',
+            emoji: '🦌',
+            position: 'left',
+            animation: 'bounce',
+          },
+          {
+            id: 'oliver',
+            name: 'Oliver',
+            emoji: '🦊',
+            position: 'right',
+            animation: 'bounce',
+          },
+        ],
+        text: 'Before heading home, Mrs. Bear read them an exciting fairytale in the story circle.',
+        narrationText:
+          'Before heading home, Mrs. Bear read them an exciting fairytale in the story circle.',
+      },
+      {
+        id: 'school_s7',
+        sceneNumber: 7,
+        backgroundKey: 'happy_homecoming',
+        bgColors: ['#FBCFE8', '#FEF08A'],
+        bgDecorEmoji: ['🎒', '🌟', '💖'],
+        characters: [
+          {
+            id: 'mia',
+            name: 'Mia',
+            emoji: '🦌',
+            position: 'center',
+            animation: 'wave',
+            speechBubble: 'I cannot wait for tomorrow! 🎒',
+          },
+        ],
+        text: 'Mia hopped home with a big smile, excited to return to school and play with her new friends.',
+        narrationText:
+          'Mia hopped home with a big smile, excited to return to school and play with her new friends.',
+      },
+    ],
+  },
+];

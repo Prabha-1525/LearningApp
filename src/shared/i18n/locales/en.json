@@ -3082,5 +3082,42 @@
       "animalChampion": "Animal Champion",
       "animalChampionDesc": "Conquered the Grand Animal Challenge with flying colors!"
     }
+  },
+  "story": {
+    "title": "Story Time",
+    "subtitle": "Which wonderful story would you like to hear today?",
+    "allStories": "All Stories",
+    "favorites": "Favorites",
+    "continueReading": "Continue Reading",
+    "start": "Start Story",
+    "continue": "Continue Story",
+    "startAgain": "Start From Beginning",
+    "readAgain": "Read Again",
+    "backToStories": "Back to Stories",
+    "nextStory": "Next Story",
+    "storyComplete": "Story Complete!",
+    "noFavorites": "No Favorite Stories Yet",
+    "categories": {
+      "moral": "Moral",
+      "animals": "Animals",
+      "friendship": "Friendship",
+      "nature": "Nature",
+      "adventure": "Adventure",
+      "school": "School",
+      "indian": "Indian",
+      "bedtime": "Bedtime"
+    },
+    "badges": {
+      "firstStory": "First Story",
+      "firstStoryDesc": "Completed your very first storybook journey",
+      "storyLover": "Story Lover",
+      "storyLoverDesc": "Read and listened to 3 wonderful stories",
+      "storyExplorer": "Story Explorer",
+      "storyExplorerDesc": "Explored 5 captivating story adventures",
+      "readingStar": "Reading Star",
+      "readingStarDesc": "Completed 7 stories and discovered great positive values",
+      "storyChampion": "Story Champion",
+      "storyChampionDesc": "Conquered all available story adventures with flying colors!"
+    }
   }
 }
