@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Dimensions,
@@ -20,10 +20,39 @@ interface TracingCanvasProps {
 }
 
 export function TracingCanvas({pathItem, onFinishPath}: TracingCanvasProps) {
-  const [reachedIndices, setReachedIndices] = useState<number[]>([]);
-  const [userTrail, setUserTrail] = useState<{x: number; y: number}[]>([]);
+  const [reachedCount, setReachedCount] = useState<number>(0);
+  const [liveTrail, setLiveTrail] = useState<{x: number; y: number}[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
   const successScale = useRef(new Animated.Value(0)).current;
+  const pulseAnim = useRef(new Animated.Value(1)).current;
+
+  // Pulse animation for next target dot
+  useEffect(() => {
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, {
+          toValue: 1.3,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(pulseAnim, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+      ]),
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [pulseAnim]);
+
+  // Reset state when path changes
+  useEffect(() => {
+    setReachedCount(0);
+    setLiveTrail([]);
+    setIsCompleted(false);
+    successScale.setValue(0);
+  }, [pathItem.id, successScale]);
 
   const scaleFactor = CANVAS_SIZE / 260;
   const scaledPoints = pathItem.points.map(pt => ({
@@ -32,28 +61,33 @@ export function TracingCanvas({pathItem, onFinishPath}: TracingCanvasProps) {
   }));
 
   const checkProximity = (touchX: number, touchY: number) => {
-    scaledPoints.forEach((pt, idx) => {
-      const dist = Math.hypot(touchX - pt.x, touchY - pt.y);
-      if (dist < 40 && !reachedIndices.includes(idx)) {
-        setReachedIndices(prev => {
-          const updated = [...prev, idx];
-          if (updated.length >= scaledPoints.length && !isCompleted) {
-            setIsCompleted(true);
-            drawingAudio.playSuccessChime();
-            drawingAudio.speak('Great tracing! Perfect line!');
-            Animated.spring(successScale, {
-              toValue: 1,
-              friction: 4,
-              useNativeDriver: true,
-            }).start();
-            if (onFinishPath) onFinishPath();
-          } else {
-            drawingAudio.playTone(480 + idx * 40, 40);
-          }
-          return updated;
-        });
+    if (isCompleted) return;
+
+    // Check if next required point is within touch range
+    const targetIdx = reachedCount;
+    if (targetIdx < scaledPoints.length) {
+      const targetPt = scaledPoints[targetIdx];
+      if (!targetPt) return;
+
+      const dist = Math.hypot(touchX - targetPt.x, touchY - targetPt.y);
+      if (dist < 42) {
+        const newCount = targetIdx + 1;
+        setReachedCount(newCount);
+        drawingAudio.playTone(480 + newCount * 50, 60);
+
+        if (newCount >= scaledPoints.length) {
+          setIsCompleted(true);
+          drawingAudio.playSuccessChime();
+          drawingAudio.speak('Great tracing! Perfect line!');
+          Animated.spring(successScale, {
+            toValue: 1,
+            friction: 4,
+            useNativeDriver: true,
+          }).start();
+          if (onFinishPath) onFinishPath();
+        }
       }
-    });
+    }
   };
 
   const panResponder = useRef(
@@ -62,26 +96,26 @@ export function TracingCanvas({pathItem, onFinishPath}: TracingCanvasProps) {
       onMoveShouldSetPanResponder: () => true,
       onPanResponderGrant: evt => {
         const {locationX, locationY} = evt.nativeEvent;
-        setUserTrail([{x: locationX, y: locationY}]);
+        setLiveTrail([{x: locationX, y: locationY}]);
         checkProximity(locationX, locationY);
       },
       onPanResponderMove: evt => {
         const {locationX, locationY} = evt.nativeEvent;
-        setUserTrail(prev => [
-          ...prev.slice(-30),
+        setLiveTrail(prev => [
+          ...prev.slice(-40),
           {x: locationX, y: locationY},
         ]);
         checkProximity(locationX, locationY);
       },
       onPanResponderRelease: () => {
-        setUserTrail([]);
+        setLiveTrail([]);
       },
     }),
   ).current;
 
   const handleReset = () => {
-    setReachedIndices([]);
-    setUserTrail([]);
+    setReachedCount(0);
+    setLiveTrail([]);
     setIsCompleted(false);
     successScale.setValue(0);
   };
@@ -95,40 +129,93 @@ export function TracingCanvas({pathItem, onFinishPath}: TracingCanvasProps) {
         <Text style={styles.subtitle}>{pathItem.subtitle}</Text>
       </View>
 
-      {/* Tracing Area */}
+      {/* Tracing Canvas Frame */}
       <View
         style={[styles.canvasBox, {width: CANVAS_SIZE, height: CANVAS_SIZE}]}
         {...panResponder.panHandlers}>
-        {/* Dotted Guideline Path */}
+        {/* Render Guideline Connecting Line Segments (Dotted Gray) */}
         {scaledPoints.map((pt, idx) => {
-          const isReached = reachedIndices.includes(idx);
+          if (idx === 0) return null;
+          const prev = scaledPoints[idx - 1];
+          if (!prev) return null;
+
+          const dx = pt.x - prev.x;
+          const dy = pt.y - prev.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+          const isSegmentCompleted = reachedCount > idx;
+
           return (
             <View
-              key={idx}
+              key={`line_${idx}`}
+              pointerEvents="none"
+              style={[
+                styles.segmentLine,
+                {
+                  left: prev.x,
+                  top: prev.y - 3,
+                  width: dist,
+                  height: isSegmentCompleted ? 6 : 4,
+                  backgroundColor: isSegmentCompleted ? '#10B981' : '#D1D5DB',
+                  transform: [{rotate: `${angle}deg`}],
+                  transformOrigin: 'left center',
+                },
+                !isSegmentCompleted && styles.dashedGuideline,
+              ]}
+            />
+          );
+        })}
+
+        {/* Render Dotted Path Circles with Numbers & Active Highlights */}
+        {scaledPoints.map((pt, idx) => {
+          const isReached = reachedCount > idx;
+          const isNextTarget = reachedCount === idx;
+
+          return (
+            <View
+              key={`dot_${idx}`}
+              pointerEvents="none"
               style={[
                 styles.dotPoint,
                 {
-                  left: pt.x - 14,
-                  top: pt.y - 14,
-                  backgroundColor: isReached ? '#10B981' : '#E5E7EB',
-                  borderColor: isReached ? '#059669' : '#9CA3AF',
+                  left: pt.x - 16,
+                  top: pt.y - 16,
+                  backgroundColor: isReached
+                    ? '#10B981'
+                    : isNextTarget
+                    ? '#DBEAFE'
+                    : '#FFFFFF',
+                  borderColor: isReached
+                    ? '#059669'
+                    : isNextTarget
+                    ? '#3B82F6'
+                    : '#9CA3AF',
                 },
+                isNextTarget && styles.nextTargetGlow,
               ]}>
-              <Text style={styles.dotNum}>{idx + 1}</Text>
+              {isNextTarget ? (
+                <Animated.View style={{transform: [{scale: pulseAnim}]}}>
+                  <Text style={styles.nextTargetText}>✏️</Text>
+                </Animated.View>
+              ) : isReached ? (
+                <Text style={styles.checkText}>✓</Text>
+              ) : (
+                <Text style={styles.dotNum}>{idx + 1}</Text>
+              )}
             </View>
           );
         })}
 
-        {/* Live User Finger Trail */}
-        {userTrail.map((pt, pIdx) => (
+        {/* Live Finger Trail */}
+        {liveTrail.map((pt, pIdx) => (
           <View
-            key={pIdx}
+            key={`trail_${pIdx}`}
             pointerEvents="none"
             style={[
               styles.trailDot,
               {
-                left: pt.x - 8,
-                top: pt.y - 8,
+                left: pt.x - 10,
+                top: pt.y - 10,
               },
             ]}
           />
@@ -143,6 +230,9 @@ export function TracingCanvas({pathItem, onFinishPath}: TracingCanvasProps) {
             ]}>
             <Text style={styles.celebrationEmoji}>🌟 ⭐ ✨</Text>
             <Text style={styles.celebrationTitle}>Awesome Tracing!</Text>
+            <Text style={styles.celebrationSub}>
+              You traced the whole path!
+            </Text>
           </Animated.View>
         )}
       </View>
@@ -194,48 +284,86 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 4,
   },
+  segmentLine: {
+    position: 'absolute',
+    borderRadius: 3,
+  },
+  dashedGuideline: {
+    opacity: 0.6,
+  },
   dotPoint: {
     position: 'absolute',
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    borderWidth: 2,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 2.5,
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 10,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 1},
+    shadowOpacity: 0.15,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  nextTargetGlow: {
+    borderWidth: 3,
+    borderColor: '#2563EB',
+    backgroundColor: '#EFF6FF',
   },
   dotNum: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: '900',
-    color: '#1F2937',
+    color: '#4B5563',
+  },
+  checkText: {
+    fontSize: 14,
+    fontWeight: '900',
+    color: '#FFFFFF',
+  },
+  nextTargetText: {
+    fontSize: 14,
   },
   trailDot: {
     position: 'absolute',
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    backgroundColor: '#60A5FA',
-    opacity: 0.8,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#34D399',
+    opacity: 0.75,
+    zIndex: 5,
   },
   celebrationCard: {
     position: 'absolute',
     bottom: 16,
     alignSelf: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.96)',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 18,
-    borderWidth: 2,
+    backgroundColor: 'rgba(255, 255, 255, 0.98)',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 20,
+    borderWidth: 2.5,
     borderColor: '#10B981',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 6,
+    zIndex: 20,
   },
   celebrationEmoji: {
-    fontSize: 22,
+    fontSize: 24,
   },
   celebrationTitle: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '900',
     color: '#059669',
     marginTop: 2,
+  },
+  celebrationSub: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#4B5563',
   },
   actionRow: {
     width: '100%',
@@ -246,7 +374,7 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: '#D1D5DB',
     paddingHorizontal: 20,
-    paddingVertical: 8,
+    paddingVertical: 9,
     borderRadius: 14,
   },
   resetBtnText: {

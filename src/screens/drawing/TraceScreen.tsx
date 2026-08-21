@@ -86,7 +86,11 @@ export function TraceScreen() {
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}>
-        <TracingCanvas pathItem={currentPath} onFinishPath={handleFinishPath} />
+        <TracingCanvas
+          key={currentPath.id}
+          pathItem={currentPath}
+          onFinishPath={handleFinishPath}
+        />
 
         <Pressable
           accessibilityRole="button"
