@@ -64,6 +64,15 @@ export type BadgeEvalContext = {
   readonly shapesDrawnCount?: number;
   readonly guidedDrawingsCount?: number;
   readonly creativeChallengesCount?: number;
+  readonly shapesLessonsCompleted?: number;
+  readonly shapesStars?: number;
+  readonly shapesLearnedCount?: number;
+  readonly shapeRecognitionCount?: number;
+  readonly shapeMatchingCount?: number;
+  readonly shapeSortingCount?: number;
+  readonly shapePropertiesCount?: number;
+  readonly shapePatternsCount?: number;
+  readonly shapePuzzlesCount?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<BadgeId>;
 };
@@ -631,7 +640,7 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     badgeId: asBadgeId('badge.word_builder'),
     titleKey: 'english.badges.wordBuilder',
     descriptionKey: 'english.badges.wordBuilderDesc',
-    icon: '📝',
+    icon: '🧱',
     evaluate: ctx =>
       (ctx.englishWordsMastered ?? 0) >= 3 ||
       (ctx.englishLessonsCompleted ?? 0) >= 5,
@@ -681,17 +690,17 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     icon: '🎨',
     evaluate: ctx =>
       (ctx.colorsLearnedCount ?? 0) >= 3 ||
-      (ctx.drawingLessonsCompleted ?? 0) >= 1 ||
-      (ctx.drawingStars ?? 0) >= 3,
+      (ctx.drawingLessonsCompleted ?? 0) >= 1,
   },
   {
     id: 'color_master',
     badgeId: asBadgeId('badge.color_master'),
     titleKey: 'drawing.badges.colorMaster',
     descriptionKey: 'drawing.badges.colorMasterDesc',
-    icon: '🌈',
+    icon: '🧪',
     evaluate: ctx =>
-      (ctx.colorsLearnedCount ?? 0) >= 6 || (ctx.drawingStars ?? 0) >= 6,
+      (ctx.colorsLearnedCount ?? 0) >= 8 ||
+      (ctx.drawingLessonsCompleted ?? 0) >= 3,
   },
   {
     id: 'coloring_star',
@@ -752,6 +761,86 @@ export const BADGE_RULES: readonly BadgeRule[] = [
       (ctx.creativeChallengesCount ?? 0) >= 2 ||
       ((ctx.drawingLessonsCompleted ?? 0) >= 8 &&
         (ctx.drawingStars ?? 0) >= 24),
+  },
+  // ================= Shapes Module Badges =================
+  {
+    id: 'shape_explorer',
+    badgeId: asBadgeId('badge.shape_explorer'),
+    titleKey: 'shapes.badges.shapeExplorer',
+    descriptionKey: 'shapes.badges.shapeExplorerDesc',
+    icon: '🔷',
+    evaluate: ctx =>
+      (ctx.shapesLearnedCount ?? 0) >= 4 ||
+      (ctx.shapesLessonsCompleted ?? 0) >= 1,
+  },
+  {
+    id: 'shape_detective',
+    badgeId: asBadgeId('badge.shape_detective'),
+    titleKey: 'shapes.badges.shapeDetective',
+    descriptionKey: 'shapes.badges.shapeDetectiveDesc',
+    icon: '👀',
+    evaluate: ctx =>
+      (ctx.shapeRecognitionCount ?? 0) >= 3 ||
+      (ctx.shapesLessonsCompleted ?? 0) >= 2,
+  },
+  {
+    id: 'shape_matcher',
+    badgeId: asBadgeId('badge.shape_matcher'),
+    titleKey: 'shapes.badges.shapeMatcher',
+    descriptionKey: 'shapes.badges.shapeMatcherDesc',
+    icon: '🧩',
+    evaluate: ctx =>
+      (ctx.shapeMatchingCount ?? 0) >= 3 ||
+      (ctx.shapesLessonsCompleted ?? 0) >= 3,
+  },
+  {
+    id: 'shape_sorter',
+    badgeId: asBadgeId('badge.shape_sorter'),
+    titleKey: 'shapes.badges.shapeSorter',
+    descriptionKey: 'shapes.badges.shapeSorterDesc',
+    icon: '📦',
+    evaluate: ctx =>
+      (ctx.shapeSortingCount ?? 0) >= 2 ||
+      (ctx.shapesLessonsCompleted ?? 0) >= 5,
+  },
+  {
+    id: 'shape_counter',
+    badgeId: asBadgeId('badge.shape_counter'),
+    titleKey: 'shapes.badges.shapeCounter',
+    descriptionKey: 'shapes.badges.shapeCounterDesc',
+    icon: '🔢',
+    evaluate: ctx =>
+      (ctx.shapePropertiesCount ?? 0) >= 3 || (ctx.shapesStars ?? 0) >= 12,
+  },
+  {
+    id: 'pattern_finder',
+    badgeId: asBadgeId('badge.pattern_finder'),
+    titleKey: 'shapes.badges.patternFinder',
+    descriptionKey: 'shapes.badges.patternFinderDesc',
+    icon: '🔄',
+    evaluate: ctx =>
+      (ctx.shapePatternsCount ?? 0) >= 3 ||
+      (ctx.shapesLessonsCompleted ?? 0) >= 8,
+  },
+  {
+    id: 'shape_puzzle_master',
+    badgeId: asBadgeId('badge.shape_puzzle_master'),
+    titleKey: 'shapes.badges.shapePuzzleMaster',
+    descriptionKey: 'shapes.badges.shapePuzzleMasterDesc',
+    icon: '🧠',
+    evaluate: ctx =>
+      (ctx.shapePuzzlesCount ?? 0) >= 2 || (ctx.shapesStars ?? 0) >= 20,
+  },
+  {
+    id: 'shape_champion',
+    badgeId: asBadgeId('badge.shape_champion'),
+    titleKey: 'shapes.badges.shapeChampion',
+    descriptionKey: 'shapes.badges.shapeChampionDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      ((ctx.shapesLessonsCompleted ?? 0) >= 10 &&
+        (ctx.shapesStars ?? 0) >= 30) ||
+      (ctx.shapePuzzlesCount ?? 0) >= 3,
   },
 ];
 

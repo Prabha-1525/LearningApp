@@ -2980,5 +2980,51 @@
       "artChampion": "Art Champion",
       "artChampionDesc": "Completed creative imagination challenges like a true artist!"
     }
+  },
+  "shapes": {
+    "title": "Shapes",
+    "subtitle": "Let's explore shapes!",
+    "submodules": {
+      "learnShapes": "1. 🔍 Learn Shapes",
+      "learnShapesSub": "Explore circle, square, triangle and more",
+      "recognition": "2. 👀 Find & Recognize",
+      "recognitionSub": "Identify rotated and scaled shapes",
+      "matching": "3. 🧩 Match Shapes",
+      "matchingSub": "Match identical shape pairs",
+      "properties": "4. 📐 Sides & Corners",
+      "propertiesSub": "Interactive counting of sides and corners",
+      "sorting": "5. 📦 Sort Shapes",
+      "sortingSub": "Put shapes into matching sorting boxes",
+      "compare": "6. ⚖️ Compare Shapes",
+      "compareSub": "More sides, fewer corners, roundness",
+      "aroundUs": "7. 🏠 Shapes Around Us",
+      "aroundUsSub": "Discover shapes in everyday real objects",
+      "count": "8. 🔢 Count Shapes",
+      "countSub": "Count target shapes on the board",
+      "patterns": "9. 🔄 Shape Patterns",
+      "patternsSub": "Complete AB, AAB, ABC, AABB patterns",
+      "puzzles": "10. 🧠 Shape Puzzles",
+      "puzzlesSub": "Odd-one-out puzzles & memory game",
+      "challenge": "11. 🏆 Shape Challenge",
+      "challengeSub": "Grand Shape Champion assessment"
+    },
+    "badges": {
+      "shapeExplorer": "Shape Explorer",
+      "shapeExplorerDesc": "Explored basic geometric shapes and their features",
+      "shapeDetective": "Shape Detective",
+      "shapeDetectiveDesc": "Recognized shapes in different rotations and sizes",
+      "shapeMatcher": "Shape Matcher",
+      "shapeMatcherDesc": "Matched shape pairs regardless of color",
+      "shapeSorter": "Shape Sorter",
+      "shapeSorterDesc": "Sorted shapes into multi-container sorting boxes",
+      "shapeCounter": "Shape Counter",
+      "shapeCounterDesc": "Counted sides and corners of multiple shapes",
+      "patternFinder": "Pattern Finder",
+      "patternFinderDesc": "Completed repeating geometric shape sequences",
+      "shapePuzzleMaster": "Shape Puzzle Master",
+      "shapePuzzleMasterDesc": "Solved odd-one-out reasoning and memory matching games",
+      "shapeChampion": "Shape Champion",
+      "shapeChampionDesc": "Conquered the Grand Shape Challenge with flying colors!"
+    }
   }
 }

@@ -16,6 +16,7 @@ export type {LifeSkillsStackParamList} from './lifeSkillsTypes';
 export type {GeneralKnowledgeStackParamList} from './generalKnowledgeTypes';
 export type {EnglishStackParamList} from './englishTypes';
 export type {DrawingStackParamList} from './drawingTypes';
+export type {ShapesStackParamList} from './shapesTypes';
 
 export {AuthNavigator} from './AuthNavigator';
 export {MainNavigator} from './MainNavigator';
@@ -33,3 +34,4 @@ export {LifeSkillsNavigator} from './LifeSkillsNavigator';
 export {GeneralKnowledgeNavigator} from './GeneralKnowledgeNavigator';
 export {EnglishNavigator} from './EnglishNavigator';
 export {DrawingNavigator} from './DrawingNavigator';
+export {ShapesNavigator} from './ShapesNavigator';

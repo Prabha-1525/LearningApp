@@ -32,6 +32,10 @@ import {
   readDrawingProgress,
   getDrawingOverallProgress,
 } from '@features/drawing/data/progress/drawingProgress';
+import {
+  readShapesProgress,
+  getShapesOverallProgress,
+} from '@features/shapes/data/progress/shapesProgress';
 import {space} from '@shared/ui';
 
 import type {MainStackParamList, MainTabParamList} from '@navigation/types';
@@ -138,6 +142,15 @@ export function HomeScreen({navigation}: Props) {
     }
   }, []);
 
+  const shapesProgress = useMemo(() => {
+    try {
+      const p = readShapesProgress();
+      return getShapesOverallProgress(p).percent;
+    } catch {
+      return 0;
+    }
+  }, []);
+
   const avatar = useMemo(
     () => getChildAvatar(activeChild?.avatarKey ?? 'lion'),
     [activeChild?.avatarKey],
@@ -223,6 +236,8 @@ export function HomeScreen({navigation}: Props) {
                   ? englishProgress
                   : subject.id === 'drawing'
                   ? drawingProgress
+                  : subject.id === 'shapes'
+                  ? shapesProgress
                   : subject.progressPercent
               }
               showNewBadge={subject.showNewBadge}
