@@ -10,6 +10,7 @@ import {registerRhymesModule} from '@features/rhymes';
 import {registerLifeSkillsModule} from '@features/lifeSkills';
 import {registerGeneralKnowledgeModule} from '@features/generalKnowledge';
 import {registerEnglishModule} from '@features/english';
+import {registerDrawingModule} from '@features/drawing';
 import {featureFlags} from '@shared/config';
 
 import {createCatalogModule} from './createCatalogModule';
@@ -35,18 +36,7 @@ export function registerAllModules(): void {
   moduleRegistry.register(registerLifeSkillsModule());
   moduleRegistry.register(registerGeneralKnowledgeModule());
   moduleRegistry.register(registerEnglishModule());
-
-  moduleRegistry.register(
-    createCatalogModule({
-      id: ModuleId.Drawing,
-      titleKey: 'modules.drawing.title',
-      subtitleKey: 'modules.drawing.subtitle',
-      iconKey: 'drawing',
-      accentColor: '#8B5CF6',
-      deepLinkPrefix: 'learningapp://module/drawing',
-      isEnabled: () => featureFlags.drawingEnabled,
-    }),
-  );
+  moduleRegistry.register(registerDrawingModule());
 
   moduleRegistry.register(
     createCatalogModule({

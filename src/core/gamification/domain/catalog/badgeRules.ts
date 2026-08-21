@@ -57,8 +57,15 @@ export type BadgeEvalContext = {
   readonly sentencesRead?: number;
   readonly storiesCompleted?: number;
   readonly readingChallengeCompleted?: boolean;
+  readonly drawingLessonsCompleted?: number;
+  readonly drawingStars?: number;
+  readonly colorsLearnedCount?: number;
+  readonly objectsColoredCount?: number;
+  readonly shapesDrawnCount?: number;
+  readonly guidedDrawingsCount?: number;
+  readonly creativeChallengesCount?: number;
   readonly currentStreak: number;
-  readonly ownedBadgeIds: ReadonlySet<string>;
+  readonly ownedBadgeIds: ReadonlySet<BadgeId>;
 };
 
 export type BadgeRule = {
@@ -70,7 +77,7 @@ export type BadgeRule = {
   readonly evaluate: (ctx: BadgeEvalContext) => boolean;
 };
 
-function asBadgeId(value: string): BadgeId {
+export function asBadgeId(value: string): BadgeId {
   return value as BadgeId;
 }
 
@@ -665,6 +672,86 @@ export const BADGE_RULES: readonly BadgeRule[] = [
       ctx.readingChallengeCompleted === true ||
       ((ctx.englishLessonsCompleted ?? 0) >= 10 &&
         (ctx.englishStars ?? 0) >= 25),
+  },
+  {
+    id: 'color_explorer',
+    badgeId: asBadgeId('badge.color_explorer'),
+    titleKey: 'drawing.badges.colorExplorer',
+    descriptionKey: 'drawing.badges.colorExplorerDesc',
+    icon: '🎨',
+    evaluate: ctx =>
+      (ctx.colorsLearnedCount ?? 0) >= 3 ||
+      (ctx.drawingLessonsCompleted ?? 0) >= 1 ||
+      (ctx.drawingStars ?? 0) >= 3,
+  },
+  {
+    id: 'color_master',
+    badgeId: asBadgeId('badge.color_master'),
+    titleKey: 'drawing.badges.colorMaster',
+    descriptionKey: 'drawing.badges.colorMasterDesc',
+    icon: '🌈',
+    evaluate: ctx =>
+      (ctx.colorsLearnedCount ?? 0) >= 6 || (ctx.drawingStars ?? 0) >= 6,
+  },
+  {
+    id: 'coloring_star',
+    badgeId: asBadgeId('badge.coloring_star'),
+    titleKey: 'drawing.badges.coloringStar',
+    descriptionKey: 'drawing.badges.coloringStarDesc',
+    icon: '🖍️',
+    evaluate: ctx =>
+      (ctx.objectsColoredCount ?? 0) >= 3 || (ctx.drawingStars ?? 0) >= 9,
+  },
+  {
+    id: 'drawing_starter',
+    badgeId: asBadgeId('badge.drawing_starter'),
+    titleKey: 'drawing.badges.drawingStarter',
+    descriptionKey: 'drawing.badges.drawingStarterDesc',
+    icon: '✏️',
+    evaluate: ctx =>
+      (ctx.shapesDrawnCount ?? 0) >= 2 ||
+      (ctx.drawingLessonsCompleted ?? 0) >= 4 ||
+      (ctx.drawingStars ?? 0) >= 12,
+  },
+  {
+    id: 'shape_artist',
+    badgeId: asBadgeId('badge.shape_artist'),
+    titleKey: 'drawing.badges.shapeArtist',
+    descriptionKey: 'drawing.badges.shapeArtistDesc',
+    icon: '🔷',
+    evaluate: ctx =>
+      (ctx.shapesDrawnCount ?? 0) >= 4 || (ctx.drawingStars ?? 0) >= 15,
+  },
+  {
+    id: 'little_artist',
+    badgeId: asBadgeId('badge.little_artist'),
+    titleKey: 'drawing.badges.littleArtist',
+    descriptionKey: 'drawing.badges.littleArtistDesc',
+    icon: '🐾',
+    evaluate: ctx =>
+      (ctx.guidedDrawingsCount ?? 0) >= 2 ||
+      (ctx.drawingLessonsCompleted ?? 0) >= 6,
+  },
+  {
+    id: 'creative_creator',
+    badgeId: asBadgeId('badge.creative_creator'),
+    titleKey: 'drawing.badges.creativeCreator',
+    descriptionKey: 'drawing.badges.creativeCreatorDesc',
+    icon: '🧑‍🎨',
+    evaluate: ctx =>
+      (ctx.guidedDrawingsCount ?? 0) >= 3 ||
+      (ctx.creativeChallengesCount ?? 0) >= 1,
+  },
+  {
+    id: 'art_champion',
+    badgeId: asBadgeId('badge.art_champion'),
+    titleKey: 'drawing.badges.artChampion',
+    descriptionKey: 'drawing.badges.artChampionDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      (ctx.creativeChallengesCount ?? 0) >= 2 ||
+      ((ctx.drawingLessonsCompleted ?? 0) >= 8 &&
+        (ctx.drawingStars ?? 0) >= 24),
   },
 ];
 

@@ -28,6 +28,10 @@ import {
   readEnglishProgress,
   getEnglishOverallProgress,
 } from '@features/english/data/progress/englishProgress';
+import {
+  readDrawingProgress,
+  getDrawingOverallProgress,
+} from '@features/drawing/data/progress/drawingProgress';
 import {space} from '@shared/ui';
 
 import type {MainStackParamList, MainTabParamList} from '@navigation/types';
@@ -125,6 +129,15 @@ export function HomeScreen({navigation}: Props) {
     }
   }, []);
 
+  const drawingProgress = useMemo(() => {
+    try {
+      const p = readDrawingProgress();
+      return getDrawingOverallProgress(p).percent;
+    } catch {
+      return 0;
+    }
+  }, []);
+
   const avatar = useMemo(
     () => getChildAvatar(activeChild?.avatarKey ?? 'lion'),
     [activeChild?.avatarKey],
@@ -208,6 +221,8 @@ export function HomeScreen({navigation}: Props) {
                   ? scienceProgress
                   : subject.id === 'english'
                   ? englishProgress
+                  : subject.id === 'drawing'
+                  ? drawingProgress
                   : subject.progressPercent
               }
               showNewBadge={subject.showNewBadge}

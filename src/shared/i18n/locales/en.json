@@ -2935,5 +2935,50 @@
       "readingChampion": "Reading Champion",
       "readingChampionDesc": "Aced the Grand Reading Challenge and became an independent reader!"
     }
+  },
+  "drawing": {
+    "title": "Colors & Drawing",
+    "subtitle": "Colors, coloring, tracing, and guided drawing!",
+    "lockedHint": "Complete previous step",
+    "submodules": {
+      "colors": "1. 🎨 Learn Colors",
+      "colorsSub": "Explore basic & blend colors",
+      "colorMatch": "2. 🌈 Color Matching",
+      "colorMatchSub": "Match objects with true colors",
+      "colorMix": "3. 🧪 Color Mixing",
+      "colorMixSub": "Discover magic paint blends",
+      "coloring": "4. 🖍️ Object Coloring",
+      "coloringSub": "Color 10+ vector pages",
+      "trace": "5. ✏️ Trace & Draw",
+      "traceSub": "Finger tracing lines & paths",
+      "shapes": "6. 🔷 Basic Shapes",
+      "shapesSub": "Learn, trace & draw 6 shapes",
+      "drawObjects": "7. 🐾 Draw Simple Objects",
+      "drawObjectsSub": "Combine shapes into real items",
+      "guidedDrawing": "8. 🧑‍🎨 Guided Drawing",
+      "guidedDrawingSub": "Step-by-step drawing lessons",
+      "freeDrawing": "9. 🖼️ Free Drawing",
+      "freeDrawingSub": "Draw anything with full creativity",
+      "creativeChallenge": "10. 🏆 Creative Challenges",
+      "creativeChallengeSub": "Imaginative drawing prompts"
+    },
+    "badges": {
+      "colorExplorer": "Color Explorer",
+      "colorExplorerDesc": "Explored basic colors and identified familiar objects",
+      "colorMaster": "Color Master",
+      "colorMasterDesc": "Mastered primary colors and magical color mixing blends",
+      "coloringStar": "Coloring Star",
+      "coloringStarDesc": "Colored beautiful multi-region coloring book pages",
+      "drawingStarter": "Drawing Starter",
+      "drawingStarterDesc": "Practiced line tracing and fine motor drawing paths",
+      "shapeArtist": "Shape Artist",
+      "shapeArtistDesc": "Mastered drawing all 6 basic geometric shapes",
+      "littleArtist": "Little Artist",
+      "littleArtistDesc": "Combined shapes to draw recognizable animals and objects",
+      "creativeCreator": "Creative Creator",
+      "creativeCreatorDesc": "Followed step-by-step guided lessons and created free art",
+      "artChampion": "Art Champion",
+      "artChampionDesc": "Completed creative imagination challenges like a true artist!"
+    }
   }
 }
