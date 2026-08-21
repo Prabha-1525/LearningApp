@@ -1,4 +1,3 @@
-export {PhonicsHeader} from './PhonicsHeader';
 export {PhonicsSubModuleCard} from './PhonicsSubModuleCard';
 export {LetterSoundCard} from './LetterSoundCard';
 export {SoundBlendingStage} from './SoundBlendingStage';

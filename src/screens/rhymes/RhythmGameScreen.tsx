@@ -3,11 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  MusicHeader,
-  RhythmTapGame,
-} from '../../features/rhymes/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {RhythmTapGame} from '../../features/rhymes/presentation/components';
 import {
   recordMusicTopicCompletion,
   recordRhythmLevelCompleted,
@@ -36,11 +33,12 @@ export function RhythmGameScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FEF2F2">
-      <MusicHeader
+      <LearningHeader
         title={t('rhymes.topics.rhythm.title', 'Rhythm Game')}
         subtitle="Tap to the Beat"
         emoji="🥁"
         accentColor="#DC2626"
+        titleColor="#DC2626"
       />
       <RhythmTapGame onLevelComplete={handleLevelComplete} />
     </AppSafeAreaView>

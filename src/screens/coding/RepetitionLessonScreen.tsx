@@ -3,11 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  CodingHeader,
-  RepetitionLoopsGame,
-} from '../../features/coding/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {RepetitionLoopsGame} from '../../features/coding/presentation/components';
 import {recordCodingTopicCompletion} from '../../features/coding/data/progress/codingProgress';
 import type {CodingStackParamList} from '../../navigation/codingTypes';
 
@@ -30,11 +27,12 @@ export function RepetitionLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FFFBEB">
-      <CodingHeader
+      <LearningHeader
         title={t('coding.topics.loops.title', 'Repeat (Loops)')}
         subtitle="Visual Loops & Repetition Blocks"
         emoji="🔁"
         accentColor="#D97706"
+        titleColor="#D97706"
       />
       <RepetitionLoopsGame onComplete={handleComplete} />
     </AppSafeAreaView>

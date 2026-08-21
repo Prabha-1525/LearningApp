@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ColorMatchingGame,
-  DrawingHeader,
-} from '../../features/drawing/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ColorMatchingGame} from '../../features/drawing/presentation/components';
 import {COLOR_MATCHING_ITEMS} from '../../features/drawing/domain/catalog/drawingData';
 import {recordDrawingLessonResult} from '../../features/drawing/data/progress/drawingProgress';
 import type {DrawingStackParamList} from '../../navigation/drawingTypes';
@@ -36,11 +33,12 @@ export function ColorMatchScreen() {
 
   return (
     <AppSafeAreaView>
-      <DrawingHeader
+      <LearningHeader
         title="Color Matching"
         subtitle="Match familiar objects with their colors!"
         emoji="🌈"
         accentColor="#3B82F6"
+        titleColor="#3B82F6"
       />
 
       <ScrollView

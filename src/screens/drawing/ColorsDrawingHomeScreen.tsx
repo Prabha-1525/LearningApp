@@ -1,11 +1,10 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
-  DrawingHeader,
   DrawingProgressTracker,
   DrawingSubModuleCard,
 } from '../../features/drawing/presentation/components';
@@ -62,13 +61,23 @@ export function ColorsDrawingHomeScreen() {
 
   return (
     <AppSafeAreaView>
-      <DrawingHeader
+      <LearningHeader
         title="Colors & Drawing"
         subtitle="Let's create something beautiful!"
         emoji="🎨"
         accentColor="#EC4899"
-        showGalleryBtn={true}
-        onGalleryPress={() => navigation.navigate('MyGallery')}
+        titleColor="#EC4899"
+        stars={progress.totalStars}
+        starVariant="green"
+        rightElement={
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="My Gallery"
+            onPress={() => navigation.navigate('MyGallery')}
+            style={styles.galleryBtn}>
+            <Text style={styles.galleryBtnText}>🖼️</Text>
+          </Pressable>
+        }
       />
 
       <ScrollView

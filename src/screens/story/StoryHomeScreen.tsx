@@ -3,12 +3,11 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   ContinueReadingShelf,
   StoryCard,
   StoryCategoryPills,
-  StoryHeader,
 } from '../../features/story/presentation/components';
 import {STORIES_DATA} from '../../features/story/domain/catalog/storiesData';
 import {
@@ -68,10 +67,11 @@ export function StoryHomeScreen() {
 
   return (
     <AppSafeAreaView>
-      <StoryHeader
+      <LearningHeader
         title="Story Time"
         subtitle="Which wonderful story would you like to hear today?"
         accentColor="#C4A05A"
+        titleColor="#C4A05A"
       />
 
       {/* Category Pills Selector */}

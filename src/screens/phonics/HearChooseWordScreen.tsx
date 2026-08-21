@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  PhonicsExerciseEngine,
-  PhonicsHeader,
-} from '../../features/phonics/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {PhonicsExerciseEngine} from '../../features/phonics/presentation/components';
 import {recordPhonicsLessonResult} from '../../features/phonics/data/progress/phonicsProgress';
 import type {PhonicsStackParamList} from '../../navigation/phonicsTypes';
 
@@ -76,10 +73,11 @@ export function HearChooseWordScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title="Hear & Choose Word"
         subtitle="Listen to the word and tap the matching spelling!"
         accentColor="#14B8A6"
+        titleColor="#14B8A6"
       />
 
       <ScrollView

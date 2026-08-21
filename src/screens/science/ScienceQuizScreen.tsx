@@ -4,11 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ScienceHeader,
-  ScienceQuizCard,
-} from '../../features/science/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ScienceQuizCard} from '../../features/science/presentation/components';
 import {SCIENCE_QUIZ_QUESTIONS} from '../../features/science/domain/catalog/scienceData';
 import {
   recordQuizCompletion,
@@ -59,10 +56,11 @@ export function ScienceQuizScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FDF2F8">
-      <ScienceHeader
+      <LearningHeader
         title={t('science.topics.quiz.title', 'Science Quiz')}
         emoji="🎯"
         accentColor="#DB2777"
+        titleColor="#DB2777"
         score={score}
         totalScore={total}
         onBack={() => navigation.navigate('Home')}

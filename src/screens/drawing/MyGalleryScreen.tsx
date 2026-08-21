@@ -3,11 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  DrawingHeader,
-  GalleryArtworkCard,
-} from '../../features/drawing/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {GalleryArtworkCard} from '../../features/drawing/presentation/components';
 import {
   deleteGalleryArtwork,
   readGalleryArtworks,
@@ -46,11 +43,12 @@ export function MyGalleryScreen() {
 
   return (
     <AppSafeAreaView>
-      <DrawingHeader
+      <LearningHeader
         title="My Art Gallery"
         subtitle="Your saved drawings and colorful creations!"
         emoji="🖼️"
         accentColor="#EC4899"
+        titleColor="#EC4899"
       />
 
       {/* Filter Tabs */}

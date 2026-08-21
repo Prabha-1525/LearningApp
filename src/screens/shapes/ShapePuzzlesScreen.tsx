@@ -3,11 +3,10 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   ShapeMemoryGame,
   ShapePuzzleBoard,
-  ShapesHeader,
 } from '../../features/shapes/presentation/components';
 import {
   SHAPE_MEMORY_CARDS,
@@ -60,11 +59,12 @@ export function ShapePuzzlesScreen() {
 
   return (
     <AppSafeAreaView>
-      <ShapesHeader
+      <LearningHeader
         title="Shape Puzzles"
         subtitle="Solve shape puzzles and memory challenges!"
         emoji="🧠"
         accentColor="#D946EF"
+        titleColor="#D946EF"
       />
 
       {/* Tab Switcher */}

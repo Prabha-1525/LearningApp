@@ -3,11 +3,10 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   ShapeCard,
   ShapeQuizEngine,
-  ShapesHeader,
 } from '../../features/shapes/presentation/components';
 import {
   SHAPES_DATA,
@@ -54,11 +53,12 @@ export function LearnShapesScreen() {
 
   return (
     <AppSafeAreaView>
-      <ShapesHeader
+      <LearningHeader
         title="Learn Shapes"
         subtitle="Explore shapes, sides, and corners!"
         emoji="🔍"
         accentColor="#3B82F6"
+        titleColor="#3B82F6"
       />
 
       {/* Mode Switcher */}

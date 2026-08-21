@@ -3,11 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  MonthsExplorer,
-  TimeHeader,
-} from '../../features/time/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {MonthsExplorer} from '../../features/time/presentation/components';
 import {recordTimeTopicCompletion} from '../../features/time/data/progress/timeProgress';
 import type {TimeStackParamList} from '../../navigation/timeTypes';
 
@@ -30,11 +27,12 @@ export function MonthsLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#F5F3FF">
-      <TimeHeader
+      <LearningHeader
         title={t('time.topics.months.title', 'Months of the Year')}
         subtitle="12 Months & Seasons"
         emoji="📆"
         accentColor="#7C3AED"
+        titleColor="#7C3AED"
       />
       <MonthsExplorer onComplete={handleGameComplete} />
     </AppSafeAreaView>

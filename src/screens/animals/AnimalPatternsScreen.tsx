@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  AnimalPatternBoard,
-  AnimalsHeader,
-} from '../../features/animals/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {AnimalPatternBoard} from '../../features/animals/presentation/components';
 import {ANIMAL_PATTERNS} from '../../features/animals/domain/catalog/animalsData';
 import {recordAnimalLessonResult} from '../../features/animals/data/progress/animalsProgress';
 import type {AnimalsStackParamList} from '../../navigation/animalsTypes';
@@ -37,11 +34,12 @@ export function AnimalPatternsScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="Animal Patterns"
         subtitle="Complete the repeating animal patterns!"
         emoji="🔄"
         accentColor="#F59E0B"
+        titleColor="#F59E0B"
       />
 
       <ScrollView

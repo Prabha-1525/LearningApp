@@ -3,11 +3,8 @@ import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  EnglishHeader,
-  SoundBlendingBoard,
-} from '../../features/english/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {SoundBlendingBoard} from '../../features/english/presentation/components';
 import {BLENDING_WORDS_DATA} from '../../features/english/domain/catalog/englishData';
 import {recordEnglishLessonResult} from '../../features/english/data/progress/englishProgress';
 import type {EnglishStackParamList} from '../../navigation/englishTypes';
@@ -36,11 +33,12 @@ export function EnglishBlendingScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title="Sound Blending"
         subtitle="Tap sounds & blend into words!"
         emoji="🔗"
         accentColor="#6366F1"
+        titleColor="#6366F1"
       />
 
       <View style={styles.content}>

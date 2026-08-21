@@ -3,9 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
-  EnglishHeader,
   EnglishQuizEngine,
   SightWordFlashcard,
 } from '../../features/english/presentation/components';
@@ -44,11 +43,12 @@ export function EnglishSightWordsScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title="Sight Words"
         subtitle="Common words for smooth reading!"
         emoji="⭐"
         accentColor="#D97706"
+        titleColor="#D97706"
       />
 
       <View style={styles.tabRow}>

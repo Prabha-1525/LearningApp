@@ -3,10 +3,9 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   PhonicsExerciseEngine,
-  PhonicsHeader,
   SoundBlendingStage,
 } from '../../features/phonics/presentation/components';
 import {
@@ -55,7 +54,7 @@ export function CVCWordsScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title={showExercise ? 'CVC Word Quiz' : 'CVC Words'}
         subtitle={
           showExercise
@@ -63,6 +62,7 @@ export function CVCWordsScreen() {
             : `Word ${wordIdx - 4} of ${sampleWords.length}`
         }
         accentColor="#10B981"
+        titleColor="#10B981"
       />
 
       <ScrollView

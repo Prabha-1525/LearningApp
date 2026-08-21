@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  PhonicsHeader,
-  WordTransformationBoard,
-} from '../../features/phonics/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {WordTransformationBoard} from '../../features/phonics/presentation/components';
 import {WORD_TRANSFORMATIONS} from '../../features/phonics/domain/catalog/phonicsData';
 import {recordPhonicsLessonResult} from '../../features/phonics/data/progress/phonicsProgress';
 import type {PhonicsStackParamList} from '../../navigation/phonicsTypes';
@@ -38,10 +35,11 @@ export function WordTransformScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title="Change One Sound"
         subtitle={`Challenge ${currentIdx + 1} of ${sampleTransforms.length}`}
         accentColor="#EAB308"
+        titleColor="#EAB308"
       />
 
       <ScrollView

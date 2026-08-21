@@ -3,11 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  CodingHeader,
-  SequencingGame,
-} from '../../features/coding/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {SequencingGame} from '../../features/coding/presentation/components';
 import {
   recordCodingTopicCompletion,
   recordSequencingSolved,
@@ -34,11 +31,12 @@ export function SequencingLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#ECFDF5">
-      <CodingHeader
+      <LearningHeader
         title={t('coding.topics.sequencing.title', 'Arrange Steps')}
         subtitle="Logical 1 ➔ 2 ➔ 3 ➔ 4 Order"
         emoji="🔢"
         accentColor="#059669"
+        titleColor="#059669"
       />
       <SequencingGame onComplete={handleComplete} />
     </AppSafeAreaView>

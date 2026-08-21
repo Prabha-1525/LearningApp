@@ -3,8 +3,7 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {PhonicsHeader} from '../../features/phonics/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {PHONICS_LETTERS} from '../../features/phonics/domain/catalog/phonicsData';
 import {phonicsAudio} from '../../features/phonics/domain/audio/phonicsAudioEngine';
 import {recordPhonicsLessonResult} from '../../features/phonics/data/progress/phonicsProgress';
@@ -71,10 +70,11 @@ export function LetterMatchingScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title="Letter Matching"
         subtitle="Match the big letter with its small letter partner!"
         accentColor="#8B5CF6"
+        titleColor="#8B5CF6"
       />
 
       <ScrollView

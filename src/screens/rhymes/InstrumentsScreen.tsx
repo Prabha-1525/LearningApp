@@ -3,11 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  InstrumentsExplorer,
-  MusicHeader,
-} from '../../features/rhymes/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {InstrumentsExplorer} from '../../features/rhymes/presentation/components';
 import {
   recordInstrumentExplored,
   recordMusicTopicCompletion,
@@ -37,11 +34,12 @@ export function InstrumentsScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#EFF6FF">
-      <MusicHeader
+      <LearningHeader
         title={t('rhymes.topics.instruments.title', 'Musical Instruments')}
         subtitle="Explore 6 Instruments & Sounds"
         emoji="🎹"
         accentColor="#2563EB"
+        titleColor="#2563EB"
       />
       <InstrumentsExplorer
         onExploreInstrument={handleExplore}

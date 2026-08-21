@@ -4,11 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  GKHeader,
-  GKQuizEngine,
-} from '../../features/generalKnowledge/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {GKQuizEngine} from '../../features/generalKnowledge/presentation/components';
 import {GRAND_GK_CHALLENGE_QUESTIONS} from '../../features/generalKnowledge/domain/catalog/gkData';
 import {recordGrandChallengeScore} from '../../features/generalKnowledge/data/progress/gkProgress';
 import type {GeneralKnowledgeStackParamList} from '../../navigation/generalKnowledgeTypes';
@@ -34,11 +31,12 @@ export function GKFinalQuizScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FDF4FF">
-      <GKHeader
+      <LearningHeader
         title={t('generalKnowledge.challenge.title', 'GK Master Arena')}
         subtitle="10 Mixed Questions"
         emoji="🎯"
         accentColor="#7C3AED"
+        titleColor="#7C3AED"
       />
 
       {!completed ? (

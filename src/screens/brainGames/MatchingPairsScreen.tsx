@@ -10,8 +10,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {GameHeader} from '../../features/brainGames/presentation/components/GameHeader';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {MATCHING_LEVELS} from '../../features/brainGames/domain/catalog/matchingData';
 import {recordGameCompletion} from '../../features/brainGames/data/progress/brainGamesProgress';
 import type {BrainGamesStackParamList} from '../../navigation/brainGamesTypes';
@@ -153,10 +152,11 @@ export function MatchingPairsScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#F0FDFA">
-      <GameHeader
+      <LearningHeader
         title={t('brainGames.games.matchingPairs.title', 'Matching Pairs')}
         emoji="🔗"
         accentColor="#0F8B8D"
+        titleColor="#0F8B8D"
         score={score}
         totalScore={levelData.pairs.length}
         onBack={() => navigation.navigate('Home')}

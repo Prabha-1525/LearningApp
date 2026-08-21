@@ -1,4 +1,3 @@
-export {MusicHeader} from './MusicHeader';
 export {InstrumentsExplorer} from './InstrumentsExplorer';
 export {RhythmTapGame} from './RhythmTapGame';
 export {GuessSoundGame} from './GuessSoundGame';

@@ -3,11 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  AnimalCard,
-  AnimalsHeader,
-} from '../../features/animals/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {AnimalCard} from '../../features/animals/presentation/components';
 import {AMPHIBIANS_REPTILES_DATA} from '../../features/animals/domain/catalog/animalsData';
 import {recordAnimalLessonResult} from '../../features/animals/data/progress/animalsProgress';
 import type {AnimalsStackParamList} from '../../navigation/animalsTypes';
@@ -48,11 +45,12 @@ export function AmphibiansReptilesScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="Amphibians & Reptiles"
         subtitle="Learn about frogs, turtles, lizards, and crocodiles!"
         emoji="🐸"
         accentColor="#84CC16"
+        titleColor="#84CC16"
       />
 
       {/* Item Carousel Selector */}

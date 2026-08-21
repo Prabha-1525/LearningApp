@@ -10,8 +10,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {GameHeader} from '../../features/brainGames/presentation/components/GameHeader';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {SORT_LEVELS} from '../../features/brainGames/domain/catalog/sortItData';
 import {recordGameCompletion} from '../../features/brainGames/data/progress/brainGamesProgress';
 import type {BrainGamesStackParamList} from '../../navigation/brainGamesTypes';
@@ -94,10 +93,11 @@ export function SortItScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#EFF6FF">
-      <GameHeader
+      <LearningHeader
         title={t('brainGames.games.sortIt.title', 'Sort It')}
         emoji="📦"
         accentColor="#2563EB"
+        titleColor="#2563EB"
         score={Object.keys(sortedItems).length}
         totalScore={level.items.length}
         onBack={() => navigation.navigate('Home')}

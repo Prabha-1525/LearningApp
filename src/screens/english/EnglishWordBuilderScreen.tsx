@@ -3,11 +3,8 @@ import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  EnglishHeader,
-  WordBuilderGame,
-} from '../../features/english/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {WordBuilderGame} from '../../features/english/presentation/components';
 import {WORD_BUILDING_TASKS} from '../../features/english/domain/catalog/englishData';
 import {recordEnglishLessonResult} from '../../features/english/data/progress/englishProgress';
 import type {EnglishStackParamList} from '../../navigation/englishTypes';
@@ -36,11 +33,12 @@ export function EnglishWordBuilderScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title="Word Building"
         subtitle="Spell words using letter tiles!"
         emoji="📝"
         accentColor="#F97316"
+        titleColor="#F97316"
       />
 
       <View style={styles.content}>

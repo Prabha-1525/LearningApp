@@ -3,12 +3,9 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {speakCoachLine} from '@shared/speech/tamilCoachSpeech';
-import {
-  ExplorerHeader,
-  FlagCard,
-} from '@features/worldExplorer/presentation/components';
+import {FlagCard} from '@features/worldExplorer/presentation/components';
 import {useCountries} from '@features/worldExplorer/presentation/hooks/useCountries';
 import {useWorldExplorerProgress} from '@features/worldExplorer/presentation/hooks/useWorldExplorerProgress';
 import type {WorldExplorerStackParamList} from '@navigation/worldExplorerTypes';
@@ -24,14 +21,17 @@ export function FlagLearningScreen({navigation}: Props) {
   const {progress, learnFlag} = useWorldExplorerProgress();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const currentCountry =
-    countries[currentIndex % Math.max(1, countries.length)];
+  const currentCountry = countries[currentIndex];
 
   const handleNextFlag = () => {
     if (currentCountry) {
       learnFlag(currentCountry.code);
     }
-    setCurrentIndex(i => i + 1);
+    if (currentIndex < countries.length - 1) {
+      setCurrentIndex(i => i + 1);
+    } else {
+      setCurrentIndex(0);
+    }
   };
 
   const handleListen = useCallback(() => {
@@ -44,7 +44,7 @@ export function FlagLearningScreen({navigation}: Props) {
   if (!currentCountry) {
     return (
       <AppSafeAreaView testID="flag-learning-screen">
-        <ExplorerHeader
+        <LearningHeader
           title={t('worldExplorer.activities.flags', {defaultValue: 'Flags'})}
           onBack={() => navigation.goBack()}
         />
@@ -54,7 +54,7 @@ export function FlagLearningScreen({navigation}: Props) {
 
   return (
     <AppSafeAreaView testID="flag-learning-screen" padded={false}>
-      <ExplorerHeader
+      <LearningHeader
         title={t('worldExplorer.activities.flags', {defaultValue: 'Flags'})}
         subtitle={`${currentIndex + 1} / ${countries.length}`}
         stars={progress.stars}

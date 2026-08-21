@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  AnimalHabitatBoard,
-  AnimalsHeader,
-} from '../../features/animals/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {AnimalHabitatBoard} from '../../features/animals/presentation/components';
 import {ANIMAL_HABITAT_ITEMS} from '../../features/animals/domain/catalog/animalsData';
 import {recordAnimalLessonResult} from '../../features/animals/data/progress/animalsProgress';
 import type {AnimalsStackParamList} from '../../navigation/animalsTypes';
@@ -37,11 +34,12 @@ export function AnimalHabitatsScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="Animal Habitats"
         subtitle="Discover where animals live across forests, oceans, and farms!"
         emoji="🏠"
         accentColor="#8B5CF6"
+        titleColor="#8B5CF6"
       />
 
       <ScrollView

@@ -3,11 +3,10 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   AnimalCard,
   AnimalQuizEngine,
-  AnimalsHeader,
 } from '../../features/animals/presentation/components';
 import {
   ANIMAL_QUIZZES,
@@ -54,11 +53,12 @@ export function BirdsScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="Birds"
         subtitle="Explore peacocks, parrots, penguins, and flamingos!"
         emoji="🐦"
         accentColor="#0EA5E9"
+        titleColor="#0EA5E9"
       />
 
       {/* Mode Switcher */}

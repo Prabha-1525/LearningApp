@@ -3,11 +3,10 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   AnimalCard,
   AnimalQuizEngine,
-  AnimalsHeader,
 } from '../../features/animals/presentation/components';
 import {
   ANIMAL_QUIZZES,
@@ -54,11 +53,12 @@ export function LandAnimalsScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="Land Animals"
         subtitle="Explore lions, elephants, rabbits, and more!"
         emoji="🐶"
         accentColor="#10B981"
+        titleColor="#10B981"
       />
 
       {/* Mode Switcher */}

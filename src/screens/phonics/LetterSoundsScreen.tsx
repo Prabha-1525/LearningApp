@@ -3,11 +3,10 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   LetterSoundCard,
   PhonicsExerciseEngine,
-  PhonicsHeader,
 } from '../../features/phonics/presentation/components';
 import {
   PHONICS_EXERCISES_MAP,
@@ -55,7 +54,7 @@ export function LetterSoundsScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title={showExercise ? 'Sound Check' : 'Letter Sounds'}
         subtitle={
           showExercise
@@ -63,6 +62,7 @@ export function LetterSoundsScreen() {
             : `Letter ${currentLetterIdx + 1} of 6`
         }
         accentColor="#3B82F6"
+        titleColor="#3B82F6"
       />
 
       <ScrollView

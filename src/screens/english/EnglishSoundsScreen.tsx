@@ -3,11 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  EnglishHeader,
-  EnglishQuizEngine,
-} from '../../features/english/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {EnglishQuizEngine} from '../../features/english/presentation/components';
 import {
   BEGINNING_SOUNDS_DATA,
   LETTER_SOUNDS_DATA,
@@ -65,11 +62,12 @@ export function EnglishSoundsScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title="Letter & Beginning Sounds"
         subtitle="Learn phonetic sounds and first sounds!"
         emoji="🔊"
         accentColor="#EC4899"
+        titleColor="#EC4899"
       />
 
       <View style={styles.tabRow}>

@@ -3,9 +3,8 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
-  AnimalsHeader,
   AnimalsProgressTracker,
   AnimalSubModuleCard,
 } from '../../features/animals/presentation/components';
@@ -92,11 +91,14 @@ export function AnimalsHomeScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="Animals"
         subtitle="Let's explore the animal world!"
         emoji="🐾"
         accentColor="#F59E0B"
+        titleColor="#F59E0B"
+        stars={progress.totalStars}
+        starVariant="green"
       />
 
       <ScrollView

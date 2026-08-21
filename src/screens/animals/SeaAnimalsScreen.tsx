@@ -3,11 +3,10 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   AnimalCard,
   AnimalQuizEngine,
-  AnimalsHeader,
   UnderwaterOceanScene,
 } from '../../features/animals/presentation/components';
 import {
@@ -74,11 +73,12 @@ export function SeaAnimalsScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="Sea Animals"
         subtitle="Dive into the ocean with dolphins, whales, and turtles!"
         emoji="🐠"
         accentColor="#06B6D4"
+        titleColor="#06B6D4"
       />
 
       {/* Tabs Row */}

@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ShapeRecognitionBoard,
-  ShapesHeader,
-} from '../../features/shapes/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ShapeRecognitionBoard} from '../../features/shapes/presentation/components';
 import {SHAPE_RECOGNITION_ITEMS} from '../../features/shapes/domain/catalog/shapesData';
 import {recordShapeLessonResult} from '../../features/shapes/data/progress/shapesProgress';
 import type {ShapesStackParamList} from '../../navigation/shapesTypes';
@@ -37,11 +34,12 @@ export function ShapeRecognitionScreen() {
 
   return (
     <AppSafeAreaView>
-      <ShapesHeader
+      <LearningHeader
         title="Find & Recognize"
         subtitle="Identify shapes even when tilted or resized!"
         emoji="👀"
         accentColor="#8B5CF6"
+        titleColor="#8B5CF6"
       />
 
       <ScrollView

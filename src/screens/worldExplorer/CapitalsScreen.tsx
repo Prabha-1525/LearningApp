@@ -3,9 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {speakCoachLine} from '@shared/speech/tamilCoachSpeech';
-import {ExplorerHeader} from '@features/worldExplorer/presentation/components';
 import {useCountries} from '@features/worldExplorer/presentation/hooks/useCountries';
 import {useWorldExplorerProgress} from '@features/worldExplorer/presentation/hooks/useWorldExplorerProgress';
 import type {WorldExplorerStackParamList} from '@navigation/worldExplorerTypes';
@@ -41,7 +40,7 @@ export function CapitalsScreen({navigation}: Props) {
   if (!currentCountry) {
     return (
       <AppSafeAreaView testID="capitals-screen">
-        <ExplorerHeader
+        <LearningHeader
           title={t('worldExplorer.activities.capitals', {
             defaultValue: 'Capitals',
           })}
@@ -53,7 +52,7 @@ export function CapitalsScreen({navigation}: Props) {
 
   return (
     <AppSafeAreaView testID="capitals-screen" padded={false}>
-      <ExplorerHeader
+      <LearningHeader
         title={t('worldExplorer.activities.capitals', {
           defaultValue: 'Capitals',
         })}

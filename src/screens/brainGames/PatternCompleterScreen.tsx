@@ -11,8 +11,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {GameHeader} from '../../features/brainGames/presentation/components/GameHeader';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {PATTERN_LEVELS} from '../../features/brainGames/domain/catalog/patternData';
 import {recordGameCompletion} from '../../features/brainGames/data/progress/brainGamesProgress';
 import type {BrainGamesStackParamList} from '../../navigation/brainGamesTypes';
@@ -106,13 +105,14 @@ export function PatternCompleterScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FFFBEB">
-      <GameHeader
+      <LearningHeader
         title={t(
           'brainGames.games.patternCompleter.title',
           'Pattern Completer',
         )}
         emoji="🔢"
         accentColor="#D97706"
+        titleColor="#D97706"
         score={correctCount}
         totalScore={totalQuestions}
         onBack={() => navigation.navigate('Home')}

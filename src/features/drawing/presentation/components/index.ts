@@ -1,4 +1,3 @@
-export {DrawingHeader} from './DrawingHeader';
 export {DrawingSubModuleCard} from './DrawingSubModuleCard';
 export {ColorCard} from './ColorCard';
 export {ColorMatchingGame} from './ColorMatchingGame';

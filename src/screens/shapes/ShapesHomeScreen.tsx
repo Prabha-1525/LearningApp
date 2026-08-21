@@ -3,9 +3,8 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
-  ShapesHeader,
   ShapesProgressTracker,
   ShapeSubModuleCard,
 } from '../../features/shapes/presentation/components';
@@ -74,11 +73,14 @@ export function ShapesHomeScreen() {
 
   return (
     <AppSafeAreaView>
-      <ShapesHeader
+      <LearningHeader
         title="Shapes"
         subtitle="Let's explore shapes!"
         emoji="🔷"
         accentColor="#3B82F6"
+        titleColor="#3B82F6"
+        stars={progress.totalStars}
+        starVariant="green"
       />
 
       <ScrollView

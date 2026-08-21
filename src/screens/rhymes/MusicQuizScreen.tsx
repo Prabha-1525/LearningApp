@@ -3,11 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  MusicHeader,
-  MusicQuizArena,
-} from '../../features/rhymes/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {MusicQuizArena} from '../../features/rhymes/presentation/components';
 import {recordMusicTopicCompletion} from '../../features/rhymes/data/progress/musicProgress';
 import type {RhymesStackParamList} from '../../navigation/rhymesTypes';
 
@@ -31,11 +28,12 @@ export function MusicQuizScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FDF2F8">
-      <MusicHeader
+      <LearningHeader
         title={t('rhymes.topics.quiz.title', 'Music Quiz Arena')}
         subtitle="10 Fun Musical Questions"
         emoji="🎯"
         accentColor="#DB2777"
+        titleColor="#DB2777"
       />
       <MusicQuizArena onFinish={handleFinish} />
     </AppSafeAreaView>

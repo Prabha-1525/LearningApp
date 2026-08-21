@@ -2,12 +2,9 @@ import {FlatList, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {CONTINENTS} from '@features/worldExplorer/domain/catalog/continents';
-import {
-  ContinentCard,
-  ExplorerHeader,
-} from '@features/worldExplorer/presentation/components';
+import {ContinentCard} from '@features/worldExplorer/presentation/components';
 import {useWorldExplorerProgress} from '@features/worldExplorer/presentation/hooks/useWorldExplorerProgress';
 import type {WorldExplorerStackParamList} from '@navigation/worldExplorerTypes';
 
@@ -27,7 +24,7 @@ export function ContinentsScreen({navigation}: Props) {
 
   return (
     <AppSafeAreaView testID="continents-screen" padded={false}>
-      <ExplorerHeader
+      <LearningHeader
         title={t('worldExplorer.activities.continents', {
           defaultValue: 'Continents',
         })}

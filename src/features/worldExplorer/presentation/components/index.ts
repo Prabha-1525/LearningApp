@@ -4,4 +4,3 @@ export {FlagCard, type FlagCardProps} from './FlagCard';
 export {ContinentCard, type ContinentCardProps} from './ContinentCard';
 export {LandmarkCard, type LandmarkCardProps} from './LandmarkCard';
 export {QuizOptionCard, type QuizOptionCardProps} from './QuizOptionCard';
-export {ExplorerHeader, type ExplorerHeaderProps} from './ExplorerHeader';

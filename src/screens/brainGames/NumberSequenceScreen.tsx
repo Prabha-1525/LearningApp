@@ -11,8 +11,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {GameHeader} from '../../features/brainGames/presentation/components/GameHeader';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {SEQUENCE_LEVELS} from '../../features/brainGames/domain/catalog/sequenceData';
 import {recordGameCompletion} from '../../features/brainGames/data/progress/brainGamesProgress';
 import type {BrainGamesStackParamList} from '../../navigation/brainGamesTypes';
@@ -103,10 +102,11 @@ export function NumberSequenceScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#F0FFF4">
-      <GameHeader
+      <LearningHeader
         title={t('brainGames.games.numberSequence.title', 'Number Sequence')}
         emoji="🔢"
         accentColor="#059669"
+        titleColor="#059669"
         score={correctCount}
         totalScore={totalQuestions}
         onBack={() => navigation.navigate('Home')}

@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  PhonicsHeader,
-  SentenceReaderBoard,
-} from '../../features/phonics/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {SentenceReaderBoard} from '../../features/phonics/presentation/components';
 import {PHONICS_SENTENCES} from '../../features/phonics/domain/catalog/phonicsData';
 import {recordPhonicsLessonResult} from '../../features/phonics/data/progress/phonicsProgress';
 import type {PhonicsStackParamList} from '../../navigation/phonicsTypes';
@@ -38,10 +35,11 @@ export function ReadSentencesScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title="Read Simple Sentences"
         subtitle={`Sentence ${currentIdx + 1} of ${sentences.length}`}
         accentColor="#3B82F6"
+        titleColor="#3B82F6"
       />
 
       <ScrollView

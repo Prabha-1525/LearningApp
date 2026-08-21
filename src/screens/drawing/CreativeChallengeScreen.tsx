@@ -3,11 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  DrawingCanvas,
-  DrawingHeader,
-} from '../../features/drawing/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {DrawingCanvas} from '../../features/drawing/presentation/components';
 import {CREATIVE_CHALLENGES} from '../../features/drawing/domain/catalog/drawingData';
 import {recordDrawingLessonResult} from '../../features/drawing/data/progress/drawingProgress';
 import type {DrawingStackParamList} from '../../navigation/drawingTypes';
@@ -36,13 +33,21 @@ export function CreativeChallengeScreen() {
 
   return (
     <AppSafeAreaView>
-      <DrawingHeader
+      <LearningHeader
         title="Creative Challenges"
         subtitle="Fun imagination prompts to inspire your art!"
         emoji="🏆"
         accentColor="#EA580C"
-        showGalleryBtn={true}
-        onGalleryPress={() => navigation.navigate('MyGallery')}
+        titleColor="#EA580C"
+        rightElement={
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="My Gallery"
+            onPress={() => navigation.navigate('MyGallery')}
+            style={styles.galleryBtn}>
+            <Text style={styles.galleryBtnText}>🖼️</Text>
+          </Pressable>
+        }
       />
 
       {/* Challenge Selector */}

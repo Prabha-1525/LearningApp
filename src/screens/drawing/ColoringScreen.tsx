@@ -3,11 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ColoringCanvas,
-  DrawingHeader,
-} from '../../features/drawing/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ColoringCanvas} from '../../features/drawing/presentation/components';
 import {COLORING_PAGES} from '../../features/drawing/domain/catalog/drawingData';
 import {recordDrawingLessonResult} from '../../features/drawing/data/progress/drawingProgress';
 import type {DrawingStackParamList} from '../../navigation/drawingTypes';
@@ -26,13 +23,21 @@ export function ColoringScreen() {
 
   return (
     <AppSafeAreaView>
-      <DrawingHeader
+      <LearningHeader
         title="Object Coloring"
         subtitle="Tap to color each region any way you like!"
         emoji="🖍️"
         accentColor="#EC4899"
-        showGalleryBtn={true}
-        onGalleryPress={() => navigation.navigate('MyGallery')}
+        titleColor="#EC4899"
+        rightElement={
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="My Gallery"
+            onPress={() => navigation.navigate('MyGallery')}
+            style={styles.galleryBtn}>
+            <Text style={styles.galleryBtnText}>🖼️</Text>
+          </Pressable>
+        }
       />
 
       {/* Coloring Pages Picker Scroll */}

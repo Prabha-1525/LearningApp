@@ -2,11 +2,8 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  EnglishHeader,
-  EnglishQuizEngine,
-} from '../../features/english/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {EnglishQuizEngine} from '../../features/english/presentation/components';
 import {SUBMODULE_QUIZZES} from '../../features/english/domain/catalog/englishData';
 import {
   recordEnglishLessonResult,
@@ -24,14 +21,14 @@ export function EnglishReadingChallengeScreen() {
     recordReadingChallengeScore(score);
     recordEnglishLessonResult(
       'reading_challenge',
-      'challenge_final',
+      'reading_challenge_final',
       stars,
       score,
     );
 
     navigation.navigate('LessonComplete', {
       subModuleId: 'reading_challenge',
-      title: '🏆 Little Reader Graduate',
+      title: 'Grand Reading Champion',
       stars,
       score,
       totalQuestions: questions.length,
@@ -40,11 +37,12 @@ export function EnglishReadingChallengeScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title="My First Reading Challenge"
         subtitle="Prove your reading superpowers!"
         emoji="🏆"
         accentColor="#EA580C"
+        titleColor="#EA580C"
       />
 
       <EnglishQuizEngine

@@ -3,10 +3,9 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   DrawingCanvas,
-  DrawingHeader,
   DrawingQuizEngine,
   ShapeGuideCard,
 } from '../../features/drawing/presentation/components';
@@ -51,11 +50,12 @@ export function ShapesScreen() {
 
   return (
     <AppSafeAreaView>
-      <DrawingHeader
+      <LearningHeader
         title="Basic Shapes"
         subtitle="Learn, trace, and draw 6 basic shapes!"
         emoji="🔷"
         accentColor="#F59E0B"
+        titleColor="#F59E0B"
       />
 
       {/* Tab Switcher */}

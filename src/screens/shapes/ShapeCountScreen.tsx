@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ShapeCounterBoard,
-  ShapesHeader,
-} from '../../features/shapes/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ShapeCounterBoard} from '../../features/shapes/presentation/components';
 import {SHAPE_COUNT_ITEMS} from '../../features/shapes/domain/catalog/shapesData';
 import {recordShapeLessonResult} from '../../features/shapes/data/progress/shapesProgress';
 import type {ShapesStackParamList} from '../../navigation/shapesTypes';
@@ -37,11 +34,12 @@ export function ShapeCountScreen() {
 
   return (
     <AppSafeAreaView>
-      <ShapesHeader
+      <LearningHeader
         title="Count Shapes"
         subtitle="Count the shapes on the board!"
         emoji="🔢"
         accentColor="#6366F1"
+        titleColor="#6366F1"
       />
 
       <ScrollView

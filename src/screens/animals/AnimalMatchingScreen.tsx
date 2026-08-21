@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  AnimalMatcherBoard,
-  AnimalsHeader,
-} from '../../features/animals/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {AnimalMatcherBoard} from '../../features/animals/presentation/components';
 import {ANIMAL_MATCHING_PAIRS} from '../../features/animals/domain/catalog/animalsData';
 import {recordAnimalLessonResult} from '../../features/animals/data/progress/animalsProgress';
 import type {AnimalsStackParamList} from '../../navigation/animalsTypes';
@@ -37,11 +34,12 @@ export function AnimalMatchingScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="Match Animals"
         subtitle="Match animals with sounds, habitats, foods, and babies!"
         emoji="🧩"
         accentColor="#14B8A6"
+        titleColor="#14B8A6"
       />
 
       <ScrollView

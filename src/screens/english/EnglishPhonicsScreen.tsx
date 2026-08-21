@@ -10,8 +10,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {EnglishHeader} from '../../features/english/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {PHONICS_ITEMS} from '../../features/english/domain/catalog/englishData';
 import {recordEnglishLessonResult} from '../../features/english/data/progress/englishProgress';
 import {englishAudio} from '../../features/english/domain/audio/englishAudioEngine';
@@ -76,11 +75,12 @@ export function EnglishPhonicsScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title="Phonics & Phonemes"
         subtitle="Connect individual sounds into words!"
         emoji="🧩"
         accentColor="#06B6D4"
+        titleColor="#06B6D4"
       />
 
       <ScrollView

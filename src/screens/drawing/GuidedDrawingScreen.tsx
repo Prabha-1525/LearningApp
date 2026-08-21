@@ -3,11 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  DrawingHeader,
-  GuidedDrawingStepper,
-} from '../../features/drawing/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {GuidedDrawingStepper} from '../../features/drawing/presentation/components';
 import {GUIDED_DRAWING_LESSONS} from '../../features/drawing/domain/catalog/drawingData';
 import {recordDrawingLessonResult} from '../../features/drawing/data/progress/drawingProgress';
 import type {DrawingStackParamList} from '../../navigation/drawingTypes';
@@ -33,13 +30,21 @@ export function GuidedDrawingScreen() {
 
   return (
     <AppSafeAreaView>
-      <DrawingHeader
+      <LearningHeader
         title="Guided Drawing"
         subtitle="Follow along step-by-step to draw fun pictures!"
         emoji="🧑‍🎨"
         accentColor="#6366F1"
-        showGalleryBtn={true}
-        onGalleryPress={() => navigation.navigate('MyGallery')}
+        titleColor="#6366F1"
+        rightElement={
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="My Gallery"
+            onPress={() => navigation.navigate('MyGallery')}
+            style={styles.galleryBtn}>
+            <Text style={styles.galleryBtnText}>🖼️</Text>
+          </Pressable>
+        }
       />
 
       {/* Lesson Selector */}

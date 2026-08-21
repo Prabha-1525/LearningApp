@@ -3,11 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  CodingHeader,
-  DebuggingGame,
-} from '../../features/coding/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {DebuggingGame} from '../../features/coding/presentation/components';
 import {
   recordCodingTopicCompletion,
   recordDebuggingSolved,
@@ -34,11 +31,12 @@ export function DebuggingLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FEF2F2">
-      <CodingHeader
+      <LearningHeader
         title={t('coding.topics.debugging.title', 'Fix the Bug')}
         subtitle="Find Mistakes & Correct Code"
         emoji="🐛"
         accentColor="#DC2626"
+        titleColor="#DC2626"
       />
       <DebuggingGame onComplete={handleComplete} />
     </AppSafeAreaView>

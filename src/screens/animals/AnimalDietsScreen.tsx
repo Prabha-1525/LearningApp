@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  AnimalDietBoard,
-  AnimalsHeader,
-} from '../../features/animals/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {AnimalDietBoard} from '../../features/animals/presentation/components';
 import {ANIMAL_DIET_ITEMS} from '../../features/animals/domain/catalog/animalsData';
 import {recordAnimalLessonResult} from '../../features/animals/data/progress/animalsProgress';
 import type {AnimalsStackParamList} from '../../navigation/animalsTypes';
@@ -37,11 +34,12 @@ export function AnimalDietsScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="What Do Animals Eat?"
         subtitle="Learn what delicious foods different animals love to eat!"
         emoji="🥕"
         accentColor="#EF4444"
+        titleColor="#EF4444"
       />
 
       <ScrollView

@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ShapeMatcherBoard,
-  ShapesHeader,
-} from '../../features/shapes/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ShapeMatcherBoard} from '../../features/shapes/presentation/components';
 import {SHAPE_MATCHING_PAIRS} from '../../features/shapes/domain/catalog/shapesData';
 import {recordShapeLessonResult} from '../../features/shapes/data/progress/shapesProgress';
 import type {ShapesStackParamList} from '../../navigation/shapesTypes';
@@ -37,11 +34,12 @@ export function ShapeMatchingScreen() {
 
   return (
     <AppSafeAreaView>
-      <ShapesHeader
+      <LearningHeader
         title="Match Shapes"
         subtitle="Match identical shapes with different colors!"
         emoji="🧩"
         accentColor="#EC4899"
+        titleColor="#EC4899"
       />
 
       <ScrollView

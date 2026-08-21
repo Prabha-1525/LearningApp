@@ -10,8 +10,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {GameHeader} from '../../features/brainGames/presentation/components/GameHeader';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {ODD_ONE_OUT_LEVELS} from '../../features/brainGames/domain/catalog/oddOneOutData';
 import {recordGameCompletion} from '../../features/brainGames/data/progress/brainGamesProgress';
 import type {BrainGamesStackParamList} from '../../navigation/brainGamesTypes';
@@ -99,10 +98,11 @@ export function OddOneOutScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FFF1F2">
-      <GameHeader
+      <LearningHeader
         title={t('brainGames.games.oddOneOut.title', 'Odd One Out')}
         emoji="👀"
         accentColor="#DC2626"
+        titleColor="#DC2626"
         score={correctCount}
         totalScore={totalQuestions}
         onBack={() => navigation.navigate('Home')}

@@ -4,11 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ScienceHeader,
-  WeatherSceneView,
-} from '../../features/science/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {WeatherSceneView} from '../../features/science/presentation/components';
 import {recordTopicCompletion} from '../../features/science/data/progress/scienceProgress';
 import type {ScienceStackParamList} from '../../navigation/scienceTypes';
 
@@ -31,10 +28,11 @@ export function WeatherLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#F0F9FF">
-      <ScienceHeader
+      <LearningHeader
         title={t('science.topics.weather.title', 'Weather')}
         emoji="🌦️"
         accentColor="#0284C7"
+        titleColor="#0284C7"
         onBack={() => navigation.navigate('Home')}
       />
 

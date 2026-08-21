@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  AnimalClassifierBoard,
-  AnimalsHeader,
-} from '../../features/animals/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {AnimalClassifierBoard} from '../../features/animals/presentation/components';
 import {ANIMAL_CLASSIFICATION_ITEMS} from '../../features/animals/domain/catalog/animalsData';
 import {recordAnimalLessonResult} from '../../features/animals/data/progress/animalsProgress';
 import type {AnimalsStackParamList} from '../../navigation/animalsTypes';
@@ -40,11 +37,12 @@ export function AnimalClassificationScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="Classify Animals"
         subtitle="Sort animals by where they live and how they move!"
         emoji="🧠"
         accentColor="#6366F1"
+        titleColor="#6366F1"
       />
 
       <ScrollView

@@ -1,4 +1,3 @@
-export {ScienceHeader} from './ScienceHeader';
 export {PlantGrowthAnimation} from './PlantGrowthAnimation';
 export {BodyExplorerView} from './BodyExplorerView';
 export {ExperimentLabView} from './ExperimentLabView';

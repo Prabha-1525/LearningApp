@@ -3,8 +3,7 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {PhonicsHeader} from '../../features/phonics/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {phonicsAudio} from '../../features/phonics/domain/audio/phonicsAudioEngine';
 import {recordPhonicsLessonResult} from '../../features/phonics/data/progress/phonicsProgress';
 import type {PhonicsStackParamList} from '../../navigation/phonicsTypes';
@@ -81,10 +80,11 @@ export function PhonicsGamesScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title="Pop the Sound!"
         subtitle={currentRound.spokenPrompt}
         accentColor="#F43F5E"
+        titleColor="#F43F5E"
         audioPromptText={currentRound.spokenPrompt}
       />
 

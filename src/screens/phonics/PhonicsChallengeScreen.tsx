@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  PhonicsExerciseEngine,
-  PhonicsHeader,
-} from '../../features/phonics/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {PhonicsExerciseEngine} from '../../features/phonics/presentation/components';
 import {PHONICS_EXERCISES_MAP} from '../../features/phonics/domain/catalog/phonicsData';
 import {recordPhonicsLessonResult} from '../../features/phonics/data/progress/phonicsProgress';
 import type {PhonicsStackParamList} from '../../navigation/phonicsTypes';
@@ -35,10 +32,11 @@ export function PhonicsChallengeScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title="Phonics Challenge"
         subtitle="The ultimate test of sounds, blending, and reading!"
         accentColor="#D97706"
+        titleColor="#D97706"
       />
 
       <ScrollView

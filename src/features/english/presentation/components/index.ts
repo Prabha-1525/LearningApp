@@ -1,4 +1,3 @@
-export {EnglishHeader} from './EnglishHeader';
 export {EnglishSubModuleCard} from './EnglishSubModuleCard';
 export {LetterCard} from './LetterCard';
 export {LetterMatchGame} from './LetterMatchGame';

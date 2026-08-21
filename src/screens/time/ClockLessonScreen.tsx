@@ -4,11 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  InteractiveClock,
-  TimeHeader,
-} from '../../features/time/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {InteractiveClock} from '../../features/time/presentation/components';
 import {
   CLOCK_CHALLENGES,
   CLOCK_LESSONS,
@@ -71,7 +68,7 @@ export function ClockLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#EFF6FF">
-      <TimeHeader
+      <LearningHeader
         title={t('time.topics.clock.title', 'Learn the Clock')}
         subtitle={
           mode === 'guided'
@@ -84,6 +81,7 @@ export function ClockLessonScreen() {
         }
         emoji="⏰"
         accentColor="#2563EB"
+        titleColor="#2563EB"
       />
 
       {/* Mode Switcher */}

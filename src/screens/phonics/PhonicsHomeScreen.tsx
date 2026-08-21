@@ -3,9 +3,8 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
-  PhonicsHeader,
   PhonicsProgressTracker,
   PhonicsSubModuleCard,
 } from '../../features/phonics/presentation/components';
@@ -86,10 +85,11 @@ export function PhonicsHomeScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title="Phonics"
         subtitle="Let's learn sounds and read words!"
         stars={progress.totalStars}
+        starVariant="green"
         accentColor="#3B82F6"
         audioPromptText="Welcome to Phonics! Tap any unlocked activity to start learning sounds and reading words!"
       />

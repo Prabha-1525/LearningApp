@@ -1,4 +1,3 @@
-export {ShapesHeader} from './ShapesHeader';
 export {ShapeSubModuleCard} from './ShapeSubModuleCard';
 export {ShapeCard} from './ShapeCard';
 export {ShapeRecognitionBoard} from './ShapeRecognitionBoard';

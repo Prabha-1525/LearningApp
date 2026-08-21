@@ -1,4 +1,3 @@
-export {AnimalsHeader} from './AnimalsHeader';
 export {AnimalSubModuleCard} from './AnimalSubModuleCard';
 export {AnimalCard} from './AnimalCard';
 export {AnimalSoundBoard} from './AnimalSoundBoard';

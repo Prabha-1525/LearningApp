@@ -4,11 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ScienceHeader,
-  BodyExplorerView,
-} from '../../features/science/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {BodyExplorerView} from '../../features/science/presentation/components';
 import {BODY_PARTS} from '../../features/science/domain/catalog/scienceData';
 import {recordTopicCompletion} from '../../features/science/data/progress/scienceProgress';
 import type {ScienceStackParamList} from '../../navigation/scienceTypes';
@@ -79,10 +76,11 @@ export function HumanBodyLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FFF1F2">
-      <ScienceHeader
+      <LearningHeader
         title={t('science.topics.humanBody.title', 'Human Body')}
         emoji="🧍"
         accentColor="#F43F5E"
+        titleColor="#F43F5E"
         onBack={() => navigation.navigate('Home')}
       />
 

@@ -4,9 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useTranslation} from 'react-i18next';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {MemoryCard} from '../../features/brainGames/presentation/components/MemoryCard';
-import {GameHeader} from '../../features/brainGames/presentation/components/GameHeader';
 import {MEMORY_MATCH_LEVELS} from '../../features/brainGames/domain/catalog/memoryMatchData';
 import {recordGameCompletion} from '../../features/brainGames/data/progress/brainGamesProgress';
 import type {BrainGamesStackParamList} from '../../navigation/brainGamesTypes';
@@ -20,123 +19,116 @@ type CardState = {
   isMatched: boolean;
 };
 
-function shuffleArray<T>(array: readonly T[]): T[] {
-  const arr = [...array];
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-function buildCards(pairs: readonly string[]): CardState[] {
-  const doubled = pairs.flatMap(p => [p, p]);
-  return shuffleArray(doubled).map((symbol, i) => ({
-    id: `card-${i}-${symbol}`,
-    symbol,
-    isFlipped: false,
-    isMatched: false,
-  }));
-}
-
 const {width} = Dimensions.get('window');
-const CARD_PADDING = 8;
+const CARD_PADDING = 6;
 
 export function MemoryMatchScreen() {
   const {t} = useTranslation();
   const navigation = useNavigation<Nav>();
-  const [currentLevel, setCurrentLevel] = useState(0);
-  const levelData = MEMORY_MATCH_LEVELS[currentLevel] ?? MEMORY_MATCH_LEVELS[0];
-
-  const [cards, setCards] = useState<CardState[]>(() =>
-    buildCards(levelData.pairs),
-  );
-  const [_flippedIds, setFlippedIds] = useState<string[]>([]);
+  const [levelIndex, setLevelIndex] = useState(0);
+  const [cards, setCards] = useState<CardState[]>([]);
+  const [flippedIds, setFlippedIds] = useState<string[]>([]);
   const [matchedCount, setMatchedCount] = useState(0);
   const [moves, setMoves] = useState(0);
-  const isChecking = useRef(false);
+  const [isLocked, setIsLocked] = useState(false);
+  const lockTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const totalPairs = levelData.pairs.length;
+  const levelData = MEMORY_MATCH_LEVELS[levelIndex] ?? MEMORY_MATCH_LEVELS[0];
+  const totalPairs = levelData.gridSize / 2;
 
-  useEffect(() => {
-    setCards(buildCards(levelData.pairs));
+  const initLevel = useCallback(() => {
+    const symbols = [...levelData.symbols].slice(0, totalPairs);
+    const deck = [...symbols, ...symbols]
+      .sort(() => Math.random() - 0.5)
+      .map((symbol, idx) => ({
+        id: `${symbol}-${idx}-${Date.now()}`,
+        symbol,
+        isFlipped: false,
+        isMatched: false,
+      }));
+    setCards(deck);
     setFlippedIds([]);
     setMatchedCount(0);
     setMoves(0);
-  }, [currentLevel, levelData.pairs]);
+    setIsLocked(false);
+  }, [levelData, totalPairs]);
 
-  const handleCardPress = useCallback(
-    (cardId: string) => {
-      if (isChecking.current) {
-        return;
-      }
-      setCards(prev => {
-        const card = prev.find(c => c.id === cardId);
-        if (!card || card.isFlipped || card.isMatched) {
-          return prev;
-        }
-        return prev.map(c => (c.id === cardId ? {...c, isFlipped: true} : c));
-      });
-      setFlippedIds(prev => {
-        const newFlipped = [...prev, cardId];
-        if (newFlipped.length === 2) {
-          isChecking.current = true;
-          setMoves(m => m + 1);
-          setTimeout(() => {
-            setCards(prevCards => {
-              const [a, b] = newFlipped.map(id =>
-                prevCards.find(c => c.id === id),
-              );
-              if (a && b && a.symbol === b.symbol) {
-                const updated = prevCards.map(c =>
-                  newFlipped.includes(c.id)
-                    ? {...c, isMatched: true, isFlipped: true}
-                    : c,
-                );
-                setMatchedCount(mc => {
-                  const next = mc + 1;
-                  if (next === totalPairs) {
-                    // Level complete
-                    setTimeout(() => {
-                      const stars =
-                        moves < totalPairs * 2
-                          ? 3
-                          : moves < totalPairs * 3
-                          ? 2
-                          : 1;
-                      recordGameCompletion('memory-match', stars);
-                      if (currentLevel < MEMORY_MATCH_LEVELS.length - 1) {
-                        setCurrentLevel(l => l + 1);
-                      } else {
-                        navigation.navigate('GameComplete', {
-                          gameId: 'memory-match',
-                          stars,
-                          nextGame: 'MatchingPairs',
-                        });
-                      }
-                    }, 600);
-                  }
-                  return next;
+  useEffect(() => {
+    initLevel();
+    return () => {
+      if (lockTimerRef.current) clearTimeout(lockTimerRef.current);
+    };
+  }, [initLevel]);
+
+  const handleCardPress = (id: string) => {
+    if (isLocked) return;
+    const card = cards.find(c => c.id === id);
+    if (!card || card.isFlipped || card.isMatched) return;
+
+    const newFlipped = [...flippedIds, id];
+    setCards(prev =>
+      prev.map(c => (c.id === id ? {...c, isFlipped: true} : c)),
+    );
+
+    if (newFlipped.length === 2) {
+      setMoves(m => m + 1);
+      setIsLocked(true);
+      const [firstId, secondId] = newFlipped;
+      const firstCard = cards.find(c => c.id === firstId);
+      const secondCard = cards.find(c => c.id === secondId);
+
+      if (firstCard && secondCard && firstCard.symbol === secondCard.symbol) {
+        // match
+        setTimeout(() => {
+          setCards(prev =>
+            prev.map(c =>
+              c.id === firstId || c.id === secondId
+                ? {...c, isMatched: true}
+                : c,
+            ),
+          );
+          setFlippedIds([]);
+          setIsLocked(false);
+          setMatchedCount(m => {
+            const next = m + 1;
+            if (next === totalPairs) {
+              // level complete
+              const stars = moves + 1 <= totalPairs + 2 ? 3 : 2;
+              recordGameCompletion('memory-match', stars);
+              if (levelIndex < MEMORY_MATCH_LEVELS.length - 1) {
+                setTimeout(() => setLevelIndex(i => i + 1), 600);
+              } else {
+                navigation.navigate('GameComplete', {
+                  stars,
+                  title: t(
+                    'brainGames.games.memoryMatch.title',
+                    'Memory Match',
+                  ),
+                  nextGameId: 'pattern-completer',
                 });
-                return updated;
               }
-              // No match — flip back
-              return prevCards.map(c =>
-                newFlipped.includes(c.id) && !c.isMatched
-                  ? {...c, isFlipped: false}
-                  : c,
-              );
-            });
-            setFlippedIds([]);
-            isChecking.current = false;
-          }, 900);
-          return [];
-        }
-        return newFlipped;
-      });
-    },
-    [currentLevel, moves, navigation, totalPairs],
-  );
+            }
+            return next;
+          });
+        }, 400);
+      } else {
+        // not match
+        lockTimerRef.current = setTimeout(() => {
+          setCards(prev =>
+            prev.map(c =>
+              c.id === firstId || c.id === secondId
+                ? {...c, isFlipped: false}
+                : c,
+            ),
+          );
+          setFlippedIds([]);
+          setIsLocked(false);
+        }, 900);
+      }
+    } else {
+      setFlippedIds(newFlipped);
+    }
+  };
 
   // card size based on grid
   const cols = Math.ceil(Math.sqrt(levelData.gridSize));
@@ -144,10 +136,11 @@ export function MemoryMatchScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#F5F3FF">
-      <GameHeader
+      <LearningHeader
         title={t('brainGames.games.memoryMatch.title', 'Memory Match')}
         emoji="🧠"
         accentColor="#7C3AED"
+        titleColor="#7C3AED"
         score={matchedCount}
         totalScore={totalPairs}
         onBack={() => navigation.navigate('Home')}

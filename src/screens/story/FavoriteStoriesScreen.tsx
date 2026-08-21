@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  StoryCard,
-  StoryHeader,
-} from '../../features/story/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {StoryCard} from '../../features/story/presentation/components';
 import {STORIES_DATA} from '../../features/story/domain/catalog/storiesData';
 import {
   readStoryProgress,
@@ -46,10 +43,11 @@ export function FavoriteStoriesScreen() {
 
   return (
     <AppSafeAreaView>
-      <StoryHeader
+      <LearningHeader
         title="Favorite Stories"
         subtitle="Your personal collection of beloved stories"
         accentColor="#EC4899"
+        titleColor="#EC4899"
       />
 
       <ScrollView

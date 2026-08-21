@@ -1,14 +1,11 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  TimeHeader,
-  TimeQuizCard,
-} from '../../features/time/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {TimeQuizCard} from '../../features/time/presentation/components';
 import {TIME_QUIZ_QUESTIONS} from '../../features/time/domain/catalog/timeData';
 import {
   recordQuizCompletion,
@@ -18,40 +15,34 @@ import type {TimeStackParamList} from '../../navigation/timeTypes';
 
 type Nav = NativeStackNavigationProp<TimeStackParamList, 'TimeQuiz'>;
 
-const QUIZ_LENGTH = 5;
-
 export function TimeQuizScreen() {
   const {t} = useTranslation();
   const navigation = useNavigation<Nav>();
+  const [questions] = useState(TIME_QUIZ_QUESTIONS);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [answeredCurrent, setAnsweredCurrent] = useState(false);
 
-  const [questions] = useState(() =>
-    [...TIME_QUIZ_QUESTIONS]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, QUIZ_LENGTH),
-  );
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [score, setScore] = useState<number>(0);
-  const [answeredCurrent, setAnsweredCurrent] = useState<boolean>(false);
+  const currentQ = questions[currentIndex];
 
-  const currentQ = questions[currentIndex] ?? questions[0]!;
-
-  const handleAnswer = useCallback((isCorrect: boolean) => {
+  const handleAnswer = (isCorrect: boolean) => {
     setAnsweredCurrent(true);
     if (isCorrect) {
-      setScore(prev => prev + 1);
+      setScore(s => s + 1);
     }
-  }, []);
+  };
 
   const handleNext = () => {
-    setAnsweredCurrent(false);
-    if (currentIndex + 1 < questions.length) {
-      setCurrentIndex(prev => prev + 1);
+    if (currentIndex < questions.length - 1) {
+      setCurrentIndex(i => i + 1);
+      setAnsweredCurrent(false);
     } else {
-      const finalStars = score >= 4 ? 3 : score >= 2 ? 2 : 1;
-      recordQuizCompletion(score);
-      recordTimeTopicCompletion('quiz', finalStars);
+      const finalScore = score;
+      const stars = finalScore >= 4 ? 3 : finalScore >= 2 ? 2 : 1;
+      recordQuizCompletion(finalScore);
+      recordTimeTopicCompletion('quiz', stars);
       navigation.navigate('TimeComplete', {
-        starsEarned: finalStars,
+        starsEarned: stars,
         topicTitle: t('time.topics.quiz.title', 'Time & Calendar Quiz'),
       });
     }
@@ -59,11 +50,12 @@ export function TimeQuizScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#EEF2FF">
-      <TimeHeader
+      <LearningHeader
         title={t('time.topics.quiz.title', 'Time Quiz')}
         subtitle={`Question ${currentIndex + 1} of ${questions.length}`}
         emoji="🎯"
         accentColor="#4F46E5"
+        titleColor="#4F46E5"
       />
 
       <ScrollView

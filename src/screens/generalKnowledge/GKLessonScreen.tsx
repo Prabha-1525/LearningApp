@@ -7,11 +7,8 @@ import {
 } from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  GKHeader,
-  GKLessonFlow,
-} from '../../features/generalKnowledge/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {GKLessonFlow} from '../../features/generalKnowledge/presentation/components';
 import {GK_CATEGORIES} from '../../features/generalKnowledge/domain/catalog/gkData';
 import {recordGKLessonResult} from '../../features/generalKnowledge/data/progress/gkProgress';
 import type {GeneralKnowledgeStackParamList} from '../../navigation/generalKnowledgeTypes';
@@ -63,11 +60,12 @@ export function GKLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FFFBEB">
-      <GKHeader
+      <LearningHeader
         title={t(lesson.titleKey, lesson.id)}
         subtitle={t(category.titleKey, category.id)}
         emoji={lesson.emoji}
         accentColor={lesson.accentColor}
+        titleColor={lesson.accentColor}
         onBack={() => navigation.goBack()}
       />
       <GKLessonFlow

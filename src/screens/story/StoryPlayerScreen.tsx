@@ -4,9 +4,8 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import type {RouteProp} from '@react-navigation/native';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
-  StoryHeader,
   StoryReadAlongBox,
   StorySceneStage,
 } from '../../features/story/presentation/components';
@@ -95,11 +94,12 @@ export function StoryPlayerScreen() {
 
   return (
     <AppSafeAreaView>
-      <StoryHeader
+      <LearningHeader
         title={story.title}
         isFavorite={isFavorite}
         onToggleFavorite={handleToggleFavorite}
         accentColor={story.accentColor}
+        titleColor={story.accentColor}
       />
 
       <ScrollView

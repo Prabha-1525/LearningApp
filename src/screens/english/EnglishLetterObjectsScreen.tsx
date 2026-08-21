@@ -10,8 +10,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {EnglishHeader} from '../../features/english/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {LETTER_OBJECTS_DATA} from '../../features/english/domain/catalog/englishData';
 import {recordEnglishLessonResult} from '../../features/english/data/progress/englishProgress';
 import {englishAudio} from '../../features/english/domain/audio/englishAudioEngine';
@@ -112,11 +111,12 @@ export function EnglishLetterObjectsScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title="Letter & Object Match"
         subtitle="Which object matches the letter?"
         emoji="🖼️"
         accentColor="#10B981"
+        titleColor="#10B981"
       />
 
       <ScrollView

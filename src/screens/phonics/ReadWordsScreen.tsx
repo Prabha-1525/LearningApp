@@ -3,8 +3,7 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {PhonicsHeader} from '../../features/phonics/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {CVC_WORDS_CATALOG} from '../../features/phonics/domain/catalog/phonicsData';
 import {phonicsAudio} from '../../features/phonics/domain/audio/phonicsAudioEngine';
 import {recordPhonicsLessonResult} from '../../features/phonics/data/progress/phonicsProgress';
@@ -49,10 +48,11 @@ export function ReadWordsScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title="Read Simple Words"
         subtitle={`Word ${currentIdx + 1} of ${words.length}`}
         accentColor="#A855F7"
+        titleColor="#A855F7"
       />
 
       <ScrollView

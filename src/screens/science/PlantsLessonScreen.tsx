@@ -4,11 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ScienceHeader,
-  PlantGrowthAnimation,
-} from '../../features/science/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {PlantGrowthAnimation} from '../../features/science/presentation/components';
 import {
   PLANT_PARTS,
   PLANT_NEEDS,
@@ -37,10 +34,11 @@ export function PlantsLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#F0FDF4">
-      <ScienceHeader
+      <LearningHeader
         title={t('science.topics.plants.title', 'Plants')}
         emoji="🌱"
         accentColor="#10B981"
+        titleColor="#10B981"
         onBack={() => navigation.navigate('Home')}
       />
 

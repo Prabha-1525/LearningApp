@@ -11,8 +11,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {ScienceHeader} from '../../features/science/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   CELESTIAL_BODIES,
   type CelestialBody,
@@ -59,10 +58,11 @@ export function SpaceLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#0F172A">
-      <ScienceHeader
+      <LearningHeader
         title={t('science.topics.space.title', 'Space')}
         emoji="🚀"
         accentColor="#818CF8"
+        titleColor="#818CF8"
         onBack={() => navigation.navigate('Home')}
       />
 

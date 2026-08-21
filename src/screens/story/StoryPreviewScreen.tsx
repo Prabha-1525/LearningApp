@@ -4,8 +4,7 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import type {RouteProp} from '@react-navigation/native';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {StoryHeader} from '../../features/story/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {STORIES_DATA} from '../../features/story/domain/catalog/storiesData';
 import {
   readStoryProgress,
@@ -49,11 +48,12 @@ export function StoryPreviewScreen() {
 
   return (
     <AppSafeAreaView>
-      <StoryHeader
+      <LearningHeader
         title="Story Preview"
         isFavorite={isFavorite}
         onToggleFavorite={handleToggleFavorite}
         accentColor={story.accentColor}
+        titleColor={story.accentColor}
       />
 
       <ScrollView

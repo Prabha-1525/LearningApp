@@ -4,8 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {ScienceHeader} from '../../features/science/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   ANIMALS_DATA,
   type AnimalCategory,
@@ -43,10 +42,11 @@ export function AnimalsLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FFFBEB">
-      <ScienceHeader
+      <LearningHeader
         title={t('science.topics.animals.title', 'Animals')}
         emoji="🐾"
         accentColor="#F59E0B"
+        titleColor="#F59E0B"
         onBack={() => navigation.navigate('Home')}
       />
 

@@ -3,10 +3,9 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   ColorCard,
-  DrawingHeader,
   DrawingQuizEngine,
 } from '../../features/drawing/presentation/components';
 import {
@@ -46,11 +45,12 @@ export function LearnColorsScreen() {
 
   return (
     <AppSafeAreaView>
-      <DrawingHeader
+      <LearningHeader
         title="Learn Colors"
         subtitle="Explore basic and blend colors!"
         emoji="🎨"
         accentColor="#EF4444"
+        titleColor="#EF4444"
       />
 
       {/* Mode Switcher */}

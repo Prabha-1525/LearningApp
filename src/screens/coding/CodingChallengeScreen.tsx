@@ -3,11 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  CodingChallengeArena,
-  CodingHeader,
-} from '../../features/coding/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {CodingChallengeArena} from '../../features/coding/presentation/components';
 import {recordCodingTopicCompletion} from '../../features/coding/data/progress/codingProgress';
 import type {CodingStackParamList} from '../../navigation/codingTypes';
 
@@ -31,11 +28,12 @@ export function CodingChallengeScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#EEF2FF">
-      <CodingHeader
+      <LearningHeader
         title={t('coding.topics.challenge.title', 'Coding Challenge')}
         subtitle="10 Questions Logic Arena"
         emoji="🎯"
         accentColor="#4F46E5"
+        titleColor="#4F46E5"
       />
       <CodingChallengeArena onFinish={handleFinish} />
     </AppSafeAreaView>

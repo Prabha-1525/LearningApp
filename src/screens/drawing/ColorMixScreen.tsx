@@ -3,10 +3,9 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   ColorMixingBoard,
-  DrawingHeader,
   DrawingQuizEngine,
 } from '../../features/drawing/presentation/components';
 import {
@@ -43,11 +42,12 @@ export function ColorMixScreen() {
 
   return (
     <AppSafeAreaView>
-      <DrawingHeader
+      <LearningHeader
         title="Color Mixing"
         subtitle="Discover the magic of blending colors!"
         emoji="🧪"
         accentColor="#8B5CF6"
+        titleColor="#8B5CF6"
       />
 
       <View style={styles.tabRow}>

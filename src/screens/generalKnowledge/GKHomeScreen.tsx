@@ -4,11 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  GKCategoryCard,
-  GKHeader,
-} from '../../features/generalKnowledge/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {GKCategoryCard} from '../../features/generalKnowledge/presentation/components';
 import {GK_CATEGORIES} from '../../features/generalKnowledge/domain/catalog/gkData';
 import {readGKProgress} from '../../features/generalKnowledge/data/progress/gkProgress';
 import type {GKProgress} from '../../features/generalKnowledge/domain/entities/gkEntities';
@@ -29,7 +26,7 @@ export function GKHomeScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FFFBEB">
-      <GKHeader
+      <LearningHeader
         title={t('generalKnowledge.home.title', 'General Knowledge')}
         subtitle={t(
           'generalKnowledge.home.subtitle',
@@ -37,7 +34,9 @@ export function GKHomeScreen() {
         )}
         emoji="🗣️"
         accentColor="#F59E0B"
-        starsCount={progress.totalStars}
+        titleColor="#F59E0B"
+        stars={progress.totalStars}
+        starVariant="green"
       />
 
       <ScrollView

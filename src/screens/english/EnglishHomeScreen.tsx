@@ -4,9 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
-  EnglishHeader,
   EnglishSubModuleCard,
   ReadingProgressTracker,
 } from '../../features/english/presentation/components';
@@ -85,12 +84,14 @@ export function EnglishHomeScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title={t('english.title', 'English Learning')}
         subtitle={t('english.subtitle', 'Learn Letters & Read Simple Words')}
         emoji="🔤"
         accentColor="#3B82F6"
-        starsCount={progress.totalStars}
+        titleColor="#3B82F6"
+        stars={progress.totalStars}
+        starVariant="green"
       />
 
       <ScrollView

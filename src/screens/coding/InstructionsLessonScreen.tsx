@@ -3,11 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  CodingHeader,
-  InstructionsLesson,
-} from '../../features/coding/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {InstructionsLesson} from '../../features/coding/presentation/components';
 import {recordCodingTopicCompletion} from '../../features/coding/data/progress/codingProgress';
 import type {CodingStackParamList} from '../../navigation/codingTypes';
 
@@ -33,11 +30,12 @@ export function InstructionsLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FAF5FF">
-      <CodingHeader
+      <LearningHeader
         title={t('coding.topics.instructions.title', 'Give Instructions')}
         subtitle="Up, Down, Left, Right & Directions"
         emoji="➡️"
         accentColor="#7C3AED"
+        titleColor="#7C3AED"
       />
       <InstructionsLesson onComplete={handleComplete} />
     </AppSafeAreaView>

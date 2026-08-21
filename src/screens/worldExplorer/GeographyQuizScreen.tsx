@@ -12,7 +12,7 @@ import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppDispatch, useAppSelector} from '@app/store';
-import {AppSafeAreaView} from '@components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {asChildId, ModuleId} from '@core/domain';
 import {
   applyGrantResult,
@@ -20,10 +20,7 @@ import {
   grantRewards,
 } from '@core/gamification';
 import {speakCoachLine} from '@shared/speech/tamilCoachSpeech';
-import {
-  ExplorerHeader,
-  QuizOptionCard,
-} from '@features/worldExplorer/presentation/components';
+import {QuizOptionCard} from '@features/worldExplorer/presentation/components';
 import {useCountries} from '@features/worldExplorer/presentation/hooks/useCountries';
 import {useGeographyQuiz} from '@features/worldExplorer/presentation/hooks/useGeographyQuiz';
 import {useWorldExplorerProgress} from '@features/worldExplorer/presentation/hooks/useWorldExplorerProgress';
@@ -96,7 +93,7 @@ export function GeographyQuizScreen({navigation, route}: Props) {
   if (!q) {
     return (
       <AppSafeAreaView testID="geography-quiz-screen">
-        <ExplorerHeader
+        <LearningHeader
           title={t('worldExplorer.activities.quiz', {
             defaultValue: 'Geography Quiz',
           })}
@@ -111,7 +108,7 @@ export function GeographyQuizScreen({navigation, route}: Props) {
 
   return (
     <AppSafeAreaView testID="geography-quiz-screen" padded={false}>
-      <ExplorerHeader
+      <LearningHeader
         title={t('worldExplorer.activities.quiz', {
           defaultValue: 'Geography Quiz',
         })}

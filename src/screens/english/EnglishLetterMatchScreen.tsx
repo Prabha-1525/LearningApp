@@ -3,9 +3,8 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
-  EnglishHeader,
   EnglishQuizEngine,
   LetterMatchGame,
 } from '../../features/english/presentation/components';
@@ -22,29 +21,16 @@ export function EnglishLetterMatchScreen() {
   const navigation = useNavigation<Nav>();
   const [mode, setMode] = useState<'practice' | 'quiz'>('practice');
 
-  const quizQuestions = SUBMODULE_QUIZZES.capital_small;
+  const quizQuestions = SUBMODULE_QUIZZES.capital_small ?? [];
 
-  const handleFinishPractice = (stars: number) => {
-    recordEnglishLessonResult(
-      'capital_small',
-      'capital_small_match',
-      stars,
-      stars * 10,
-    );
-    navigation.navigate('LessonComplete', {
-      subModuleId: 'capital_small',
-      title: 'Capital & Small Match Star',
-      stars,
-      score: stars * 10,
-      totalQuestions: LETTER_MATCH_PAIRS.length,
-      nextSubModuleId: 'letter_sounds',
-    });
+  const handleFinishPractice = () => {
+    setMode('quiz');
   };
 
   const handleFinishQuiz = (score: number, stars: number) => {
     recordEnglishLessonResult(
       'capital_small',
-      'capital_small_quiz',
+      'capital_small_match',
       stars,
       score,
     );
@@ -60,11 +46,12 @@ export function EnglishLetterMatchScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title="Capital & Small"
         subtitle="Match uppercase with lowercase letters!"
         emoji="🔠"
         accentColor="#8B5CF6"
+        titleColor="#8B5CF6"
       />
 
       <View style={styles.tabRow}>

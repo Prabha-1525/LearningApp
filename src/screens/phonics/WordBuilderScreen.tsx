@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  PhonicsHeader,
-  WordBuildingBoard,
-} from '../../features/phonics/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {WordBuildingBoard} from '../../features/phonics/presentation/components';
 import {CVC_WORDS_CATALOG} from '../../features/phonics/domain/catalog/phonicsData';
 import {recordPhonicsLessonResult} from '../../features/phonics/data/progress/phonicsProgress';
 import type {PhonicsStackParamList} from '../../navigation/phonicsTypes';
@@ -38,10 +35,11 @@ export function WordBuilderScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title="Word Builder"
         subtitle={`Challenge ${currentIdx + 1} of ${wordsToBuild.length}`}
         accentColor="#F97316"
+        titleColor="#F97316"
       />
 
       <ScrollView

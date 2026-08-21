@@ -3,11 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  EnglishHeader,
-  ReadingKaraokeView,
-} from '../../features/english/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ReadingKaraokeView} from '../../features/english/presentation/components';
 import {SHORT_STORIES_DATA} from '../../features/english/domain/catalog/englishData';
 import {recordEnglishLessonResult} from '../../features/english/data/progress/englishProgress';
 import {englishAudio} from '../../features/english/domain/audio/englishAudioEngine';
@@ -92,7 +89,7 @@ export function EnglishStoryScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title={currentStory.title}
         subtitle={
           isQuizMode
@@ -103,6 +100,7 @@ export function EnglishStoryScreen() {
         }
         emoji={currentStory.coverEmoji}
         accentColor="#9333EA"
+        titleColor="#9333EA"
       />
 
       {/* Story Picker Tabs */}

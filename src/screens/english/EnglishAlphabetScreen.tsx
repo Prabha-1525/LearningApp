@@ -3,9 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
-  EnglishHeader,
   EnglishQuizEngine,
   LetterCard,
 } from '../../features/english/presentation/components';
@@ -40,11 +39,12 @@ export function EnglishAlphabetScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title="Alphabet A–Z"
         subtitle="Tap any letter to hear its sound!"
         emoji="🔤"
         accentColor="#3B82F6"
+        titleColor="#3B82F6"
       />
 
       <View style={styles.tabRow}>

@@ -4,8 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {TimeHeader} from '../../features/time/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {DAY_PARTS} from '../../features/time/domain/catalog/timeData';
 import type {DayPartInfo} from '../../features/time/domain/entities/timeEntities';
 import {recordTimeTopicCompletion} from '../../features/time/data/progress/timeProgress';
@@ -41,11 +40,12 @@ export function DayPartsLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FFFBEB">
-      <TimeHeader
+      <LearningHeader
         title={t('time.topics.dayParts.title', 'Parts of the Day')}
         subtitle="Morning, Afternoon, Evening & Night"
         emoji="🌅"
         accentColor="#D97706"
+        titleColor="#D97706"
       />
 
       <ScrollView

@@ -3,11 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  DrawingHeader,
-  TracingCanvas,
-} from '../../features/drawing/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {TracingCanvas} from '../../features/drawing/presentation/components';
 import {TRACING_PATHS} from '../../features/drawing/domain/catalog/drawingData';
 import {recordDrawingLessonResult} from '../../features/drawing/data/progress/drawingProgress';
 import type {DrawingStackParamList} from '../../navigation/drawingTypes';
@@ -47,11 +44,12 @@ export function TraceScreen() {
 
   return (
     <AppSafeAreaView>
-      <DrawingHeader
+      <LearningHeader
         title="Trace & Draw"
         subtitle="Follow the dotted paths with your finger!"
         emoji="✏️"
         accentColor="#10B981"
+        titleColor="#10B981"
       />
 
       {/* Path Selector */}

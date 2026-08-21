@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  PhonicsExerciseEngine,
-  PhonicsHeader,
-} from '../../features/phonics/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {PhonicsExerciseEngine} from '../../features/phonics/presentation/components';
 import {PHONICS_EXERCISES_MAP} from '../../features/phonics/domain/catalog/phonicsData';
 import {recordPhonicsLessonResult} from '../../features/phonics/data/progress/phonicsProgress';
 import type {PhonicsStackParamList} from '../../navigation/phonicsTypes';
@@ -35,10 +32,11 @@ export function PictureToWordScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title="Picture to Word"
         subtitle="Look at the image and choose the correct phonics word!"
         accentColor="#84CC16"
+        titleColor="#84CC16"
       />
 
       <ScrollView

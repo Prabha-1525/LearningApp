@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ShapeQuizEngine,
-  ShapesHeader,
-} from '../../features/shapes/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ShapeQuizEngine} from '../../features/shapes/presentation/components';
 import {SUBMODULE_QUIZZES} from '../../features/shapes/domain/catalog/shapesData';
 import {recordShapeLessonResult} from '../../features/shapes/data/progress/shapesProgress';
 import type {ShapesStackParamList} from '../../navigation/shapesTypes';
@@ -37,11 +34,12 @@ export function ShapeChallengeScreen() {
 
   return (
     <AppSafeAreaView>
-      <ShapesHeader
+      <LearningHeader
         title="Shape Challenge"
         subtitle="Prove you are the Grand Shape Champion!"
         emoji="🏆"
         accentColor="#EA580C"
+        titleColor="#EA580C"
       />
 
       <ScrollView

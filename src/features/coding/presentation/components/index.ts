@@ -1,4 +1,3 @@
-export {CodingHeader} from './CodingHeader';
 export {RobotGridGame} from './RobotGridGame';
 export {InstructionsLesson} from './InstructionsLesson';
 export {SequencingGame} from './SequencingGame';

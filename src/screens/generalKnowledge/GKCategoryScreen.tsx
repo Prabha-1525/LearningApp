@@ -9,11 +9,8 @@ import {
 } from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  GKHeader,
-  GKLessonCard,
-} from '../../features/generalKnowledge/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {GKLessonCard} from '../../features/generalKnowledge/presentation/components';
 import {GK_CATEGORIES} from '../../features/generalKnowledge/domain/catalog/gkData';
 import {
   isLessonUnlocked,
@@ -50,12 +47,14 @@ export function GKCategoryScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#FFFBEB">
-      <GKHeader
+      <LearningHeader
         title={t(category.titleKey, category.id)}
         subtitle={`${completedCount}/${category.lessons.length} Completed`}
         emoji={category.emoji}
         accentColor={category.accentColor}
-        starsCount={progress.totalStars}
+        titleColor={category.accentColor}
+        stars={progress.totalStars}
+        starVariant="green"
       />
 
       <ScrollView

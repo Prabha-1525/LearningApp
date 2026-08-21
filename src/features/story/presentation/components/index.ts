@@ -1,4 +1,3 @@
-export {StoryHeader} from './StoryHeader';
 export {StoryCard} from './StoryCard';
 export {StorySceneStage} from './StorySceneStage';
 export {StoryReadAlongBox} from './StoryReadAlongBox';

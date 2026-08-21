@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ShapesAroundUsBoard,
-  ShapesHeader,
-} from '../../features/shapes/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ShapesAroundUsBoard} from '../../features/shapes/presentation/components';
 import {SHAPES_AROUND_US_ITEMS} from '../../features/shapes/domain/catalog/shapesData';
 import {recordShapeLessonResult} from '../../features/shapes/data/progress/shapesProgress';
 import type {ShapesStackParamList} from '../../navigation/shapesTypes';
@@ -37,11 +34,12 @@ export function ShapesAroundUsScreen() {
 
   return (
     <AppSafeAreaView>
-      <ShapesHeader
+      <LearningHeader
         title="Shapes Around Us"
         subtitle="Discover shapes in everyday real-world items!"
         emoji="🏠"
         accentColor="#14B8A6"
+        titleColor="#14B8A6"
       />
 
       <ScrollView

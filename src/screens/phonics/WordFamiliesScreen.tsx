@@ -3,10 +3,9 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   PhonicsExerciseEngine,
-  PhonicsHeader,
   WordFamilyCard,
 } from '../../features/phonics/presentation/components';
 import {
@@ -55,7 +54,7 @@ export function WordFamiliesScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title={showExercise ? 'Word Family Quiz' : 'Word Families'}
         subtitle={
           showExercise
@@ -63,6 +62,7 @@ export function WordFamiliesScreen() {
             : `Family ${familyIdx + 1} of ${sampleFamilies.length}`
         }
         accentColor="#6366F1"
+        titleColor="#6366F1"
       />
 
       <ScrollView

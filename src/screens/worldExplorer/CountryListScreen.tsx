@@ -11,11 +11,8 @@ import {
 import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components';
-import {
-  CountryCard,
-  ExplorerHeader,
-} from '@features/worldExplorer/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {CountryCard} from '@features/worldExplorer/presentation/components';
 import {useCountries} from '@features/worldExplorer/presentation/hooks/useCountries';
 import {useWorldExplorerProgress} from '@features/worldExplorer/presentation/hooks/useWorldExplorerProgress';
 import type {WorldExplorerStackParamList} from '@navigation/worldExplorerTypes';
@@ -53,7 +50,7 @@ export function CountryListScreen({navigation, route}: Props) {
 
   return (
     <AppSafeAreaView testID="country-list-screen" padded={false}>
-      <ExplorerHeader
+      <LearningHeader
         title={t('worldExplorer.activities.countries', {
           defaultValue: 'Countries',
         })}

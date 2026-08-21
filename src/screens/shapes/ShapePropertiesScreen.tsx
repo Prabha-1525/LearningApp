@@ -3,11 +3,8 @@ import {Pressable, ScrollView, StyleSheet, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ShapePropertiesViewer,
-  ShapesHeader,
-} from '../../features/shapes/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ShapePropertiesViewer} from '../../features/shapes/presentation/components';
 import {SHAPES_DATA} from '../../features/shapes/domain/catalog/shapesData';
 import {recordShapeLessonResult} from '../../features/shapes/data/progress/shapesProgress';
 import type {ShapesStackParamList} from '../../navigation/shapesTypes';
@@ -44,11 +41,12 @@ export function ShapePropertiesScreen() {
 
   return (
     <AppSafeAreaView>
-      <ShapesHeader
+      <LearningHeader
         title="Sides & Corners"
         subtitle="Count the sides and corners of each shape!"
         emoji="📐"
         accentColor="#10B981"
+        titleColor="#10B981"
       />
 
       {/* Shape Selector Carousel */}

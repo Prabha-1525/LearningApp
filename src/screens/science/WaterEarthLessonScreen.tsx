@@ -4,8 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {ScienceHeader} from '../../features/science/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {recordTopicCompletion} from '../../features/science/data/progress/scienceProgress';
 import type {ScienceStackParamList} from '../../navigation/scienceTypes';
 
@@ -108,10 +107,11 @@ export function WaterEarthLessonScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#ECFEFF">
-      <ScienceHeader
+      <LearningHeader
         title={t('science.topics.water.title', 'Water & Earth')}
         emoji="🌊"
         accentColor="#0891B2"
+        titleColor="#0891B2"
         onBack={() => navigation.navigate('Home')}
       />
 

@@ -3,11 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  MusicHeader,
-  MusicPatternsGame,
-} from '../../features/rhymes/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {MusicPatternsGame} from '../../features/rhymes/presentation/components';
 import {recordMusicTopicCompletion} from '../../features/rhymes/data/progress/musicProgress';
 import type {RhymesStackParamList} from '../../navigation/rhymesTypes';
 
@@ -30,11 +27,12 @@ export function MusicPatternsScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#ECFDF5">
-      <MusicHeader
+      <LearningHeader
         title={t('rhymes.topics.patterns.title', 'Musical Patterns')}
         subtitle="Visual & Sound Sequences"
         emoji="🎶"
         accentColor="#059669"
+        titleColor="#059669"
       />
       <MusicPatternsGame onComplete={handleComplete} />
     </AppSafeAreaView>

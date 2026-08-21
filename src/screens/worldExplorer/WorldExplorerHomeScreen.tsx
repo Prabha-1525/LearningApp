@@ -2,11 +2,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components';
-import {
-  ActivityCard,
-  ExplorerHeader,
-} from '@features/worldExplorer/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ActivityCard} from '@features/worldExplorer/presentation/components';
 import {useCountries} from '@features/worldExplorer/presentation/hooks/useCountries';
 import {useWorldExplorerProgress} from '@features/worldExplorer/presentation/hooks/useWorldExplorerProgress';
 import type {WorldExplorerStackParamList} from '@navigation/worldExplorerTypes';
@@ -27,7 +24,7 @@ export function WorldExplorerHomeScreen({navigation}: Props) {
 
   return (
     <AppSafeAreaView testID="world-explorer-home-screen" padded={false}>
-      <ExplorerHeader
+      <LearningHeader
         title={t('worldExplorer.title', {defaultValue: 'World Explorer'})}
         subtitle={t('worldExplorer.subtitle', {
           defaultValue: "Let's explore the world!",

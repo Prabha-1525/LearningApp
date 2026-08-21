@@ -3,11 +3,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  EnglishHeader,
-  TongueTwisterView,
-} from '../../features/english/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {TongueTwisterView} from '../../features/english/presentation/components';
 import {TONGUE_TWISTERS_DATA} from '../../features/english/domain/catalog/englishData';
 import {recordEnglishLessonResult} from '../../features/english/data/progress/englishProgress';
 import type {EnglishStackParamList} from '../../navigation/englishTypes';
@@ -22,15 +19,20 @@ export function EnglishTongueTwisterScreen() {
     TONGUE_TWISTERS_DATA[currentIdx] ?? TONGUE_TWISTERS_DATA[0];
 
   const handleNext = () => {
-    if (currentIdx === TONGUE_TWISTERS_DATA.length - 1) {
-      recordEnglishLessonResult('tongue_twisters', 'twisters_complete', 3, 100);
+    if (currentIdx >= TONGUE_TWISTERS_DATA.length - 1) {
+      recordEnglishLessonResult(
+        'tongue_twisters',
+        'tongue_twisters_intro',
+        3,
+        100,
+      );
       navigation.navigate('LessonComplete', {
         subModuleId: 'tongue_twisters',
-        title: 'Tongue Twister Champ',
+        title: 'Twister Master',
         stars: 3,
         score: 100,
         totalQuestions: TONGUE_TWISTERS_DATA.length,
-        nextSubModuleId: 'sentence_reading',
+        nextSubModuleId: 'reading_challenge',
       });
     } else {
       setCurrentIdx(prev => prev + 1);
@@ -39,11 +41,12 @@ export function EnglishTongueTwisterScreen() {
 
   return (
     <AppSafeAreaView>
-      <EnglishHeader
+      <LearningHeader
         title="Tongue Twisters"
         subtitle="Fun pronunciation and sound practice!"
         emoji="👅"
         accentColor="#84CC16"
+        titleColor="#84CC16"
       />
 
       <ScrollView

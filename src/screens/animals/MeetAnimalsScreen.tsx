@@ -3,11 +3,10 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   AnimalCard,
   AnimalQuizEngine,
-  AnimalsHeader,
 } from '../../features/animals/presentation/components';
 import {
   ANIMAL_QUIZZES,
@@ -56,11 +55,12 @@ export function MeetAnimalsScreen() {
 
   return (
     <AppSafeAreaView>
-      <AnimalsHeader
+      <LearningHeader
         title="Meet Animals"
         subtitle="Discover your favorite animal friends!"
         emoji="🐾"
         accentColor="#F59E0B"
+        titleColor="#F59E0B"
       />
 
       {/* Mode Switcher */}

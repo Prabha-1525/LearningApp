@@ -4,11 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
-import {
-  ScienceHeader,
-  ExperimentLabView,
-} from '../../features/science/presentation/components';
+import {AppSafeAreaView, LearningHeader} from '@components';
+import {ExperimentLabView} from '../../features/science/presentation/components';
 import {
   recordExperimentCompletion,
   recordTopicCompletion,
@@ -39,10 +36,11 @@ export function ExperimentsScreen() {
 
   return (
     <AppSafeAreaView backgroundImage={null} backgroundColor="#F5F3FF">
-      <ScienceHeader
+      <LearningHeader
         title={t('science.topics.experiments.title', 'Experiments')}
         emoji="🧪"
         accentColor="#7C3AED"
+        titleColor="#7C3AED"
         onBack={() => navigation.navigate('Home')}
       />
 

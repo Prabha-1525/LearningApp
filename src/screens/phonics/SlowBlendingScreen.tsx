@@ -3,10 +3,9 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   PhonicsExerciseEngine,
-  PhonicsHeader,
   SoundBlendingStage,
 } from '../../features/phonics/presentation/components';
 import {
@@ -55,7 +54,7 @@ export function SlowBlendingScreen() {
 
   return (
     <AppSafeAreaView>
-      <PhonicsHeader
+      <LearningHeader
         title={showExercise ? 'Blending Check' : 'Slow Sound Blending'}
         subtitle={
           showExercise
@@ -63,6 +62,7 @@ export function SlowBlendingScreen() {
             : `Word ${wordIdx + 1} of ${sampleWords.length}`
         }
         accentColor="#06B6D4"
+        titleColor="#06B6D4"
       />
 
       <ScrollView
