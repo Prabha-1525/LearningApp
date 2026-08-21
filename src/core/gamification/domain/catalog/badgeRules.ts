@@ -84,6 +84,10 @@ export type BadgeEvalContext = {
   readonly animalPuzzlesCount?: number;
   readonly storiesCompletedCount?: number;
   readonly storyStars?: number;
+  readonly phonicsLessonsCompleted?: number;
+  readonly phonicsStars?: number;
+  readonly cvcWordsLearnedCount?: number;
+  readonly blendingLessonsCompleted?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<BadgeId>;
 };
@@ -545,6 +549,76 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     evaluate: ctx =>
       (ctx.storiesCompletedCount ?? 0) >= 8 ||
       ((ctx.storiesCompletedCount ?? 0) >= 6 && (ctx.storyStars ?? 0) >= 18),
+  },
+  // ─── Phonics Badges ───────────────────────────────────────────────────────
+  {
+    id: 'phonics_sound_starter',
+    badgeId: asBadgeId('badge.phonics_sound_starter'),
+    titleKey: 'phonics.badges.soundStarter',
+    descriptionKey: 'phonics.badges.soundStarterDesc',
+    icon: '🔤',
+    evaluate: ctx => (ctx.phonicsLessonsCompleted ?? 0) >= 1,
+  },
+  {
+    id: 'phonics_sound_detective',
+    badgeId: asBadgeId('badge.phonics_sound_detective'),
+    titleKey: 'phonics.badges.soundDetective',
+    descriptionKey: 'phonics.badges.soundDetectiveDesc',
+    icon: '👂',
+    evaluate: ctx => (ctx.phonicsLessonsCompleted ?? 0) >= 3,
+  },
+  {
+    id: 'phonics_explorer',
+    badgeId: asBadgeId('badge.phonics_explorer'),
+    titleKey: 'phonics.badges.phonicsExplorer',
+    descriptionKey: 'phonics.badges.phonicsExplorerDesc',
+    icon: '🔊',
+    evaluate: ctx => (ctx.phonicsLessonsCompleted ?? 0) >= 5,
+  },
+  {
+    id: 'phonics_blending_star',
+    badgeId: asBadgeId('badge.phonics_blending_star'),
+    titleKey: 'phonics.badges.blendingStar',
+    descriptionKey: 'phonics.badges.blendingStarDesc',
+    icon: '🔗',
+    evaluate: ctx =>
+      (ctx.phonicsLessonsCompleted ?? 0) >= 7 ||
+      (ctx.blendingLessonsCompleted ?? 0) >= 1,
+  },
+  {
+    id: 'phonics_little_reader',
+    badgeId: asBadgeId('badge.phonics_little_reader'),
+    titleKey: 'phonics.badges.littleReader',
+    descriptionKey: 'phonics.badges.littleReaderDesc',
+    icon: '📖',
+    evaluate: ctx =>
+      (ctx.cvcWordsLearnedCount ?? 0) >= 10 ||
+      (ctx.phonicsLessonsCompleted ?? 0) >= 9,
+  },
+  {
+    id: 'phonics_word_builder',
+    badgeId: asBadgeId('badge.phonics_word_builder'),
+    titleKey: 'phonics.badges.wordBuilder',
+    descriptionKey: 'phonics.badges.wordBuilderDesc',
+    icon: '🧩',
+    evaluate: ctx => (ctx.phonicsLessonsCompleted ?? 0) >= 11,
+  },
+  {
+    id: 'phonics_word_family_star',
+    badgeId: asBadgeId('badge.phonics_word_family_star'),
+    titleKey: 'phonics.badges.wordFamilyStar',
+    descriptionKey: 'phonics.badges.wordFamilyStarDesc',
+    icon: '🌟',
+    evaluate: ctx => (ctx.phonicsLessonsCompleted ?? 0) >= 13,
+  },
+  {
+    id: 'phonics_champion',
+    badgeId: asBadgeId('badge.phonics_champion'),
+    titleKey: 'phonics.badges.phonicsChampion',
+    descriptionKey: 'phonics.badges.phonicsChampionDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      (ctx.phonicsLessonsCompleted ?? 0) >= 16 || (ctx.phonicsStars ?? 0) >= 40,
   },
   // ─── Logic & Coding Badges ─────────────────────────────────────────────────
   {

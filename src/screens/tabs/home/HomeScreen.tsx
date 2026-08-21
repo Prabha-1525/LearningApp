@@ -44,6 +44,10 @@ import {
   readStoryProgress,
   getStoryOverallProgress,
 } from '@features/story/data/progress/storyProgress';
+import {
+  readPhonicsProgress,
+  getPhonicsOverallProgress,
+} from '@features/phonics/data/progress/phonicsProgress';
 import {space} from '@shared/ui';
 
 import type {MainStackParamList, MainTabParamList} from '@navigation/types';
@@ -177,6 +181,15 @@ export function HomeScreen({navigation}: Props) {
     }
   }, []);
 
+  const phonicsProgress = useMemo(() => {
+    try {
+      const p = readPhonicsProgress();
+      return getPhonicsOverallProgress(p).percent;
+    } catch {
+      return 0;
+    }
+  }, []);
+
   const avatar = useMemo(
     () => getChildAvatar(activeChild?.avatarKey ?? 'lion'),
     [activeChild?.avatarKey],
@@ -268,6 +281,8 @@ export function HomeScreen({navigation}: Props) {
                   ? animalsProgress
                   : subject.id === 'story'
                   ? storyProgress
+                  : subject.id === 'phonics'
+                  ? phonicsProgress
                   : subject.progressPercent
               }
               showNewBadge={subject.showNewBadge}

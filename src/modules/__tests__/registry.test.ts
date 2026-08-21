@@ -28,7 +28,8 @@ describe('moduleRegistry', () => {
     expect(moduleRegistry.get(ModuleId.Shapes)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.Animals)?.isEnabled()).toBe(true);
     expect(moduleRegistry.get(ModuleId.Story)?.isEnabled()).toBe(true);
-    expect(moduleRegistry.listEnabled()).toHaveLength(15);
+    expect(moduleRegistry.get(ModuleId.Phonics)?.isEnabled()).toBe(true);
+    expect(moduleRegistry.listEnabled()).toHaveLength(16);
     expect(moduleRegistry.get(ModuleId.Chess)?.getNavigator()).not.toBeNull();
     expect(moduleRegistry.get(ModuleId.Math)?.getNavigator()).not.toBeNull();
     expect(
@@ -52,6 +53,7 @@ describe('moduleRegistry', () => {
     expect(moduleRegistry.get(ModuleId.Shapes)?.getNavigator()).not.toBeNull();
     expect(moduleRegistry.get(ModuleId.Animals)?.getNavigator()).not.toBeNull();
     expect(moduleRegistry.get(ModuleId.Story)?.getNavigator()).not.toBeNull();
+    expect(moduleRegistry.get(ModuleId.Phonics)?.getNavigator()).not.toBeNull();
   });
 
   it('is idempotent', () => {

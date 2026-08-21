@@ -14,6 +14,7 @@ import {registerDrawingModule} from '@features/drawing';
 import {registerShapesModule} from '@features/shapes';
 import {registerAnimalsModule} from '@features/animals';
 import {registerStoryModule} from '@features/story';
+import {registerPhonicsModule} from '@features/phonics';
 import {featureFlags} from '@shared/config';
 
 import {createCatalogModule} from './createCatalogModule';
@@ -43,18 +44,7 @@ export function registerAllModules(): void {
   moduleRegistry.register(registerShapesModule());
   moduleRegistry.register(registerAnimalsModule());
   moduleRegistry.register(registerStoryModule());
-
-  moduleRegistry.register(
-    createCatalogModule({
-      id: ModuleId.Phonics,
-      titleKey: 'modules.phonics.title',
-      subtitleKey: 'modules.phonics.subtitle',
-      iconKey: 'phonics',
-      accentColor: '#F06292',
-      deepLinkPrefix: 'learningapp://module/phonics',
-      isEnabled: () => featureFlags.phonicsEnabled,
-    }),
-  );
+  moduleRegistry.register(registerPhonicsModule());
 
   moduleRegistry.register(
     createCatalogModule({

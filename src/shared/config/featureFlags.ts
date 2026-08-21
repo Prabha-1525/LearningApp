@@ -39,7 +39,7 @@ export const featureFlags: FeatureFlags = {
   animalsEnabled: true,
   rhymesEnabled: true,
   storyEnabled: true,
-  phonicsEnabled: false,
+  phonicsEnabled: true,
   lifeSkillsEnabled: true,
   generalKnowledgeEnabled: true,
 };
