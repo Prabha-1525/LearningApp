@@ -12,6 +12,7 @@ import {registerGeneralKnowledgeModule} from '@features/generalKnowledge';
 import {registerEnglishModule} from '@features/english';
 import {registerDrawingModule} from '@features/drawing';
 import {registerShapesModule} from '@features/shapes';
+import {registerAnimalsModule} from '@features/animals';
 import {featureFlags} from '@shared/config';
 
 import {createCatalogModule} from './createCatalogModule';
@@ -39,18 +40,7 @@ export function registerAllModules(): void {
   moduleRegistry.register(registerEnglishModule());
   moduleRegistry.register(registerDrawingModule());
   moduleRegistry.register(registerShapesModule());
-
-  moduleRegistry.register(
-    createCatalogModule({
-      id: ModuleId.Animals,
-      titleKey: 'modules.animals.title',
-      subtitleKey: 'modules.animals.subtitle',
-      iconKey: 'animals',
-      accentColor: '#F5A623',
-      deepLinkPrefix: 'learningapp://module/animals',
-      isEnabled: () => featureFlags.animalsEnabled,
-    }),
-  );
+  moduleRegistry.register(registerAnimalsModule());
 
   moduleRegistry.register(
     createCatalogModule({

@@ -73,6 +73,15 @@ export type BadgeEvalContext = {
   readonly shapePropertiesCount?: number;
   readonly shapePatternsCount?: number;
   readonly shapePuzzlesCount?: number;
+  readonly animalsLessonsCompleted?: number;
+  readonly animalsStars?: number;
+  readonly animalsLearnedCount?: number;
+  readonly birdsLearnedCount?: number;
+  readonly seaAnimalsCount?: number;
+  readonly animalSoundsCount?: number;
+  readonly animalHabitatsCount?: number;
+  readonly animalMatchesCount?: number;
+  readonly animalPuzzlesCount?: number;
   readonly currentStreak: number;
   readonly ownedBadgeIds: ReadonlySet<BadgeId>;
 };
@@ -411,6 +420,86 @@ export const BADGE_RULES: readonly BadgeRule[] = [
     icon: '🏆',
     evaluate: ctx =>
       (ctx.moneyLessonsCompleted ?? 0) >= 5 && (ctx.moneyStars ?? 0) >= 12,
+  },
+  // ─── Animals Module Badges ────────────────────────────────────────────────
+  {
+    id: 'animal_explorer',
+    badgeId: asBadgeId('badge.animal_explorer'),
+    titleKey: 'animals.badges.animalExplorer',
+    descriptionKey: 'animals.badges.animalExplorerDesc',
+    icon: '🐾',
+    evaluate: ctx =>
+      (ctx.animalsLearnedCount ?? 0) >= 4 ||
+      (ctx.animalsLessonsCompleted ?? 0) >= 1,
+  },
+  {
+    id: 'animal_sound_detective',
+    badgeId: asBadgeId('badge.animal_sound_detective'),
+    titleKey: 'animals.badges.animalSoundDetective',
+    descriptionKey: 'animals.badges.animalSoundDetectiveDesc',
+    icon: '🔊',
+    evaluate: ctx =>
+      (ctx.animalSoundsCount ?? 0) >= 3 ||
+      (ctx.animalsLessonsCompleted ?? 0) >= 2,
+  },
+  {
+    id: 'bird_watcher',
+    badgeId: asBadgeId('badge.bird_watcher'),
+    titleKey: 'animals.badges.birdWatcher',
+    descriptionKey: 'animals.badges.birdWatcherDesc',
+    icon: '🐦',
+    evaluate: ctx =>
+      (ctx.birdsLearnedCount ?? 0) >= 4 ||
+      (ctx.animalsLessonsCompleted ?? 0) >= 4,
+  },
+  {
+    id: 'ocean_explorer',
+    badgeId: asBadgeId('badge.ocean_explorer'),
+    titleKey: 'animals.badges.oceanExplorer',
+    descriptionKey: 'animals.badges.oceanExplorerDesc',
+    icon: '🐠',
+    evaluate: ctx =>
+      (ctx.seaAnimalsCount ?? 0) >= 4 ||
+      (ctx.animalsLessonsCompleted ?? 0) >= 6,
+  },
+  {
+    id: 'habitat_helper',
+    badgeId: asBadgeId('badge.habitat_helper'),
+    titleKey: 'animals.badges.habitatHelper',
+    descriptionKey: 'animals.badges.habitatHelperDesc',
+    icon: '🏠',
+    evaluate: ctx =>
+      (ctx.animalHabitatsCount ?? 0) >= 3 || (ctx.animalsStars ?? 0) >= 12,
+  },
+  {
+    id: 'animal_matcher',
+    badgeId: asBadgeId('badge.animal_matcher'),
+    titleKey: 'animals.badges.animalMatcher',
+    descriptionKey: 'animals.badges.animalMatcherDesc',
+    icon: '🧩',
+    evaluate: ctx =>
+      (ctx.animalMatchesCount ?? 0) >= 3 ||
+      (ctx.animalsLessonsCompleted ?? 0) >= 8,
+  },
+  {
+    id: 'animal_expert',
+    badgeId: asBadgeId('badge.animal_expert'),
+    titleKey: 'animals.badges.animalExpert',
+    descriptionKey: 'animals.badges.animalExpertDesc',
+    icon: '🧠',
+    evaluate: ctx =>
+      (ctx.animalPuzzlesCount ?? 0) >= 2 || (ctx.animalsStars ?? 0) >= 20,
+  },
+  {
+    id: 'animal_champion',
+    badgeId: asBadgeId('badge.animal_champion'),
+    titleKey: 'animals.badges.animalChampion',
+    descriptionKey: 'animals.badges.animalChampionDesc',
+    icon: '🏆',
+    evaluate: ctx =>
+      ((ctx.animalsLessonsCompleted ?? 0) >= 10 &&
+        (ctx.animalsStars ?? 0) >= 30) ||
+      (ctx.animalPuzzlesCount ?? 0) >= 3,
   },
   // ─── Logic & Coding Badges ─────────────────────────────────────────────────
   {
