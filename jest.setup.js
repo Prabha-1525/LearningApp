@@ -51,33 +51,32 @@ jest.mock('react-native-mmkv', () => {
 jest.mock('react-native-worklets', () => ({
   __esModule: true,
   default: {},
-  useSharedValue: (v: unknown) => ({value: v}),
-  useAnimatedStyle: (fn: () => unknown) => fn(),
-  withTiming: (v: unknown) => v,
-  withSpring: (v: unknown) => v,
+  useSharedValue: v => ({value: v}),
+  useAnimatedStyle: fn => fn(),
+  withTiming: v => v,
+  withSpring: v => v,
 }));
 
 jest.mock('react-native-reanimated', () => {
-  const React = require('react');
   const {View} = require('react-native');
   return {
     __esModule: true,
     default: {
       View,
-      createAnimatedComponent: (Component: unknown) => Component,
+      createAnimatedComponent: Component => Component,
       call: () => undefined,
     },
     View,
-    createAnimatedComponent: (Component: unknown) => Component,
-    useSharedValue: (value: unknown) => ({value}),
-    useAnimatedStyle: (fn: () => unknown) => fn(),
-    withTiming: (value: unknown) => value,
-    withSpring: (value: unknown) => value,
+    createAnimatedComponent: Component => Component,
+    useSharedValue: value => ({value}),
+    useAnimatedStyle: fn => fn(),
+    withTiming: value => value,
+    withSpring: value => value,
     Easing: {
-      out: (fn: unknown) => fn,
+      out: fn => fn,
       cubic: jest.fn(),
     },
-    runOnJS: (fn: (...args: unknown[]) => unknown) => fn,
+    runOnJS: fn => fn,
   };
 });
 
@@ -118,4 +117,19 @@ jest.mock('@react-native-firebase/firestore', () => ({default: () => ({})}), {
 });
 jest.mock('@react-native-firebase/analytics', () => ({default: () => ({})}), {
   virtual: true,
+});
+
+jest.mock('@react-navigation/native', () => {
+  const actual = jest.requireActual('@react-navigation/native');
+  return {
+    ...actual,
+    useNavigation: () => ({
+      navigate: jest.fn(),
+      goBack: jest.fn(),
+      canGoBack: () => true,
+      getParent: () => ({navigate: jest.fn()}),
+    }),
+    useRoute: () => ({params: {}}),
+    useFocusEffect: jest.fn(),
+  };
 });

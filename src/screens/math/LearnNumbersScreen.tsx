@@ -1,17 +1,17 @@
 import {useCallback, useEffect, useRef} from 'react';
-import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppDispatch, useAppSelector} from '@app/store';
-import {AppSafeAreaView} from '@components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {asChildId, ModuleId} from '@core/domain';
 import {
   applyGrantResult,
   createMmkvGamificationRepository,
   grantRewards,
 } from '@core/gamification';
-import {BackButton, space} from '@shared/ui';
+import {space} from '@shared/ui';
 
 import {CelebrationStars} from '@features/math/presentation/components/CelebrationStars';
 import {AnimatedObjectShowcase} from '@features/math/presentation/components/numbers/AnimatedObjectShowcase';
@@ -98,29 +98,18 @@ export function LearnNumbersScreen({navigation}: Props) {
       backgroundImage={null}
       backgroundColor="#F5F7FA"
       padded={false}>
-      <View style={styles.header}>
-        <BackButton
-          label={t('common.back')}
-          onPress={() =>
-            navigation.canGoBack()
-              ? navigation.goBack()
-              : navigation.navigate('Hub')
-          }
-        />
-        <Text style={styles.headerTitle}>{t('math.numbers.title')}</Text>
-        <View style={styles.starCount}>
-          <Text style={styles.starText}>★ {player.batchStats.stars}</Text>
-        </View>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={t('math.lesson.replay')}
-          onPress={() => {
-            void player.replayAudio();
-          }}
-          style={styles.audioButton}>
-          <Text style={styles.audioIcon}>🔊</Text>
-        </Pressable>
-      </View>
+      <LearningHeader
+        title={t('math.numbers.title')}
+        stars={player.batchStats.stars}
+        onAudioPress={() => {
+          void player.replayAudio();
+        }}
+        onBack={() =>
+          navigation.canGoBack()
+            ? navigation.goBack()
+            : navigation.navigate('Hub')
+        }
+      />
 
       <View style={styles.body}>
         <ScrollView

@@ -9,3 +9,4 @@ export {
   AvatarGrid,
   ContinueButton,
 } from './onboarding';
+export {LearningHeader, type LearningHeaderProps} from './LearningHeader';

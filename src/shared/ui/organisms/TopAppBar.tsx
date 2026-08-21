@@ -1,9 +1,5 @@
 import type {ReactNode} from 'react';
-import {StyleSheet, View} from 'react-native';
-
-import {AudioButton, BackButton} from '../atoms';
-import {AppText} from '../components/AppText';
-import {useTheme} from '../theme';
+import {LearningHeader} from '@components/LearningHeader';
 
 export type TopAppBarProps = {
   readonly title: string;
@@ -19,7 +15,7 @@ export type TopAppBarProps = {
 
 /**
  * Organism — standard top chrome for every learning screen.
- * Compose Back + Title + optional Audio / custom trailing.
+ * Delegates to the unified LearningHeader based on the Maths module.
  */
 export function TopAppBar({
   title,
@@ -29,69 +25,19 @@ export function TopAppBar({
   showAudio = false,
   soundEnabled = true,
   onToggleSound,
-  reduceMotion = false,
   testID,
 }: TopAppBarProps) {
-  const {space} = useTheme();
-
   return (
-    <View style={[styles.row, {marginBottom: space.md}]} testID={testID}>
-      <View style={styles.slot}>
-        {onBack ? (
-          <BackButton onPress={onBack} reduceMotion={reduceMotion} />
-        ) : (
-          <View style={styles.spacer} />
-        )}
-      </View>
-
-      <View style={styles.center}>
-        <AppText variant="title" tone="ink" numberOfLines={1}>
-          {title}
-        </AppText>
-        {subtitle ? (
-          <AppText variant="caption" tone="muted" numberOfLines={1}>
-            {subtitle}
-          </AppText>
-        ) : null}
-      </View>
-
-      <View style={[styles.slot, styles.trailing]}>
-        {trailing}
-        {showAudio && onToggleSound ? (
-          <AudioButton
-            enabled={soundEnabled}
-            onToggle={onToggleSound}
-            reduceMotion={reduceMotion}
-          />
-        ) : trailing == null ? (
-          <View style={styles.spacer} />
-        ) : null}
-      </View>
-    </View>
+    <LearningHeader
+      title={title}
+      subtitle={subtitle}
+      onBack={onBack}
+      showAudio={showAudio}
+      onAudioPress={
+        onToggleSound ? () => onToggleSound(!soundEnabled) : undefined
+      }
+      rightElement={trailing}
+      testID={testID}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  slot: {
-    minWidth: 56,
-  },
-  trailing: {
-    alignItems: 'flex-end',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    gap: 8,
-  },
-  center: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  spacer: {
-    width: 56,
-    height: 56,
-  },
-});

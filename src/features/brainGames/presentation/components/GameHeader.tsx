@@ -1,17 +1,11 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withSequence,
-  withTiming,
-} from 'react-native-reanimated';
+import {StyleSheet, Text, View} from 'react-native';
+import {LearningHeader} from '@components/LearningHeader';
 
-type GameHeaderProps = {
+export type GameHeaderProps = {
   readonly title: string;
   readonly emoji: string;
-  readonly accentColor: string;
+  readonly accentColor?: string;
   readonly score?: number;
   readonly totalScore?: number;
   readonly onBack?: () => void;
@@ -20,98 +14,52 @@ type GameHeaderProps = {
 export function GameHeader({
   title,
   emoji,
-  accentColor,
+  accentColor = '#6366F1',
   score,
   totalScore,
   onBack,
 }: GameHeaderProps) {
-  const bounce = useSharedValue(1);
-  const emojiStyle = useAnimatedStyle(() => ({
-    transform: [{scale: bounce.value}],
-  }));
-
-  React.useEffect(() => {
-    bounce.value = withRepeat(
-      withSequence(
-        withTiming(1.12, {duration: 600}),
-        withTiming(1, {duration: 600}),
-      ),
-      -1,
-      false,
-    );
-  }, [bounce]);
+  const scoreElement =
+    score !== undefined && totalScore !== undefined ? (
+      <View style={styles.scorePill}>
+        <Text style={styles.starIcon}>★</Text>
+        <Text style={styles.scoreText}>
+          {score}/{totalScore}
+        </Text>
+      </View>
+    ) : null;
 
   return (
-    <View style={[styles.container, {backgroundColor: accentColor}]}>
-      {onBack && (
-        <Pressable
-          onPress={onBack}
-          style={styles.backBtn}
-          accessibilityRole="button"
-          accessibilityLabel="Go back">
-          <Text style={styles.backIcon}>←</Text>
-        </Pressable>
-      )}
-
-      <Animated.Text style={[styles.emoji, emojiStyle]}>{emoji}</Animated.Text>
-
-      <Text style={styles.title} numberOfLines={1}>
-        {title}
-      </Text>
-
-      {score !== undefined && totalScore !== undefined && (
-        <View style={styles.scoreBadge}>
-          <Text style={styles.scoreText}>
-            {score}/{totalScore}
-          </Text>
-        </View>
-      )}
-    </View>
+    <LearningHeader
+      title={title}
+      emoji={emoji}
+      accentColor={accentColor}
+      titleColor={accentColor}
+      rightElement={scoreElement}
+      onBack={onBack}
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scorePill: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    gap: 10,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-  },
-  backBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.3)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  backIcon: {
-    fontSize: 20,
-    color: '#FFFFFF',
-    fontWeight: '800',
-  },
-  emoji: {
-    fontSize: 28,
-  },
-  title: {
-    flex: 1,
-    fontSize: 20,
-    fontWeight: '900',
-    color: '#FFFFFF',
-    letterSpacing: 0.2,
-  },
-  scoreBadge: {
-    backgroundColor: 'rgba(255,255,255,0.25)',
-    borderRadius: 14,
+    gap: 4,
+    backgroundColor: '#EEF2FF',
     paddingHorizontal: 12,
-    paddingVertical: 5,
+    paddingVertical: 6,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#C7D2FE',
+  },
+  starIcon: {
+    fontSize: 14,
+    color: '#4F46E5',
   },
   scoreText: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '800',
-    color: '#FFFFFF',
+    color: '#3730A3',
   },
 });

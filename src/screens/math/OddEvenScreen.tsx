@@ -1,10 +1,10 @@
 import {useCallback, useEffect, useRef} from 'react';
-import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppDispatch, useAppSelector} from '@app/store';
-import {AppSafeAreaView} from '@components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {asChildId, ModuleId} from '@core/domain';
 import {
   applyGrantResult,
@@ -24,7 +24,6 @@ import {
   useOddEvenPlayer,
 } from '@features/math/presentation/hooks/useOddEvenPlayer';
 import type {MathStackParamList} from '@navigation/mathTypes';
-import {BackButton} from '@shared/ui';
 
 type Props = NativeStackScreenProps<MathStackParamList, 'Lesson'>;
 
@@ -89,26 +88,17 @@ export function OddEvenScreen({navigation}: Props) {
       backgroundImage={null}
       backgroundColor="#F5F7FA"
       padded={false}>
-      <View style={styles.header}>
-        <BackButton
-          label={t('common.back')}
-          onPress={() =>
-            navigation.canGoBack()
-              ? navigation.goBack()
-              : navigation.navigate('Hub')
-          }
-        />
-        <Text style={styles.headerTitle}>{t('math.oddEven.moduleTitle')}</Text>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={t('math.lesson.replay')}
-          onPress={() => {
-            void player.replay();
-          }}
-          style={styles.audioButton}>
-          <Text style={styles.audioIcon}>🔊</Text>
-        </Pressable>
-      </View>
+      <LearningHeader
+        title={t('math.oddEven.moduleTitle')}
+        onAudioPress={() => {
+          void player.replay();
+        }}
+        onBack={() =>
+          navigation.canGoBack()
+            ? navigation.goBack()
+            : navigation.navigate('Hub')
+        }
+      />
 
       <View style={styles.body}>
         <ScrollView

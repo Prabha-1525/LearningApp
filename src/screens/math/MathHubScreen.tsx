@@ -6,7 +6,7 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppSelector} from '@app/store';
 import {getChildAvatar, leoWave} from '@assets';
-import {AppSafeAreaView} from '@components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   getMathProgress,
   getMathTopicProgress,
@@ -14,7 +14,7 @@ import {
 } from '@features/math/data';
 import {MATH_ADVENTURE_TOPICS} from '@features/math/domain/curriculum';
 import type {MathStackParamList} from '@navigation/mathTypes';
-import {BackButton, space} from '@shared/ui';
+import {space} from '@shared/ui';
 
 import {
   MATH_TOPIC_GRID_GAP,
@@ -65,35 +65,31 @@ export function MathHubScreen({navigation}: Props) {
       backgroundColor="#EAF1F6"
       padded={false}
       edges={['top', 'left', 'right']}>
-      <View style={styles.header}>
-        <BackButton
-          label={t('common.back')}
-          onPress={() => {
-            if (navigation.canGoBack()) {
-              navigation.goBack();
-            } else {
-              const parent = navigation.getParent();
-              if (parent) {
-                (parent as any).navigate('Tabs', {screen: 'HomeTab'});
-              }
-            }
-          }}
-        />
-        <Text style={styles.headerTitle}>{t('math.hub.title')}</Text>
-        <View style={styles.headerRight}>
-          <View style={styles.coinPill}>
-            <Text style={styles.coinIcon}>★</Text>
-            <Text style={styles.coinValue}>{stars}</Text>
-          </View>
-          {avatar.image ? (
+      <LearningHeader
+        title={t('math.hub.title')}
+        titleColor="#1D4ED8"
+        stars={stars}
+        starVariant="green"
+        rightElement={
+          avatar.image ? (
             <Image source={avatar.image} style={styles.avatar} />
           ) : (
             <View style={styles.avatarFallback}>
               <Text style={styles.avatarEmoji}>{avatar.emoji}</Text>
             </View>
-          )}
-        </View>
-      </View>
+          )
+        }
+        onBack={() => {
+          if (navigation.canGoBack()) {
+            navigation.goBack();
+          } else {
+            const parent = navigation.getParent();
+            if (parent) {
+              (parent as any).navigate('Tabs', {screen: 'HomeTab'});
+            }
+          }
+        }}
+      />
 
       <ScrollView
         contentContainerStyle={styles.content}

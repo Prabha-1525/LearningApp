@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppDispatch, useAppSelector} from '@app/store';
-import {AppSafeAreaView} from '@components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   getEquationLessonStars,
   getEquationProgress,
@@ -67,18 +67,14 @@ export function EquationLessonScreen({navigation, mode}: Props) {
         backgroundImage={null}
         backgroundColor="#F5F7FA"
         padded={false}>
-        <View style={styles.header}>
-          <BackButton
-            label={t('common.back')}
-            onPress={() =>
-              navigation.canGoBack()
-                ? navigation.goBack()
-                : navigation.navigate('Hub')
-            }
-          />
-          <Text style={styles.headerTitle}>{t(`${prefix}.moduleTitle`)}</Text>
-          <View style={styles.headerSpacer} />
-        </View>
+        <LearningHeader
+          title={t(`${prefix}.moduleTitle`)}
+          onBack={() =>
+            navigation.canGoBack()
+              ? navigation.goBack()
+              : navigation.navigate('Hub')
+          }
+        />
         <ScrollView contentContainerStyle={styles.pickerContent}>
           <Text style={styles.pickerLead}>{t(`${prefix}.pickerLead`)}</Text>
           <Text style={styles.totalStars}>

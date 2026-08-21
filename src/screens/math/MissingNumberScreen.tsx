@@ -12,7 +12,7 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppDispatch, useAppSelector} from '@app/store';
 import {leoWave} from '@assets';
-import {AppSafeAreaView} from '@components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   getMissingLessonStars,
   getMissingProgress,
@@ -27,8 +27,7 @@ import {MissingChoiceGrid} from '@features/math/presentation/components/missing/
 import {MissingLessonSuccess} from '@features/math/presentation/components/missing/MissingLessonSuccess';
 import {MissingSequenceBoard} from '@features/math/presentation/components/missing/MissingSequenceBoard';
 import {useMissingNumberPlayer} from '@features/math/presentation/hooks/useMissingNumberPlayer';
-import type {MathStackParamList} from '@navigation/mathTypes';
-import {BackButton, space} from '@shared/ui';
+import {space} from '@shared/ui';
 
 type Props = NativeStackScreenProps<MathStackParamList, 'Lesson'>;
 
@@ -59,20 +58,14 @@ export function MissingNumberScreen({navigation}: Props) {
         backgroundImage={null}
         backgroundColor="#F3F8FC"
         padded={false}>
-        <View style={styles.header}>
-          <BackButton
-            label={t('common.back')}
-            onPress={() =>
-              navigation.canGoBack()
-                ? navigation.goBack()
-                : navigation.navigate('Hub')
-            }
-          />
-          <Text style={styles.headerTitle}>
-            {t('math.missing.moduleTitle')}
-          </Text>
-          <View style={styles.headerSpacer} />
-        </View>
+        <LearningHeader
+          title={t('math.missing.moduleTitle')}
+          onBack={() =>
+            navigation.canGoBack()
+              ? navigation.goBack()
+              : navigation.navigate('Hub')
+          }
+        />
         <ScrollView contentContainerStyle={styles.pickerContent}>
           <Text style={styles.pickerLead}>{t('math.missing.pickerLead')}</Text>
           <Text style={styles.totalStars}>
@@ -185,15 +178,12 @@ function MissingPlaySession({
       backgroundImage={null}
       backgroundColor="#F3F8FC"
       padded={false}>
-      <View style={styles.header}>
-        <BackButton label={t('common.back')} onPress={onExitToPicker} />
-        <Text style={styles.headerTitle} numberOfLines={1}>
-          {title}
-        </Text>
-        <View style={styles.starBtn}>
-          <Text style={styles.starBtnIcon}>★</Text>
-        </View>
-      </View>
+      <LearningHeader
+        title={title}
+        progress={barPercent}
+        showProgress
+        onBack={onExitToPicker}
+      />
 
       <View style={styles.playBody}>
         <View style={styles.stepRow}>

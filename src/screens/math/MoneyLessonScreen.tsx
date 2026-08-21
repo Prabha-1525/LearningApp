@@ -11,14 +11,14 @@ import {useTranslation} from 'react-i18next';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppDispatch, useAppSelector} from '@app/store';
-import {AppSafeAreaView} from '@components/AppSafeAreaView';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {asChildId, ModuleId} from '@core/domain';
 import {
   applyGrantResult,
   createMmkvGamificationRepository,
   grantRewards,
 } from '@core/gamification';
-import {BackButton, space} from '@shared/ui';
+import {space} from '@shared/ui';
 import type {MathStackParamList} from '@navigation/mathTypes';
 
 import {
@@ -121,28 +121,18 @@ export function MoneyLessonScreen({navigation}: Props) {
       padded={false}
       edges={['top', 'left', 'right']}>
       {/* Header */}
-      <View style={styles.header}>
-        <BackButton
-          label={t('common.back', 'Back')}
-          onPress={() => {
-            if (navigation.canGoBack()) {
-              navigation.goBack();
-            } else {
-              navigation.navigate('Hub');
-            }
-          }}
-        />
-        <View style={styles.headerTitleWrap}>
-          <Text style={styles.headerEmoji}>💰</Text>
-          <Text style={styles.headerTitle}>
-            {t('math.money.title', 'Money Explorer')}
-          </Text>
-        </View>
-        <View style={styles.starPill}>
-          <Text style={styles.starIcon}>★</Text>
-          <Text style={styles.starValue}>{totalWalletStars}</Text>
-        </View>
-      </View>
+      <LearningHeader
+        emoji="💰"
+        title={t('math.money.title', 'Money Explorer')}
+        stars={totalWalletStars}
+        onBack={() => {
+          if (navigation.canGoBack()) {
+            navigation.goBack();
+          } else {
+            navigation.navigate('Hub');
+          }
+        }}
+      />
 
       {/* Tabs Navigation */}
       <View style={styles.tabsScrollWrap}>

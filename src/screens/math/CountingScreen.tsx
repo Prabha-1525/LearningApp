@@ -12,7 +12,7 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppDispatch, useAppSelector} from '@app/store';
 import {leoWave} from '@assets';
-import {AppSafeAreaView} from '@components';
+import {AppSafeAreaView, LearningHeader} from '@components';
 import {
   getCountingLessonStars,
   getCountingProgress,
@@ -28,7 +28,7 @@ import {CountingObjectGrid} from '@features/math/presentation/components/countin
 import {MissingLessonSuccess} from '@features/math/presentation/components/missing/MissingLessonSuccess';
 import {useCountingPlayer} from '@features/math/presentation/hooks/useCountingPlayer';
 import type {MathStackParamList} from '@navigation/mathTypes';
-import {BackButton, space} from '@shared/ui';
+import {space} from '@shared/ui';
 
 type Props = NativeStackScreenProps<MathStackParamList, 'Lesson'>;
 
@@ -59,20 +59,14 @@ export function CountingScreen({navigation}: Props) {
         backgroundImage={null}
         backgroundColor="#F3F8FC"
         padded={false}>
-        <View style={styles.header}>
-          <BackButton
-            label={t('common.back')}
-            onPress={() =>
-              navigation.canGoBack()
-                ? navigation.goBack()
-                : navigation.navigate('Hub')
-            }
-          />
-          <Text style={styles.headerTitle}>
-            {t('math.counting.moduleTitle')}
-          </Text>
-          <View style={styles.headerSpacer} />
-        </View>
+        <LearningHeader
+          title={t('math.counting.moduleTitle')}
+          onBack={() =>
+            navigation.canGoBack()
+              ? navigation.goBack()
+              : navigation.navigate('Hub')
+          }
+        />
         <ScrollView contentContainerStyle={styles.pickerContent}>
           <Text style={styles.pickerLead}>{t('math.counting.pickerLead')}</Text>
           <Text style={styles.totalStars}>
@@ -177,29 +171,15 @@ function CountingPlaySession({
       backgroundImage={null}
       backgroundColor="#F3F8FC"
       padded={false}>
-      <View style={styles.header}>
-        <BackButton label={t('common.back')} onPress={onExitToPicker} />
-        <Text style={styles.headerTitle} numberOfLines={1}>
-          {title}
-        </Text>
-        <View style={styles.progressMini}>
-          <View style={styles.progressMiniTrack}>
-            <View
-              style={[styles.progressMiniFill, {width: `${barPercent}%`}]}
-            />
-          </View>
-          <Text style={styles.progressStar}>★</Text>
-        </View>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={t('math.lesson.replay')}
-          onPress={() => {
-            void player.replayPrompt();
-          }}
-          style={styles.speakerBtn}>
-          <Text style={styles.speakerIcon}>🔊</Text>
-        </Pressable>
-      </View>
+      <LearningHeader
+        title={title}
+        progress={barPercent}
+        showProgress
+        onAudioPress={() => {
+          void player.replayPrompt();
+        }}
+        onBack={onExitToPicker}
+      />
 
       <View style={styles.playBody}>
         <Text style={styles.stepText}>
